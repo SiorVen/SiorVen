@@ -5,8 +5,10 @@
 
 ***
 
-Este código organizado como un proyecto maven produce un archivo .war preparado para desplegar en servodores tomcat 7/8/9. 
-Esta basado en el frameowrk Spring (Versión 4) para Java (Versión 8).
+Este código organizado como un proyecto maven produce un archivo .war preparado para desplegar en servidores tomcat 7/8/9. 
+Esta basado en el framework Spring (Versión 4) para Java (Versión 8). Tambien esta el codigo slice que usa el middleware ICE
+ Con el que se puede generar el código para la interfaz de conexion de los recolectores de datos para un numero de lenguajes.
+ Este código se encuentra ya generado para Java.
 
 Para crear el war solo se debe lanzar el comando war de maven sobre el proyecto.
 
