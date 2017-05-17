@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Tell the browser to be responsive to screen width -->
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel='shortcut icon' type='image/png'
+          href="<c:url value='/res/img/favicon.png'/>"/>
+
+    <tiles:importAttribute name="stylesheets" ignore="true"/>
+
+    <script type="text/javascript" src="<c:url value='/res/js/jquery-3.2.1.min.js' />"></script>
+    <script type="text/javascript"
+            src="<c:url value='/res/js/bootstrap.min.js'/>"></script>
+    <link rel="stylesheet" type="text/css"
+          href="<c:url value='/res/css/bootstrap.min.css'/>"/>
+    <link rel="stylesheet" type="text/css"
+          href="<c:url value='/res/css/font-awesome.min.css'/>"/>
+    <link rel="stylesheet" type="text/css"
+          href="<c:url value='/res/css/metisMenu.min.css'/>"/>
+    <link rel="stylesheet" type="text/css"
+          href="<c:url value='/res/css/sb-admin-2.min.css'/>"/>
+
+    <script type="text/javascript"
+            src="<c:url value='/res/js/metisMenu.min.js'/>"></script>
+    <script type="text/javascript"
+            src="<c:url value='/res/js/sb-admin-2.min.js'/>"></script>
+    <link href="<c:url value='/res/css/animate.css'/>" rel="stylesheet">
+    <script src="<c:url value='/res/js/bootstrap-notify.min.js'/>"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <tiles:importAttribute name="title"/>
+    <title>SiorVen - <spring:message code="${title}" text="Título"/></title>
+</head>
+
+<div id="wrapper">
+    <nav style="margin: 0px; background-color: black; margin-bottom: 0;"
+         class="navbar navbar-default navbar-static-top">
+        <tiles:insertAttribute name="header"/>
+        <tiles:insertAttribute name="sidemenu"/>
+    </nav>
+    <div id="page-wrapper"
+         style="display: none; padding-top: 20px; padding-bottom: 10%;">
+        <tiles:insertAttribute name="body"/>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#page-wrapper').fadeIn(500);
+        $('#focused').focus();
+    })
+</script>
+
+</body>
+</html>

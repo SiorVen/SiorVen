@@ -46,13 +46,16 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath:org/siorven/config/security-context.xml
-            classpath:org/siorven/config/security-context.xml
-            classpath:org/siorven/config/security-context.xml
+            classpath:org/siorven/config/persistence-context.xml
+            classpath:org/siorven/config/service-context.xml
         </param-value>
     </context-param>
 
