@@ -1,5 +1,7 @@
 package org.siorven.config;
 
+import org.siorven.dao.UserDao;
+import org.siorven.model.User;
 import org.siorven.services.LoginAttemptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,13 +12,13 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by ander on 17/04/2017.
+ * User details service that returns the user to be used on the application's session and/or cookies
  */
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 
-    //@Autowired
-    //private UsuarioDao usuarioDao;
+    @Autowired
+    private UserDao usuarioDao;
 
     @Autowired
     private LoginAttemptService loginAttemptService;
@@ -31,8 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new RuntimeException("blocked");
         }
 
-        //Usuario usuario = usuarioDao.findByUsername(s);
-        UserDetails usuario = null;
+        User usuario = usuarioDao.findByUsername(s);
         if (usuario != null) {
             return usuario;
         } else {

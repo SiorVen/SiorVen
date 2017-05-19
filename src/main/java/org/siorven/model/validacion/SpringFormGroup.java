@@ -1,10 +1,8 @@
 package org.siorven.model.validacion;
 
 /**
- * Created by ander on 17/04/2017.
+ * Validation group for spring
  */
 public interface SpringFormGroup {
-
-
 
 }

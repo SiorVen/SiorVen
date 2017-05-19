@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Pattern;
 
 /**
- * Created by ander on 17/04/2017.
+ * Matcher to define which elements of the web application will be protected with a CSRF Token and which will not
  */
 public class CsrfSecurityRequestMatcher implements RequestMatcher {
     private Pattern allowedMethods = Pattern.compile("^(GET|HEAD|TRACE|OPTIONS)$");

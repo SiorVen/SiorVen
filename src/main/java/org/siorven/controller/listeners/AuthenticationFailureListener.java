@@ -8,7 +8,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by ander on 17/05/2017.
+ * Listener that processes when a login attempt is not successful
+ * @see LoginAttemptService
  */
 @Component
 public class AuthenticationFailureListener
