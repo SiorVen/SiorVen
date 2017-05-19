@@ -7,7 +7,8 @@
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8" />
     <!-- Tell the browser to be responsive to screen width -->
 
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -41,14 +42,14 @@
     <title>SiorVen - <spring:message code="${title}" text="Título"/></title>
 </head>
 
-<div id="wrapper">
+<div id="wrapper" class="fill">
     <nav style="margin: 0px; background-color: black; margin-bottom: 0;"
          class="navbar navbar-default navbar-static-top">
         <tiles:insertAttribute name="header"/>
         <tiles:insertAttribute name="sidemenu"/>
     </nav>
     <div id="page-wrapper"
-         style="display: none; padding-top: 20px; padding-bottom: 10%;">
+         style="display: none; padding-top: 20px; padding-bottom: 10%;" class="fill">
         <tiles:insertAttribute name="body"/>
     </div>
 </div>
@@ -59,6 +60,10 @@
         $('#focused').focus();
     })
 </script>
-
+<style>
+    .fill {
+        min-height: calc(100vh - 51px) !important;
+    }
+</style>
 </body>
 </html>

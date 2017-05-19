@@ -9,6 +9,8 @@
         <security:intercept-url pattern="/" access="permitAll()"/>
         <security:intercept-url pattern="/res/**" access="permitAll()"/>
         <security:intercept-url pattern="/login" access="permitAll()"/>
+        <security:intercept-url pattern="/logout" access="permitAll()"/>
+        <security:intercept-url pattern="/user/**" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="denyAll()"/>
 
         <security:form-login login-page="/login" password-parameter="clave" username-parameter="usuario"

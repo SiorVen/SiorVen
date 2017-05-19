@@ -8,7 +8,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by ander on 17/05/2017.
+ * Listener that processes when a login attempt is not successful
+ * @see LoginAttemptService
  */
 @Component
 public class AuthenticationFailureListener
@@ -20,12 +21,6 @@ public class AuthenticationFailureListener
     public void onApplicationEvent(AuthenticationFailureBadCredentialsEvent e) {
         WebAuthenticationDetails auth = (WebAuthenticationDetails)
                 e.getAuthentication().getDetails();
-
         loginAttemptService.loginFailed(auth.getRemoteAddress());
-        String errorMessage = "Login incorrecto";
-        if (e.getException().getMessage().equalsIgnoreCase("blocked")) {
-            errorMessage = "Has sido bloqueado durante 24 horas debido a la cantidad de intentos de login incorrectos";
-        }
-
     }
 }

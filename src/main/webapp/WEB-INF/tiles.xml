@@ -22,4 +22,9 @@
         <put-attribute name="title" type="string" value="pages.index" />
         <put-attribute name="body" value="/WEB-INF/views/bodys/login.jsp" />
     </definition>
+
+    <definition name="register" extends="index">
+        <put-attribute name="title" type="string" value="pages.register" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/register.jsp" />
+    </definition>
 </tiles-definitions>
