@@ -34,7 +34,7 @@
             <list>
                 <value>org.siorven.msgs.pages</value>
                 <value>org.siorven.msgs.general</value>
-                <value>ValidationMessages</value>
+                <value>org.siorven.msgs.errors</value>
                 <value>org.siorven.msgs.fields</value>
             </list>
         </property>

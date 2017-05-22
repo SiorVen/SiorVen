@@ -15,8 +15,8 @@
         <img style="height: 130%; display: inline-block;" alt="Siorven logo"
              src="<c:url value="/res/img/siorven.png"/>">
         <h2
-                style="color: white; display: inline-block; font-size: 100%; margin: 0px auto;">SiorVen</h2>
-        <h3 style="display: inline-block; font-size: 80%; margin: 0px auto;">
+                style="color: white; display: inline-block; font-size: 100%; margin: 0 auto;">SiorVen</h2>
+        <h3 style="display: inline-block; font-size: 80%; margin: 0 auto;">
             <spring:message code="global.subtitle"/>
         </h3>
     </a>
@@ -24,10 +24,6 @@
 <!-- /.navbar-header -->
 
 <ul class="nav navbar-top-links navbar-right">
-    <li class="dropdown"><a class="dropdown-toggle"
-                            data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
-        <i class="fa fa-caret-down"></i>
-    </a>
     <li class="dropdown"><a class="dropdown-toggle"
                             data-toggle="dropdown" href="#"><i class="fa fa-user fa-fw"></i> <i
             class="fa fa-caret-down"></i>
@@ -40,20 +36,30 @@
                         <spring:message code="action.login"/>
                     </a>
                 </li>
-                <li>
-                    <a href="<c:url value="/user/register" />">
-                        <i class="fa fa-pencil-square-o fa-fw"></i>
-                        <spring:message code="action.registerUrserf"/>
-                    </a>
-                </li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
                 <sec:authentication property="principal" var="principal"/>
                 <c:set value="${principal.username}" var="username"/>
-                <c:set value="${principal.email}" var="email"/>
+                <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                    <spring:message code="role.ROLE_ADMIN" var="role" />
+                </sec:authorize>
+                <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                    <spring:message code="role.ROLE_ADMIN" var="role" />
+                </sec:authorize>
+                <sec:authorize access="!hasAnyAuthority({'ROLE_ADMIN', 'ROLE_REP'})" >
+                    <spring:message code="role.unknown" var="role" />
+                </sec:authorize>
                 <li>
-                    <a><spring:message code="msg.wellcome" arguments="${username},${email}"/></a>
+                    <a><spring:message code="msg.wellcome" arguments="${username},${role}"/></a>
                 </li>
+                <sec:authorize access="hasAuthority('ROLE_ADMIN')">
+                    <li>
+                        <a href="<c:url value="/user/manager" />">
+                            <i class="fa fa-users fa-fw"></i>
+                            <spring:message code="action.manageUsers"/>
+                        </a>
+                    </li>
+                </sec:authorize>
                 <li>
                     <a href="#" onclick="$('#logout-form').submit()"><i
                             class="fa fa-sign-out fa-fw"></i><spring:message

@@ -4,10 +4,10 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="container-fluid">
     <div class="jumbotron col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-offset-0 col-xs-12">
-        <sf:form action="${pageContext.request.contextPath}/user/register" method="post" commandName="usuario">
+        <sf:form action="${pageContext.request.contextPath}/user/edit" method="post" commandName="user">
             <fieldset>
                 <div id="legend">
-                    <legend class=""><s:message code="pages.register" /></legend>
+                    <legend class=""><s:message code="pages.editUser" /></legend>
                 </div>
                 <div class="control-group">
                     <!-- Username -->
@@ -28,15 +28,6 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <!-- Clave -->
-                    <label class="control-label" for="password"><i class="fa fa-key" aria-hidden="true"></i>
-                        <s:message code="form.user.password"/></label>
-                    <div class="controls">
-                        <sf:input path="password" type="password" cssClass="form-control" id="password"/>
-                        <sf:errors path="password" cssClass="text-danger"/>
-                    </div>
-                </div>
-                <div class="control-group">
                     <!-- Permiso -->
                     <label class="control-label" for="permission"><i class="fa fa-users" aria-hidden="true"></i> <s:message
                             code="form.user.permission"/></label>
@@ -45,20 +36,16 @@
                         <sf:errors path="permission" cssClass="text-danger"/>
                     </div>
                 </div>
+                <sf:input path="id" type="hidden" />
                 <div class="control-group" style="margin-top: 20px">
                     <!-- Button -->
                     <div class="controls">
                         <button type="submit" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
-                            <s:message code="form.user.register"/>
+                            <s:message code="form.user.edit"/>
                         </button>
                     </div>
                 </div>
             </fieldset>
         </sf:form>
-
-        <div class="well">
-            <p><s:message code="LOPDNotice" /></p>
-        </div>
-
     </div>
 </div>

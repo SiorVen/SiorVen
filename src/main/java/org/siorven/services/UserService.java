@@ -3,16 +3,19 @@ package org.siorven.services;
 import org.siorven.dao.UserDao;
 import org.siorven.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Service to provide access logic to the user data
  */
 @Service
 public class UserService {
+
 
     /**
      * Data acces object for the user table on the database
@@ -38,20 +41,32 @@ public class UserService {
         userDao.saveUser(u);
     }
 
+
     /**
      * Saves or updates a user on the database, if the user is a new one the password wont get encoded use {@link #save(User) save} method
      *
      * @param user User to be saved or updated
      */
     public void saveOrUpdate(User user) {
+
+        User oldUser = userDao.findById(user.getId());
+
+        if(Objects.equals(oldUser.getPermission(), User.ROLE_ADMIN) && !Objects.equals(user.getPermission(), User.ROLE_ADMIN)){
+            if(userDao.findByRole(User.ROLE_ADMIN).size() <= 1){
+                throw new DataIntegrityViolationException("error.lastAdmin");
+            }
+        }
+
         userDao.editOrSave(user);
     }
 
     /**
      * Deletes a user from the database
-      * @param u
+      * @param u The user to be deleted from the database
      */
-    public void delete(User u) {
+    public void delete(User u) throws DataIntegrityViolationException{
+        if(u.getPermission().equals(User.ROLE_ADMIN) && userDao.findByRole(User.ROLE_ADMIN).size() <= 1)
+            throw new DataIntegrityViolationException("error.lastAdmin");
         userDao.deleteUser(u.getId());
     }
 
@@ -70,7 +85,7 @@ public class UserService {
      * Returns all the users on the database
      * @return The list of users
      */
-    public List<User> findAll() {
+    public List findAll() {
         return userDao.getAllUsers();
     }
 
@@ -91,5 +106,17 @@ public class UserService {
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
+
+    /**
+     * Searches for a user with the given id
+     * @param id The id of the requested user
+     * @return The user or null if the user wasn't found
+     */
+    public User findById(int id) {
+        return userDao.findById(id);
+    }
+
+
+
 
 }
