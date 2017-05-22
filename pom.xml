@@ -7,11 +7,15 @@
     <groupId>SiorVen</groupId>
     <artifactId>SiorVen</artifactId>
     <version>1.0-DEV</version>
+    <properties>
+        <sonar.exclusions>main/webapp/rsc/**</sonar.exclusions>
+    </properties>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>

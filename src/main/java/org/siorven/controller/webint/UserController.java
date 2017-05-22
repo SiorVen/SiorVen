@@ -2,14 +2,13 @@ package org.siorven.controller.webint;
 
 import org.siorven.controller.handlers.errors.ResourceNotFoundException;
 import org.siorven.model.User;
+import org.siorven.model.validacion.SpringFormEditGroup;
 import org.siorven.model.validacion.SpringFormGroup;
 import org.siorven.services.UserService;
 import org.siorven.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -119,14 +118,8 @@ public class UserController {
     public String deleteUser(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         User u = getUserOrThrow(id);
         String msg;
-        try {
-            userService.delete(u);
-            msg = messageSource.getMessage("msg.userDeleted", new String[]{u.getUsername()}, locale.resolveLocale(request));
-        } catch (DataIntegrityViolationException dive) {
-            msg = messageSource.getMessage(dive.getMessage(), null, locale.resolveLocale(request));
-        }
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) authentication.getPrincipal();
+        msg = handleDeleteUser(u);
+        User user = UserUtils.getCurrentUser();
 
         if (user.getId() == u.getId()) {
             try {
@@ -141,6 +134,17 @@ public class UserController {
 
         redirectAttributes.addFlashAttribute("message", msg);
         return "redirect:/user/manager";
+    }
+
+    private String handleDeleteUser(User u) {
+        String msg;
+        try {
+            userService.delete(u);
+            msg = messageSource.getMessage("msg.userDeleted", new String[]{u.getUsername()}, locale.resolveLocale(request));
+        } catch (DataIntegrityViolationException dive) {
+            msg = messageSource.getMessage(dive.getMessage(), null, locale.resolveLocale(request));
+        }
+        return msg;
     }
 
     /**
@@ -165,7 +169,7 @@ public class UserController {
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/user/edit")
-    public String editUser(@ModelAttribute("user") User newUser, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) {
+    public String editUser(@ModelAttribute("user") @Validated(SpringFormEditGroup.class) User newUser, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) {
         añadirTiposUsuario(model);
         if (bindingResult.hasErrors()) {
             return "register";
@@ -173,25 +177,20 @@ public class UserController {
         if (checkifInUse(newUser, bindingResult)) {
             return "register";
         }
-        User oldUser = userService.findById(newUser.getId());
-        oldUser.setPermission(newUser.getPermission());
-        oldUser.setEmail(newUser.getEmail());
-        oldUser.setUsername(newUser.getUsername());
-        String msg;
+        User oldUser = mergeWithOldUser(newUser);
         try {
             userService.saveOrUpdate(oldUser);
         } catch (DataIntegrityViolationException dive) {
-            msg = messageSource.getMessage(dive.getMessage(), null, locale.resolveLocale(request));
+            String msg = messageSource.getMessage(dive.getMessage(), null, locale.resolveLocale(request));
             redirectAttributes.addFlashAttribute("message", msg);
             return "redirect:/user/manager";
         }
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) authentication.getPrincipal();
+        User user = UserUtils.getCurrentUser();
 
         if (user.getId() == oldUser.getId()) {
             try {
-                msg = messageSource.getMessage("msg.selfEditLogin", null, locale.resolveLocale(request));
+                String msg = messageSource.getMessage("msg.selfEditLogin", null, locale.resolveLocale(request));
                 redirectAttributes.addFlashAttribute("message", msg);
                 request.logout();
                 return "redirect:/";
@@ -200,10 +199,18 @@ public class UserController {
             }
         }
 
-        msg = messageSource.getMessage("msg.userEdited", new String[]{oldUser.getUsername()}, locale.resolveLocale(request));
+        String msg = messageSource.getMessage("msg.userEdited", new String[]{oldUser.getUsername()}, locale.resolveLocale(request));
         redirectAttributes.addFlashAttribute("message", msg);
 
         return "redirect:/user/manager";
+    }
+
+    private User mergeWithOldUser(@ModelAttribute("user") @Validated(SpringFormEditGroup.class) User newUser) {
+        User oldUser = userService.findById(newUser.getId());
+        oldUser.setPermission(newUser.getPermission());
+        oldUser.setEmail(newUser.getEmail());
+        oldUser.setUsername(newUser.getUsername());
+        return oldUser;
     }
 
     /**
