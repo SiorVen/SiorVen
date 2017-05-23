@@ -1,6 +1,11 @@
 package org.siorven.model;
 
+import org.siorven.model.validacion.PersistenceGroup;
+import org.siorven.model.validacion.SpringFormEditGroup;
+import org.siorven.model.validacion.SpringFormGroup;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 /**
  * Created by Andoni on 19/05/2017.
@@ -17,6 +22,7 @@ public class MachineIngredient {
     @OneToOne
     private ResourceInMachine resource;
 
+    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private int qty;
 
 

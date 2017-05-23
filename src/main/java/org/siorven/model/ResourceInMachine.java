@@ -1,6 +1,12 @@
 package org.siorven.model;
 
+import org.siorven.model.validacion.PersistenceGroup;
+import org.siorven.model.validacion.SpringFormEditGroup;
+import org.siorven.model.validacion.SpringFormGroup;
+
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -20,12 +26,15 @@ public class ResourceInMachine {
     private Resource resource;
 
     @Column(name = "quantity")
+    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private int quantity;
 
     @Column(name = "repositionDate")
+    @Future(groups = {PersistenceGroup.class}, message = "{formatError.DateFormat.NotPast}")
     private Timestamp repositionDate;
 
     @Column(name = "estimatedCaducityDate")
+    @Future(groups = {PersistenceGroup.class}, message = "{formatError.DateFormat.NotPast}")
     private Timestamp estimatedCaducityDate;
 
     @ManyToOne

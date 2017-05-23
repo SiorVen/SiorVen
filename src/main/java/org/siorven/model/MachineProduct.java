@@ -1,6 +1,11 @@
 package org.siorven.model;
 
+import org.siorven.model.validacion.PersistenceGroup;
+import org.siorven.model.validacion.SpringFormEditGroup;
+import org.siorven.model.validacion.SpringFormGroup;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 /**
@@ -19,6 +24,7 @@ public class MachineProduct {
     @ManyToOne
     private Product product;
 
+    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private float price;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
