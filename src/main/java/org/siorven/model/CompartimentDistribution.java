@@ -8,7 +8,7 @@ import javax.persistence.Table;
  * Created by Andoni on 16/05/2017.
  */
 @Entity
-@Table(name="Distribution")
+@Table(name="distribution")
 public class CompartimentDistribution extends Distribution{
 
     @Column(name="numCompartiment")

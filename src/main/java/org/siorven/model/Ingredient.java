@@ -10,9 +10,11 @@ import javax.persistence.*;
 public class Ingredient {
 
     @Id
+    @GeneratedValue
     @Column(name="ingredient_id")
     private int id;
 
+    private int quantity;
     @OneToOne
     private Resource resource;
 

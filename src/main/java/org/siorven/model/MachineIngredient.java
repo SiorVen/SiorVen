@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class MachineIngredient {
 
     @Id
+    @GeneratedValue
     @Column(name="machine_ingredient_id")
     private int id;
 

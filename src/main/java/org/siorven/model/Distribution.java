@@ -11,13 +11,15 @@ import java.util.List;
 public class Distribution {
 
     @Id
-    @Column(name="id")
+    @GeneratedValue
+    @Column(name="distribution_id")
     private String id;
 
     @Column(name="description")
     private String description;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="distribution_id")
     private List<Slot> slotList;
 
     public Distribution(String id, String description) {

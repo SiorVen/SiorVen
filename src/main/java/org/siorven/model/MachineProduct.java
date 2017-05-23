@@ -12,6 +12,8 @@ import java.util.List;
 public class MachineProduct {
 
     @Id
+    @GeneratedValue
+    @Column(name="machine_product_id")
     int id;
 
     @ManyToOne
@@ -20,8 +22,6 @@ public class MachineProduct {
     private float price;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "machine_ingredient", joinColumns = {
-            @JoinColumn(name = "machine_ingredient_id", nullable = false, updatable = false) })
     private List<MachineIngredient> recipe;
 
 

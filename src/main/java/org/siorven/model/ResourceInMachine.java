@@ -12,6 +12,7 @@ import java.util.List;
 public class ResourceInMachine {
 
     @Id
+    @Column(name="machine_resource_id")
     @GeneratedValue
     private String id;
 
@@ -28,17 +29,13 @@ public class ResourceInMachine {
     private Timestamp estimatedCaducityDate;
 
     @ManyToOne
-    private Machine machine;
-
-    @ManyToOne
     private Slot slot;
 
-    public ResourceInMachine(Resource resource, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, Machine machine, Slot slotId) {
+    public ResourceInMachine(Resource resource, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, Slot slotId) {
         this.resource = resource;
         this.quantity = quantity;
         this.repositionDate = repositionDate;
         this.estimatedCaducityDate = estimatedCaducityDate;
-        this.machine = machine;
         this.slot = slot;
     }
 
@@ -93,14 +90,6 @@ public class ResourceInMachine {
 
     public void setResource(Resource resource) {
         this.resource = resource;
-    }
-
-    public Machine getMachine() {
-        return machine;
-    }
-
-    public void setMachine(Machine machine) {
-        this.machine = machine;
     }
 
     public Slot getSlot() {

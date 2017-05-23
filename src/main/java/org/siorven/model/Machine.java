@@ -16,6 +16,8 @@ public class Machine {
 
 
     @Id
+    @GeneratedValue
+    @Column(name="machine_id")
     private String id;
 
     private String alias;
@@ -25,11 +27,11 @@ public class Machine {
     private Model model;
 
     @OneToMany
-    @JoinColumn(name="machine_Product_id")
+    @JoinColumn(name="machine_id")
     private List<MachineProduct> machineProductList;
 
     @OneToMany
-    @JoinColumn(name="machine_Resource_id")
+    @JoinColumn(name="machine_id")
     private List<ResourceInMachine> machineResourceList;
 
     @Transient

@@ -1,7 +1,5 @@
 package org.siorven.model;
 
-import org.siorven.model.validacion.ProductType;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +11,8 @@ import java.util.List;
 public class Model {
 
     @Id
+    @GeneratedValue
+    @Column(name="model_id")
     private String id;
 
     private String description;
@@ -20,9 +20,11 @@ public class Model {
     private String manufacturer;
 
     @OneToMany
+    @JoinColumn(name="model_id")
     private List<ProductType> aviableProductTypes;
 
     @OneToMany
+    @JoinColumn(name="model_id")
     private List<Distribution> aviableDistributions;
 
 

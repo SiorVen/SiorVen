@@ -1,9 +1,6 @@
 package org.siorven.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Andoni on 16/05/2017.
@@ -13,7 +10,8 @@ import javax.persistence.Table;
 public class Slot {
 
     @Id
-    @Column(name="id")
+    @Column(name="slot_id")
+    @GeneratedValue
     private int id;
 
     @Column(name="name")

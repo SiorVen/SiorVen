@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Resource
 {
     @Id
+    @GeneratedValue
     @Column(name="id")
     private String id;
 
