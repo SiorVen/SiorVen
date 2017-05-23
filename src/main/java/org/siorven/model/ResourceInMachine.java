@@ -2,7 +2,7 @@ package org.siorven.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Andoni on 16/05/2017.
@@ -34,9 +34,9 @@ public class ResourceInMachine {
 
     @JoinColumn(name="id")
     @OneToMany(mappedBy = "admin")
-    private ArrayList<Resource> resources;
+    private List<Resource> resources;
 
-    public ResourceInMachine(int resourceId, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, int machineId, int slotId, ArrayList<Resource> resources) {
+    public ResourceInMachine(int resourceId, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, int machineId, int slotId, List<Resource> resources) {
         this.resourceId = resourceId;
         this.quantity = quantity;
         this.repositionDate = repositionDate;
@@ -47,6 +47,14 @@ public class ResourceInMachine {
     }
 
     public ResourceInMachine() {
+    }
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
     }
 
     public int getResourceId() {

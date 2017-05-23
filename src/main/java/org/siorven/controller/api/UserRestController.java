@@ -9,8 +9,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.LocaleResolver;
 
@@ -95,27 +93,30 @@ public class UserRestController {
      * @return returns CONFLICT (409) if the user being deleted is the last admin return OK (200) if else
      */
     @DeleteMapping(value = "/api/user/{id}")
-    public ResponseEntity delete(@PathVariable("id") int id) {
+    public ResponseEntity delete(@PathVariable("id") int id) throws ServletException {
         try {
-            User u = userService.findById(id);
-            if (u == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
-            userService.delete(u);
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            User user = (User) authentication.getPrincipal();
+            User deletedUser = userService.findById(id);
+            if (deletedUser == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
+            userService.delete(deletedUser);
+            User currentUser = UserUtils.getCurrentUser();
 
-            if (user.getId() == u.getId()) {
-                try {
-                    request.logout();
-                } catch (ServletException e) {
-                    e.printStackTrace();
-                }
-            }
+            logoutIfSame(deletedUser, currentUser);
         } catch (DataIntegrityViolationException dive) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
+
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    private void logoutIfSame(User deleted, User user) throws ServletException {
+        if (user.getId() == deleted.getId()) {
+            try {
+                request.logout();
+            } catch (ServletException e) {
+               throw e;
+            }
+        }
+    }
 
 
 }

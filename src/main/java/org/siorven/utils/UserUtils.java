@@ -26,7 +26,7 @@ public class UserUtils {
             case User.ROLE_ADMIN:
                 return messageSource.getMessage("role.admin", null, localeResolver.resolveLocale(request));
             case User.ROLE_REPONEDOR:
-                return messageSource.getMessage("role.admin", null, localeResolver.resolveLocale(request));
+                return messageSource.getMessage("role.reponedor", null, localeResolver.resolveLocale(request));
             default:
                 return messageSource.getMessage("role.unknown", null, localeResolver.resolveLocale(request));
         }

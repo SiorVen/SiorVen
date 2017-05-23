@@ -1,7 +1,7 @@
 package org.siorven.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Andoni on 19/05/2017.
@@ -20,10 +20,10 @@ public class MachineProduct {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "ingredient_in_machine", joinColumns = {
             @JoinColumn(name = "ingredient_machine_id", nullable = false, updatable = false) })
-    private ArrayList<MachineIngredient> recipe;
+    private List<MachineIngredient> recipe;
 
 
-    public MachineProduct(int id, Product product, float price, ArrayList<MachineIngredient> recipe) {
+    public MachineProduct(int id, Product product, float price, List<MachineIngredient> recipe) {
         this.id = id;
         this.product = product;
         this.price = price;
@@ -33,7 +33,7 @@ public class MachineProduct {
     public MachineProduct() {
     }
 
-    public MachineProduct(Product product, float price, ArrayList<MachineIngredient> recipe) {
+    public MachineProduct(Product product, float price, List<MachineIngredient> recipe) {
         this.product = product;
         this.price = price;
         this.recipe = recipe;
@@ -63,11 +63,11 @@ public class MachineProduct {
         this.price = price;
     }
 
-    public ArrayList<MachineIngredient> getRecipe() {
+    public List<MachineIngredient> getRecipe() {
         return recipe;
     }
 
-    public void setRecipe(ArrayList<MachineIngredient> recipe) {
+    public void setRecipe(List<MachineIngredient> recipe) {
         this.recipe = recipe;
     }
 }

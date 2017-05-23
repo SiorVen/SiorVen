@@ -1,5 +1,6 @@
 package org.siorven.config;
 
+import org.siorven.controller.handlers.errors.UserBlockedException;
 import org.siorven.model.User;
 import org.siorven.services.LoginAttemptService;
 import org.siorven.services.UserService;
@@ -30,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         String ip = getClientIP();
         if (loginAttemptService.isBlocked(ip)) {
-            throw new RuntimeException("blocked");
+            throw new UserBlockedException("blocked");
         }
 
         User usuario = userService.findByEmailOrUsername(s);

@@ -31,6 +31,9 @@ import java.util.LinkedHashMap;
 @Controller
 public class UserController {
 
+    public static final String REGISTER_VIEW = "register";
+    public static final String USER = "user";
+    public static final String REDIRECT_USER_MANAGER = "redirect:/user/manager";
     /**
      * Data access logic for the access to the newUser data on the DB
      */
@@ -63,9 +66,9 @@ public class UserController {
      */
     @GetMapping("/user/register")
     public String showRegister(Model model){
-        model.addAttribute("usuario", new User());
+        model.addAttribute(USER, new User());
         añadirTiposUsuario(model);
-        return "register";
+        return REGISTER_VIEW;
     }
 
     /**
@@ -77,15 +80,15 @@ public class UserController {
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/user/register")
-    public String performRegister(@ModelAttribute("usuario") @Validated(SpringFormGroup.class) User usuario,
+    public String performRegister(@ModelAttribute(USER) @Validated(SpringFormGroup.class) User usuario,
                                   BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
         añadirTiposUsuario(model);
         if (bindingResult.hasErrors()) {
-            return"register";
+            return REGISTER_VIEW;
         }
 
         if (checkifInUse(usuario, bindingResult)) {
-            return "register";
+            return REGISTER_VIEW;
         }
 
         userService.save(usuario);
@@ -93,7 +96,7 @@ public class UserController {
                 new String[]{usuario.getUsername()}, locale.resolveLocale(request));
         redirectAttributes.addFlashAttribute("message", msg);
 
-        return "redirect:/user/manager";
+        return REDIRECT_USER_MANAGER;
     }
 
     /**
@@ -115,7 +118,7 @@ public class UserController {
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @GetMapping("/user/delete/{id}")
-    public String deleteUser(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
+    public String deleteUser(@PathVariable("id") int id, RedirectAttributes redirectAttributes) throws ServletException {
         User u = getUserOrThrow(id);
         String msg;
         msg = handleDeleteUser(u);
@@ -128,12 +131,12 @@ public class UserController {
                 request.logout();
                 return "redirect:/";
             } catch (ServletException e) {
-                e.printStackTrace();
+                throw e;
             }
         }
 
         redirectAttributes.addFlashAttribute("message", msg);
-        return "redirect:/user/manager";
+        return REDIRECT_USER_MANAGER;
     }
 
     private String handleDeleteUser(User u) {
@@ -169,13 +172,13 @@ public class UserController {
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/user/edit")
-    public String editUser(@ModelAttribute("user") @Validated(SpringFormEditGroup.class) User newUser, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) {
+    public String editUser(@ModelAttribute("user") @Validated(SpringFormEditGroup.class) User newUser, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) throws ServletException {
         añadirTiposUsuario(model);
         if (bindingResult.hasErrors()) {
-            return "register";
+            return REGISTER_VIEW;
         }
         if (checkifInUse(newUser, bindingResult)) {
-            return "register";
+            return REGISTER_VIEW;
         }
         User oldUser = mergeWithOldUser(newUser);
         try {
@@ -183,7 +186,7 @@ public class UserController {
         } catch (DataIntegrityViolationException dive) {
             String msg = messageSource.getMessage(dive.getMessage(), null, locale.resolveLocale(request));
             redirectAttributes.addFlashAttribute("message", msg);
-            return "redirect:/user/manager";
+            return REDIRECT_USER_MANAGER;
         }
 
         User user = UserUtils.getCurrentUser();
@@ -195,14 +198,14 @@ public class UserController {
                 request.logout();
                 return "redirect:/";
             } catch (ServletException e) {
-                e.printStackTrace();
+                throw e;
             }
         }
 
         String msg = messageSource.getMessage("msg.userEdited", new String[]{oldUser.getUsername()}, locale.resolveLocale(request));
         redirectAttributes.addFlashAttribute("message", msg);
 
-        return "redirect:/user/manager";
+        return REDIRECT_USER_MANAGER;
     }
 
     private User mergeWithOldUser(@ModelAttribute("user") @Validated(SpringFormEditGroup.class) User newUser) {
@@ -241,13 +244,13 @@ public class UserController {
         User u = userService.findByEmail(usuario.getEmail());
         if (u != null && u.getId() != usuario.getId()) {
             String msg = messageSource.getMessage("error.user.emailTaken", null, locale.resolveLocale(request));
-            bindingResult.addError(new FieldError("usuario", "email", usuario.getEmail(), true, null, null, msg));
+            bindingResult.addError(new FieldError(USER, "email", usuario.getEmail(), true, null, null, msg));
             ret = true;
         }
         u = userService.findByUsername(usuario.getUsername());
         if (u != null && u.getId() != usuario.getId()) {
             String msg = messageSource.getMessage("error.user.usernameTaken", null, locale.resolveLocale(request));
-            bindingResult.addError(new FieldError("usuario", "username", usuario.getUsername(), true, null, null, msg));
+            bindingResult.addError(new FieldError(USER, "username", usuario.getUsername(), true, null, null, msg));
             ret = true;
         }
         return ret;

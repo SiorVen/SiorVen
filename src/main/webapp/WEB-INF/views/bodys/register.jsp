@@ -4,7 +4,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="container-fluid">
     <div class="jumbotron col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-offset-0 col-xs-12">
-        <sf:form action="${pageContext.request.contextPath}/user/register" method="post" commandName="usuario">
+        <sf:form action="${pageContext.request.contextPath}/user/register" method="post" commandName="user">
             <fieldset>
                 <div id="legend">
                     <legend class=""><s:message code="pages.register" /></legend>
