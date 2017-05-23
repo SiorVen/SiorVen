@@ -1,15 +1,19 @@
 package org.siorven.model;
 
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Andoni on 19/05/2017.
  */
+@Entity
+@Table(name="machine_ingredient")
 public class MachineIngredient {
 
     @Id
+    @Column(name="machine_ingredient_id")
     private int id;
 
+    @OneToOne
     private ResourceInMachine resource;
 
     private int qty;

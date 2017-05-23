@@ -17,7 +17,7 @@ public class Distribution {
     @Column(name="description")
     private String description;
 
-    @OneToMany(mappedBy="Slot", fetch=FetchType.EAGER)
+    @OneToMany
     private List<Slot> slotList;
 
     public Distribution(String id, String description) {

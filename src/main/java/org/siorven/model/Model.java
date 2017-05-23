@@ -1,5 +1,7 @@
 package org.siorven.model;
 
+import org.siorven.model.validacion.ProductType;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,13 +19,14 @@ public class Model {
 
     private String manufacturer;
 
-    private List<String> aviableProductTypes;
+    @OneToMany
+    private List<ProductType> aviableProductTypes;
 
     @OneToMany
     private List<Distribution> aviableDistributions;
 
 
-    public Model(String id, String description, String manufacturer, List<String> aviableProductTypes, List<Distribution> aviableDistributions) {
+    public Model(String id, String description, String manufacturer, List<ProductType> aviableProductTypes, List<Distribution> aviableDistributions) {
         this.id = id;
         this.description = description;
         this.manufacturer = manufacturer;
@@ -58,11 +61,11 @@ public class Model {
         this.manufacturer = manufacturer;
     }
 
-    public List<String> getAviableProductTypes() {
+    public List<ProductType> getAviableProductTypes() {
         return aviableProductTypes;
     }
 
-    public void setAviableProductTypes(List<String> aviableProductTypes) {
+    public void setAviableProductTypes(List<ProductType> aviableProductTypes) {
         this.aviableProductTypes = aviableProductTypes;
     }
 

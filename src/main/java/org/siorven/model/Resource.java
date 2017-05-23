@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by Andoni on 16/05/2017.
  */
 @Entity
-@Table(name="Resources")
+@Table(name="resource")
 public class Resource
 {
     @Id

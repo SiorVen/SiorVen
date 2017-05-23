@@ -24,18 +24,21 @@ public class Machine {
     @JoinColumn(name="model_id")
     private Model model;
 
-    @ManyToOne
-    @JoinColumn(name="machine_Product_list_id")
+    @OneToMany
+    @JoinColumn(name="machine_Product_id")
     private List<MachineProduct> machineProductList;
 
-    @ManyToOne
-    @JoinColumn(name="machine_Product_list_id")
+    @OneToMany
+    @JoinColumn(name="machine_Resource_id")
     private List<ResourceInMachine> machineResourceList;
 
+    @Transient
     private Configuration configuration;
 
+    @Transient
     private String record;
 
+    @Transient
     private Mapper mapper;
 
     public Machine(String id, String alias, Model model, List<MachineProduct> machineProductList, List<ResourceInMachine> machineResourceList, Configuration configuration, String record, Mapper mapper) {

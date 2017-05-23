@@ -8,61 +8,59 @@ import java.util.List;
  * Created by Andoni on 16/05/2017.
  */
 @Entity
-@Table(name="ResourceInMachine")
+@Table(name = "machine_resource")
 public class ResourceInMachine {
 
-    @ManyToOne
-    @JoinColumn(name="resourceId")
-    private int resourceId;
+    @Id
+    @GeneratedValue
+    private String id;
 
-    @Column(name="quantity")
+    @ManyToOne
+    private Resource resource;
+
+    @Column(name = "quantity")
     private int quantity;
 
-    @Column(name="repositionDate")
+    @Column(name = "repositionDate")
     private Timestamp repositionDate;
 
-    @Column(name="estimatedCaducityDate")
+    @Column(name = "estimatedCaducityDate")
     private Timestamp estimatedCaducityDate;
 
     @ManyToOne
-    @JoinColumn(name="machineId")
-    private int MachineId;
+    private Machine machine;
 
     @ManyToOne
-    @JoinColumn(name="slotId")
-    private int SlotId;
+    private Slot slot;
 
-    @JoinColumn(name="id")
-    @OneToMany(mappedBy = "admin")
-    private List<Resource> resources;
-
-    public ResourceInMachine(int resourceId, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, int machineId, int slotId, List<Resource> resources) {
-        this.resourceId = resourceId;
+    public ResourceInMachine(Resource resource, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, Machine machine, Slot slotId) {
+        this.resource = resource;
         this.quantity = quantity;
         this.repositionDate = repositionDate;
         this.estimatedCaducityDate = estimatedCaducityDate;
-        MachineId = machineId;
-        SlotId = slotId;
-        this.resources = resources;
+        this.machine = machine;
+        this.slot = slot;
     }
 
     public ResourceInMachine() {
     }
 
-    public List<Resource> getResources() {
-        return resources;
+    public String getId() {
+        return id;
     }
 
-    public void setResources(List<Resource> resources) {
-        this.resources = resources;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public int getResourceId() {
-        return resourceId;
+
+
+    public Resource getResourceId() {
+        return resource;
     }
 
-    public void setResourceId(int resourceId) {
-        this.resourceId = resourceId;
+    public void setResourceId(Resource resource) {
+        this.resource = resource;
     }
 
     public int getQuantity() {
@@ -89,19 +87,27 @@ public class ResourceInMachine {
         this.estimatedCaducityDate = estimatedCaducityDate;
     }
 
-    public int getMachineId() {
-        return MachineId;
+    public Resource getResource() {
+        return resource;
     }
 
-    public void setMachineId(int machineId) {
-        MachineId = machineId;
+    public void setResource(Resource resource) {
+        this.resource = resource;
     }
 
-    public int getSlotId() {
-        return SlotId;
+    public Machine getMachine() {
+        return machine;
     }
 
-    public void setSlotId(int slotId) {
-        SlotId = slotId;
+    public void setMachine(Machine machine) {
+        this.machine = machine;
+    }
+
+    public Slot getSlot() {
+        return slot;
+    }
+
+    public void setSlot(Slot slot) {
+        this.slot = slot;
     }
 }

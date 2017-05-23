@@ -7,19 +7,21 @@ import java.util.List;
  * Created by Andoni on 19/05/2017.
  */
 
-
+@Entity
+@Table(name="machine_product")
 public class MachineProduct {
 
     @Id
     int id;
 
+    @ManyToOne
     private Product product;
 
     private float price;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "ingredient_in_machine", joinColumns = {
-            @JoinColumn(name = "ingredient_machine_id", nullable = false, updatable = false) })
+    @JoinTable(name = "machine_ingredient", joinColumns = {
+            @JoinColumn(name = "machine_ingredient_id", nullable = false, updatable = false) })
     private List<MachineIngredient> recipe;
 
 
