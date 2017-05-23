@@ -5,11 +5,6 @@ import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
-
-/**
- * Created by Andoni on 17/05/2017.
- */
-
 /**
  * Data access interface for the users
  * @see User
@@ -46,6 +41,13 @@ public interface UserDao {
      * @return The user or null if it wasn't found
      */
     User findById(int id);
+
+    /**
+     * Finds persisted users by their role
+     * @param role The role of the user to be searched
+     * @return The list of users with that role
+     */
+    List findByRole(String role);
 
     /**
      * Finds a persisted user by its username

@@ -43,7 +43,7 @@
 </head>
 
 <div id="wrapper" class="fill">
-    <nav style="margin: 0px; background-color: black; margin-bottom: 0;"
+    <nav style="background-color: black; margin: 0 0 0;"
          class="navbar navbar-default navbar-static-top">
         <tiles:insertAttribute name="header"/>
         <tiles:insertAttribute name="sidemenu"/>

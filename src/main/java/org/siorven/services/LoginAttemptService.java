@@ -18,7 +18,7 @@ public class LoginAttemptService {
     /**
      * Cache that keeps track of the IPs and their attempts
      */
-    private LoadingCache<String, Integer> attemptsCache;
+    private final LoadingCache<String, Integer> attemptsCache;
 
     public LoginAttemptService() {
         super();
@@ -43,7 +43,7 @@ public class LoginAttemptService {
      * @param key The IP of the client
      */
     public void loginFailed(String key) {
-        int attempts = 0;
+        int attempts;
         try {
             attempts = attemptsCache.get(key);
         } catch (ExecutionException e) {

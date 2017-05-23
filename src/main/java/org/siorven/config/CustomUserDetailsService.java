@@ -1,8 +1,9 @@
 package org.siorven.config;
 
-import org.siorven.dao.UserDao;
+import org.siorven.controller.handlers.errors.UserBlockedException;
 import org.siorven.model.User;
 import org.siorven.services.LoginAttemptService;
+import org.siorven.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserDao usuarioDao;
+    private UserService userService;
 
     @Autowired
     private LoginAttemptService loginAttemptService;
@@ -30,14 +31,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         String ip = getClientIP();
         if (loginAttemptService.isBlocked(ip)) {
-            throw new RuntimeException("blocked");
+            throw new UserBlockedException("blocked");
         }
 
-        User usuario = usuarioDao.findByUsername(s);
+        User usuario = userService.findByEmailOrUsername(s);
         if (usuario != null) {
             return usuario;
         } else {
-            throw new UsernameNotFoundException("Usuario no encontrado");
+            throw new UsernameNotFoundException("User not found");
         }
     }
 

@@ -2,6 +2,7 @@ package org.siorven.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.siorven.model.validacion.PersistenceGroup;
+import org.siorven.model.validacion.SpringFormEditGroup;
 import org.siorven.model.validacion.SpringFormGroup;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,8 +33,8 @@ public class User implements UserDetails, CredentialsContainer {
     private int id;
 
     @Column(unique=true)
-    @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class}, message = "{NotEmpty.user.username}")
-    @Size(min = 3, max = 15, groups = {SpringFormGroup.class}, message = "{Size.user.username}")
+    @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{NotEmpty.user.username}")
+    @Size(min = 3, max = 15, groups = {SpringFormGroup.class, SpringFormEditGroup.class}, message = "{Size.user.username}")
     private String username;
 
     @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class}, message = "{NotEmpty.user.password}")
@@ -41,12 +42,12 @@ public class User implements UserDetails, CredentialsContainer {
     private String password;
 
     @Column(unique=true)
-    @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class}, message = "{NotEmpty.user.email}")
-    @Pattern(regexp = EMAIL_REGEX, groups = {PersistenceGroup.class, SpringFormGroup.class}, message = "{Pattern.user.email}")
+    @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{NotEmpty.user.email}")
+    @Pattern(regexp = EMAIL_REGEX, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{Pattern.user.email}")
     private String email;
 
-    @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class}, message = "{NotEmpty.user.permission}")
-    @Pattern(regexp = PERMISO_REGEX, groups = {PersistenceGroup.class, SpringFormGroup.class},message = "{Pattern.user.permission}")
+    @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{NotEmpty.user.permission}")
+    @Pattern(regexp = PERMISO_REGEX, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class},message = "{Pattern.user.permission}")
     private String permission;
 
     public User(String username, String password, String email, String permission) {

@@ -57,6 +57,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public List findByRole(String role) {
+        Criteria crit = getSession().createCriteria(User.class).add(Restrictions.eq("permission", role));
+        return crit.list();
+    }
+
+    @Override
     public User findByUsername(String username) {
         Criteria crit = getSession().createCriteria(User.class).add(Restrictions.eq("username", username));
         return (User) crit.uniqueResult();
@@ -69,7 +75,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List getAllUsers() {
         return getSession().createCriteria(User.class).list();
     }
 }

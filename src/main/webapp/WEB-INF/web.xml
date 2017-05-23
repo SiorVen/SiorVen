@@ -65,5 +65,25 @@
         <res-auth>Container</res-auth>
     </resource-ref>
 
+    <!-- Not Found -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404</location>
+    </error-page>
+    <!-- Server Error -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500</location>
+    </error-page>
+    <!-- Unautorized -->
+    <error-page>
+        <error-code>401</error-code>
+        <location>/401</location>
+    </error-page>
+    <!-- Forbidden -->
+    <error-page>
+        <error-code>403</error-code>
+        <location>/403</location>
+    </error-page>
 
 </web-app>
