@@ -11,27 +11,27 @@ import java.util.List;
  */
 
 @Entity
-@Table(name="machine")
+@Table(name = "machine")
 public class Machine {
 
 
     @Id
     @GeneratedValue
-    @Column(name="machine_id")
-    private String id;
+    @Column(name = "machine_id")
+    private int id;
 
     private String alias;
 
     @ManyToOne
-    @JoinColumn(name="model_id")
+    @JoinColumn(name = "model_id")
     private Model model;
 
     @OneToMany
-    @JoinColumn(name="machine_id")
+    @JoinColumn(name = "machine_id")
     private List<MachineProduct> machineProductList;
 
     @OneToMany
-    @JoinColumn(name="machine_id")
+    @JoinColumn(name = "machine_id")
     private List<ResourceInMachine> machineResourceList;
 
     @Transient
@@ -43,8 +43,7 @@ public class Machine {
     @Transient
     private Mapper mapper;
 
-    public Machine(String id, String alias, Model model, List<MachineProduct> machineProductList, List<ResourceInMachine> machineResourceList, Configuration configuration, String record, Mapper mapper) {
-        this.id = id;
+    public Machine(String alias, Model model, List<MachineProduct> machineProductList, List<ResourceInMachine> machineResourceList, Configuration configuration, String record, Mapper mapper) {
         this.alias = alias;
         this.model = model;
         this.machineProductList = machineProductList;
@@ -54,14 +53,11 @@ public class Machine {
         this.mapper = mapper;
     }
 
-    public Machine() {
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

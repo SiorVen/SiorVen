@@ -13,12 +13,12 @@ import java.util.List;
  */
 
 @Entity
-@Table(name="machine_product")
+@Table(name = "machine_product")
 public class MachineProduct {
 
     @Id
     @GeneratedValue
-    @Column(name="machine_product_id")
+    @Column(name = "machine_product_id")
     int id;
 
     @ManyToOne
@@ -30,16 +30,6 @@ public class MachineProduct {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MachineIngredient> recipe;
 
-
-    public MachineProduct(int id, Product product, float price, List<MachineIngredient> recipe) {
-        this.id = id;
-        this.product = product;
-        this.price = price;
-        this.recipe = recipe;
-    }
-
-    public MachineProduct() {
-    }
 
     public MachineProduct(Product product, float price, List<MachineIngredient> recipe) {
         this.product = product;

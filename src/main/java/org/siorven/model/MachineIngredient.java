@@ -11,12 +11,12 @@ import javax.validation.constraints.Min;
  * Created by Andoni on 19/05/2017.
  */
 @Entity
-@Table(name="machine_ingredient")
+@Table(name = "machine_ingredient")
 public class MachineIngredient {
 
     @Id
     @GeneratedValue
-    @Column(name="machine_ingredient_id")
+    @Column(name = "machine_ingredient_id")
     private int id;
 
     @OneToOne
@@ -29,9 +29,6 @@ public class MachineIngredient {
     public MachineIngredient(ResourceInMachine resource, int qty) {
         this.resource = resource;
         this.qty = qty;
-    }
-
-    public MachineIngredient() {
     }
 
     public int getId() {

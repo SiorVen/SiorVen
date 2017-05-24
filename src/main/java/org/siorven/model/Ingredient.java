@@ -11,12 +11,12 @@ import javax.validation.constraints.Min;
  * Created by Andoni on 21/05/2017.
  */
 @Entity
-@Table(name="ingredient")
+@Table(name = "ingredient")
 public class Ingredient {
 
     @Id
     @GeneratedValue
-    @Column(name="ingredient_id")
+    @Column(name = "ingredient_id")
     private int id;
 
     @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
@@ -25,8 +25,8 @@ public class Ingredient {
     @OneToOne
     private Resource resource;
 
-    public Ingredient(int id, Resource resource) {
-        this.id = id;
+    public Ingredient(Resource resource, int quantity) {
+        this.quantity = quantity;
         this.resource = resource;
     }
 

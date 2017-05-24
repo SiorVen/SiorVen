@@ -13,24 +13,21 @@ import javax.validation.constraints.Min;
  * Created by Andoni on 16/05/2017.
  */
 @Entity
-@Table(name="Distribution")
-public class MatrixDistribution extends Distribution{
+@Table(name = "Distribution")
+public class MatrixDistribution extends Distribution {
 
-    @Column(name="lines")
+    @Column(name = "lines")
     @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private int lines;
 
-    @Column(name="columns")
+    @Column(name = "columns")
     @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private int columns;
 
-    public MatrixDistribution(String Id, String description, int lines, int columns) {
-        super(Id, description);
+    public MatrixDistribution(String description, int lines, int columns) {
+        super(description);
         this.lines = lines;
         this.columns = columns;
-    }
-
-    public MatrixDistribution() {
     }
 
     public int getLines() {

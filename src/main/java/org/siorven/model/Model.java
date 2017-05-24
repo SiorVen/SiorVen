@@ -7,43 +7,39 @@ import java.util.List;
  * Created by Andoni on 16/05/2017.
  */
 @Entity
-@Table(name="model")
+@Table(name = "model")
 public class Model {
 
     @Id
     @GeneratedValue
-    @Column(name="model_id")
-    private String id;
+    @Column(name = "model_id")
+    private int id;
 
     private String description;
 
     private String manufacturer;
 
     @OneToMany
-    @JoinColumn(name="model_id")
+    @JoinColumn(name = "model_id")
     private List<ProductType> aviableProductTypes;
 
     @OneToMany
-    @JoinColumn(name="model_id")
+    @JoinColumn(name = "model_id")
     private List<Distribution> aviableDistributions;
 
 
-    public Model(String id, String description, String manufacturer, List<ProductType> aviableProductTypes, List<Distribution> aviableDistributions) {
-        this.id = id;
+    public Model(String description, String manufacturer, List<ProductType> aviableProductTypes, List<Distribution> aviableDistributions) {
         this.description = description;
         this.manufacturer = manufacturer;
         this.aviableProductTypes = aviableProductTypes;
         this.aviableDistributions = aviableDistributions;
     }
 
-    public Model() {
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
