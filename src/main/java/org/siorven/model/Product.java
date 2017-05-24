@@ -31,9 +31,6 @@ public class Product {
         this.recipe = recipe;
     }
 
-    public Product() {
-    }
-
     public int getId() {
         return id;
     }
@@ -57,4 +54,6 @@ public class Product {
     public void setRecipe(List<Ingredient> recipe) {
         this.recipe = recipe;
     }
+
+
 }

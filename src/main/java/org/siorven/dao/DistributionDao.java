@@ -1,6 +1,5 @@
 package org.siorven.dao;
 
-import org.siorven.model.CompartimentDistribution;
 import org.siorven.model.Distribution;
 import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;

@@ -7,7 +7,6 @@ import org.siorven.model.validacion.SpringFormGroup;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 /**

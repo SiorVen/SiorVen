@@ -40,7 +40,7 @@ public class ResourceInMachine {
     @ManyToOne
     private Slot slot;
 
-    public ResourceInMachine(Resource resource, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, Slot slotId) {
+    public ResourceInMachine(Resource resource, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, Slot slot) {
         this.resource = resource;
         this.quantity = quantity;
         this.repositionDate = repositionDate;
@@ -48,8 +48,6 @@ public class ResourceInMachine {
         this.slot = slot;
     }
 
-    public ResourceInMachine() {
-    }
 
     public String getId() {
         return id;

@@ -24,14 +24,11 @@ public class Resource
     @PrimaryKeyJoinColumn
     private Ingredient ingredient;
 
-    public Resource(String id, String name, String resourceType) {
-        this.id = id;
+    public Resource(String name, String resourceType) {
         this.name = name;
         this.resourceType = resourceType;
     }
 
-    public Resource() {
-    }
 
     public String getId() {
         return id;
