@@ -8,7 +8,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="Distribution")
-public class Distribution {
+public abstract class Distribution  implements IResourceContainer{
 
     @Id
     @Column(name="id")
@@ -18,7 +18,7 @@ public class Distribution {
     private String description;
 
     @OneToMany
-    private List<Slot> slotList;
+    private List<Slot> slots;
 
     public Distribution(String id, String description) {
         this.id = id;
@@ -26,5 +26,29 @@ public class Distribution {
     }
 
     public Distribution() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Slot> getSlots() {
+        return slots;
+    }
+
+    public void setSlots(List<Slot> slots) {
+        this.slots = slots;
     }
 }

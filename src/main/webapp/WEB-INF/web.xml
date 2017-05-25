@@ -56,6 +56,7 @@
             classpath:org/siorven/config/security-context.xml
             classpath:org/siorven/config/persistence-context.xml
             classpath:org/siorven/config/service-context.xml
+            classpath:org/siorven/config/scheduling-context.xml
         </param-value>
     </context-param>
 

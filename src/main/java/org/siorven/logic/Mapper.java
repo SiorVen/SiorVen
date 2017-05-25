@@ -2,12 +2,13 @@ package org.siorven.logic;
 
 import org.siorven.model.MachineProduct;
 
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Andoni on 17/05/2017.
  */
 public class Mapper {
 
-    HashMap<String, MachineProduct> mapping;
+    Map<String, MachineProduct> mapping;
+
 }
