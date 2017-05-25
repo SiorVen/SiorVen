@@ -1,6 +1,12 @@
 package org.siorven.model;
 
+import org.siorven.model.validacion.PersistenceGroup;
+import org.siorven.model.validacion.SpringFormEditGroup;
+import org.siorven.model.validacion.SpringFormGroup;
+
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -12,6 +18,7 @@ import java.util.List;
 public class ResourceInMachine {
 
     @Id
+    @Column(name="machine_resource_id")
     @GeneratedValue
     private String id;
 
@@ -19,31 +26,28 @@ public class ResourceInMachine {
     private Resource resource;
 
     @Column(name = "quantity")
+    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private int quantity;
 
     @Column(name = "repositionDate")
+    @Future(groups = {PersistenceGroup.class}, message = "{formatError.DateFormat.NotPast}")
     private Timestamp repositionDate;
 
     @Column(name = "estimatedCaducityDate")
+    @Future(groups = {PersistenceGroup.class}, message = "{formatError.DateFormat.NotPast}")
     private Timestamp estimatedCaducityDate;
-
-    @ManyToOne
-    private Machine machine;
 
     @ManyToOne
     private Slot slot;
 
-    public ResourceInMachine(Resource resource, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, Machine machine, Slot slotId) {
+    public ResourceInMachine(Resource resource, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, Slot slot) {
         this.resource = resource;
         this.quantity = quantity;
         this.repositionDate = repositionDate;
         this.estimatedCaducityDate = estimatedCaducityDate;
-        this.machine = machine;
         this.slot = slot;
     }
 
-    public ResourceInMachine() {
-    }
 
     public String getId() {
         return id;
@@ -93,14 +97,6 @@ public class ResourceInMachine {
 
     public void setResource(Resource resource) {
         this.resource = resource;
-    }
-
-    public Machine getMachine() {
-        return machine;
-    }
-
-    public void setMachine(Machine machine) {
-        this.machine = machine;
     }
 
     public Slot getSlot() {

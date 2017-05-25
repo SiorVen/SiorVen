@@ -11,28 +11,26 @@ import java.util.List;
 public abstract class Distribution  implements IResourceContainer{
 
     @Id
-    @Column(name="id")
-    private String id;
+    @GeneratedValue
+    @Column(name = "distribution_id")
+    private int id;
 
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
-    @OneToMany
-    private List<Slot> slots;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "distribution_id")
+    private List<Slot> slotList;
 
-    public Distribution(String id, String description) {
-        this.id = id;
+    public Distribution(String description) {
         this.description = description;
     }
 
-    public Distribution() {
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -45,10 +43,10 @@ public abstract class Distribution  implements IResourceContainer{
     }
 
     public List<Slot> getSlots() {
-        return slots;
+        return slotList;
     }
 
     public void setSlots(List<Slot> slots) {
-        this.slots = slots;
+        this.slotList = slots;
     }
 }
