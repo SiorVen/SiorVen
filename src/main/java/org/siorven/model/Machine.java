@@ -26,8 +26,7 @@ public class Machine {
     @JoinColumn(name = "model_id")
     private Model model;
 
-    @OneToMany
-    @JoinColumn(name = "machine_id")
+    @OneToMany(mappedBy="machine")
     private List<MachineProduct> machineProductList;
 
     @OneToMany

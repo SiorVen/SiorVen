@@ -1,10 +1,14 @@
 package org.siorven.model;
 
 import org.siorven.model.validacion.PersistenceGroup;
+import org.siorven.model.validacion.SpringFormEditGroup;
+import org.siorven.model.validacion.SpringFormGroup;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by Gorospe on 25/05/2017.
@@ -21,14 +25,19 @@ public class Sale {
 
     @Column(name = "saleDate")
     @Future(groups = {PersistenceGroup.class}, message = "{formatError.DateFormat.NotPast}")
-    private Date saleDate;
+    private Timestamp saleDate;
+
+    @Column(name = "product_quantity")
+    @Min(value = 1, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
+    private int quantity;
 
     @ManyToOne
     private MachineProduct product;
 
-    public Sale(Date saleDate, MachineProduct product) {
+    public Sale(Timestamp saleDate, MachineProduct product, int quantity) {
         this.saleDate = saleDate;
         this.product = product;
+        this.quantity = quantity;
     }
 
     public Sale() {
@@ -42,11 +51,11 @@ public class Sale {
         this.id = id;
     }
 
-    public Date getSaleDate() {
+    public Timestamp getSaleDate() {
         return saleDate;
     }
 
-    public void setSaleDate(Date saleDate) {
+    public void setSaleDate(Timestamp saleDate) {
         this.saleDate = saleDate;
     }
 

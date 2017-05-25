@@ -1,17 +1,18 @@
 package org.siorven.recommender;
 
 import org.siorven.logic.Suggestion;
+import org.siorven.model.Machine;
+import org.siorven.model.Statement;
 import org.siorven.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import weka.associations.Apriori;
-import weka.associations.AssociationRule;
-import weka.associations.AssociationRules;
-import weka.associations.Item;
+import weka.associations.*;
 import weka.core.Instances;
 import weka.core.converters.ArffLoader;
 import weka.filters.unsupervised.attribute.AddID;
 import weka.filters.unsupervised.attribute.NumericToNominal;
 
+import java.util.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -27,7 +28,12 @@ public class AprioriAssociation {
     @Autowired
     private ProductService productService;
 
-    public void runApriori(Instances outData) {
+    private Machine machine;
+
+    private Timestamp finishDate;
+
+    public void runApriori(Instances outData, Machine machine) {
+        this.machine = machine;
         ArffLoader loader = new ArffLoader();
         try {
             //loader.setSource(new File(file));
@@ -55,6 +61,7 @@ public class AprioriAssociation {
             System.out.println(apriori);
 
             //Separate the result into rules
+            finishDate = new Timestamp(new Date().getTime());
             getSuggestionsFromAprioriRules(apriori);
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,16 +138,18 @@ public class AprioriAssociation {
      */
     private Suggestion parseRule(AssociationRule rule) {
         Suggestion suggestion = null;
-        Collection<Item> premiseRule = rule.getPremise();
-        Collection<Item> consequenceRule = rule.getConsequence();
-        String[] premise = parsePremise(premiseRule);
-        String[] consequence = parseConsequence(consequenceRule);
         try {
-            suggestion = new Suggestion(productService.findByName(premise[0]), stringToBoolean(premise[1]),
-                    productService.findByName(consequence[0]), stringToBoolean(consequence[1]));
-        }catch (Exception e){
-            System.out.println("Rule parsing error");
+            suggestion = new Suggestion(finishDate, machine);
+
+            List<Statement> premises = parseStatements(rule.getPremise());
+            List<Statement> consequences = parseStatements(rule.getConsequence());
+
+            suggestion.setConsequenceList(consequences);
+            suggestion.setPremiseList(premises);
+        } catch (Exception e){
+
         }
+
         return suggestion;
     }
 
@@ -153,26 +162,14 @@ public class AprioriAssociation {
         throw new ClassCastException();
     }
 
-    private String[] parsePremise(Collection<Item> premise) {
-        String cons = premise.toString().substring(1, premise.toString().length() - 1);
-        String[] separate = cons.split("=");
-        if (separate[1].equals("t")) {
-            System.out.println("Si hay " + separate[0]);
-        } else if (separate[1].equals("f")) {
-            System.out.println("Si NO hay " + separate[0]);
+    private List<Statement> parseStatements(Collection<Item> rule) throws Exception{
+        List<Statement> statementList = new ArrayList<>();
+        for (Item i: rule) {
+                NominalItem ni = (NominalItem) i;
+                Statement statement = new Statement(productService.findByName(ni.getAttribute().name()),
+                        stringToBoolean(ni.getItemValueAsString()));
+                statementList.add(statement);
         }
-        return separate;
+        return statementList;
     }
-
-    private String[] parseConsequence(Collection<Item> consequence) {
-        String cons = consequence.toString().substring(1, consequence.toString().length() - 1);
-        String[] separate = cons.split("=");
-        if (separate[1].equals("t")) {
-            System.out.println("colocar " + separate[0]);
-        } else if (separate[1].equals("f")) {
-            System.out.println("NO colocar " + separate[0]);
-        }
-        return separate;
-    }
-
 }

@@ -30,11 +30,16 @@ public class MachineProduct {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MachineIngredient> recipe;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="machine_id")
+    private Machine machine;
 
-    public MachineProduct(Product product, float price, List<MachineIngredient> recipe) {
+
+    public MachineProduct(Product product, float price, List<MachineIngredient> recipe, Machine machine) {
         this.product = product;
         this.price = price;
         this.recipe = recipe;
+        this.machine = machine;
     }
 
     public MachineProduct() {
@@ -70,5 +75,13 @@ public class MachineProduct {
 
     public void setRecipe(List<MachineIngredient> recipe) {
         this.recipe = recipe;
+    }
+
+    public Machine getMachine() {
+        return machine;
+    }
+
+    public void setMachine(Machine machine) {
+        this.machine = machine;
     }
 }

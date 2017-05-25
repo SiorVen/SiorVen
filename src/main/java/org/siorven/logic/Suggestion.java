@@ -1,57 +1,63 @@
 package org.siorven.logic;
 
 
-import org.siorven.model.Product;
+import org.siorven.model.Machine;
+import org.siorven.model.Statement;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Andoni on 22/05/2017.
  */
 public class Suggestion {
 
-    private Product premise;
-    private boolean premiseMode;
+    private List<Statement> premiseList;
 
-    private Product consequence;
-    private boolean consequenceMode;
+    private List<Statement> consequenceList;
 
-    public Suggestion(Product premise, boolean premiseMode, Product consequence, boolean consequenceMode) {
-        this.premise = premise;
-        this.premiseMode = premiseMode;
-        this.consequence = consequence;
-        this.consequenceMode = consequenceMode;
+    private Timestamp generateDate;
+
+    private Machine machine;
+
+
+    public Suggestion(Timestamp generateDate, Machine machine) {
+        this.generateDate = generateDate;
+        this.machine = machine;
+        premiseList = new ArrayList<>();
+        consequenceList = new ArrayList<>();
     }
 
-    public Product getPremise() {
-        return premise;
+    public Timestamp getGenerateDate() {
+        return generateDate;
     }
 
-    public void setPremise(Product premise) {
-        this.premise = premise;
+    public void setGenerateDate(Timestamp generateDate) {
+        this.generateDate = generateDate;
     }
 
-    public Product getConsequence() {
-        return consequence;
+    public Machine getMachine() {
+        return machine;
     }
 
-    public void setConsequence(Product consequence) {
-        this.consequence = consequence;
-
+    public void setMachine(Machine machine) {
+        this.machine = machine;
     }
 
-    public boolean isPremiseMode() {
-        return premiseMode;
+    public List<Statement> getPremiseList() {
+        return premiseList;
     }
 
-    public void setPremiseMode(boolean premiseMode) {
-        this.premiseMode = premiseMode;
+    public List<Statement> getConsequenceList() {
+        return consequenceList;
     }
 
-    public boolean isConsequenceMode() {
-        return consequenceMode;
+    public void setPremiseList(List<Statement> premiseList) {
+        this.premiseList = premiseList;
     }
 
-    public void setConsequenceMode(boolean consequenceMode) {
-        this.consequenceMode = consequenceMode;
+    public void setConsequenceList(List<Statement> consequenceList) {
+        this.consequenceList = consequenceList;
     }
-
 }
