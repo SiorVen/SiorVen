@@ -1,9 +1,6 @@
-package org.siorven.model.validacion;
+package org.siorven.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by joseb on 23/05/2017.
@@ -13,6 +10,7 @@ import javax.persistence.Table;
 public class ProductType {
     @Id
     @GeneratedValue
+    @Column(name="product_type_id")
     private int id;
 
     private String type;

@@ -1,6 +1,11 @@
 package org.siorven.model;
 
+import org.siorven.model.validacion.PersistenceGroup;
+import org.siorven.model.validacion.SpringFormEditGroup;
+import org.siorven.model.validacion.SpringFormGroup;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 /**
@@ -8,32 +13,23 @@ import java.util.List;
  */
 
 @Entity
-@Table(name="machine_product")
+@Table(name = "machine_product")
 public class MachineProduct {
 
     @Id
+    @GeneratedValue
+    @Column(name = "machine_product_id")
     int id;
 
     @ManyToOne
     private Product product;
 
+    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private float price;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "machine_ingredient", joinColumns = {
-            @JoinColumn(name = "machine_ingredient_id", nullable = false, updatable = false) })
     private List<MachineIngredient> recipe;
 
-
-    public MachineProduct(int id, Product product, float price, List<MachineIngredient> recipe) {
-        this.id = id;
-        this.product = product;
-        this.price = price;
-        this.recipe = recipe;
-    }
-
-    public MachineProduct() {
-    }
 
     public MachineProduct(Product product, float price, List<MachineIngredient> recipe) {
         this.product = product;

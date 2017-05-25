@@ -11,13 +11,13 @@ import java.util.List;
 public class Product {
 
     @Id
+    @GeneratedValue
+    @Column(name="product_id")
     private int id;
 
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "ingredient", joinColumns = {
-            @JoinColumn(name = "ingredient_id", nullable = false, updatable = false) })
     private List<Ingredient> recipe;
 
     public Product(int id, String name, List<Ingredient> recipe) {
@@ -29,9 +29,6 @@ public class Product {
     public Product(String name, List<Ingredient> recipe) {
         this.name = name;
         this.recipe = recipe;
-    }
-
-    public Product() {
     }
 
     public int getId() {
@@ -57,4 +54,6 @@ public class Product {
     public void setRecipe(List<Ingredient> recipe) {
         this.recipe = recipe;
     }
+
+
 }

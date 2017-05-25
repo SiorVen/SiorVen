@@ -1,9 +1,14 @@
 package org.siorven.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.siorven.model.validacion.PersistenceGroup;
+import org.siorven.model.validacion.SpringFormEditGroup;
+import org.siorven.model.validacion.SpringFormGroup;
+
+import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 /**
  * Created by Andoni on 16/05/2017.
@@ -13,27 +18,30 @@ import javax.persistence.Table;
 public class Slot {
 
     @Id
-    @Column(name="id")
+    @Column(name="slot_id")
+    @GeneratedValue
     private int id;
 
+    @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{NotEmpty.slot.name}")
+    @Size(min = 3, max = 15, groups = {SpringFormGroup.class, SpringFormEditGroup.class}, message = "{Size.slot.name}")
     @Column(name="name")
     private String name;
 
+    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class},  message = "{formatError.negativeNumber}")
     @Column(name="capacity")
     private int capacity;
 
+    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class},  message = "{formatError.negativeNumber}")
+    @Max(value = 5, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class},  message = "{formatError.tooBigNumber}")
     @Column(name="unit")
     private int Unit;
 
-    public Slot(int id, String name, int capacity, int unit) {
-        this.id = id;
+    public Slot(String name, int capacity, int unit) {
         this.name = name;
         this.capacity = capacity;
         Unit = unit;
     }
 
-    public Slot() {
-    }
 
     public int getId() {
         return id;

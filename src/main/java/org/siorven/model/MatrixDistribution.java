@@ -1,11 +1,14 @@
 package org.siorven.model;
 
+import org.siorven.model.validacion.PersistenceGroup;
+import org.siorven.model.validacion.SpringFormEditGroup;
+import org.siorven.model.validacion.SpringFormGroup;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.util.ArrayList;
+import javax.validation.constraints.Min;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,27 +21,21 @@ public class MatrixDistribution extends Distribution{
     public static final String ROW = "distribution.matrix.row";
     public static final String COLUMN = "distribution.matrix.column";
 
+    @Column(name = "lines")
+    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
+    private int lines;
+
     @Column(name="rows")
     private int rows;
 
-    @Column(name="columns")
+    @Column(name = "columns")
+    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private int columns;
 
-    public MatrixDistribution(String Id, String description, int rows, int columns) {
-        super(Id, description);
-        this.rows = rows;
+    public MatrixDistribution(String description, int lines, int columns) {
+        super(description);
+        this.lines = lines;
         this.columns = columns;
-
-        List<Slot> slots = new ArrayList<>();
-
-        for (int i = 0; i < (rows * columns); i++) {
-            slots.add(new Slot());
-        }
-
-        this.setSlots(slots);
-    }
-
-    public MatrixDistribution() {
     }
 
     public int getRows() {
