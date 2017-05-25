@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 public class MachineResource {
 
     @Id
-    @Column(name="machine_resource_id")
+    @Column(name = "machine_resource_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
@@ -57,7 +57,6 @@ public class MachineResource {
     public void setId(String id) {
         this.id = id;
     }
-
 
 
     public Resource getResourceId() {

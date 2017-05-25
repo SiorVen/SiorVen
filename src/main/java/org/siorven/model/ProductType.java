@@ -6,11 +6,11 @@ import javax.persistence.*;
  * Created by joseb on 23/05/2017.
  */
 @Entity
-@Table(name="product_type")
+@Table(name = "product_type")
 public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="product_type_id")
+    @Column(name = "product_type_id")
     private int id;
 
     private String type;

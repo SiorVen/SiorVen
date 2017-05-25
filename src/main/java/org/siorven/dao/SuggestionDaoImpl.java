@@ -1,23 +1,22 @@
 package org.siorven.dao;
 
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.siorven.model.MachineResource;
+import org.siorven.model.Suggestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * Implementation of the {@link MachineResourceDao} interface with hibernate persistence onto a jdbc database
+ * Created by Gorospe on 25/05/2017.
  */
 @Transactional
 @Repository
-public class MachineResourceDaoImpl implements MachineResourceDao {
+public class SuggestionDaoImpl implements SuggestionDao {
 
     /**
      * Session factory for the jdbc connection bean
@@ -34,34 +33,35 @@ public class MachineResourceDaoImpl implements MachineResourceDao {
         return sessionFactory.getCurrentSession();
     }
 
+
     @Override
-    public void save(MachineResource r) {
-        getSession().save(r);
+    public void saveSuggestion(Suggestion suggestion) {
+        getSession().save(suggestion);
     }
 
     @Override
-    public void edit(MachineResource r) {
-        getSession().update(r);
+    public void editSuggestion(Suggestion suggestion) {
+        getSession().update(suggestion);
     }
 
     @Override
-    public void editOrSave(MachineResource r) {
-        getSession().saveOrUpdate(r);
+    public void editOrSaveSuggestion(Suggestion suggestion) {
+        getSession().saveOrUpdate(suggestion);
     }
 
     @Override
-    public void delete(String id) {
+    public void deleteSuggestion(int id) {
         getSession().delete(findById(id));
     }
 
     @Override
-    public MachineResource findById(String id) {
-        Criteria crit = getSession().createCriteria(MachineResource.class).add(Restrictions.eq("id", id));
-        return (MachineResource) crit.uniqueResult();
+    public Suggestion findById(int id) {
+        Criteria crit = getSession().createCriteria(Suggestion.class).add(Restrictions.eq("id", id));
+        return (Suggestion) crit.uniqueResult();
     }
 
     @Override
-    public List getAllResources() {
-        return getSession().createCriteria(MachineResource.class).list();
+    public List findAll() {
+        return getSession().createCriteria(Suggestion.class).list();
     }
 }

@@ -14,30 +14,35 @@ import java.util.List;
 public interface SaleDao {
     /**
      * Persists a Sale
+     *
      * @param sale The {@link Sale} to be persisted
      */
     void save(@Validated(PersistenceGroup.class) Sale sale);
 
     /**
      * Updates a persisted sale
+     *
      * @param sale The Sale to be persisted
      */
     void edit(@Validated(PersistenceGroup.class) Sale sale);
 
     /**
      * Updates or persists a Sale
+     *
      * @param sale The sale to be persisted
      */
     void editOrSave(@Validated(PersistenceGroup.class) Sale sale);
 
     /**
      * Deletes a persisted sale
+     *
      * @param id The id of the sale to be deleted
      */
     void delete(int id);
 
     /**
      * Finds a persisted {@link Sale} by its id
+     *
      * @param id The id of the sale to be searched
      * @return The sale or null if it wasn't found
      */
@@ -45,15 +50,17 @@ public interface SaleDao {
 
     /**
      * Returns all the persisted sale
+     *
      * @return A {@link List} conta1ining all the sale
      */
     List getAllSales();
 
     /**
      * Return a list of the sales made on a given date
+     *
      * @param date
      * @return
      */
-    List getSalesFromDate(Timestamp date, Machine machine);
+    List getSalesFromMachineFromDay(Timestamp date, Machine machine);
 
 }

@@ -7,15 +7,15 @@ import java.util.List;
  * Created by Andoni on 19/05/2017.
  */
 @Entity
-@Table(name="product")
+@Table(name = "product")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="product_id")
+    @Column(name = "product_id")
     private int id;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -1,8 +1,9 @@
 package org.siorven.recommender;
 
-import org.siorven.logic.Suggestion;
 import org.siorven.model.Machine;
 import org.siorven.model.Statement;
+import org.siorven.model.Suggestion;
+import org.siorven.model.SuggestionAssociation;
 import org.siorven.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import weka.associations.*;
@@ -11,10 +12,10 @@ import weka.core.converters.ArffLoader;
 import weka.filters.unsupervised.attribute.AddID;
 import weka.filters.unsupervised.attribute.NumericToNominal;
 
-import java.util.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +25,8 @@ public class AprioriAssociation {
 
     public static final double APRIORI_MIN_METRIC = 0.5;
     public static final int APRIORI_NUM_RULES = 8;
+    public static final String TRUE = "t";
+    public static final String FALSE = "f";
 
     @Autowired
     private ProductService productService;
@@ -72,6 +75,7 @@ public class AprioriAssociation {
     /**
      * Translate the results of the Apriori algorith into a list of suggestions.
      * TODO: Kontuz, Rule baten parseoan errorea badau puede cascar muy facilmente. Arreglau in behar da!!!!!
+     *
      * @param apriori
      * @return
      */
@@ -90,6 +94,7 @@ public class AprioriAssociation {
 
     /**
      * Function that configures Apriori algorithm parameters
+     *
      * @param data instances generated from arff file
      * @return
      * @throws Exception
@@ -105,70 +110,75 @@ public class AprioriAssociation {
 
     /**
      * Change the format of the ID attribute from numeric to nominal
+     *
      * @param data instances generated from arff file
      * @return
      * @throws Exception
      */
     private Instances changeIdNumericToNominal(Instances data) throws Exception {
+        Instances filteredData;
         NumericToNominal numToNomFilter = new NumericToNominal();
         numToNomFilter.setAttributeIndices("last");
         numToNomFilter.setInputFormat(data);
-        data = numToNomFilter.useFilter(data, numToNomFilter);
-        return data;
+        filteredData = numToNomFilter.useFilter(data, numToNomFilter);
+        return filteredData;
     }
 
     /**
      * Add ID attribute to de instances
+     *
      * @param data
      * @return
      * @throws Exception
      */
     private Instances addIdFilter(Instances data) throws Exception {
+        Instances filteredData;
         AddID idFilter = new AddID();
         idFilter.setIDIndex("last");
         idFilter.setInputFormat(data);
-        data = idFilter.useFilter(data, idFilter);
-        return data;
+        filteredData = idFilter.useFilter(data, idFilter);
+        return filteredData;
     }
 
     /**
      * Parse a determinate {@link AssociationRule} into a {@link Suggestion}
+     *
      * @param rule
      * @return
      */
     private Suggestion parseRule(AssociationRule rule) {
-        Suggestion suggestion = null;
+        SuggestionAssociation suggestion = null;
         try {
-            suggestion = new Suggestion(finishDate, machine);
+            suggestion = new SuggestionAssociation(finishDate, machine);
 
             List<Statement> premises = parseStatements(rule.getPremise());
             List<Statement> consequences = parseStatements(rule.getConsequence());
 
             suggestion.setConsequenceList(consequences);
             suggestion.setPremiseList(premises);
-        } catch (Exception e){
-
+        } catch (Exception e) {
+            System.out.println("Error parsing rule");
         }
 
         return suggestion;
     }
 
-    private boolean stringToBoolean(String s) throws Exception{
-        if(s.toLowerCase().equals("t")){
+    private boolean stringToBoolean(String s) throws Exception {
+        if (TRUE.equalsIgnoreCase(s)) {
             return true;
-        } else if (s.toLowerCase().equals("f")){
+        } else if (FALSE.equalsIgnoreCase(s)) {
             return false;
         }
         throw new ClassCastException();
     }
 
-    private List<Statement> parseStatements(Collection<Item> rule) throws Exception{
+    private List<Statement> parseStatements(Collection<Item> rule) throws Exception {
         List<Statement> statementList = new ArrayList<>();
-        for (Item i: rule) {
-                NominalItem ni = (NominalItem) i;
-                Statement statement = new Statement(productService.findByName(ni.getAttribute().name()),
-                        stringToBoolean(ni.getItemValueAsString()));
-                statementList.add(statement);
+        for (Item i : rule) {
+            NominalItem ni = (NominalItem) i;
+            Statement statement = new Statement(productService.findByName(ni.getAttribute().name()),
+                    stringToBoolean(ni.getItemValueAsString()));
+            statementList.add(statement);
         }
         return statementList;
     }

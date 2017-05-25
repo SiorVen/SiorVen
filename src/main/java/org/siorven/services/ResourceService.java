@@ -33,7 +33,7 @@ public class ResourceService {
      *
      * @param r resource to be resource or updated
      */
-    public void saveOrUpdate(Resource r){
+    public void saveOrUpdate(Resource r) {
         resourceDao.editOrSave(r);
     }
 
@@ -48,6 +48,7 @@ public class ResourceService {
 
     /**
      * Deletes a resource from the database
+     *
      * @param id The id of the resource to be deleted from the database
      */
     public void delete(String id) {
@@ -56,6 +57,7 @@ public class ResourceService {
 
     /**
      * Searches for the Resource with the given id
+     *
      * @param id The id of the requested Resource
      * @return The Resource or null if it wasn't found
      */
@@ -65,6 +67,7 @@ public class ResourceService {
 
     /**
      * Searches for the resource with the given name
+     *
      * @param name The name of the requested resource
      * @return The resource or null if it wasn't found
      */
@@ -74,6 +77,7 @@ public class ResourceService {
 
     /**
      * Returns all the resource on the database
+     *
      * @return The list of resource
      */
     public List findAll() {
@@ -82,6 +86,7 @@ public class ResourceService {
 
     /**
      * Returns all the resource on the database that match with the resource type
+     *
      * @param resourceType The resource type of the requested resources
      * @return The list of resources
      */

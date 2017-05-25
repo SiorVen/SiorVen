@@ -24,7 +24,7 @@ public class MachineResourceService {
      *
      * @param r The resource in machine to be saved
      */
-    public void save(MachineResource r){
+    public void save(MachineResource r) {
         machineResourceDao.save(r);
     }
 
@@ -33,7 +33,7 @@ public class MachineResourceService {
      *
      * @param s MachineResource to be saved or updated
      */
-    public void saveOrUpdate(MachineResource s){
+    public void saveOrUpdate(MachineResource s) {
         machineResourceDao.editOrSave(s);
     }
 
@@ -48,14 +48,16 @@ public class MachineResourceService {
 
     /**
      * Deletes a MachineResource from the database
+     *
      * @param id The id of the MachineResource to be deleted from the database
      */
-    public void delete(String id){
+    public void delete(String id) {
         machineResourceDao.delete(id);
     }
 
     /**
      * Searches for the MachineResource with the given id
+     *
      * @param id The id of the requested MachineResource
      * @return The MachineResource or null if it wasn't found
      */
@@ -65,6 +67,7 @@ public class MachineResourceService {
 
     /**
      * Returns all the MachineResource on the database
+     *
      * @return The list of MachineResource
      */
     public List findAll() {

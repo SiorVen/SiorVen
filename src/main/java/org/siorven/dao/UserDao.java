@@ -5,38 +5,45 @@ import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
+
 /**
  * Data access interface for the users
+ *
  * @see User
  */
 public interface UserDao {
 
     /**
      * Persists a user
+     *
      * @param u The user to be persisted
      */
-    void saveUser(@Validated(PersistenceGroup.class)User u);
+    void saveUser(@Validated(PersistenceGroup.class) User u);
 
     /**
      * Updates a persisted user
+     *
      * @param u The user to be persisted
      */
     void editUser(@Validated(PersistenceGroup.class) User u);
 
     /**
      * Updates or persists a user
+     *
      * @param u The user to be persisted
      */
     void editOrSave(@Validated(PersistenceGroup.class) User u);
 
     /**
      * Deletes a persisted user
+     *
      * @param id The id of the user to be deleted
      */
     void deleteUser(int id);
 
     /**
      * Finds a persisted user by its id
+     *
      * @param id The id of the user to be searched
      * @return The user or null if it wasn't found
      */
@@ -44,6 +51,7 @@ public interface UserDao {
 
     /**
      * Finds persisted users by their role
+     *
      * @param role The role of the user to be searched
      * @return The list of users with that role
      */
@@ -51,6 +59,7 @@ public interface UserDao {
 
     /**
      * Finds a persisted user by its username
+     *
      * @param username The username of the searched user
      * @return The user or null if it wasn't found
      */
@@ -58,6 +67,7 @@ public interface UserDao {
 
     /**
      * Finds a persisted user by its email
+     *
      * @param email The email of the requested user
      * @return The user or null if it was not found
      */
@@ -65,6 +75,7 @@ public interface UserDao {
 
     /**
      * Returns all the persisted users
+     *
      * @return A {@link List} containing all the users
      */
     List getAllUsers();

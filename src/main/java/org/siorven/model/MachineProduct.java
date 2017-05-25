@@ -31,7 +31,7 @@ public class MachineProduct {
     private List<MachineIngredient> recipe;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="machine_id")
+    @JoinColumn(name = "machine_id")
     private Machine machine;
 
 

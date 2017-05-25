@@ -58,7 +58,7 @@ public class CreateArff {
             productList.add(createSolidProduct("Manzana"));
             productList.add(createSolidProduct("Chaskys"));
             productList.add(createSolidProduct("Oreo"));
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Base de datos generada de antes");
             productList = productService.findAll();
             System.out.println("List Size: " + productList.size());
@@ -67,17 +67,18 @@ public class CreateArff {
 
     /**
      * Create a {@link Product} with a unique {@link Ingredient} and a unique {@link Resource} and add them into the database
+     *
      * @param name
      * @return The product created.
      */
     private Product createSolidProduct(String name) {
-        Resource resource = new Resource(name,"1");
+        Resource resource = new Resource(name, "1");
         resourceService.saveOrUpdate(resource);
-        Ingredient ingredient = new Ingredient(resource,1);
+        Ingredient ingredient = new Ingredient(resource, 1);
         ingredientService.saveOrUpdate(ingredient);
         List<Ingredient> list = new ArrayList<>();
         list.add(ingredient);
-        Product product = new Product(name,list);
+        Product product = new Product(name, list);
         productService.saveOrUpdate(product);
         return product;
     }

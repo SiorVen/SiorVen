@@ -33,7 +33,7 @@ public class SlotService {
      *
      * @param s Slot to be saved or updated
      */
-    public void saveOrUpdate(Slot s){
+    public void saveOrUpdate(Slot s) {
         slotDao.editOrSave(s);
     }
 
@@ -48,14 +48,16 @@ public class SlotService {
 
     /**
      * Deletes a slot from the database
+     *
      * @param id The id of the slot to be deleted from the database
      */
-    public void delete(int id){
+    public void delete(int id) {
         slotDao.deleteSlot(id);
     }
 
     /**
      * Searches for the slot with the given id
+     *
      * @param id The id of the requested slot
      * @return The slot or null if it wasn't found
      */
@@ -65,6 +67,7 @@ public class SlotService {
 
     /**
      * Searches for the slot with the given name
+     *
      * @param name The name of the requested slot
      * @return The slot or null if it wasn't found
      */
@@ -74,6 +77,7 @@ public class SlotService {
 
     /**
      * Returns all the slots on the database
+     *
      * @return The list of slots
      */
     public List findAll() {

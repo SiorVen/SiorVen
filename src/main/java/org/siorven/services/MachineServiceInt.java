@@ -13,6 +13,8 @@ import java.util.Map;
 public interface MachineServiceInt {
 
     public int editConfiguration(Configuration c);
+
     public int deleteMachine(int id);
+
     public int advancedReposition(Map<Resource, Slot> ResourceMap, Map<Product, Integer> productMap);
 }

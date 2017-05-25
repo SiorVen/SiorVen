@@ -7,8 +7,8 @@ import java.util.List;
  * Created by Andoni on 16/05/2017.
  */
 @Entity
-@Table(name="Distribution")
-public abstract class Distribution  implements IResourceContainer{
+@Table(name = "Distribution")
+public abstract class Distribution implements IResourceContainer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

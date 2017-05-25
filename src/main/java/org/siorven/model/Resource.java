@@ -6,18 +6,17 @@ import javax.persistence.*;
  * Created by Andoni on 16/05/2017.
  */
 @Entity
-@Table(name="resource")
-public class Resource
-{
+@Table(name = "resource")
+public class Resource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="resource_id")
+    @Column(name = "resource_id")
     private int id;
 
-    @Column(name="name",unique=true)
+    @Column(name = "name", unique = true)
     private String name;
 
-    @Column(name="resourceType")
+    @Column(name = "resourceType")
     private String resourceType;
 
     @OneToOne

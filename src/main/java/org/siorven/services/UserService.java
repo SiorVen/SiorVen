@@ -51,8 +51,8 @@ public class UserService {
 
         User oldUser = userDao.findById(user.getId());
 
-        if(Objects.equals(oldUser.getPermission(), User.ROLE_ADMIN) && !Objects.equals(user.getPermission(), User.ROLE_ADMIN)){
-            if(userDao.findByRole(User.ROLE_ADMIN).size() <= 1){
+        if (Objects.equals(oldUser.getPermission(), User.ROLE_ADMIN) && !Objects.equals(user.getPermission(), User.ROLE_ADMIN)) {
+            if (userDao.findByRole(User.ROLE_ADMIN).size() <= 1) {
                 throw new DataIntegrityViolationException("error.lastAdmin");
             }
         }
@@ -62,16 +62,18 @@ public class UserService {
 
     /**
      * Deletes a user from the database
-      * @param u The user to be deleted from the database
+     *
+     * @param u The user to be deleted from the database
      */
-    public void delete(User u) throws DataIntegrityViolationException{
-        if(u.getPermission().equals(User.ROLE_ADMIN) && userDao.findByRole(User.ROLE_ADMIN).size() <= 1)
+    public void delete(User u) throws DataIntegrityViolationException {
+        if (u.getPermission().equals(User.ROLE_ADMIN) && userDao.findByRole(User.ROLE_ADMIN).size() <= 1)
             throw new DataIntegrityViolationException("error.lastAdmin");
         userDao.deleteUser(u.getId());
     }
 
     /**
      * Searches for a user with the given user or email
+     *
      * @param string The username or the email of the user
      * @return Returns the user or null if it wasn't found
      */
@@ -83,6 +85,7 @@ public class UserService {
 
     /**
      * Returns all the users on the database
+     *
      * @return The list of users
      */
     public List findAll() {
@@ -91,6 +94,7 @@ public class UserService {
 
     /**
      * Searches for the user with the given email
+     *
      * @param email The email of the requested user
      * @return The user or null if it wasn't found
      */
@@ -100,6 +104,7 @@ public class UserService {
 
     /**
      * Searches for a user with the given username
+     *
      * @param username The username of the requested user
      * @return The user or null if the user wasn't found
      */
@@ -109,14 +114,13 @@ public class UserService {
 
     /**
      * Searches for a user with the given id
+     *
      * @param id The id of the requested user
      * @return The user or null if the user wasn't found
      */
     public User findById(int id) {
         return userDao.findById(id);
     }
-
-
 
 
 }

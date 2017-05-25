@@ -1,6 +1,5 @@
 package org.siorven.model;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**

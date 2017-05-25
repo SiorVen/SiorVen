@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Transactional
 @Repository
-public class ProductDaoImpl implements ProductDao{
+public class ProductDaoImpl implements ProductDao {
 
     /**
      * Session factory for the jdbc connection bean
@@ -26,9 +26,12 @@ public class ProductDaoImpl implements ProductDao{
 
     /**
      * Returns the current session of the {@link #sessionFactory}
+     *
      * @return The current {@link Session}
      */
-    private Session getSession(){return sessionFactory.getCurrentSession();}
+    private Session getSession() {
+        return sessionFactory.getCurrentSession();
+    }
 
     @Override
     public void save(Product p) {

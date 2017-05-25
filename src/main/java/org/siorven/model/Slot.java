@@ -14,26 +14,26 @@ import javax.validation.constraints.Size;
  * Created by Andoni on 16/05/2017.
  */
 @Entity
-@Table(name="slot")
+@Table(name = "slot")
 public class Slot {
 
     @Id
-    @Column(name="slot_id")
+    @Column(name = "slot_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{NotEmpty.slot.name}")
     @Size(min = 3, max = 15, groups = {SpringFormGroup.class, SpringFormEditGroup.class}, message = "{Size.slot.name}")
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class},  message = "{formatError.negativeNumber}")
-    @Column(name="capacity")
+    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
+    @Column(name = "capacity")
     private int capacity;
 
-    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class},  message = "{formatError.negativeNumber}")
-    @Max(value = 5, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class},  message = "{formatError.tooBigNumber}")
-    @Column(name="unit")
+    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
+    @Max(value = 5, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.tooBigNumber}")
+    @Column(name = "unit")
     private int Unit;
 
     public Slot(String name, int capacity, int unit) {

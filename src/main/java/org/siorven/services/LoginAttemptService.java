@@ -32,6 +32,7 @@ public class LoginAttemptService {
 
     /**
      * Deletes an IP from the {@link #attemptsCache} when the login is successful
+     *
      * @param key The IP of the client
      */
     public void loginSucceeded(String key) {
@@ -40,6 +41,7 @@ public class LoginAttemptService {
 
     /**
      * Adds 1 to the {@link #attemptsCache} of the IP when the login fails
+     *
      * @param key The IP of the client
      */
     public void loginFailed(String key) {
@@ -55,6 +57,7 @@ public class LoginAttemptService {
 
     /**
      * Checks if an IP is blocked due to it's attemps exceeding the {@link #MAX_ATTEMPT} number
+     *
      * @param key The IP of the client
      * @return Whether the IP is blocked or not
      */

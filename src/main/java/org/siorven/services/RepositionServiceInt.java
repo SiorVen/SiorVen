@@ -12,6 +12,8 @@ import java.util.Map;
 public interface RepositionServiceInt {
 
     public int simpleReposition();
+
     public int resourcesReposition(Map<Resource, Slot> resourceMap);
+
     public int advancedReposition(Map<Resource, Slot> ResourceMap, Map<Product, Integer> productMap);
 }

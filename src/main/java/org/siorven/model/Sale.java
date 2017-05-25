@@ -7,19 +7,18 @@ import org.siorven.model.validacion.SpringFormGroup;
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
  * Created by Gorospe on 25/05/2017.
  */
 @Entity
-@Table(name="sale")
+@Table(name = "sale")
 public class Sale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="sale_id")
+    @Column(name = "sale_id")
     private int id;
 
 

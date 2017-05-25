@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -20,7 +18,7 @@ import java.util.List;
  */
 @Transactional
 @Repository
-public class SaleDaoImpl implements SaleDao{
+public class SaleDaoImpl implements SaleDao {
     public static final int DAI_IN_MILIS = 86400000;
     /**
      * Session factory for the jdbc connection bean
@@ -30,9 +28,12 @@ public class SaleDaoImpl implements SaleDao{
 
     /**
      * Returns the current session of the {@link #sessionFactory}
+     *
      * @return The current {@link Session}
      */
-    private Session getSession(){return sessionFactory.getCurrentSession();}
+    private Session getSession() {
+        return sessionFactory.getCurrentSession();
+    }
 
     @Override
     public void save(Sale sale) {
@@ -66,13 +67,13 @@ public class SaleDaoImpl implements SaleDao{
     }
 
     @Override
-    public List getSalesFromDate(Timestamp date, Machine machine) {
+    public List getSalesFromMachineFromDay(Timestamp date, Machine machine) {
         Criteria c = getSession().createCriteria(Sale.class, "sale");
         c.createAlias("sale.product", "prod"); // inner join by default
         c.createAlias("prod.machine", "machine");
-        c.add(Restrictions.ge("sale.saleDate",date));
-        c.add(Restrictions.lt("sale.saleDate",new Timestamp(date.getTime() + DAI_IN_MILIS)));
-        c.add(Restrictions.eq("machine.id",machine.getId()));
+        c.add(Restrictions.ge("sale.saleDate", date));
+        c.add(Restrictions.lt("sale.saleDate", new Timestamp(date.getTime() + DAI_IN_MILIS)));
+        c.add(Restrictions.eq("machine.id", machine.getId()));
 
         return c.list();
     }

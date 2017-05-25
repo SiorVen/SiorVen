@@ -15,8 +15,8 @@ import java.util.Map;
  * Created by Andoni on 16/05/2017.
  */
 @Entity
-@Table(name="Distribution")
-public class MatrixDistribution extends Distribution{
+@Table(name = "Distribution")
+public class MatrixDistribution extends Distribution {
 
     public static final String ROW = "distribution.matrix.row";
     public static final String COLUMN = "distribution.matrix.column";
@@ -25,7 +25,7 @@ public class MatrixDistribution extends Distribution{
     @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private int lines;
 
-    @Column(name="rows")
+    @Column(name = "rows")
     private int rows;
 
     @Column(name = "columns")
@@ -64,7 +64,7 @@ public class MatrixDistribution extends Distribution{
 
     @Override
     public Map<String, Class> getPositionParams() {
-        Map<String, Class> map =  new HashMap<>();
+        Map<String, Class> map = new HashMap<>();
         map.put(COLUMN, Integer.class);
         map.put(ROW, Integer.class);
         return map;

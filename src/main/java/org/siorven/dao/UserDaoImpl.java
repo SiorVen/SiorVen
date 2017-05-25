@@ -26,9 +26,12 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Returns the current session of the {@link #sessionFactory}
+     *
      * @return The current {@link Session}
      */
-    private Session getSession(){return sessionFactory.getCurrentSession();}
+    private Session getSession() {
+        return sessionFactory.getCurrentSession();
+    }
 
     @Override
     public void saveUser(User u) {

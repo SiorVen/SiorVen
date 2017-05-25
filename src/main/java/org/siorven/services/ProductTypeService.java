@@ -33,7 +33,7 @@ public class ProductTypeService {
      *
      * @param p product type to be saved or updated
      */
-    public void saveOrUpdate(ProductType p){
+    public void saveOrUpdate(ProductType p) {
         productTypeDao.editOrSave(p);
     }
 
@@ -48,14 +48,16 @@ public class ProductTypeService {
 
     /**
      * Deletes a product type from the database
+     *
      * @param id The id of the product type to be deleted from the database
      */
-    public void delete(String id){
+    public void delete(String id) {
         productTypeDao.delete(id);
     }
 
     /**
      * Searches for the product type with the given id
+     *
      * @param id The id of the requested product type
      * @return The product type or null if it wasn't found
      */
@@ -65,6 +67,7 @@ public class ProductTypeService {
 
     /**
      * Searches for the product type with the given type
+     *
      * @param type The type of the requested product type
      * @return The product type or null if it wasn't found
      */
@@ -74,6 +77,7 @@ public class ProductTypeService {
 
     /**
      * Returns all the product type on the database
+     *
      * @return The list of product type
      */
     public List findAll() {
