@@ -1,44 +1,57 @@
 package org.siorven.logic;
 
 
+import org.siorven.model.Product;
+
 /**
  * Created by Andoni on 22/05/2017.
  */
 public class Suggestion {
 
-    private int id;
+    private Product premise;
+    private boolean premiseMode;
 
-    private String name;
+    private Product consequence;
+    private boolean consequenceMode;
 
-    private int qty;
-
-    public Suggestion(int id, String name, int qty) {
-        this.id = id;
-        this.name = name;
-        this.qty = qty;
+    public Suggestion(Product premise, boolean premiseMode, Product consequence, boolean consequenceMode) {
+        this.premise = premise;
+        this.premiseMode = premiseMode;
+        this.consequence = consequence;
+        this.consequenceMode = consequenceMode;
     }
 
-    public int getId() {
-        return id;
+    public Product getPremise() {
+        return premise;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPremise(Product premise) {
+        this.premise = premise;
     }
 
-    public String getName() {
-        return name;
+    public Product getConsequence() {
+        return consequence;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setConsequence(Product consequence) {
+        this.consequence = consequence;
+
     }
 
-    public int getQty() {
-        return qty;
+    public boolean isPremiseMode() {
+        return premiseMode;
     }
 
-    public void setQty(int qty) {
-        this.qty = qty;
+    public void setPremiseMode(boolean premiseMode) {
+        this.premiseMode = premiseMode;
     }
+
+    public boolean isConsequenceMode() {
+        return consequenceMode;
+    }
+
+    public void setConsequenceMode(boolean consequenceMode) {
+        this.consequenceMode = consequenceMode;
+    }
+
 }

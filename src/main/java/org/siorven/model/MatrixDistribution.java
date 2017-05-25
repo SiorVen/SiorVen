@@ -55,7 +55,7 @@ public class MatrixDistribution extends Distribution{
     }
 
     @Override
-    public Slot findSlot(HashMap<String, Object> positionParam) {
+    public Slot findSlot(Map<String, Object> positionParam) {
         int row = (int) positionParam.get(ROW);
         int col = (int) positionParam.get(COLUMN);
 
@@ -64,7 +64,7 @@ public class MatrixDistribution extends Distribution{
 
     @Override
     public Map<String, Class> getPositionParams() {
-        HashMap<String, Class> map =  new HashMap<>();
+        Map<String, Class> map =  new HashMap<>();
         map.put(COLUMN, Integer.class);
         map.put(ROW, Integer.class);
         return map;

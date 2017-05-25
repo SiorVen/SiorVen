@@ -11,24 +11,22 @@ import java.util.List;
 public class Product {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="product_id")
     private int id;
 
+    @Column(unique=true)
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Ingredient> recipe;
-
-    public Product(int id, String name, List<Ingredient> recipe) {
-        this.id = id;
-        this.name = name;
-        this.recipe = recipe;
-    }
 
     public Product(String name, List<Ingredient> recipe) {
         this.name = name;
         this.recipe = recipe;
+    }
+
+    public Product() {
     }
 
     public int getId() {

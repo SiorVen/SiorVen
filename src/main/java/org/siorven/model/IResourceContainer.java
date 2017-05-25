@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public interface IResourceContainer {
 
-    Slot findSlot(HashMap<String, Object> position);
+    Slot findSlot(Map<String, Object> position);
 
     Map<String, Class> getPositionParams();
 

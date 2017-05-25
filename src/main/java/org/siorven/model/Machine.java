@@ -16,7 +16,7 @@ public class Machine {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "machine_id")
     private int id;
 
@@ -31,8 +31,8 @@ public class Machine {
     private List<MachineProduct> machineProductList;
 
     @OneToMany
-    @JoinColumn(name = "machine_id")
-    private List<ResourceInMachine> machineResourceList;
+    @JoinColumn(name = "resource_id")
+    private List<MachineResource> machineResourceList;
 
     @Transient
     private Configuration configuration;
@@ -43,7 +43,7 @@ public class Machine {
     @Transient
     private Mapper mapper;
 
-    public Machine(String alias, Model model, List<MachineProduct> machineProductList, List<ResourceInMachine> machineResourceList, Configuration configuration, String record, Mapper mapper) {
+    public Machine(String alias, Model model, List<MachineProduct> machineProductList, List<MachineResource> machineResourceList, Configuration configuration, String record, Mapper mapper) {
         this.alias = alias;
         this.model = model;
         this.machineProductList = machineProductList;
@@ -51,6 +51,9 @@ public class Machine {
         this.configuration = configuration;
         this.record = record;
         this.mapper = mapper;
+    }
+
+    public Machine() {
     }
 
     public int getId() {
@@ -85,11 +88,11 @@ public class Machine {
         this.machineProductList = machineProductList;
     }
 
-    public List<ResourceInMachine> getMachineResourceList() {
+    public List<MachineResource> getMachineResourceList() {
         return machineResourceList;
     }
 
-    public void setMachineResourceList(List<ResourceInMachine> machineResourceList) {
+    public void setMachineResourceList(List<MachineResource> machineResourceList) {
         this.machineResourceList = machineResourceList;
     }
 

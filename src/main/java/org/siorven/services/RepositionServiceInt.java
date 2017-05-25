@@ -4,7 +4,7 @@ import org.siorven.model.Product;
 import org.siorven.model.Resource;
 import org.siorven.model.Slot;
 
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Andoni on 22/05/2017.
@@ -12,6 +12,6 @@ import java.util.HashMap;
 public interface RepositionServiceInt {
 
     public int simpleReposition();
-    public int resourcesReposition(HashMap<Resource, Slot> resourceMap);
-    public int advancedReposition(HashMap<Resource, Slot> ResourceMap, HashMap<Product, Integer> productMap);
+    public int resourcesReposition(Map<Resource, Slot> resourceMap);
+    public int advancedReposition(Map<Resource, Slot> ResourceMap, Map<Product, Integer> productMap);
 }

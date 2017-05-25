@@ -11,7 +11,7 @@ import java.util.List;
 public class Model {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "model_id")
     private int id;
 
@@ -33,6 +33,9 @@ public class Model {
         this.manufacturer = manufacturer;
         this.aviableProductTypes = aviableProductTypes;
         this.aviableDistributions = aviableDistributions;
+    }
+
+    public Model() {
     }
 
     public int getId() {

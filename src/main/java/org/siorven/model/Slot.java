@@ -19,7 +19,7 @@ public class Slot {
 
     @Id
     @Column(name="slot_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{NotEmpty.slot.name}")
@@ -42,6 +42,8 @@ public class Slot {
         Unit = unit;
     }
 
+    public Slot() {
+    }
 
     public int getId() {
         return id;

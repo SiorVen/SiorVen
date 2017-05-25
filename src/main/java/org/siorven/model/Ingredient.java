@@ -15,7 +15,7 @@ import javax.validation.constraints.Min;
 public class Ingredient {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ingredient_id")
     private int id;
 
@@ -28,6 +28,9 @@ public class Ingredient {
     public Ingredient(Resource resource, int quantity) {
         this.quantity = quantity;
         this.resource = resource;
+    }
+
+    public Ingredient() {
     }
 
     public int getId() {

@@ -17,7 +17,7 @@ import java.util.List;
 public class MachineProduct {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "machine_product_id")
     int id;
 
@@ -35,6 +35,9 @@ public class MachineProduct {
         this.product = product;
         this.price = price;
         this.recipe = recipe;
+    }
+
+    public MachineProduct() {
     }
 
     public int getId() {

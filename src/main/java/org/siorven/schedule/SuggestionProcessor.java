@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 public class SuggestionProcessor {
 
 
-    @Scheduled(cron = "0 0 * * *") //Every midnight
+    @Scheduled(cron = "0 0 * * * *") //Every midnight
     public void processSuggestions() {
-        //TODO perform suggestion processing
+        System.out.println("Hola, es media noche!");
     }
 
 }

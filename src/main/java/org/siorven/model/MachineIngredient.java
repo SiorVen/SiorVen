@@ -15,20 +15,23 @@ import javax.validation.constraints.Min;
 public class MachineIngredient {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "machine_ingredient_id")
     private int id;
 
     @OneToOne
-    private ResourceInMachine resource;
+    private MachineResource resource;
 
     @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private int qty;
 
 
-    public MachineIngredient(ResourceInMachine resource, int qty) {
+    public MachineIngredient(MachineResource resource, int qty) {
         this.resource = resource;
         this.qty = qty;
+    }
+
+    public MachineIngredient() {
     }
 
     public int getId() {
@@ -39,11 +42,11 @@ public class MachineIngredient {
         this.id = id;
     }
 
-    public ResourceInMachine getResource() {
+    public MachineResource getResource() {
         return resource;
     }
 
-    public void setResource(ResourceInMachine resource) {
+    public void setResource(MachineResource resource) {
         this.resource = resource;
     }
 

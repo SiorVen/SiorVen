@@ -10,11 +10,11 @@ import javax.persistence.*;
 public class Resource
 {
     @Id
-    @GeneratedValue
-    @Column(name="id")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="resource_id")
+    private int id;
 
-    @Column(name="name")
+    @Column(name="name",unique=true)
     private String name;
 
     @Column(name="resourceType")
@@ -29,12 +29,14 @@ public class Resource
         this.resourceType = resourceType;
     }
 
+    public Resource() {
+    }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -8,18 +8,17 @@ import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * Created by Andoni on 16/05/2017.
  */
 @Entity
 @Table(name = "machine_resource")
-public class ResourceInMachine {
+public class MachineResource {
 
     @Id
     @Column(name="machine_resource_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @ManyToOne
@@ -40,7 +39,7 @@ public class ResourceInMachine {
     @ManyToOne
     private Slot slot;
 
-    public ResourceInMachine(Resource resource, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, Slot slot) {
+    public MachineResource(Resource resource, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, Slot slot) {
         this.resource = resource;
         this.quantity = quantity;
         this.repositionDate = repositionDate;
@@ -48,6 +47,8 @@ public class ResourceInMachine {
         this.slot = slot;
     }
 
+    public MachineResource() {
+    }
 
     public String getId() {
         return id;

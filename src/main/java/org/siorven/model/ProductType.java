@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name="product_type")
 public class ProductType {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="product_type_id")
     private int id;
 
@@ -17,6 +17,9 @@ public class ProductType {
 
     public ProductType(String type) {
         this.type = type;
+    }
+
+    public ProductType() {
     }
 
     public int getId() {

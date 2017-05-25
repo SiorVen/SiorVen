@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class Distribution  implements IResourceContainer{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "distribution_id")
     private int id;
 
@@ -24,6 +24,9 @@ public abstract class Distribution  implements IResourceContainer{
 
     public Distribution(String description) {
         this.description = description;
+    }
+
+    public Distribution() {
     }
 
     public int getId() {
