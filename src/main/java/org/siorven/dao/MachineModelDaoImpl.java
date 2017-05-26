@@ -4,7 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.siorven.model.Model;
+import org.siorven.model.MachineModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Transactional
 @Repository
-public class ModelDaoImpl implements ModelDao {
+public class MachineModelDaoImpl implements MachineModelDao {
 
     /**
      * Session factory for the jdbc connection bean
@@ -34,18 +34,18 @@ public class ModelDaoImpl implements ModelDao {
     }
 
     @Override
-    public void saveModel(Model model) {
-        getSession().save(model);
+    public void saveModel(MachineModel machineModel) {
+        getSession().save(machineModel);
     }
 
     @Override
-    public void editModel(Model model) {
-        getSession().update(model);
+    public void editModel(MachineModel machineModel) {
+        getSession().update(machineModel);
     }
 
     @Override
-    public void editOrSaveModel(Model model) {
-        getSession().saveOrUpdate(model);
+    public void editOrSaveModel(MachineModel machineModel) {
+        getSession().saveOrUpdate(machineModel);
     }
 
     @Override
@@ -54,13 +54,13 @@ public class ModelDaoImpl implements ModelDao {
     }
 
     @Override
-    public Model findById(int id) {
-        Criteria criteria = getSession().createCriteria(Model.class).add(Restrictions.eq("id", id));
-        return (Model) criteria.uniqueResult();
+    public MachineModel findById(int id) {
+        Criteria criteria = getSession().createCriteria(MachineModel.class).add(Restrictions.eq("id", id));
+        return (MachineModel) criteria.uniqueResult();
     }
 
     @Override
     public List findAll() {
-        return getSession().createCriteria(Model.class).list();
+        return getSession().createCriteria(MachineModel.class).list();
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "model")
-public class Model {
+public class MachineModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,14 +28,14 @@ public class Model {
     private List<Distribution> aviableDistributions;
 
 
-    public Model(String description, String manufacturer, List<ProductType> aviableProductTypes, List<Distribution> aviableDistributions) {
+    public MachineModel(String description, String manufacturer, List<ProductType> aviableProductTypes, List<Distribution> aviableDistributions) {
         this.description = description;
         this.manufacturer = manufacturer;
         this.aviableProductTypes = aviableProductTypes;
         this.aviableDistributions = aviableDistributions;
     }
 
-    public Model() {
+    public MachineModel() {
     }
 
     public int getId() {

@@ -61,7 +61,7 @@ public class UserController {
 
     /**
      * GET method of the newUser register action, returns the register file
-     * @param model Model of the response scope
+     * @param model MachineModel of the response scope
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @GetMapping("/user/register")
@@ -76,7 +76,7 @@ public class UserController {
      *
      * @param usuario The newUser with the data collected from the web form
      * @param bindingResult The error wrapper of the validation errors
-     * @param model Model of the response scope
+     * @param model MachineModel of the response scope
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/user/register")
@@ -259,7 +259,7 @@ public class UserController {
     /**
      * Adds a {@link LinkedHashMap LinkedHashMap<String, String>} to the response model
      * with the different newUser types and their internationalized representation
-     * @param model Model of the response scope
+     * @param model MachineModel of the response scope
      */
     private void añadirTiposUsuario(Model model) {
         LinkedHashMap<String, String> roles = new LinkedHashMap<>();

@@ -1,8 +1,6 @@
 package org.siorven.recommender;
 
-import org.siorven.model.Ingredient;
-import org.siorven.model.Product;
-import org.siorven.model.Resource;
+import org.siorven.model.*;
 import org.siorven.services.IngredientService;
 import org.siorven.services.ProductService;
 import org.siorven.services.ResourceService;
@@ -53,6 +51,8 @@ public class CreateArff {
 
     private void initProductsInDatabase() {
         try {
+            //MachineModel machineModel = new MachineModel("machineModel 1", "SiorvVen",)
+            //Machine machine = new Machine("machine 1",)
             productList.add(createSolidProduct("ChocoBones"));
             productList.add(createSolidProduct("Palmera"));
             productList.add(createSolidProduct("Manzana"));

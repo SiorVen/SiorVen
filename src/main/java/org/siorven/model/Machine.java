@@ -24,7 +24,7 @@ public class Machine {
 
     @ManyToOne
     @JoinColumn(name = "model_id")
-    private Model model;
+    private MachineModel machineModel;
 
     @OneToMany(mappedBy = "machine")
     private List<MachineProduct> machineProductList;
@@ -42,14 +42,21 @@ public class Machine {
     @Transient
     private Mapper mapper;
 
-    public Machine(String alias, Model model, List<MachineProduct> machineProductList, List<MachineResource> machineResourceList, Configuration configuration, String record, Mapper mapper) {
+    public Machine(String alias, MachineModel machineModel, List<MachineProduct> machineProductList, List<MachineResource> machineResourceList, Configuration configuration, String record, Mapper mapper) {
         this.alias = alias;
-        this.model = model;
+        this.machineModel = machineModel;
         this.machineProductList = machineProductList;
         this.machineResourceList = machineResourceList;
         this.configuration = configuration;
         this.record = record;
         this.mapper = mapper;
+    }
+
+    public Machine(String alias, MachineModel machineModel, List<MachineProduct> machineProductList, List<MachineResource> machineResourceList) {
+        this.alias = alias;
+        this.machineModel = machineModel;
+        this.machineProductList = machineProductList;
+        this.machineResourceList = machineResourceList;
     }
 
     public Machine() {
@@ -71,12 +78,12 @@ public class Machine {
         this.alias = alias;
     }
 
-    public Model getModel() {
-        return model;
+    public MachineModel getMachineModel() {
+        return machineModel;
     }
 
-    public void setModel(Model model) {
-        this.model = model;
+    public void setMachineModel(MachineModel machineModel) {
+        this.machineModel = machineModel;
     }
 
     public List<MachineProduct> getMachineProductList() {
