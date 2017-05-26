@@ -1,6 +1,5 @@
 package org.siorven.logic;
 
-import net.bytebuddy.agent.builder.AgentBuilder;
 import org.siorven.model.*;
 import org.siorven.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,31 +75,31 @@ public class Initializer {
 
             MachineModel machineModel = createMachineModel("M1", "man", distributions);
 
-            Resource resource1 = createResource("R1", "1");
+            Resource resource1 = createResource("R1", ResourceType.ITEM);
             Ingredient ingredient1 = createIngredient(resource1, 1);
             List<Ingredient> recipe1 = new ArrayList<>();
             recipe1.add(ingredient1);
             Product product1 = createProduct("ChocoBones", recipe1);
 
-            Resource resource2 = createResource("R2", "1");
+            Resource resource2 = createResource("R2", ResourceType.ITEM);
             Ingredient ingredient2 = createIngredient(resource2, 1);
             List<Ingredient> recipe2 = new ArrayList<>();
             recipe1.add(ingredient2);
             Product product2 = createProduct("Palmera", recipe2);
 
-            Resource resource3 = createResource("R3", "1");
+            Resource resource3 = createResource("R3", ResourceType.ITEM);
             Ingredient ingredient3 = createIngredient(resource3, 1);
             List<Ingredient> recipe3 = new ArrayList<>();
             recipe1.add(ingredient3);
             Product product3 = createProduct("Manzana", recipe3);
 
-            Resource resource4 = createResource("R4", "1");
+            Resource resource4 = createResource("R4", ResourceType.ITEM);
             Ingredient ingredient4 = createIngredient(resource4, 1);
             List<Ingredient> recipe4 = new ArrayList<>();
             recipe1.add(ingredient4);
             Product product4 = createProduct("Chaskys", recipe4);
 
-            Resource resource5 = createResource("R5", "1");
+            Resource resource5 = createResource("R5", ResourceType.ITEM);
             Ingredient ingredient5 = createIngredient(resource5, 1);
             List<Ingredient> recipe5 = new ArrayList<>();
             recipe1.add(ingredient5);
@@ -182,7 +181,7 @@ public class Initializer {
         return machineModel;
     }
 
-    public Resource createResource (String name, String resourceType){
+    public Resource createResource (String name, ResourceType resourceType){
         Resource resource = new Resource(name, resourceType);
         resourceService.save(resource);
         return  resource;

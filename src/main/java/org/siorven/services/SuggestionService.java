@@ -39,4 +39,6 @@ public class SuggestionService {
     public List findAll() {
         return suggestionDao.findAll();
     }
+
+    //TODO: Aqui deberian estar las funciones que arranquen el analisis de los datos por si se quiere lanzar a mano.
 }

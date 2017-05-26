@@ -17,13 +17,13 @@ public class Resource {
     private String name;
 
     @Column(name = "resourceType")
-    private String resourceType;
+    private ResourceType resourceType;
 
     @OneToOne
     @PrimaryKeyJoinColumn
     private Ingredient ingredient;
 
-    public Resource(String name, String resourceType) {
+    public Resource(String name, ResourceType resourceType) {
         this.name = name;
         this.resourceType = resourceType;
     }
@@ -47,11 +47,11 @@ public class Resource {
         this.name = name;
     }
 
-    public String getResourceType() {
+    public ResourceType getResourceType() {
         return resourceType;
     }
 
-    public void setResourceType(String resourceType) {
+    public void setResourceType(ResourceType resourceType) {
         this.resourceType = resourceType;
     }
 

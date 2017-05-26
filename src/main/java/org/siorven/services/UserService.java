@@ -93,6 +93,16 @@ public class UserService {
     }
 
     /**
+     * Returns all the users on the database with the role
+     *
+     * @param role Role of the users
+     * @return The list of users
+     */
+    public List findbyRole(String role) {
+        return userDao.findByRole(role);
+    }
+
+    /**
      * Searches for the user with the given email
      *
      * @param email The email of the requested user

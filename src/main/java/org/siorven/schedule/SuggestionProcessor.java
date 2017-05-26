@@ -14,5 +14,4 @@ public class SuggestionProcessor {
     public void processSuggestions() {
         System.out.println("Hola, es media noche!");
     }
-
 }

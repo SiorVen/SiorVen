@@ -72,7 +72,7 @@ public class CreateArff {
      * @return The product created.
      */
     private Product createSolidProduct(String name) {
-        Resource resource = new Resource(name, "1");
+        Resource resource = new Resource(name, ResourceType.ITEM);
         resourceService.saveOrUpdate(resource);
         Ingredient ingredient = new Ingredient(resource, 1);
         ingredientService.saveOrUpdate(ingredient);
