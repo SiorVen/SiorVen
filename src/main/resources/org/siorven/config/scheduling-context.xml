@@ -6,6 +6,7 @@
 
     <context:component-scan base-package="org.siorven.schedule" />
     <context:component-scan base-package="org.siorven.recommender" />
+    <context:component-scan base-package="org.siorven.logic" />
     <task:annotation-driven executor="myExecutor" scheduler="myScheduler"/>
     <task:executor id="myExecutor" pool-size="4"/>
     <task:scheduler id="myScheduler" pool-size="4"/>

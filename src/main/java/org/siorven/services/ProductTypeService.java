@@ -25,7 +25,7 @@ public class ProductTypeService {
      * @param p The product type to be saved
      */
     public void save(ProductType p) {
-        productTypeDao.save(p);
+        productTypeDao.saveProductType(p);
     }
 
     /**

@@ -32,7 +32,7 @@ public class CreateArff {
 
     private static List<Product> productList;
 
-    @Scheduled(fixedRate = 10000)
+    //@Scheduled(fixedRate = 10000)
     public void probe() {
         System.out.println("STARTING PROBE!!!!");
         ArrayList<Attribute> atts = new ArrayList();

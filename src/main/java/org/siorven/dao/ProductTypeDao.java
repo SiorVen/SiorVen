@@ -15,7 +15,7 @@ public interface ProductTypeDao {
      *
      * @param p The Product Type to be persisted
      */
-    void save(@Validated(PersistenceGroup.class) ProductType p);
+    void saveProductType(@Validated(PersistenceGroup.class) ProductType p);
 
     /**
      * Updates a persisted Product Type

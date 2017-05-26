@@ -4,6 +4,7 @@ import org.siorven.logic.Configuration;
 import org.siorven.logic.Mapper;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -58,6 +59,14 @@ public class Machine {
         this.machineProductList = machineProductList;
         this.machineResourceList = machineResourceList;
     }
+
+    public Machine(String alias, MachineModel machineModel) {
+        this.alias = alias;
+        this.machineModel = machineModel;
+        this.machineProductList = new ArrayList<>();
+        this.machineResourceList = new ArrayList<>();
+    }
+
 
     public Machine() {
     }

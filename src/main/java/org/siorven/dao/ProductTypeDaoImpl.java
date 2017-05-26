@@ -34,7 +34,7 @@ public class ProductTypeDaoImpl implements ProductTypeDao {
     }
 
     @Override
-    public void save(ProductType p) {
+    public void saveProductType(ProductType p) {
         getSession().save(p);
     }
 

@@ -19,7 +19,7 @@ public class MachineResource {
     @Id
     @Column(name = "machine_resource_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
 
     @ManyToOne
     private Resource resource;
@@ -50,11 +50,11 @@ public class MachineResource {
     public MachineResource() {
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

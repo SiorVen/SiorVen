@@ -43,7 +43,7 @@ public class UserService {
 
 
     /**
-     * Saves or updates a user on the database, if the user is a new one the password wont get encoded use {@link #save(User) save} method
+     * Saves or updates a user on the database, if the user is a new one the password wont get encoded use {@link #save(User) saveProductType} method
      *
      * @param user User to be saved or updated
      */

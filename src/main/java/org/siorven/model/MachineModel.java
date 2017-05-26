@@ -21,17 +21,12 @@ public class MachineModel {
 
     @OneToMany
     @JoinColumn(name = "model_id")
-    private List<ProductType> aviableProductTypes;
-
-    @OneToMany
-    @JoinColumn(name = "model_id")
     private List<Distribution> aviableDistributions;
 
 
-    public MachineModel(String description, String manufacturer, List<ProductType> aviableProductTypes, List<Distribution> aviableDistributions) {
+    public MachineModel(String description, String manufacturer, List<Distribution> aviableDistributions) {
         this.description = description;
         this.manufacturer = manufacturer;
-        this.aviableProductTypes = aviableProductTypes;
         this.aviableDistributions = aviableDistributions;
     }
 
@@ -60,14 +55,6 @@ public class MachineModel {
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
-    }
-
-    public List<ProductType> getAviableProductTypes() {
-        return aviableProductTypes;
-    }
-
-    public void setAviableProductTypes(List<ProductType> aviableProductTypes) {
-        this.aviableProductTypes = aviableProductTypes;
     }
 
     public List<Distribution> getAviableDistributions() {

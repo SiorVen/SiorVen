@@ -1,6 +1,6 @@
 package org.siorven.model;
 
-import com.sun.xml.internal.bind.v2.TODO;
+
 import org.siorven.model.validacion.PersistenceGroup;
 import org.siorven.model.validacion.SpringFormEditGroup;
 import org.siorven.model.validacion.SpringFormGroup;
