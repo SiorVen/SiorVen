@@ -20,6 +20,7 @@ public class Initializer {
     public static final boolean MATRIX_DISTRIBUTION = true;
     public static final boolean COMPARTIMENT_DISTRIBUTION = false;
     public static final int WEEK_IN_MILIS = 604800000;
+    public static final float PRICE = (float) 0.70;
 
     @Autowired
     private SlotService slotService;
@@ -54,119 +55,106 @@ public class Initializer {
     @Autowired
     private MachineService machineService;
 
-    @Scheduled(fixedRate = 1000000)
-    public void initExample(){
+    private List<Resource> resourceList;
+    private List<Product> productList;
+
+    public void initExample() {
         System.out.println("Init DB");
         try {
+            resourceList = new ArrayList<>();
+            productList = new ArrayList<>();
+
+            List<Distribution> distributions = new ArrayList<>();
             List<ProductType> productTypes = new ArrayList<>();
+
             productTypes.add(createProductType("PT1"));
             productTypes.add(createProductType("PT2"));
 
             List<Slot> slots = new ArrayList<>();
-            slots.add(createSlot("S1", 1, 1));
-            slots.add(createSlot("S2", 1, 1));
-            slots.add(createSlot("S3", 1, 1));
-            slots.add(createSlot("S4", 1, 1));
-            slots.add(createSlot("S5", 1, 1));
 
-            List<Distribution> distributions = new ArrayList<>();
-            distributions.add(createDistribution(MATRIX_DISTRIBUTION, "D1", 3, 3, 0,slots));
-            distributions.add(createDistribution(COMPARTIMENT_DISTRIBUTION, "D2", 0, 0, 4,slots));
+            for (int i = 1; i <= 5; i++) {
+                slots.add(createSlot("Slot" + i, 1, 1));
+            }
+
+            distributions.add(createDistribution(MATRIX_DISTRIBUTION, "D1", 3, 3, 0, slots));
+            distributions.add(createDistribution(COMPARTIMENT_DISTRIBUTION, "D2", 0, 0, 4, slots));
 
             MachineModel machineModel = createMachineModel("M1", "man", distributions);
 
-            Resource resource1 = createResource("R1", ResourceType.ITEM);
-            Ingredient ingredient1 = createIngredient(resource1, 1);
-            List<Ingredient> recipe1 = new ArrayList<>();
-            recipe1.add(ingredient1);
-            Product product1 = createProduct("ChocoBones", recipe1);
+            generateProduct("R1", "Choco-Bones Blancos");
+            generateProduct("R2", "Manzana");
+            generateProduct("R3", "ChocCons Negros");
+            generateProduct("R4", "Chaskis barbacoa");
+            generateProduct("R5", "Doritos");
+            generateProduct("R6", "Patatas fritas");
+            generateProduct("R7", "Oreo Gold");
+            generateProduct("R8", "Galleta integral");
+            generateProduct("R9", "Palmera chocolate");
+            generateProduct("R10", "Sandwich de pavo");
+            generateProduct("R11", "Palmera Integral");
+            generateProduct("R12", "Cuadrado trufa");
+            generateProduct("R13", "Pantera rosa");
+            generateProduct("R14", "Cafe con leche");
+            generateProduct("R15", "Cafe cortado");
+            generateProduct("R16", "Chocolate");
+            generateProduct("R17", "Te verde");
 
-            Resource resource2 = createResource("R2", ResourceType.ITEM);
-            Ingredient ingredient2 = createIngredient(resource2, 1);
-            List<Ingredient> recipe2 = new ArrayList<>();
-            recipe1.add(ingredient2);
-            Product product2 = createProduct("Palmera", recipe2);
+            generateMachine(slots, machineModel, "Machine1");
+            generateMachine(slots, machineModel, "Machine2");
 
-            Resource resource3 = createResource("R3", ResourceType.ITEM);
-            Ingredient ingredient3 = createIngredient(resource3, 1);
-            List<Ingredient> recipe3 = new ArrayList<>();
-            recipe1.add(ingredient3);
-            Product product3 = createProduct("Manzana", recipe3);
-
-            Resource resource4 = createResource("R4", ResourceType.ITEM);
-            Ingredient ingredient4 = createIngredient(resource4, 1);
-            List<Ingredient> recipe4 = new ArrayList<>();
-            recipe1.add(ingredient4);
-            Product product4 = createProduct("Chaskys", recipe4);
-
-            Resource resource5 = createResource("R5", ResourceType.ITEM);
-            Ingredient ingredient5 = createIngredient(resource5, 1);
-            List<Ingredient> recipe5 = new ArrayList<>();
-            recipe1.add(ingredient5);
-            Product product5 = createProduct("Pan de pipa", recipe5);
-
-            Machine machine1 = new Machine("Machine1", machineModel);
-            machineService.save(machine1);
-
-            Machine machine2 = new Machine("Machine2", machineModel);
-            machineService.save(machine2);
-
-            List<MachineIngredient> machineRecipe1 = new ArrayList<>();
-            List<MachineIngredient> machineRecipe2 = new ArrayList<>();
-            List<MachineIngredient> machineRecipe3 = new ArrayList<>();
-
-            MachineResource machineResource1 = createMachineResource(resource1, 1, slots.get(0));
-            MachineResource machineResource2 = createMachineResource(resource2, 1, slots.get(1));
-            MachineResource machineResource3 = createMachineResource(resource3, 1, slots.get(2));
-
-            MachineIngredient machineIngredient1 = createMachineIngredient(machineResource1, 1);
-            MachineIngredient machineIngredient2 = createMachineIngredient(machineResource2, 1);
-            MachineIngredient machineIngredient3 = createMachineIngredient(machineResource3, 1);
-
-            machineRecipe1.add(machineIngredient1);
-            machineRecipe1.add(machineIngredient2);
-            machineRecipe1.add(machineIngredient3);
-
-            MachineProduct machineProduct1 = createMachineProduct(product1, (float) 0.70, machineRecipe1, machine1);
-            MachineProduct machineProduct2 = createMachineProduct(product2, (float) 0.70, machineRecipe2, machine1);
-            MachineProduct machineProduct3 = createMachineProduct(product3, (float) 0.70, machineRecipe3, machine1);
-
-            List<MachineProduct> machineProducts = new ArrayList<>();
-            List<MachineResource> resourceList = new ArrayList<>();
-
-            machineProducts.add(machineProduct1);
-            machineProducts.add(machineProduct2);
-            machineProducts.add(machineProduct3);
-
-            resourceList.add(machineResource1);
-            resourceList.add(machineResource2);
-            resourceList.add(machineResource3);
-
-            createMachineWithObject(machine1, machineProducts, resourceList);
-
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Database already created");
         }
 
     }
 
-    public Slot createSlot (String name, int capacity, int unit){
-        Slot slot = new Slot(name,capacity,unit);
+    private void generateMachine(List<Slot> slots, MachineModel machineModel, String machineName) {
+        Machine machine = new Machine(machineName, machineModel);
+        machineService.save(machine);
+
+        List<MachineProduct> machineProducts = new ArrayList<>();
+        List<MachineResource> machineResourceList = new ArrayList<>();
+
+        for (int i = 0; i < productList.size(); i++) {
+            List<MachineIngredient> machineRecipe = new ArrayList<>();
+            MachineResource machineResource = createMachineResource(resourceList.get(i), 1, slots.get(0));
+            MachineIngredient machineIngredient = createMachineIngredient(machineResource, 1);
+            machineRecipe.add(machineIngredient);
+            MachineProduct machineProduct1 = createMachineProduct(productList.get(i), PRICE, machineRecipe, machine);
+            machineProducts.add(machineProduct1);
+            machineResourceList.add(machineResource);
+        }
+        createMachineWithObject(machine, machineProducts, machineResourceList);
+    }
+
+    private void generateProduct(String resName, String proName) {
+        Resource resource = createResource(resName, ResourceType.ITEM);
+        Ingredient ingredient = createIngredient(resource, 1);
+        List<Ingredient> recipe = new ArrayList<>();
+        recipe.add(ingredient);
+        Product product = createProduct(proName, recipe);
+
+        resourceList.add(resource);
+        productList.add(product);
+    }
+
+    public Slot createSlot(String name, int capacity, int unit) {
+        Slot slot = new Slot(name, capacity, unit);
         slotService.save(slot);
         return slot;
     }
 
-    public ProductType createProductType (String type){
+    public ProductType createProductType(String type) {
         ProductType pt = new ProductType(type);
         productTypeService.save(pt);
         return pt;
     }
 
-    public Distribution createDistribution (boolean type, String description, int lines, int columns, int numCompartiments, List<Slot> slots){
+    public Distribution createDistribution(boolean type, String description, int lines, int columns, int numCompartiments, List<Slot> slots) {
         Distribution distribution;
-        if (type == MATRIX_DISTRIBUTION){
-            distribution = new MatrixDistribution(description,lines,columns);
+        if (type == MATRIX_DISTRIBUTION) {
+            distribution = new MatrixDistribution(description, lines, columns);
         } else {
             distribution = new CompartimentDistribution(description, numCompartiments);
         }
@@ -181,43 +169,43 @@ public class Initializer {
         return machineModel;
     }
 
-    public Resource createResource (String name, ResourceType resourceType){
+    public Resource createResource(String name, ResourceType resourceType) {
         Resource resource = new Resource(name, resourceType);
         resourceService.save(resource);
-        return  resource;
+        return resource;
     }
 
-    public MachineResource createMachineResource(Resource resource, int quantity, Slot slot){
-        MachineResource machineResource = new MachineResource(resource,quantity,new Timestamp(new Date().getTime()),new Timestamp((new Date().getTime()) + WEEK_IN_MILIS),slot);
+    public MachineResource createMachineResource(Resource resource, int quantity, Slot slot) {
+        MachineResource machineResource = new MachineResource(resource, quantity, new Timestamp(new Date().getTime()), new Timestamp((new Date().getTime()) + WEEK_IN_MILIS), slot);
         machineResourceService.save(machineResource);
         return machineResource;
     }
 
-    public Ingredient createIngredient (Resource resource, int quantity){
+    public Ingredient createIngredient(Resource resource, int quantity) {
         Ingredient ingredient = new Ingredient(resource, quantity);
         ingredientService.save(ingredient);
         return ingredient;
     }
 
-    public MachineIngredient createMachineIngredient (MachineResource resource, int qty) {
+    public MachineIngredient createMachineIngredient(MachineResource resource, int qty) {
         MachineIngredient machineIngredient = new MachineIngredient(resource, qty);
         machineIngredientService.save(machineIngredient);
         return machineIngredient;
     }
 
-    public Product createProduct(String name, List<Ingredient> recipe){
+    public Product createProduct(String name, List<Ingredient> recipe) {
         Product product = new Product(name, recipe);
         productService.save(product);
         return product;
     }
 
-    public MachineProduct createMachineProduct(Product product, float price, List<MachineIngredient> recipe, Machine machine){
-        MachineProduct machineProduct = new MachineProduct(product,price,recipe,machine);
+    public MachineProduct createMachineProduct(Product product, float price, List<MachineIngredient> recipe, Machine machine) {
+        MachineProduct machineProduct = new MachineProduct(product, price, recipe, machine);
         machineProductService.save(machineProduct);
         return machineProduct;
     }
 
-    public Machine createMachineWithObject(Machine machine, List<MachineProduct> productList, List<MachineResource> resourceList){
+    public Machine createMachineWithObject(Machine machine, List<MachineProduct> productList, List<MachineResource> resourceList) {
         machine.setMachineProductList(productList);
         machine.setMachineResourceList(resourceList);
         machineService.edit(machine);

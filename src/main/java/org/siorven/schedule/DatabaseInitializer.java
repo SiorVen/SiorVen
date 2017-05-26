@@ -1,5 +1,6 @@
 package org.siorven.schedule;
 
+import org.siorven.logic.Initializer;
 import org.siorven.model.User;
 import org.siorven.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,12 @@ public class DatabaseInitializer {
     @Autowired
     UserService userService;
 
+    @Autowired
+    Initializer initializer;
+
     @Scheduled(fixedRate = Long.MAX_VALUE) //Runs once
     public void initDb(){
+        initializer.initExample();
         assertThereIsAnAdmin();
 
     }

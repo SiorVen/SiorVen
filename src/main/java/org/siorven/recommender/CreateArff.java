@@ -37,8 +37,8 @@ public class CreateArff {
         System.out.println("STARTING PROBE!!!!");
         ArrayList<Attribute> atts = new ArrayList();
         Vector attVals = new Vector();
-        productList = new ArrayList<>();
-        initProductsInDatabase();
+        productList = productService.findAll();
+
         attVals.addElement("t");
         for (Product p : productList) {
             atts.add(new Attribute(p.getName(), attVals));
@@ -49,21 +49,6 @@ public class CreateArff {
 
     }
 
-    private void initProductsInDatabase() {
-        try {
-            //MachineModel machineModel = new MachineModel("machineModel 1", "SiorvVen",)
-            //Machine machine = new Machine("machine 1",)
-            productList.add(createSolidProduct("ChocoBones"));
-            productList.add(createSolidProduct("Palmera"));
-            productList.add(createSolidProduct("Manzana"));
-            productList.add(createSolidProduct("Chaskys"));
-            productList.add(createSolidProduct("Oreo"));
-        } catch (Exception e) {
-            System.out.println("Base de datos generada de antes");
-            productList = productService.findAll();
-            System.out.println("List Size: " + productList.size());
-        }
-    }
 
     /**
      * Create a {@link Product} with a unique {@link Ingredient} and a unique {@link Resource} and add them into the database

@@ -4,14 +4,18 @@ import org.siorven.model.Machine;
 import org.siorven.model.Statement;
 import org.siorven.model.Suggestion;
 import org.siorven.model.SuggestionAssociation;
+import org.siorven.services.MachineService;
 import org.siorven.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import weka.associations.*;
 import weka.core.Instances;
 import weka.core.converters.ArffLoader;
 import weka.filters.unsupervised.attribute.AddID;
 import weka.filters.unsupervised.attribute.NumericToNominal;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,6 +25,7 @@ import java.util.List;
 /**
  * Created by joseb on 17/05/2017.
  */
+@Component
 public class AprioriAssociation {
 
     public static final double APRIORI_MIN_METRIC = 0.5;
@@ -31,17 +36,21 @@ public class AprioriAssociation {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private MachineService machineService;
+
     private Machine machine;
 
     private Timestamp finishDate;
 
-    public void runApriori(Instances outData, Machine machine) {
-        this.machine = machine;
+    @Scheduled(fixedRate = 10000)
+    public void runApriori() { //Instances outData, Machine machine
+        this.machine = (Machine) machineService.findAll().get(0);
         ArffLoader loader = new ArffLoader();
         try {
-            //loader.setSource(new File(file));
+            loader.setSource(new File("dataset1.arff"));
 
-            Instances data = outData;//loader.getDataSet();
+            Instances data = loader.getDataSet();
             System.out.println("\nHeader of dataset:\n");
             System.out.println(new Instances(data, 0));
 
@@ -65,7 +74,11 @@ public class AprioriAssociation {
 
             //Separate the result into rules
             finishDate = new Timestamp(new Date().getTime());
-            getSuggestionsFromAprioriRules(apriori);
+            List<Suggestion> suggestions = getSuggestionsFromAprioriRules(apriori);
+
+            for (Suggestion suggestion : suggestions) {
+                System.out.println(suggestion.toString(null,null,null));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

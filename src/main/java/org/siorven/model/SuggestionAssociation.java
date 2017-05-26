@@ -28,9 +28,26 @@ public class SuggestionAssociation extends Suggestion {
         consequenceList = new ArrayList<>();
     }
 
+    /**
+     * TODO mensajean gestioa ondo in. Momentuz tostring simplea debugeetako
+     * @param messageSource
+     * @param resolver
+     * @param request
+     * @return
+     */
     @Override
     public String toString(MessageSource messageSource, LocaleResolver resolver, HttpServletRequest request) {
-        return null;
+        String ret = "if ";
+        for (Statement s : premiseList){
+            ret = ret + s.getProduct().getName() + "{" + s.isStatementResult() + "}; ";
+        }
+
+        ret = ret + " --> ";
+
+        for (Statement s : consequenceList){
+            ret = ret + s.getProduct().getName() + "{" + s.isStatementResult() + "};";
+        }
+        return ret;
     }
 
     public List<Statement> getPremiseList() {
