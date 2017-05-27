@@ -1,26 +1,20 @@
 package org.siorven.recommender;
 
-import org.siorven.model.Machine;
-import org.siorven.model.Statement;
-import org.siorven.model.Suggestion;
-import org.siorven.model.SuggestionAssociation;
-import org.siorven.services.MachineService;
-import org.siorven.services.ProductService;
+import org.siorven.model.*;
+import org.siorven.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import weka.associations.*;
-import weka.core.Instances;
+import weka.core.*;
 import weka.core.converters.ArffLoader;
 import weka.filters.unsupervised.attribute.AddID;
 import weka.filters.unsupervised.attribute.NumericToNominal;
 
+import javax.servlet.ServletContext;
 import java.io.File;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by joseb on 17/05/2017.
@@ -39,20 +33,89 @@ public class AprioriAssociation {
     @Autowired
     private MachineService machineService;
 
+    @Autowired
+    private SuggestionService suggestionService;
+
+    @Autowired
+    private StatementService statementService;
+
     private Machine machine;
 
     private Timestamp finishDate;
 
-    @Scheduled(fixedRate = 10000)
-    public void runApriori() { //Instances outData, Machine machine
+    @Autowired
+    ServletContext servletContext;
+
+    @Autowired
+    private ResourceService resourceService;
+
+    @Autowired
+    private IngredientService ingredientService;
+
+    private static List<Product> productList;
+
+    @Scheduled(fixedRate = 10000,initialDelay = 10000)
+    public void probe() {
+        System.out.println("STARTING PROBE!!!!");
+        productList = productService.findAll();
+
+        FastVector atts = new FastVector(productList.size());
+        Vector attVals = new Vector();
+
+
+        attVals.addElement("t");
+        for (Product p : productList) {
+            atts.add(new Attribute(p.getName(), attVals));
+        }
+
+        Instances data = new Instances("prueba", atts, 0);
+        Random randomGenerator = new Random();
+        for (int numInstances = 0; numInstances <= 10; numInstances++){
+            Instance iExample = new DenseInstance(productList.size());
+            for (int i = 0; i< productList.size(); i++){
+                if(randomGenerator.nextBoolean()) {
+                    iExample.setValue((Attribute) atts.elementAt(i), "t");
+                }
+            }
+            data.add(iExample);
+        }
+
+        System.out.println(data);
+
+        runApriori(data);
+
+    }
+
+
+    /**
+     * Create a {@link Product} with a unique {@link Ingredient} and a unique {@link Resource} and add them into the database
+     *
+     * @param name
+     * @return The product created.
+     */
+    private Product createSolidProduct(String name) {
+        Resource resource = new Resource(name, ResourceType.ITEM);
+        resourceService.saveOrUpdate(resource);
+        Ingredient ingredient = new Ingredient(resource, 1);
+        ingredientService.saveOrUpdate(ingredient);
+        List<Ingredient> list = new ArrayList<>();
+        list.add(ingredient);
+        Product product = new Product(name, list);
+        productService.saveOrUpdate(product);
+        return product;
+    }
+
+
+    //@Scheduled(fixedRate = 1000000)
+    public void runApriori(Instances outData) { //Instances outData, Machine machine
         this.machine = (Machine) machineService.findAll().get(0);
         ArffLoader loader = new ArffLoader();
         try {
-            loader.setSource(new File("dataset1.arff"));
+            loader.setSource(new File(servletContext.getRealPath("/WEB-INF/data/dataset1.arff")));
 
-            Instances data = loader.getDataSet();
-            System.out.println("\nHeader of dataset:\n");
-            System.out.println(new Instances(data, 0));
+            Instances data = outData;//loader.getDataSet();
+            //System.out.println("\nHeader of dataset:\n");
+            //System.out.println(new Instances(data, 0));
 
             //preprocess data
 
@@ -78,7 +141,9 @@ public class AprioriAssociation {
 
             for (Suggestion suggestion : suggestions) {
                 System.out.println(suggestion.toString(null,null,null));
+                suggestionService.save(suggestion);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -191,6 +256,7 @@ public class AprioriAssociation {
             NominalItem ni = (NominalItem) i;
             Statement statement = new Statement(productService.findByName(ni.getAttribute().name()),
                     stringToBoolean(ni.getItemValueAsString()));
+            statementService.save(statement);
             statementList.add(statement);
         }
         return statementList;

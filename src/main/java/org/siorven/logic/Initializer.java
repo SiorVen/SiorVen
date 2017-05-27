@@ -107,6 +107,8 @@ public class Initializer {
             System.out.println("Database already created");
         }
 
+        System.out.println("DB created");
+
     }
 
     private void generateMachine(List<Slot> slots, MachineModel machineModel, String machineName) {

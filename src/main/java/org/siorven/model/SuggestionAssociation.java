@@ -1,5 +1,6 @@
 package org.siorven.model;
 
+import org.hibernate.annotations.IndexColumn;
 import org.springframework.context.MessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 
@@ -17,9 +18,13 @@ import java.util.List;
 public class SuggestionAssociation extends Suggestion {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "premise_suggestion_id")
+    @IndexColumn(base = 1, name = "dnr")
     private List<Statement> premiseList;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "consequence_suggestion_id")
+    @IndexColumn(base = 1, name = "pmnr")
     private List<Statement> consequenceList;
 
     public SuggestionAssociation(Timestamp generateDate, Machine machine) {
