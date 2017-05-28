@@ -2,6 +2,7 @@ package org.siorven.model;
 
 import org.siorven.logic.Configuration;
 import org.siorven.logic.Mapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,16 +24,20 @@ public class Machine {
 
     private String alias;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
+
     @JoinColumn(name = "model_id")
     private MachineModel machineModel;
 
-    @OneToMany(mappedBy = "machine")
+    @OneToMany(mappedBy = "machine", cascade=CascadeType.ALL)
     private List<MachineProduct> machineProductList;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "resource_id")
     private List<MachineResource> machineResourceList;
+
+    @Transient
+    private MultipartFile model;
 
     @Transient
     private Configuration configuration;
@@ -133,5 +138,13 @@ public class Machine {
 
     public void setMapper(Mapper mapper) {
         this.mapper = mapper;
+    }
+
+    public MultipartFile getModel() {
+        return model;
+    }
+
+    public void setModel(MultipartFile model) {
+        this.model = model;
     }
 }

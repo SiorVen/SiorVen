@@ -43,6 +43,11 @@
         <put-attribute name="body" value="/WEB-INF/views/bodys/editUser.jsp"/>
     </definition>
 
+    <definition name="machineRegister" extends="index">
+        <put-attribute name="title" type="string" value="pages.register" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineRegister.jsp" />
+    </definition>
+
     <definition name="404" extends="index">
         <put-attribute name="title" type="string" value="pages.404"/>
         <put-attribute name="body" value="/WEB-INF/views/bodys/errors/404.jsp"/>
