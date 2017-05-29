@@ -1,6 +1,8 @@
 package org.siorven.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,6 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "model")
+@XmlRootElement(name = "MachineModelXml")
 public class MachineModel {
 
     @Id
@@ -15,22 +18,23 @@ public class MachineModel {
     @Column(name = "model_id")
     private int id;
 
-    private String description;
+    private String reference;
 
     private String manufacturer;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "model_id")
     private List<Distribution> aviableDistributions;
 
 
-    public MachineModel(String description, String manufacturer, List<Distribution> aviableDistributions) {
-        this.description = description;
+    public MachineModel(String reference, String manufacturer, List<Distribution> aviableDistributions) {
+        this.reference = reference;
         this.manufacturer = manufacturer;
         this.aviableDistributions = aviableDistributions;
     }
 
     public MachineModel() {
+        aviableDistributions =  new ArrayList<>();
     }
 
     public int getId() {
@@ -41,12 +45,12 @@ public class MachineModel {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getReference() {
+        return reference;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public String getManufacturer() {

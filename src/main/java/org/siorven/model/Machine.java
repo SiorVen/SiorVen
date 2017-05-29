@@ -2,7 +2,6 @@ package org.siorven.model;
 
 import org.siorven.logic.Configuration;
 import org.siorven.logic.Mapper;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.List;
 @Entity
 @Table(name = "machine")
 public class Machine {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +33,6 @@ public class Machine {
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "resource_id")
     private List<MachineResource> machineResourceList;
-
-    @Transient
-    private MultipartFile model;
 
     @Transient
     private Configuration configuration;
@@ -140,11 +135,4 @@ public class Machine {
         this.mapper = mapper;
     }
 
-    public MultipartFile getModel() {
-        return model;
-    }
-
-    public void setModel(MultipartFile model) {
-        this.model = model;
-    }
 }

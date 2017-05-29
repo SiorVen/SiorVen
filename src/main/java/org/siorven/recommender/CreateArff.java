@@ -5,7 +5,6 @@ import org.siorven.services.IngredientService;
 import org.siorven.services.ProductService;
 import org.siorven.services.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import weka.core.*;
 

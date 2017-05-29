@@ -1,6 +1,7 @@
 package org.siorven.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,9 +25,11 @@ public abstract class Distribution implements IResourceContainer {
 
     public Distribution(String description) {
         this.description = description;
+        slotList = new ArrayList<>();
     }
 
     public Distribution() {
+        slotList =  new ArrayList<>();
     }
 
     public int getId() {

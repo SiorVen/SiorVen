@@ -36,6 +36,7 @@ public class MatrixDistribution extends Distribution {
         super(description);
         this.lines = lines;
         this.columns = columns;
+
     }
 
     public int getRows() {

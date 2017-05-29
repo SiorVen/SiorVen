@@ -6,7 +6,6 @@ import org.siorven.model.validacion.SpringFormEditGroup;
 import org.siorven.model.validacion.SpringFormGroup;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
@@ -16,7 +15,6 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "slot")
 public class Slot {
-
     @Id
     @Column(name = "slot_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,15 +29,13 @@ public class Slot {
     @Column(name = "capacity")
     private int capacity;
 
-    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
-    @Max(value = 5, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.tooBigNumber}")
     @Column(name = "unit")
-    private int Unit;
+    private Unit unit;
 
-    public Slot(String name, int capacity, int unit) {
+    public Slot(String name, int capacity, Unit unit) {
         this.name = name;
         this.capacity = capacity;
-        Unit = unit;
+        this.unit = unit;
     }
 
     public Slot() {
@@ -69,11 +65,11 @@ public class Slot {
         this.capacity = capacity;
     }
 
-    public int getUnit() {
-        return Unit;
+    public Unit getUnit() {
+        return unit;
     }
 
-    public void setUnit(int unit) {
-        Unit = unit;
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 }

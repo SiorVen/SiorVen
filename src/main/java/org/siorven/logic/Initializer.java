@@ -3,7 +3,6 @@ package org.siorven.logic;
 import org.siorven.model.*;
 import org.siorven.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -73,7 +72,7 @@ public class Initializer {
             List<Slot> slots = new ArrayList<>();
 
             for (int i = 1; i <= 5; i++) {
-                slots.add(createSlot("Slot" + i, 1, 1));
+                slots.add(createSlot("Slot" + i, 1, Unit.U));
             }
 
             distributions.add(createDistribution(MATRIX_DISTRIBUTION, "D1", 3, 3, 0, slots));
@@ -141,7 +140,7 @@ public class Initializer {
         productList.add(product);
     }
 
-    public Slot createSlot(String name, int capacity, int unit) {
+    public Slot createSlot(String name, int capacity, Unit unit) {
         Slot slot = new Slot(name, capacity, unit);
         slotService.save(slot);
         return slot;

@@ -1,8 +1,11 @@
 package org.siorven.model;
 
+import javax.xml.bind.annotation.XmlEnum;
+
 /**
  * Created by ander on 26/05/2017.
  */
+@XmlEnum
 public enum ResourceType {
     POWDER{
         @Override
@@ -44,6 +47,27 @@ public enum ResourceType {
         @Override
         public String toString() {
             return "resourceType.hotItem";
+        }
+    };
+
+    public static Unit unit(ResourceType type) {
+        switch (type) {
+            case POWDER:
+                return Unit.G;
+            case LIQUID:
+                return Unit.ML;
+            case HOT_LIQUID:
+                return Unit.ML;
+            case COLD_LIQUID:
+                return Unit.ML;
+            case ITEM:
+                return Unit.U;
+            case COLD_ITEM:
+                return Unit.U;
+            case HOT_ITEM:
+                return Unit.U;
+            default:
+                return Unit.U;
         }
     }
 

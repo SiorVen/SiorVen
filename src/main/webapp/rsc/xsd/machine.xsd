@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="compartiment" type="compartimentXml"/>
+
+    <xs:element name="compartiments" type="compartimentDistributionXml"/>
+
+    <xs:element name="distribution" type="distributionXml"/>
+
+    <xs:element name="matrix" type="matrixDistrubutionXml"/>
+
+    <xs:element name="model" type="machineModelXml"/>
+
+    <xs:element name="resourceTypes" type="resourceTypes"/>
+
+    <xs:complexType name="resourceTypes">
+        <xs:sequence>
+            <xs:element name="resourceType" type="resourceType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="machineModelXml">
+        <xs:sequence>
+            <xs:element name="manufacturer" type="xs:string" minOccurs="1"/>
+            <xs:element name="modelReference" type="xs:string" minOccurs="1"/>
+            <xs:element name="products" minOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="product" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="distributions" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                    <xs:choice minOccurs="1" maxOccurs="unbounded">
+                        <xs:element ref="matrix"/>
+                        <xs:element ref="compartiments"/>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="distributionXml">
+        <xs:sequence/>
+        <xs:attribute name="name" type="xs:string"/>
+    </xs:complexType>
+
+
+    <xs:complexType name="matrixDistrubutionXml">
+        <xs:sequence>
+            <xs:element type="resourceTypes" name="resourceTypes" minOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="rows" type="xs:int" use="required"/>
+        <xs:attribute name="cols" type="xs:int" use="required"/>
+        <xs:attribute name="capacity" type="xs:integer" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="compartimentDistributionXml">
+        <xs:sequence>
+            <xs:element ref="compartiment" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="compartimentXml">
+        <xs:sequence>
+            <xs:element type="resourceTypes" name="resourceTypes" minOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="capacity" type="xs:integer" use="required"/>
+    </xs:complexType>
+
+    <xs:simpleType name="resourceType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="POWDER"/>
+            <xs:enumeration value="LIQUID"/>
+            <xs:enumeration value="HOT_LIQUID"/>
+            <xs:enumeration value="COLD_LIQUID"/>
+            <xs:enumeration value="ITEM"/>
+            <xs:enumeration value="COLD_ITEM"/>
+            <xs:enumeration value="HOT_ITEM"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
+

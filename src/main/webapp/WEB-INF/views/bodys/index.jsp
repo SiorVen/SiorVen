@@ -15,6 +15,6 @@
             <div class="h1"><s:message code="global.wellcome" /></div>
         </div>
         <hr />
-        <p class="h2"><s:message code="global.description" /></p>
+        <p class="h2"><s:message code="global.reference" /></p>
     </div>
 </div>
