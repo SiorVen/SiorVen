@@ -43,7 +43,7 @@ public class SaleService {
         return saleDao.getAllSales();
     }
 
-    public List getSalesFromMachineFromWeek(Timestamp fromDate, Timestamp toDate, Machine machine) {
+    public List getSalesFromMachineBetweenDates(Timestamp fromDate, Timestamp toDate, Machine machine) {
         return saleDao.getSalesFromMachineBetweenDates(fromDate, toDate, machine);
     }
 

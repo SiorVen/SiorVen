@@ -60,14 +60,14 @@ public class AprioriAssociation {
             //preprocess data
 
             //1. Add ID as class value
-            data = addIdFilter(data);
+            //data = addIdFilter(data);
 
 
             //2. Change ID format from numeric to nominal
-            data = changeIdNumericToNominal(data);
+            //data = changeIdNumericToNominal(data);
 
             //3. ensure that ID attribute is considered as class)
-            data.setClassIndex(data.numAttributes() - 1);
+            //data.setClassIndex(data.numAttributes() - 1);
 
             // build associator and configure parameters
             Apriori apriori = prepareAprioriAssociator(data);
@@ -78,9 +78,10 @@ public class AprioriAssociation {
             //Separate the result into rules
             finishDate = new Timestamp(new Date().getTime());
             List<Suggestion> suggestions = getSuggestionsFromAprioriRules(apriori);
-
-            for (Suggestion suggestion : suggestions) {
-                System.out.println(suggestion.toString(null,null,null));
+            if(suggestions.size() > 0 ) {
+                for (Suggestion suggestion : suggestions) {
+                    System.out.println(suggestion.toString(null, null, null));
+                }
             }
 
         } catch (Exception e) {
@@ -102,8 +103,10 @@ public class AprioriAssociation {
         List<AssociationRule> listaRules = rules.getRules();
         System.out.println("Resultados de uno en uno");
         for (AssociationRule rule : listaRules) {
-            suggestionList.add(getAndSaveSuggestionsFromRule(rule));
-            System.out.println("");
+            Suggestion sug = getAndSaveSuggestionsFromRule(rule);
+            if(sug != null) {
+                suggestionList.add(sug);
+            }
         }
 
         return suggestionList;
