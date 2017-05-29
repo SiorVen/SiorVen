@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.siorven.model.Machine;
+import org.siorven.model.Product;
 import org.siorven.model.Sale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,7 @@ import java.util.List;
 @Transactional
 @Repository
 public class SaleDaoImpl implements SaleDao {
-    public static final int DAI_IN_MILIS = 86400000;
+
     /**
      * Session factory for the jdbc connection bean
      */
@@ -67,12 +68,12 @@ public class SaleDaoImpl implements SaleDao {
     }
 
     @Override
-    public List getSalesFromMachineFromDay(Timestamp date, Machine machine) {
+    public List getSalesFromMachineBetweenDates(Timestamp fromDate, Timestamp toDate, Machine machine) {
         Criteria c = getSession().createCriteria(Sale.class, "sale");
         c.createAlias("sale.product", "prod"); // inner join by default
         c.createAlias("prod.machine", "machine");
-        c.add(Restrictions.ge("sale.saleDate", date));
-        c.add(Restrictions.lt("sale.saleDate", new Timestamp(date.getTime() + DAI_IN_MILIS)));
+        c.add(Restrictions.lt("sale.saleDate", toDate));
+        c.add(Restrictions.ge("sale.saleDate", fromDate));
         c.add(Restrictions.eq("machine.id", machine.getId()));
 
         return c.list();
