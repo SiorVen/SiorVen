@@ -2,6 +2,7 @@ package org.siorven.services;
 
 import org.siorven.dao.SaleDao;
 import org.siorven.model.Machine;
+import org.siorven.model.Product;
 import org.siorven.model.Sale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,8 +43,8 @@ public class SaleService {
         return saleDao.getAllSales();
     }
 
-    public List getSalesFromMachineFromDay(Timestamp date, Machine machine) {
-        return saleDao.getSalesFromMachineFromDay(date, machine);
+    public List getSalesFromMachineFromWeek(Timestamp fromDate, Timestamp toDate, Machine machine) {
+        return saleDao.getSalesFromMachineBetweenDates(fromDate, toDate, machine);
     }
 
 }

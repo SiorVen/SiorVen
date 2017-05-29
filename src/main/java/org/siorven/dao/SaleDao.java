@@ -1,6 +1,7 @@
 package org.siorven.dao;
 
 import org.siorven.model.Machine;
+import org.siorven.model.Product;
 import org.siorven.model.Sale;
 import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;
@@ -61,6 +62,6 @@ public interface SaleDao {
      * @param date
      * @return
      */
-    List getSalesFromMachineFromDay(Timestamp date, Machine machine);
+    List getSalesFromMachineBetweenDates(Timestamp fromDate, Timestamp toDate, Machine machine);
 
 }

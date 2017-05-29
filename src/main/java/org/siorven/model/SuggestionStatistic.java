@@ -23,13 +23,22 @@ public class SuggestionStatistic extends Suggestion {
     @ManyToOne
     private Product minProduct;
 
-    public SuggestionStatistic(Timestamp generateDate, Machine machine) {
+    public SuggestionStatistic(Timestamp generateDate, Machine machine, Product max, Product min) {
         super(generateDate, machine);
+        this.maxProduct = max;
+        this.minProduct = min;
     }
 
+    /**
+     * TODO behar dan moduen ipini, momentuz MIERDA bat
+     * @param messageSource
+     * @param resolver
+     * @param request
+     * @return
+     */
     @Override
     public String toString(MessageSource messageSource, LocaleResolver resolver, HttpServletRequest request) {
-        return null;
+        return "Max: " + maxProduct.getName() + "\nMin: " + minProduct.getName();
     }
 
     public Product getMaxProduct() {

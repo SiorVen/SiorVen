@@ -17,7 +17,7 @@ public abstract class Suggestion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "statement_id")
+    @Column(name = "suggestion_id")
     private int id;
 
     private Timestamp generateDate;

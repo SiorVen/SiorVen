@@ -3,7 +3,6 @@ package org.siorven.recommender;
 import org.siorven.model.*;
 import org.siorven.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import weka.associations.*;
 import weka.core.*;
@@ -39,76 +38,17 @@ public class AprioriAssociation {
     @Autowired
     private StatementService statementService;
 
-    private Machine machine;
-
     private Timestamp finishDate;
 
     @Autowired
-    ServletContext servletContext;
+    private ServletContext servletContext;
 
-    @Autowired
-    private ResourceService resourceService;
-
-    @Autowired
-    private IngredientService ingredientService;
-
-    private static List<Product> productList;
-
-    @Scheduled(fixedRate = 10000,initialDelay = 10000)
-    public void probe() {
-        System.out.println("STARTING PROBE!!!!");
-        productList = productService.findAll();
-
-        FastVector atts = new FastVector(productList.size());
-        Vector attVals = new Vector();
+    private List<Machine> machineList;
 
 
-        attVals.addElement("t");
-        for (Product p : productList) {
-            atts.add(new Attribute(p.getName(), attVals));
-        }
-
-        Instances data = new Instances("prueba", atts, 0);
-        Random randomGenerator = new Random();
-        for (int numInstances = 0; numInstances <= 10; numInstances++){
-            Instance iExample = new DenseInstance(productList.size());
-            for (int i = 0; i< productList.size(); i++){
-                if(randomGenerator.nextBoolean()) {
-                    iExample.setValue((Attribute) atts.elementAt(i), "t");
-                }
-            }
-            data.add(iExample);
-        }
-
-        System.out.println(data);
-
-        runApriori(data);
-
-    }
-
-
-    /**
-     * Create a {@link Product} with a unique {@link Ingredient} and a unique {@link Resource} and add them into the database
-     *
-     * @param name
-     * @return The product created.
-     */
-    private Product createSolidProduct(String name) {
-        Resource resource = new Resource(name, ResourceType.ITEM);
-        resourceService.saveOrUpdate(resource);
-        Ingredient ingredient = new Ingredient(resource, 1);
-        ingredientService.saveOrUpdate(ingredient);
-        List<Ingredient> list = new ArrayList<>();
-        list.add(ingredient);
-        Product product = new Product(name, list);
-        productService.saveOrUpdate(product);
-        return product;
-    }
-
-
-    //@Scheduled(fixedRate = 1000000)
+    //@Scheduled(fixedRate = 10000,initialDelay = 10000)
     public void runApriori(Instances outData) { //Instances outData, Machine machine
-        this.machine = (Machine) machineService.findAll().get(0);
+        machineList = machineService.findAll();
         ArffLoader loader = new ArffLoader();
         try {
             loader.setSource(new File(servletContext.getRealPath("/WEB-INF/data/dataset1.arff")));
@@ -141,7 +81,6 @@ public class AprioriAssociation {
 
             for (Suggestion suggestion : suggestions) {
                 System.out.println(suggestion.toString(null,null,null));
-                suggestionService.save(suggestion);
             }
 
         } catch (Exception e) {
@@ -163,7 +102,7 @@ public class AprioriAssociation {
         List<AssociationRule> listaRules = rules.getRules();
         System.out.println("Resultados de uno en uno");
         for (AssociationRule rule : listaRules) {
-            suggestionList.add(parseRule(rule));
+            suggestionList.add(getAndSaveSuggestionsFromRule(rule));
             System.out.println("");
         }
 
@@ -224,16 +163,19 @@ public class AprioriAssociation {
      * @param rule
      * @return
      */
-    private Suggestion parseRule(AssociationRule rule) {
+    private Suggestion getAndSaveSuggestionsFromRule(AssociationRule rule) {
         SuggestionAssociation suggestion = null;
         try {
-            suggestion = new SuggestionAssociation(finishDate, machine);
 
             List<Statement> premises = parseStatements(rule.getPremise());
             List<Statement> consequences = parseStatements(rule.getConsequence());
 
-            suggestion.setConsequenceList(consequences);
-            suggestion.setPremiseList(premises);
+            for(Machine machine : machineList) {
+                suggestion = new SuggestionAssociation(finishDate, machine);
+                suggestion.setConsequenceList(consequences);
+                suggestion.setPremiseList(premises);
+                suggestionService.save(suggestion);
+            }
         } catch (Exception e) {
             System.out.println("Error parsing rule");
         }
