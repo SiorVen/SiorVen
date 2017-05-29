@@ -5,7 +5,7 @@
          version="3.1">
     <display-name>SiorVen</display-name>
     <servlet>
-        <reference>Default dispatcher servlet</reference>
+        <description>Default dispatcher servlet</description>
         <display-name>dispatcher</display-name>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -68,22 +68,22 @@
 
     <!-- Not Found -->
     <error-page>
-        <error-reference>404</error-reference>
+        <error-code>404</error-code>
         <location>/404</location>
     </error-page>
     <!-- Server Error -->
     <error-page>
-        <error-reference>500</error-reference>
+        <error-code>500</error-code>
         <location>/500</location>
     </error-page>
     <!-- Unautorized -->
     <error-page>
-        <error-reference>401</error-reference>
+        <error-code>401</error-code>
         <location>/401</location>
     </error-page>
     <!-- Forbidden -->
     <error-page>
-        <error-reference>403</error-reference>
+        <error-code>403</error-code>
         <location>/403</location>
     </error-page>
 

@@ -48,6 +48,11 @@
         <put-attribute name="body" value="/WEB-INF/views/bodys/modelRegister.jsp" />
     </definition>
 
+    <definition name="productManager" extends="index">
+        <put-attribute name="title" type="string" value="pages.productManager" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/productManager.jsp" />
+    </definition>
+
     <definition name="404" extends="index">
         <put-attribute name="title" type="string" value="pages.404"/>
         <put-attribute name="body" value="/WEB-INF/views/bodys/errors/404.jsp"/>
