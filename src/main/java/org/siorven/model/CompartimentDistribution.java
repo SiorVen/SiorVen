@@ -30,6 +30,9 @@ public class CompartimentDistribution extends Distribution {
         this.numCompartiment = numCompartiment;
     }
 
+    public CompartimentDistribution() {
+    }
+
     public int getNumCompartiment() {
         return numCompartiment;
     }

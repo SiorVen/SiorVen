@@ -23,6 +23,9 @@ public class SuggestionStatistic extends Suggestion {
     @ManyToOne
     private Product minProduct;
 
+    public SuggestionStatistic() {
+    }
+
     public SuggestionStatistic(Timestamp generateDate, Machine machine, Product max, Product min) {
         super(generateDate, machine);
         this.maxProduct = max;

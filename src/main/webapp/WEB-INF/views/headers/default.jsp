@@ -59,6 +59,12 @@
                             <spring:message code="action.manageUsers"/>
                         </a>
                     </li>
+                    <li>
+                        <a href="<c:url value="/machine/manager" />">
+                            <i class="fa fa-users fa-fw"></i>
+                            <spring:message code="action.manageMachines"/>
+                        </a>
+                    </li>
                 </sec:authorize>
                 <li>
                     <a href="#" onclick="$('#logout-form').submit()"><i

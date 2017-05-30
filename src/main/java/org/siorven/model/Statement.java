@@ -24,6 +24,9 @@ public class Statement {
         this.statementResult = statementResult;
     }
 
+    public Statement() {
+    }
+
     public Product getProduct() {
         return product;
     }

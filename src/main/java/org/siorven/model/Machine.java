@@ -23,7 +23,6 @@ public class Machine {
     private String alias;
 
     @ManyToOne(cascade=CascadeType.ALL)
-
     @JoinColumn(name = "model_id")
     private MachineModel machineModel;
 

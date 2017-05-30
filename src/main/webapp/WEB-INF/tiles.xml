@@ -53,9 +53,29 @@
         <put-attribute name="body" value="/WEB-INF/views/bodys/modelRegister.jsp" />
     </definition>
 
+    <definition name="machineEdit" extends="index">
+        <put-attribute name="title" type="string" value="pages.modelRegister" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineEdit.jsp" />
+    </definition>
+
     <definition name="productManager" extends="index">
         <put-attribute name="title" type="string" value="pages.productManager" />
         <put-attribute name="body" value="/WEB-INF/views/bodys/productManager.jsp" />
+    </definition>
+
+    <definition name="machineManager" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineManager.jsp" />
+    </definition>
+
+    <definition name="machineMachineRegister" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineRegister.jsp" />
+    </definition>
+
+    <definition name="machineView" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineView.jsp" />
     </definition>
 
     <definition name="404" extends="index">

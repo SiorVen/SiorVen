@@ -26,6 +26,9 @@ public abstract class Suggestion {
     private Machine machine;
 
 
+    public Suggestion() {
+    }
+
     public Suggestion(Timestamp generateDate, Machine machine) {
         this.generateDate = generateDate;
         this.machine = machine;

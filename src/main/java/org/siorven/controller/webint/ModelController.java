@@ -1,7 +1,10 @@
 package org.siorven.controller.webint;
 
 import org.apache.commons.io.FilenameUtils;
+import org.siorven.controller.handlers.errors.ResourceNotFoundException;
+import org.siorven.controller.webint.forms.MachineEditForm;
 import org.siorven.controller.webint.forms.MachineModelForm;
+import org.siorven.model.Machine;
 import org.siorven.model.MachineModel;
 import org.siorven.services.MachineModelService;
 import org.siorven.services.MachineService;
@@ -16,6 +19,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.LocaleResolver;
 
@@ -24,6 +28,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * Web controller for the new Machine actions on the interface
@@ -32,14 +38,12 @@ import java.io.IOException;
 public class ModelController {
 
     public static final String MACHINE_MODEL = "machineModel";
-    public static final String MODEL_REGISTER_VIEW = "machineRegister";
+    public static final String MODEL_REGISTER_VIEW = "machineMachineRegister";
     public static final String REDIRECT_MODEL_REGISTER = "redirect:/model/register";
 
     /**
      * Data access logic for the access to the newUser data on the DB
      */
-    @Autowired
-    private MachineService machineService;
 
     @Autowired
     private MachineModelService machineModelService;

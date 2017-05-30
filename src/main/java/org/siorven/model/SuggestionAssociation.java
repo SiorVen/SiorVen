@@ -27,6 +27,9 @@ public class SuggestionAssociation extends Suggestion {
     @IndexColumn(base = 1, name = "pmnr")
     private List<Statement> consequenceList;
 
+    public SuggestionAssociation() {
+    }
+
     public SuggestionAssociation(Timestamp generateDate, Machine machine) {
         super(generateDate, machine);
         premiseList = new ArrayList<>();

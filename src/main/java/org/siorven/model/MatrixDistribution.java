@@ -39,6 +39,9 @@ public class MatrixDistribution extends Distribution {
 
     }
 
+    public MatrixDistribution() {
+    }
+
     public int getRows() {
         return rows;
     }
