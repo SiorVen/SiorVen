@@ -177,6 +177,10 @@
             <artifactId>weka-stable</artifactId>
             <version>3.8.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.zeroc</groupId>
+            <artifactId>ice</artifactId>
+            <version>3.6.3</version>
+        </dependency>
     </dependencies>
 </project>

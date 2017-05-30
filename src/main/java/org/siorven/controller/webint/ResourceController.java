@@ -1,5 +1,6 @@
 package org.siorven.controller.webint;
 
+import org.siorven.exceptions.ResourceAlreadyRegistered;
 import org.siorven.model.Resource;
 import org.siorven.model.ResourceType;
 import org.siorven.model.validacion.SpringFormGroup;
@@ -9,6 +10,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -77,8 +79,15 @@ public class ResourceController {
         if (bindingResult.hasErrors()) {
             return RESOURCE_REGISTER_VIEW;
         }
+        try {
+            resourceService.save(resource);
+        }catch (ResourceAlreadyRegistered e){
+            String msg = messageSource.getMessage(e.getMessage(),
+                    new String[]{resource.getName()}, locale.resolveLocale(request));
+            bindingResult.addError(new FieldError(RESOURCE, "name", resource.getName(), true, null, null, msg));
 
-        resourceService.save(resource);
+            return RESOURCE_REGISTER_VIEW;
+        }
         String msg = messageSource.getMessage("msg.resourceRegisteredSuccesfully",
                 new String[]{resource.getName()}, locale.resolveLocale(request));
         redirectAttributes.addFlashAttribute("message", msg);

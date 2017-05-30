@@ -1,5 +1,6 @@
 package org.siorven.model;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.siorven.logic.Configuration;
 import org.siorven.logic.Mapper;
 
