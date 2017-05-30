@@ -37,14 +37,14 @@ public class MachineResource {
     private Timestamp estimatedCaducityDate;
 
     @ManyToOne
-    private Slot slot;
+    private MachineSlot machineSlot;
 
-    public MachineResource(Resource resource, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, Slot slot) {
+    public MachineResource(Resource resource, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, MachineSlot machineSlot) {
         this.resource = resource;
         this.quantity = quantity;
         this.repositionDate = repositionDate;
         this.estimatedCaducityDate = estimatedCaducityDate;
-        this.slot = slot;
+        this.machineSlot = machineSlot;
     }
 
     public MachineResource() {
@@ -99,11 +99,11 @@ public class MachineResource {
         this.resource = resource;
     }
 
-    public Slot getSlot() {
-        return slot;
+    public MachineSlot getMachineSlot() {
+        return machineSlot;
     }
 
-    public void setSlot(Slot slot) {
-        this.slot = slot;
+    public void setMachineSlot(MachineSlot machineSlot) {
+        this.machineSlot = machineSlot;
     }
 }

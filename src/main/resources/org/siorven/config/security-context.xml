@@ -42,6 +42,7 @@
         <security:intercept-url pattern="/user/**" access="permitAll()"/>
         <security:intercept-url pattern="/product/**" access="permitAll()"/>
         <security:intercept-url pattern="/model/**" access="permitAll()"/>
+        <security:intercept-url pattern="/resource/**" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="denyAll()"/>
 
         <security:form-login login-page="/login" password-parameter="clave" username-parameter="usuario"

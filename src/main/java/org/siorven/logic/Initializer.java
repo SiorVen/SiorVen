@@ -54,6 +54,9 @@ public class Initializer {
     @Autowired
     private MachineService machineService;
 
+    @Autowired
+    private MachineSlotService machineSlotService;
+
     private List<Resource> resourceList;
     private List<Product> productList;
 
@@ -82,7 +85,7 @@ public class Initializer {
 
             generateProduct("R1", "Choco-Bones Blancos");
             generateProduct("R2", "Manzana");
-            generateProduct("R3", "ChocCons Negros");
+            generateProduct("R3", "Choco-Bones Negros");
             generateProduct("R4", "Chaskis barbacoa");
             generateProduct("R5", "Doritos");
             generateProduct("R6", "Patatas fritas");
@@ -114,12 +117,15 @@ public class Initializer {
         Machine machine = new Machine(machineName, machineModel);
         machineService.save(machine);
 
+        MachineSlot machineSlot = new MachineSlot(slots.get(0),machine);
+        machineSlotService.save(machineSlot);
+
         List<MachineProduct> machineProducts = new ArrayList<>();
         List<MachineResource> machineResourceList = new ArrayList<>();
 
         for (int i = 0; i < productList.size(); i++) {
             List<MachineIngredient> machineRecipe = new ArrayList<>();
-            MachineResource machineResource = createMachineResource(resourceList.get(i), 1, slots.get(0));
+            MachineResource machineResource = createMachineResource(resourceList.get(i), 1, machineSlot);
             MachineIngredient machineIngredient = createMachineIngredient(machineResource, 1);
             machineRecipe.add(machineIngredient);
             MachineProduct machineProduct1 = createMachineProduct(productList.get(i), PRICE, machineRecipe, machine);
@@ -176,8 +182,8 @@ public class Initializer {
         return resource;
     }
 
-    public MachineResource createMachineResource(Resource resource, int quantity, Slot slot) {
-        MachineResource machineResource = new MachineResource(resource, quantity, new Timestamp(new Date().getTime()), new Timestamp((new Date().getTime()) + WEEK_IN_MILIS), slot);
+    public MachineResource createMachineResource(Resource resource, int quantity, MachineSlot machineSlot) {
+        MachineResource machineResource = new MachineResource(resource, quantity, new Timestamp(new Date().getTime()), new Timestamp((new Date().getTime()) + WEEK_IN_MILIS), machineSlot);
         machineResourceService.save(machineResource);
         return machineResource;
     }

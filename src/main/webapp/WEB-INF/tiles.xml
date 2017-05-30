@@ -28,6 +28,11 @@
         <put-attribute name="body" value="/WEB-INF/views/bodys/register.jsp" />
     </definition>
 
+    <definition name="resourceRegister" extends="index">
+        <put-attribute name="title" type="string" value="pages.resourceRegister" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/resourceRegister.jsp" />
+    </definition>
+
     <definition name="userManager" extends="index">
         <put-attribute name="title" type="string" value="pages.userManager"/>
         <put-attribute name="body" value="/WEB-INF/views/bodys/usermanager.jsp"/>

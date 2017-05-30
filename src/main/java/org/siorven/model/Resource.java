@@ -19,9 +19,6 @@ public class Resource {
     @Column(name = "resourceType")
     private ResourceType resourceType;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
-    private Ingredient ingredient;
 
     public Resource(String name, ResourceType resourceType) {
         this.name = name;
@@ -55,11 +52,4 @@ public class Resource {
         this.resourceType = resourceType;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
-    }
 }
