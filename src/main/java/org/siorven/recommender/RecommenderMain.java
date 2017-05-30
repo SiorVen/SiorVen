@@ -94,7 +94,7 @@ public class RecommenderMain {
         Product maxProduct = productService.findById(maxEntry.getKey());
         Product minProduct = productService.findById(minEntry.getKey());
         Suggestion maxMinSug = new SuggestionStatistic(now,machine,maxProduct,minProduct);
-        maxMinSug.toString(null,null,null);
+        System.out.println(maxMinSug.toString(null,null,null));
         suggestionService.save(maxMinSug);
     }
 

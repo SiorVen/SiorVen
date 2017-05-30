@@ -54,20 +54,6 @@ public class AprioriAssociation {
             loader.setSource(new File(servletContext.getRealPath("/WEB-INF/data/dataset1.arff")));
 
             Instances data = outData;//loader.getDataSet();
-            //System.out.println("\nHeader of dataset:\n");
-            //System.out.println(new Instances(data, 0));
-
-            //preprocess data
-
-            //1. Add ID as class value
-            //data = addIdFilter(data);
-
-
-            //2. Change ID format from numeric to nominal
-            //data = changeIdNumericToNominal(data);
-
-            //3. ensure that ID attribute is considered as class)
-            //data.setClassIndex(data.numAttributes() - 1);
 
             // build associator and configure parameters
             Apriori apriori = prepareAprioriAssociator(data);
@@ -92,7 +78,6 @@ public class AprioriAssociation {
 
     /**
      * Translate the results of the Apriori algorith into a list of suggestions.
-     * TODO: Kontuz, Rule baten parseoan errorea badau puede cascar muy facilmente. Arreglau in behar da!!!!!
      *
      * @param apriori
      * @return
@@ -126,38 +111,6 @@ public class AprioriAssociation {
         apriori.setClassIndex(data.classIndex());
         apriori.buildAssociations(data);
         return apriori;
-    }
-
-    /**
-     * Change the format of the ID attribute from numeric to nominal
-     *
-     * @param data instances generated from arff file
-     * @return
-     * @throws Exception
-     */
-    private Instances changeIdNumericToNominal(Instances data) throws Exception {
-        Instances filteredData;
-        NumericToNominal numToNomFilter = new NumericToNominal();
-        numToNomFilter.setAttributeIndices("last");
-        numToNomFilter.setInputFormat(data);
-        filteredData = numToNomFilter.useFilter(data, numToNomFilter);
-        return filteredData;
-    }
-
-    /**
-     * Add ID attribute to de instances
-     *
-     * @param data
-     * @return
-     * @throws Exception
-     */
-    private Instances addIdFilter(Instances data) throws Exception {
-        Instances filteredData;
-        AddID idFilter = new AddID();
-        idFilter.setIDIndex("last");
-        idFilter.setInputFormat(data);
-        filteredData = idFilter.useFilter(data, idFilter);
-        return filteredData;
     }
 
     /**
@@ -200,7 +153,7 @@ public class AprioriAssociation {
         for (Item i : rule) {
             NominalItem ni = (NominalItem) i;
             Statement statement = new Statement(productService.findByName(ni.getAttribute().name()),
-                    stringToBoolean(ni.getItemValueAsString()));
+                    stringToBoolean(ni.getItemValueAsString()),ni.getAttribute().weight());
             statementService.save(statement);
             statementList.add(statement);
         }
