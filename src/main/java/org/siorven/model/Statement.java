@@ -14,28 +14,17 @@ public class Statement {
     @Column(name = "statement_id")
     private int id;
 
-    private double weight;
-
     @ManyToOne
     private Product product;
 
     private boolean statementResult;
 
-    public Statement(Product product, boolean statementResult, double weight) {
+    public Statement(Product product, boolean statementResult) {
         this.product = product;
         this.statementResult = statementResult;
-        this.weight = weight;
     }
 
     public Statement() {
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
     }
 
     public Product getProduct() {

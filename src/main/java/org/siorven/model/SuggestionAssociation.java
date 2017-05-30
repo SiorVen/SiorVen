@@ -30,8 +30,8 @@ public class SuggestionAssociation extends Suggestion {
     public SuggestionAssociation() {
     }
 
-    public SuggestionAssociation(Timestamp generateDate, Machine machine) {
-        super(generateDate, machine);
+    public SuggestionAssociation(Timestamp generateDate, Machine machine, double weight) {
+        super(generateDate, machine, weight);
         premiseList = new ArrayList<>();
         consequenceList = new ArrayList<>();
     }

@@ -20,6 +20,8 @@ public abstract class Suggestion {
     @Column(name = "suggestion_id")
     private int id;
 
+    private double weight;
+
     private Timestamp generateDate;
 
     @ManyToOne
@@ -29,9 +31,10 @@ public abstract class Suggestion {
     public Suggestion() {
     }
 
-    public Suggestion(Timestamp generateDate, Machine machine) {
+    public Suggestion(Timestamp generateDate, Machine machine, double weight) {
         this.generateDate = generateDate;
         this.machine = machine;
+        this.weight = weight;
     }
 
     public abstract String toString(MessageSource messageSource, LocaleResolver resolver, HttpServletRequest request);
@@ -59,5 +62,13 @@ public abstract class Suggestion {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 }

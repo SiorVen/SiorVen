@@ -19,8 +19,6 @@ public class RecommenderMain {
 
     public static final int DAY_IN_MILIS = 24*60*60*1000;
     public static final int WEEK_IN_MILIS = 7*DAY_IN_MILIS;
-    public static final int MONTH_IN_MILIS = 30*DAY_IN_MILIS;
-
     public static final int SUCCESS_RATE = 10;
 
     @Autowired
@@ -52,7 +50,7 @@ public class RecommenderMain {
     private Timestamp now;
 
 
-    @Scheduled(initialDelay = 10000, fixedDelay = 100000)
+    @Scheduled(initialDelay = 10000, fixedDelay = DAY_IN_MILIS)
     public void probe() {
         System.out.println("STARTING PROBE!!!!");
         now = new Timestamp(new Date().getTime());
@@ -93,7 +91,7 @@ public class RecommenderMain {
         }
         Product maxProduct = productService.findById(maxEntry.getKey());
         Product minProduct = productService.findById(minEntry.getKey());
-        Suggestion maxMinSug = new SuggestionStatistic(now,machine,maxProduct,minProduct);
+        Suggestion maxMinSug = new SuggestionStatistic(now,machine,maxProduct,minProduct,10);
         System.out.println(maxMinSug.toString(null,null,null));
         suggestionService.save(maxMinSug);
     }

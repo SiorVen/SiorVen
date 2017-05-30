@@ -126,8 +126,10 @@ public class AprioriAssociation {
             List<Statement> premises = parseStatements(rule.getPremise());
             List<Statement> consequences = parseStatements(rule.getConsequence());
 
+            double weight = rule.getTotalSupport();
+
             for(Machine machine : machineList) {
-                suggestion = new SuggestionAssociation(finishDate, machine);
+                suggestion = new SuggestionAssociation(finishDate, machine,weight);
                 suggestion.setConsequenceList(consequences);
                 suggestion.setPremiseList(premises);
                 suggestionService.save(suggestion);
@@ -153,7 +155,7 @@ public class AprioriAssociation {
         for (Item i : rule) {
             NominalItem ni = (NominalItem) i;
             Statement statement = new Statement(productService.findByName(ni.getAttribute().name()),
-                    stringToBoolean(ni.getItemValueAsString()),ni.getAttribute().weight());
+                    stringToBoolean(ni.getItemValueAsString()));
             statementService.save(statement);
             statementList.add(statement);
         }

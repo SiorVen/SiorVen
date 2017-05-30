@@ -26,8 +26,8 @@ public class SuggestionStatistic extends Suggestion {
     public SuggestionStatistic() {
     }
 
-    public SuggestionStatistic(Timestamp generateDate, Machine machine, Product max, Product min) {
-        super(generateDate, machine);
+    public SuggestionStatistic(Timestamp generateDate, Machine machine, Product max, Product min, double weight) {
+        super(generateDate, machine, weight);
         this.maxProduct = max;
         this.minProduct = min;
     }
