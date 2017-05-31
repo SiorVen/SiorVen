@@ -2,7 +2,10 @@ package org.siorven.recolector;
 
 import Ice.Current;
 
+import org.siorven.model.Distribution;
 import org.siorven.model.Machine;
+import org.siorven.model.MachineModel;
+import org.siorven.model.Slot;
 import org.siorven.recolector.ice.generated._DataCollectorDisp;
 import org.siorven.services.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,20 @@ public class DataCollector extends _DataCollectorDisp {
 	}
 
 	private void generateSaleFromCode(String code, Machine machine) {
+		Map<String, Object> positionParam = new HashMap<>();
+		String[] separatedCode = code.split("[:]");
+		positionParam.put(separatedCode[0], Integer.parseInt(separatedCode[0]));
+		positionParam.put(separatedCode[1], Integer.parseInt(separatedCode[1]));
+		MachineModel model = machine.getMachineModel();
+		for(Distribution d : model.getAviableDistributions()){
+			Slot slot = d.findSlot(positionParam);
+			if(slot != null){
+				break;
+			}
+		}
+
+
+
 
 	}
 

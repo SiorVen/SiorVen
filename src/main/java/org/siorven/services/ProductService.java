@@ -5,6 +5,7 @@ package org.siorven.services;
  */
 
 import org.siorven.dao.ProductDao;
+import org.siorven.model.Ingredient;
 import org.siorven.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -88,4 +89,5 @@ public class ProductService {
     public List findAll() {
         return productDao.getAllProducts();
     }
+
 }

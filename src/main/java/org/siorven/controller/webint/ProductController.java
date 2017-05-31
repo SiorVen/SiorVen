@@ -52,7 +52,7 @@ public class ProductController {
         return "productManager";
     }
 
-    @PostMapping("product/new")
+    @PostMapping("/product/new")
     public String newProduct(@RequestParam("name") String name, RedirectAttributes redirectAttributes) {
         Product p = new Product();
         p.setName(name);
@@ -87,10 +87,25 @@ public class ProductController {
     @GetMapping("/ingredient/delete/{id}")
     public String deleteIngredient(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         Ingredient i = getIngredientOrThrow(id);
+        int productId = i.getProduct().getId();
+        removeIngredientFromProduct(i);
+        i.setProduct(null);
+        ingredientService.edit(i);
         ingredientService.delete(i);
         String msg = messageSource.getMessage("msg.ingredient.deleted", new String[]{i.getResource().getName()}, resolver.resolveLocale(request));
-        redirectAttributes.addAttribute("message", msg);
-        return "redirect:/product/" + i.getProduct().getId();
+        redirectAttributes.addFlashAttribute("message", msg);
+        return "redirect:/product/" + productId;
+    }
+
+    private void removeIngredientFromProduct(Ingredient ingredient) {
+        Product p = ingredient.getProduct();
+        for (int i = 0; i < p.getRecipe().size(); i++){
+            Ingredient in = p.getRecipe().get(i);
+            if(in.getId() == ingredient.getId()){
+                p.getRecipe().remove(i);
+            }
+        }
+        productService.edit(p);
     }
 
     private Ingredient getIngredientOrThrow(int id) {
@@ -123,7 +138,9 @@ public class ProductController {
         Ingredient i = new Ingredient();
         i.setResource(r);
         i.setQuantity(ingredientform.getQty());
+        i.setProduct(p);
         p.getRecipe().add(i);
+        ingredientService.save(i);
         productService.saveOrUpdate(p);
         String msg = messageSource.getMessage("msg.ingredient.added", new String[]{ r.getName() }, resolver.resolveLocale(request));
         redirectAttributes.addFlashAttribute("message", msg);

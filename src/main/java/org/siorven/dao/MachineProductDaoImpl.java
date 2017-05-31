@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.siorven.model.MachineProduct;
+import org.siorven.model.Slot;
 import org.siorven.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -63,6 +64,18 @@ public class MachineProductDaoImpl implements MachineProductDao {
     @Override
     public List findAll() {
         return getSession().createCriteria(MachineProduct.class).list();
+    }
+
+    @Override
+    public MachineProduct getMachineProductFromSlot(Slot slot) {
+        Criteria c = getSession().createCriteria(MachineProduct.class, "machine_product");
+        c.createAlias("machine_product.recipe", "mingredient"); // inner join by default
+        c.createAlias("mingredient.resource", "mresource");
+        c.createAlias("mresource.machineSlot", "mslot");
+        c.createAlias("mslot.slot", "slot");
+        c.add(Restrictions.eq("slot.id", slot.getId()));
+
+        return (MachineProduct) c.uniqueResult();
     }
 
     @Override

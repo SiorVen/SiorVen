@@ -28,7 +28,7 @@ import java.util.LinkedHashMap;
 public class ResourceController {
     public static final String RESOURCE_REGISTER_VIEW = "resourceRegister";
     public static final String RESOURCE = "resource";
-    public static final String REDIRECT_PRODUCT_REGISTER = "redirect:/product/register";
+    public static final String REDIRECT_PRODUCT_REGISTER = "redirect:/product/manager";
 
 
     @Autowired

@@ -1,6 +1,7 @@
 package org.siorven.dao;
 
 import org.siorven.model.MachineProduct;
+import org.siorven.model.Slot;
 import org.siorven.model.Product;
 import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +24,8 @@ public interface MachineProductDao {
     MachineProduct findById(int id);
 
     List findAll();
+
+    MachineProduct getMachineProductFromSlot(Slot slot);
 
     List<MachineProduct> findByProduct(Product p);
 }

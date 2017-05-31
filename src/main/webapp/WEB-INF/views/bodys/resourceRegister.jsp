@@ -37,10 +37,5 @@
                 </div>
             </fieldset>
         </sf:form>
-
-        <div class="well">
-            <p><s:message code="LOPDNotice" /></p>
-        </div>
-
     </div>
 </div>

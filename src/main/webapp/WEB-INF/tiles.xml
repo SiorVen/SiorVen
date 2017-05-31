@@ -38,6 +38,12 @@
         <put-attribute name="body" value="/WEB-INF/views/bodys/machineView.jsp" />
     </definition>
 
+
+    <definition name="resourceRegister" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/resourceRegister.jsp" />
+    </definition>
+
     <definition name="suggestionManager" extends="index">
         <put-attribute name="title" type="string" value="pages.manage" />
         <put-attribute name="body" value="/WEB-INF/views/bodys/suggestionManager.jsp" />
