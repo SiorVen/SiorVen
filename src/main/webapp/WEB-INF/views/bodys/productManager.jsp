@@ -38,7 +38,6 @@
         </thead>
     </table>
 </div>
-<script type="text/javascript" src="<c:url value="/res/js/jquery.dataTables.min.js"/>"></script>
 <script>
     $(document)
         .ready(

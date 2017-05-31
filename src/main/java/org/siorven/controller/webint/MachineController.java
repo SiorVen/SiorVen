@@ -87,7 +87,7 @@ public class MachineController {
      */
     @GetMapping("/machine/edit/{id}")
     public String showEditMachine(@PathVariable("id") int id, Model model) {
-        añadirModelos(model);
+        anadirModelos(model);
         Machine u = getMachineOrThrow(id);
         MachineEditForm m = new MachineEditForm();
         m.setAlias(u.getAlias());
@@ -105,7 +105,7 @@ public class MachineController {
      */
     @GetMapping("/machine/register")
     public String showMachineRegisterInterface(Model model){
-        añadirModelos(model);
+        anadirModelos(model);
         model.addAttribute("machineModelRegister", new MachineEditForm());
         return MODEL_REGISTER_VIEW;
     }
@@ -143,7 +143,7 @@ public class MachineController {
          */
     @PostMapping("/machine/edit")
     public String editMachine(@ModelAttribute("machine") @Validated(SpringFormEditGroup.class) MachineEditForm machineForm, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) throws ServletException {
-        añadirModelos(model);
+        anadirModelos(model);
         if (bindingResult.hasErrors()) {
             return MACHINE_MANAGER_VIEW;
         }
@@ -176,7 +176,7 @@ public class MachineController {
         return "machineView";
     }
 
-        private void añadirModelos(Model model) {
+        private void anadirModelos(Model model) {
         List<MachineModel> m = machineModelService.findAll();
         LinkedHashMap<Integer, String> roles = new LinkedHashMap<>();
         for(int i = 0; i < m.size(); i++) {

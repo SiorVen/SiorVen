@@ -1,5 +1,6 @@
 package org.siorven.dao;
 
+import org.siorven.model.Machine;
 import org.siorven.model.Suggestion;
 import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;
@@ -22,5 +23,7 @@ public interface SuggestionDao {
     Suggestion findById(int id);
 
     List findAll();
+
+    List findByMachine(Machine m);
 
 }

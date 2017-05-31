@@ -20,6 +20,7 @@
     <!-- <script type="text/javascript" src="<c:url value='/res/js/jquery-3.2.1.min.js' />"></script> -->
     <!-- Load jQuery UI CSS  -->
     <!-- TODO hacer estas librerias locales -->
+
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
     <link rel="stylesheet" media="all" type="text/css"
           href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"/>
@@ -44,6 +45,9 @@
             src="<c:url value='/res/js/sb-admin-2.min.js'/>"></script>
     <link href="<c:url value='/res/css/animate.css'/>" rel="stylesheet">
     <script src="<c:url value='/res/js/bootstrap-notify.min.js'/>"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.15/datatables.min.css"/>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.15/datatables.min.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 

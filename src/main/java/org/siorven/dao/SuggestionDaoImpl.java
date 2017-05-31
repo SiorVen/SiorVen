@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.siorven.model.Machine;
 import org.siorven.model.Suggestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -64,5 +65,11 @@ public class SuggestionDaoImpl implements SuggestionDao {
     @Override
     public List findAll() {
         return getSession().createCriteria(Suggestion.class).addOrder(Order.desc("weight")).list();
+    }
+
+    @Override
+    public List findByMachine(Machine m) {
+        Criteria crit = getSession().createCriteria(Suggestion.class).add(Restrictions.eq("machine", m));
+        return crit.addOrder(Order.desc("weight")).list();
     }
 }

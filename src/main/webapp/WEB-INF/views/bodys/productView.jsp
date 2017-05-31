@@ -45,7 +45,6 @@
         </thead>
     </table>
 </div>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.15/r-2.1.1/datatables.min.js"></script>
 <script>
     <jstl:set var="id" value="${product.id}"/>
     var idVar = '<jstl:out value="${id}"/>';

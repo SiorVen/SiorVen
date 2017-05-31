@@ -30,7 +30,7 @@
         </thead>
     </table>
 </div>
-<script type="text/javascript" src="<c:url value="/res/js/jquery.dataTables.min.js"/>"></script>
+
 <script>
     $(document)
         .ready(
@@ -56,7 +56,8 @@
                                     "data": "id",
                                     "render": function (data, type, full, meta) {
                                         return '<div class="btn-group" style="width: "><a class="btn btn-primary" href="../machine/' + data + '"><i class="fa fa-building"></i></a>' +
-                                            '<a class="btn btn-warning" href="../machine/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>';
+                                            '<a class="btn btn-warning" href="../machine/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>' +
+                                            '<a class="btn btn-warning" href="../suggestion/manager/' + data + '"><i class="fa fa-pencil-square-o"></i></a>';
                                     }
                                 }, {
                                     "data": "alias"

@@ -7,18 +7,47 @@
     <groupId>SiorVen</groupId>
     <artifactId>SiorVen</artifactId>
     <version>1.0-DEV</version>
+
     <properties>
         <sonar.exclusions>main/webapp/rsc/**</sonar.exclusions>
     </properties>
+    <distributionManagement>
+    <repository>
+        <uniqueVersion>false</uniqueVersion>
+        <id>SiorVen</id>
+        <name>GGA</name>
+        <url>http://localhost:8080/SiorVen</url>
+        <layout>default</layout>
+
+    </repository>
+    </distributionManagement>
     <build>
+        <finalName>SiorVen</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
+
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://localhost:8080/manager/text</url>
+                    <server>TomcatServer</server>
+                    <path>/SiorVen</path>
+                    <update>true</update>
                 </configuration>
             </plugin>
         </plugins>

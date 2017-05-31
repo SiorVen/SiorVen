@@ -1,11 +1,13 @@
 package org.siorven.controller.api;
 
+import org.siorven.model.Machine;
 import org.siorven.model.Suggestion;
 import org.siorven.services.SuggestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.LocaleResolver;
@@ -49,9 +51,9 @@ public class SuggestionRestController {
      *
      * @return json object
      */
-    @PostMapping("/api/suggestion/datatable")
-    private Map<String, List<Map<String, String>>> giveSuggestionListDataForTable() {
-        List<Suggestion> suggestions = suggestionService.findAll();
+    @PostMapping("/api/suggestion/datatable/{id}")
+    public Map<String, List<Map<String, String>>> giveSuggestionListDataForTable(@PathVariable int id) {
+        List<Suggestion> suggestions = suggestionService.findByMachine(id);
 
         Map<String, List<Map<String, String>>> datatables = new HashMap<>();
         List<Map<String, String>> data = new ArrayList<>();

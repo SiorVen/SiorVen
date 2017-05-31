@@ -5,7 +5,9 @@ import org.siorven.services.XmlValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.LocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,8 +55,9 @@ public class SuggestionController {
      *
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
-    @GetMapping("/suggestion/manager")
-    public String showSuggestionManager() {
+    @GetMapping("/suggestion/manager/{id}")
+    public String showSuggestionManager(@PathVariable int id, Model model) {
+        model.addAttribute("machineId", id);
         return "suggestionManager";
     }
 }

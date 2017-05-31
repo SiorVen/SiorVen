@@ -1,6 +1,7 @@
 package org.siorven.services;
 
 import org.siorven.dao.SuggestionDao;
+import org.siorven.model.Machine;
 import org.siorven.model.Suggestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ public class SuggestionService {
 
     @Autowired
     private SuggestionDao suggestionDao;
+
+    @Autowired MachineService machineService;
 
     public void save(Suggestion suggestion) {
         suggestionDao.saveSuggestion(suggestion);
@@ -38,6 +41,11 @@ public class SuggestionService {
 
     public List findAll() {
         return suggestionDao.findAll();
+    }
+
+    public List findByMachine(int id){
+        Machine m = machineService.findById(id);
+        return suggestionDao.findByMachine(m);
     }
 
     //TODO: Aqui deberian estar las funciones que arranquen el analisis de los datos por si se quiere lanzar a mano.

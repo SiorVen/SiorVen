@@ -29,13 +29,13 @@
         </table>
     </div>
 </div>
-<script type="text/javascript" src="<c:url value="/res/js/jquery.dataTables.min.js"/>"></script>
 <script>
     $(document)
         .ready(
             function () {
                 <c:message var="noResult" code="resource.noResult"/>
                 var noResult = '<jstl:out value="${noResult}"/>';
+                var machineId = '<jstl:out value="${machineId}"/>';
                 var path = $("#path").val();
                 $("#resource").autocomplete({
                     source: path + "/api/resource/search",
@@ -48,14 +48,9 @@
                                 url: path + '/res/json/datatables.json'
                             },
                             "ajax": {
-                                "url": path + "/api/suggestion/datatable",
+                                "url": path + "/api/suggestion/datatable/" + machineId,
                                 "type": "POST"
                             },
-                            "columnDefs": [{
-                                "targets": 0,
-                                "orderable": false
-                            },
-                                {"width": "150px", "targets": 0}],
                             "columns": [
                                  {
                                     "data": "generateDate"
