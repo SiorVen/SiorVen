@@ -67,7 +67,7 @@ public class UserController {
     @GetMapping("/user/register")
     public String showRegister(Model model){
         model.addAttribute(USER, new User());
-        añadirTiposUsuario(model);
+        addUserTypes(model);
         return REGISTER_VIEW;
     }
 
@@ -82,7 +82,7 @@ public class UserController {
     @PostMapping("/user/register")
     public String performRegister(@ModelAttribute(USER) @Validated(SpringFormGroup.class) User usuario,
                                   BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-        añadirTiposUsuario(model);
+        addUserTypes(model);
         if (bindingResult.hasErrors()) {
             return REGISTER_VIEW;
         }
@@ -158,7 +158,7 @@ public class UserController {
      */
     @GetMapping("/user/edit/{id}")
     public String showEditUser(@PathVariable("id") int id, Model model) {
-        añadirTiposUsuario(model);
+        addUserTypes(model);
         User u = getUserOrThrow(id);
         model.addAttribute("user", u);
         return "userEdit";
@@ -173,7 +173,7 @@ public class UserController {
      */
     @PostMapping("/user/edit")
     public String editUser(@ModelAttribute("user") @Validated(SpringFormEditGroup.class) User newUser, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) throws ServletException {
-        añadirTiposUsuario(model);
+        addUserTypes(model);
         if (bindingResult.hasErrors()) {
             return REGISTER_VIEW;
         }
@@ -261,7 +261,7 @@ public class UserController {
      * with the different newUser types and their internationalized representation
      * @param model MachineModel of the response scope
      */
-    private void añadirTiposUsuario(Model model) {
+    private void addUserTypes(Model model) {
         LinkedHashMap<String, String> roles = new LinkedHashMap<>();
         roles.put(User.ROLE_ADMIN,
                 messageSource.getMessage("role.admin", null, locale.resolveLocale(request)));

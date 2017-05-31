@@ -18,49 +18,9 @@
         <put-attribute name="body" value="/WEB-INF/views/bodys/index.jsp" />
     </definition>
 
-    <definition name="login" extends="index">
-        <put-attribute name="title" type="string" value="pages.index" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/login.jsp" />
-    </definition>
-
-    <definition name="register" extends="index">
-        <put-attribute name="title" type="string" value="pages.register" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/register.jsp" />
-    </definition>
-
-    <definition name="resourceRegister" extends="index">
-        <put-attribute name="title" type="string" value="pages.resourceRegister" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/resourceRegister.jsp" />
-    </definition>
-
-    <definition name="userManager" extends="index">
-        <put-attribute name="title" type="string" value="pages.userManager"/>
-        <put-attribute name="body" value="/WEB-INF/views/bodys/usermanager.jsp"/>
-    </definition>
-
-    <definition name="userView" extends="index">
-        <put-attribute name="title" type="string" value="pages.userView"/>
-        <put-attribute name="body" value="/WEB-INF/views/bodys/userView.jsp"/>
-    </definition>
-
-    <definition name="userEdit" extends="index">
-        <put-attribute name="title" type="string" value="pages.profile"/>
-        <put-attribute name="body" value="/WEB-INF/views/bodys/editUser.jsp"/>
-    </definition>
-
-    <definition name="machineRegister" extends="index">
-        <put-attribute name="title" type="string" value="pages.modelRegister" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/modelRegister.jsp" />
-    </definition>
-
     <definition name="machineEdit" extends="index">
         <put-attribute name="title" type="string" value="pages.modelRegister" />
         <put-attribute name="body" value="/WEB-INF/views/bodys/machineEdit.jsp" />
-    </definition>
-
-    <definition name="productManager" extends="index">
-        <put-attribute name="title" type="string" value="pages.productManager" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/productManager.jsp" />
     </definition>
 
     <definition name="machineManager" extends="index">
@@ -77,26 +37,5 @@
         <put-attribute name="title" type="string" value="pages.manage" />
         <put-attribute name="body" value="/WEB-INF/views/bodys/machineView.jsp" />
     </definition>
-
-    <definition name="404" extends="index">
-        <put-attribute name="title" type="string" value="pages.404"/>
-        <put-attribute name="body" value="/WEB-INF/views/bodys/errors/404.jsp"/>
-    </definition>
-
-    <definition name="500" extends="index">
-        <put-attribute name="title" type="string" value="pages.500"/>
-        <put-attribute name="body" value="/WEB-INF/views/bodys/errors/500.jsp"/>
-    </definition>
-
-    <definition name="401" extends="index">
-        <put-attribute name="title" type="string" value="pages.401"/>
-        <put-attribute name="body" value="/WEB-INF/views/bodys/errors/401.jsp"/>
-    </definition>
-
-    <definition name="403" extends="index">
-        <put-attribute name="title" type="string" value="pages.403"/>
-        <put-attribute name="body" value="/WEB-INF/views/bodys/errors/403.jsp"/>
-    </definition>
-
 
 </tiles-definitions>

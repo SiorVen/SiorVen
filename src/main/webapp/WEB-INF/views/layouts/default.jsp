@@ -17,7 +17,16 @@
 
     <tiles:importAttribute name="stylesheets" ignore="true"/>
 
-    <script type="text/javascript" src="<c:url value='/res/js/jquery-3.2.1.min.js' />"></script>
+    <!-- <script type="text/javascript" src="<c:url value='/res/js/jquery-3.2.1.min.js' />"></script> -->
+    <!-- Load jQuery UI CSS  -->
+    <!-- TODO hacer estas librerias locales -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" media="all" type="text/css"
+          href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"/>
+    <!-- Load jQuery JS -->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <!-- Load jQuery UI Main JS  -->
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script type="text/javascript"
             src="<c:url value='/res/js/bootstrap.min.js'/>"></script>
     <link rel="stylesheet" type="text/css"

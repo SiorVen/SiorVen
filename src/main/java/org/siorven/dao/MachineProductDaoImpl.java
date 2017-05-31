@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.siorven.model.MachineProduct;
+import org.siorven.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,5 +63,11 @@ public class MachineProductDaoImpl implements MachineProductDao {
     @Override
     public List findAll() {
         return getSession().createCriteria(MachineProduct.class).list();
+    }
+
+    @Override
+    public List<MachineProduct> findByProduct(Product p) {
+        Criteria crit = getSession().createCriteria(MachineProduct.class).add(Restrictions.eq("product", p));
+        return crit.list();
     }
 }

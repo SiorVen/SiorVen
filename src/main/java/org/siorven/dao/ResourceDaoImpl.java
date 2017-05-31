@@ -77,4 +77,10 @@ public class ResourceDaoImpl implements ResourceDao {
         Criteria crit = getSession().createCriteria(Resource.class).add(Restrictions.eq("resourceType", resourceType));
         return crit.list();
     }
+
+    @Override
+    public List<Resource> findByLikeName(String nombreResource) {
+        Criteria crit = getSession().createCriteria(Resource.class).add(Restrictions.like("name","%"  + nombreResource + "%"));
+        return crit.list();
+    }
 }

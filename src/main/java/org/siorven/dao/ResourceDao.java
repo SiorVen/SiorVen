@@ -69,4 +69,6 @@ public interface ResourceDao {
      * @return The list of resources with that resource type
      */
     List findByResourceType(String resourceType);
+
+    List<Resource> findByLikeName(String nombreResource);
 }

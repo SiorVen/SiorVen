@@ -18,12 +18,15 @@ public class Product {
     @Column(unique = true)
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "product")
     private List<Ingredient> recipe;
 
     public Product(String name, List<Ingredient> recipe) {
         this.name = name;
         this.recipe = recipe;
+        for (Ingredient i : recipe) {
+            i.setProduct(this);
+        }
     }
 
     public Product() {

@@ -2,6 +2,7 @@ package org.siorven.services;
 
 import org.siorven.dao.MachineProductDao;
 import org.siorven.model.MachineProduct;
+import org.siorven.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +39,9 @@ public class MachineProductService {
 
     public List findAll() {
         return machineProductDao.findAll();
+    }
+
+    public List<MachineProduct> findByProduct(Product p) {
+        return machineProductDao.findByProduct(p);
     }
 }

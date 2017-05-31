@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="login" extends="index">
+        <put-attribute name="title" type="string" value="pages.index" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/login.jsp" />
+    </definition>
+
+    <definition name="register" extends="index">
+        <put-attribute name="title" type="string" value="pages.register" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/register.jsp" />
+    </definition>
+
+    <definition name="userManager" extends="index">
+        <put-attribute name="title" type="string" value="pages.userManager"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/usermanager.jsp"/>
+    </definition>
+
+    <definition name="userView" extends="index">
+        <put-attribute name="title" type="string" value="pages.userView"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/userView.jsp"/>
+    </definition>
+
+    <definition name="userEdit" extends="index">
+        <put-attribute name="title" type="string" value="pages.profile"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/editUser.jsp"/>
+    </definition>
+
+    <definition name="machineRegister" extends="index">
+        <put-attribute name="title" type="string" value="pages.modelRegister" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/modelRegister.jsp" />
+    </definition>
+</tiles-definitions>

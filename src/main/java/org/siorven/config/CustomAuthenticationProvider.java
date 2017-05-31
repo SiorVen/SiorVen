@@ -28,12 +28,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         //Datos del formulario de login
         String usuario = authentication.getName();
-        String contraseña = (String) authentication.getCredentials();
+        String password = (String) authentication.getCredentials();
 
         User user = (User) customUserDetailsService.loadUserByUsername(usuario);
 
         if(user != null){
-            if (passwordEncoder.matches(contraseña, user.getPassword())){
+            if (passwordEncoder.matches(password, user.getPassword())){
                 user.setPassword("");
                 return new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
             }

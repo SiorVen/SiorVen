@@ -25,6 +25,9 @@ public class Ingredient {
     @OneToOne
     private Resource resource;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Product product;
+
     public Ingredient(Resource resource, int quantity) {
         this.quantity = quantity;
         this.resource = resource;
@@ -55,5 +58,13 @@ public class Ingredient {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

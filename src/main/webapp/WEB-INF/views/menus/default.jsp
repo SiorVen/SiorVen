@@ -14,6 +14,12 @@
                         <spring:message code="action.myProfile"/>
                     </a>
                 </li>
+                <li>
+                    <a href="<c:url value="/product/manager" />">
+                        <i class="fa fa-cart-plus fa-fw"></i>
+                        <spring:message code="pages.productManager"/>
+                    </a>
+                </li>
             </sec:authorize>
             <sec:authorize access="hasAuthority('ROLE_ADMIN')">
                 <li>
@@ -28,6 +34,7 @@
                         <spring:message code="action.manageMachines"/>
                     </a>
                 </li>
+
             </sec:authorize>
             <sec:authorize access="!isAuthenticated()">
                 <li>

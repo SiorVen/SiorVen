@@ -100,4 +100,8 @@ public class ResourceService {
     public List findByResourceType(String resourceType) {
         return resourceDao.findByResourceType(resourceType);
     }
+
+    public List<Resource> findBylikeName(String nombreResource) {
+        return resourceDao.findByLikeName(nombreResource);
+    }
 }
