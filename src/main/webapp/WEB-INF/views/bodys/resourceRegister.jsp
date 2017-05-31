@@ -27,6 +27,7 @@
                         <sf:errors path="resourceType" cssClass="text-danger"/>
                     </div>
                 </div>
+                <input type="hidden" name="prodid" value="${prodid}"/>
                 <div class="control-group" style="margin-top: 20px">
                     <!-- Button -->
                     <div class="controls">
