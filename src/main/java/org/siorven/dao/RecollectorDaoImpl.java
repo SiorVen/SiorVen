@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by Gorospe on 31/05/2017.
  */
@@ -56,5 +58,10 @@ public class RecollectorDaoImpl implements RecollectorDao {
     public Recollector findByAlias(String alias) {
         Criteria crit = getSession().createCriteria(Recollector.class).add(Restrictions.eq("alias", alias));
         return (Recollector) crit.uniqueResult();
+    }
+
+    @Override
+    public List<Recollector> findAll() {
+        return getSession().createCriteria(Recollector.class).list();
     }
 }

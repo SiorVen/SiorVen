@@ -5,6 +5,8 @@ import org.siorven.model.Recollector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Gorospe on 31/05/2017.
  */
@@ -32,5 +34,9 @@ public class RecollectorService {
 
     public Recollector findByAlias(String alias){
         return recollectorDao.findByAlias(alias);
+    }
+
+    public List<Recollector> findAll(){
+        return recollectorDao.findAll();
     }
 }

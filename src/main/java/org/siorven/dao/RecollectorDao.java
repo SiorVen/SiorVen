@@ -20,4 +20,6 @@ public interface RecollectorDao {
 
     Recollector findByAlias(String alias);
 
+    List<Recollector> findAll();
+
 }

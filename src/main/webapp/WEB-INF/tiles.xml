@@ -49,4 +49,9 @@
         <put-attribute name="body" value="/WEB-INF/views/bodys/suggestionManager.jsp" />
     </definition>
 
+    <definition name="recollectorManager" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/recollectorManager.jsp" />
+    </definition>
+
 </tiles-definitions>

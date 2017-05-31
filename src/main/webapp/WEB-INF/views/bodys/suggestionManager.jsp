@@ -33,14 +33,8 @@
     $(document)
         .ready(
             function () {
-                <c:message var="noResult" code="resource.noResult"/>
-                var noResult = '<jstl:out value="${noResult}"/>';
                 var machineId = '<jstl:out value="${machineId}"/>';
                 var path = $("#path").val();
-                $("#resource").autocomplete({
-                    source: path + "/api/resource/search",
-                    noResult: noResult
-                });
                 $('#machinetable')
                     .dataTable(
                         {
