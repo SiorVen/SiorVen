@@ -1,6 +1,7 @@
 package org.siorven.model;
 
 
+import org.siorven.model.interfaces.IBoundleRepresentable;
 import org.springframework.context.MessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 
@@ -13,7 +14,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "suggestion")
-public abstract class Suggestion {
+public abstract class Suggestion implements IBoundleRepresentable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

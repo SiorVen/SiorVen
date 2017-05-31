@@ -3,6 +3,7 @@ package org.siorven.dao;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.siorven.model.Suggestion;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,6 @@ public class SuggestionDaoImpl implements SuggestionDao {
 
     @Override
     public List findAll() {
-        return getSession().createCriteria(Suggestion.class).list();
+        return getSession().createCriteria(Suggestion.class).addOrder(Order.desc("weight")).list();
     }
 }

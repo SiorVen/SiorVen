@@ -1,5 +1,7 @@
 package org.siorven.model;
 
+import org.siorven.model.interfaces.IResourceContainer;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

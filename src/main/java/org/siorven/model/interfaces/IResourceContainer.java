@@ -1,4 +1,6 @@
-package org.siorven.model;
+package org.siorven.model.interfaces;
+
+import org.siorven.model.Slot;
 
 import java.util.Map;
 

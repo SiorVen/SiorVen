@@ -20,6 +20,12 @@
                         <spring:message code="pages.productManager"/>
                     </a>
                 </li>
+                <li>
+                    <a href="<c:url value="/suggestion/manager" />">
+                        <i class="fa fa-exclamation fa-fw"></i>
+                        <spring:message code="pages.suggestionManager"/>
+                    </a>
+                </li>
             </sec:authorize>
             <sec:authorize access="hasAuthority('ROLE_ADMIN')">
                 <li>
@@ -30,7 +36,7 @@
                 </li>
                 <li>
                     <a href="<c:url value="/machine/manager" />">
-                        <i class="fa fa-users fa-fw"></i>
+                        <i class="fa fa-building fa-fw"></i>
                         <spring:message code="action.manageMachines"/>
                     </a>
                 </li>

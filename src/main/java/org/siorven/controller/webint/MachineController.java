@@ -2,7 +2,6 @@ package org.siorven.controller.webint;
 
 import org.siorven.controller.handlers.errors.ResourceNotFoundException;
 import org.siorven.controller.webint.forms.MachineEditForm;
-import org.siorven.controller.webint.forms.MachineModelForm;
 import org.siorven.controller.webint.forms.MachineViewForm;
 import org.siorven.model.Machine;
 import org.siorven.model.MachineModel;

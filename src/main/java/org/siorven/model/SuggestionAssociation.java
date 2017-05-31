@@ -73,4 +73,9 @@ public class SuggestionAssociation extends Suggestion {
     public void setConsequenceList(List<Statement> consequenceList) {
         this.consequenceList = consequenceList;
     }
+
+    @Override
+    public String geyClassKey() {
+        return "suggestion.association";
+    }
 }

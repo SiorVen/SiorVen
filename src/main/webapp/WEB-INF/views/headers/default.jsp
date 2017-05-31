@@ -61,7 +61,7 @@
                     </li>
                     <li>
                         <a href="<c:url value="/machine/manager" />">
-                            <i class="fa fa-users fa-fw"></i>
+                            <i class="fa fa-building fa-fw"></i>
                             <spring:message code="action.manageMachines"/>
                         </a>
                     </li>

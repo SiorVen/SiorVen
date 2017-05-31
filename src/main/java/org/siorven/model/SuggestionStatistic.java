@@ -44,6 +44,7 @@ public class SuggestionStatistic extends Suggestion {
         return "Max: " + maxProduct.getName() + "\nMin: " + minProduct.getName();
     }
 
+
     public Product getMaxProduct() {
         return maxProduct;
     }
@@ -58,5 +59,10 @@ public class SuggestionStatistic extends Suggestion {
 
     public void setMinProduct(Product minProduct) {
         this.minProduct = minProduct;
+    }
+
+    @Override
+    public String geyClassKey() {
+        return "suggestion.statistic";
     }
 }

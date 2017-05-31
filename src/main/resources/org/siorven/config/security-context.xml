@@ -44,6 +44,7 @@
         <security:intercept-url pattern="/model/**" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/machine/**" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/resource/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/suggestion/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/**" access="denyAll()"/>
 
         <security:form-login login-page="/login" password-parameter="clave" username-parameter="usuario"
