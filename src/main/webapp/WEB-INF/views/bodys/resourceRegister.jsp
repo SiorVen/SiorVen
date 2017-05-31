@@ -27,6 +27,7 @@
                         <sf:errors path="resourceType" cssClass="text-danger"/>
                     </div>
                 </div>
+                <input type="hidden" name="prodid" value="${prodid}"/>
                 <div class="control-group" style="margin-top: 20px">
                     <!-- Button -->
                     <div class="controls">
@@ -37,10 +38,5 @@
                 </div>
             </fieldset>
         </sf:form>
-
-        <div class="well">
-            <p><s:message code="LOPDNotice" /></p>
-        </div>
-
     </div>
 </div>

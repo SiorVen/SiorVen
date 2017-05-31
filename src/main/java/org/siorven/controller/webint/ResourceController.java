@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -28,7 +29,9 @@ import java.util.LinkedHashMap;
 public class ResourceController {
     public static final String RESOURCE_REGISTER_VIEW = "resourceRegister";
     public static final String RESOURCE = "resource";
-    public static final String REDIRECT_PRODUCT_REGISTER = "redirect:/product/register";
+    public static final String REDIRECT_PRODUCT_REGISTER = "redirect:/product/";
+    public static final String REDIRECT_PRODUCT_MANAGER = "redirect:/product/manager";
+
 
 
     @Autowired
@@ -58,8 +61,12 @@ public class ResourceController {
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @GetMapping("/resource/register")
-    public String showRegister(Model model){
+    public String showRegister(Model model, @RequestParam(required = false) Integer prodid){
         model.addAttribute(RESOURCE, new Resource());
+        if(prodid == null){
+            prodid = new Integer(0);
+        }
+        model.addAttribute("prodid",prodid.intValue());
         addResourceTypes(model);
         return RESOURCE_REGISTER_VIEW;
     }
@@ -73,8 +80,9 @@ public class ResourceController {
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/resource/register")
-    public String performRegister(@ModelAttribute(RESOURCE) @Validated(SpringFormGroup.class) Resource resource,
+    public String performRegister(@ModelAttribute(RESOURCE) @Validated(SpringFormGroup.class) Resource resource, @ModelAttribute("prodid") int prodid,
                                   BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+
         addResourceTypes(model);
         if (bindingResult.hasErrors()) {
             return RESOURCE_REGISTER_VIEW;
@@ -92,7 +100,11 @@ public class ResourceController {
                 new String[]{resource.getName()}, locale.resolveLocale(request));
         redirectAttributes.addFlashAttribute("message", msg);
 
-        return REDIRECT_PRODUCT_REGISTER;
+        if(prodid > 0) {
+            return REDIRECT_PRODUCT_REGISTER + prodid;
+        }else{
+            return REDIRECT_PRODUCT_MANAGER;
+        }
     }
 
     /**

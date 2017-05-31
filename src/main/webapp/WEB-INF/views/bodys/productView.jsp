@@ -78,7 +78,7 @@
                                     "data": "id",
                                     "render": function (data, type, full, meta) {
                                         return '<div class="btn-group" style="width: ">' +
-                                            '<a class="btn btn-danger" href=' + path + '"/ingredient/delete/' + data + '"><i class="fa fa-times"></i></a></div>';
+                                            '<a class="btn btn-danger" href="' + path + '/ingredient/delete/' + data + '"><i class="fa fa-times"></i></a></div>';
                                     }
                                 }, {
                                     "data": "name"

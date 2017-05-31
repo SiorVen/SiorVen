@@ -129,10 +129,18 @@ public class AprioriAssociation {
             double weight = rule.getTotalSupport();
 
             for(Machine machine : machineList) {
-                suggestion = new SuggestionAssociation(finishDate, machine,weight);
-                suggestion.setConsequenceList(consequences);
-                suggestion.setPremiseList(premises);
-                suggestionService.save(suggestion);
+                if(premises.size() > 0 && consequences.size() > 0 ) {
+                    for(Statement s : premises){
+                        statementService.save(s);
+                    }
+                    for(Statement s : consequences){
+                        statementService.save(s);
+                    }
+                    suggestion = new SuggestionAssociation(finishDate, machine, weight);
+                    suggestion.setConsequenceList(consequences);
+                    suggestion.setPremiseList(premises);
+                    suggestionService.save(suggestion);
+                }
             }
         } catch (Exception e) {
             System.out.println("Error parsing rule");
@@ -154,10 +162,12 @@ public class AprioriAssociation {
         List<Statement> statementList = new ArrayList<>();
         for (Item i : rule) {
             NominalItem ni = (NominalItem) i;
-            Statement statement = new Statement(productService.findByName(ni.getAttribute().name()),
-                    stringToBoolean(ni.getItemValueAsString()));
-            statementService.save(statement);
-            statementList.add(statement);
+            Product p = productService.findByName(ni.getAttribute().name());
+            if(p!=null) {
+                Statement statement = new Statement(p,stringToBoolean(ni.getItemValueAsString()));
+                //statementService.save(statement);
+                statementList.add(statement);
+            }
         }
         return statementList;
     }

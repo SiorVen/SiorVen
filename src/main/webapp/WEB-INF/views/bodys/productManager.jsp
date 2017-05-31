@@ -13,7 +13,7 @@
             ${message}
     </div>
 </jstl:if>
-<form:form action="product/new" method="post">
+<form:form action="${pageContext.request.contextPath}/product/new" method="post">
     <div class="control-group">
         <label class="control-label" for="name"><i class="fa fa-cart-plus" aria-hidden="true"></i>
             <c:message code="form.product.name"/></label>
