@@ -1,6 +1,7 @@
 package org.siorven.services;
 
 import org.siorven.dao.MachineProductDao;
+import org.siorven.model.Machine;
 import org.siorven.model.MachineProduct;
 import org.siorven.model.Slot;
 import org.siorven.model.Product;
@@ -48,5 +49,9 @@ public class MachineProductService {
 
     public List<MachineProduct> findByProduct(Product p) {
         return machineProductDao.findByProduct(p);
+    }
+
+    public List<MachineProduct> findByMachine(Machine machine) {
+        return machineProductDao.findByMachine(machine);
     }
 }

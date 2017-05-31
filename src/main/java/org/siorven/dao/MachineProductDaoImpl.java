@@ -4,6 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.siorven.model.Machine;
 import org.siorven.model.MachineProduct;
 import org.siorven.model.Slot;
 import org.siorven.model.Product;
@@ -81,6 +82,12 @@ public class MachineProductDaoImpl implements MachineProductDao {
     @Override
     public List<MachineProduct> findByProduct(Product p) {
         Criteria crit = getSession().createCriteria(MachineProduct.class).add(Restrictions.eq("product", p));
+        return crit.list();
+    }
+
+    @Override
+    public List<MachineProduct> findByMachine(Machine machine) {
+        Criteria crit = getSession().createCriteria(MachineProduct.class).add(Restrictions.eq("machine", machine));
         return crit.list();
     }
 }

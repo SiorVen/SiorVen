@@ -26,6 +26,7 @@ public class DatabaseInitializer {
         initializer.initExample();
         assertThereIsAnAdmin();
 
+
     }
 
     public void assertThereIsAnAdmin(){

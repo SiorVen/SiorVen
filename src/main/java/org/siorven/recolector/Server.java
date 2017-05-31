@@ -1,27 +1,36 @@
 package org.siorven.recolector;
 
-public class Server extends Ice.Application
-{
-    @Override
-    public int run(String[] args)
-    {
-        if(args.length > 0)
-        {
-            System.err.println(appName() + ": too many arguments");
-            return 1;
-        }
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-        Ice.ObjectAdapter adapter = communicator().createObjectAdapter("DataCollector");
-        adapter.add(new DataCollector(), Ice.Util.stringToIdentity("dataCollector"));
-        adapter.activate();
-        communicator().waitForShutdown();
-        return 0;
+@Component
+public class Server
+{
+    private static String SERVER_CONFIG = "--Ice.Config=/org/siorven/ice/config.server";
+
+    Ice.Communicator ic = null;
+
+    @Autowired
+    private DataCollector dataCollector;
+
+    /*public Server(String[] args){
+        ic = Ice.Util.initialize(args);
+    }*/
+
+    public Server(){
+
     }
 
-    public static void main(String[] args)
+    public int run()
     {
-        Server app = new Server();
-        int status = app.main("Server", args, "config.server");
-        System.exit(status);
+        String[] args = new String[1];
+        args[0] = SERVER_CONFIG;
+        ic = Ice.Util.initialize(args);
+        Ice.ObjectAdapter adapter = ic.createObjectAdapter("DataCollector");
+        adapter.add(dataCollector, Ice.Util.stringToIdentity("dataCollector"));
+        adapter.activate();
+        System.out.println("Server running");
+        ic.waitForShutdown();
+        return 0;
     }
 }

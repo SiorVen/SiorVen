@@ -1,5 +1,6 @@
 package org.siorven.dao;
 
+import org.siorven.model.Machine;
 import org.siorven.model.MachineProduct;
 import org.siorven.model.Slot;
 import org.siorven.model.Product;
@@ -28,4 +29,6 @@ public interface MachineProductDao {
     MachineProduct getMachineProductFromSlot(Slot slot);
 
     List<MachineProduct> findByProduct(Product p);
+
+    List<MachineProduct> findByMachine(Machine machine);
 }
