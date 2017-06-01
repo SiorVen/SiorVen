@@ -20,6 +20,7 @@ public class RecommenderMain {
     public static final int DAY_IN_MILIS = 24 * 60 * 60 * 1000;
     public static final int WEEK_IN_MILIS = 7 * DAY_IN_MILIS;
     public static final int SUCCESS_RATE = 10;
+    public static final int MIN_INSTANCES_FOR_GOOD_SUGGESTIONS = 30;
 
     @Autowired
     private ProductService productService;
@@ -69,7 +70,9 @@ public class RecommenderMain {
         }
 
         Instances data = generateDataForApriori();
-        apriori.runApriori(data);
+        if(data.size() > MIN_INSTANCES_FOR_GOOD_SUGGESTIONS) {
+            apriori.runApriori(data);
+        }
 
 
     }
@@ -86,7 +89,7 @@ public class RecommenderMain {
                 minEntry = entry;
             }
         }
-        if(maxEntry != null && minEntry != null) {
+        if(!machineProductQuantity.isEmpty()) {
             Product maxProduct = productService.findById(maxEntry.getKey());
             Product minProduct = productService.findById(minEntry.getKey());
             Suggestion maxMinSug = new SuggestionStatistic(now, machine, maxProduct, minProduct, 10);

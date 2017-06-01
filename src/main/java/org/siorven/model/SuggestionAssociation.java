@@ -45,7 +45,7 @@ public class SuggestionAssociation extends Suggestion {
      */
     @Override
     public String toString(MessageSource messageSource, LocaleResolver resolver, HttpServletRequest request) {
-        StringBuilder stb = new StringBuilder("if ");
+        StringBuilder stb = new StringBuilder(" ");
         for (Statement s : premiseList) {
             stb.append(s.getProduct().getName() + "{" + s.isStatementResult() + "}; ");
         }
@@ -55,6 +55,23 @@ public class SuggestionAssociation extends Suggestion {
             stb.append(s.getProduct().getName() + "{" + s.isStatementResult() + "};");
         }
         return stb.toString();
+    }
+
+    @Override
+    public String getFinalConsequence() {
+        StringBuilder stb = new StringBuilder("");
+        for (Statement s : consequenceList) {
+            stb.append(booleanToString(s.isStatementResult()) + " " + s.getProduct().getName() + "\n");
+        }
+        return stb.toString();
+    }
+
+    private String booleanToString(boolean state) {
+        if (state) {
+            return "Introducir";
+        } else {
+            return "Quitar";
+        }
     }
 
     public List<Statement> getPremiseList() {

@@ -33,8 +33,6 @@ public class SuggestionStatistic extends Suggestion {
     }
 
     /**
-     * TODO behar dan moduen ipini, momentuz MIERDA bat
-     *
      * @param messageSource
      * @param resolver
      * @param request
@@ -42,7 +40,12 @@ public class SuggestionStatistic extends Suggestion {
      */
     @Override
     public String toString(MessageSource messageSource, LocaleResolver resolver, HttpServletRequest request) {
-        return "Max: " + maxProduct.getName() + "\nMin: " + minProduct.getName();
+        return "Los productos mas y menos vendidos";
+    }
+
+    @Override
+    public String getFinalConsequence() {
+        return "Introducir " + maxProduct.getName() + "\nQuitar " + minProduct.getName();
     }
 
 

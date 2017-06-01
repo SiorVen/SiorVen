@@ -84,23 +84,23 @@ public class Initializer {
 
             MachineModel machineModel = createMachineModel("M1", "man", distributions);
 
-            generateProduct("R1", "Choco-Bones Blancos");
-            generateProduct("R2", "Manzana");
-            generateProduct("R3", "Choco-Bones Negros");
-            generateProduct("R4", "Chaskis barbacoa");
-            generateProduct("R5", "Doritos");
-            generateProduct("R6", "Patatas fritas");
-            generateProduct("R7", "Oreo Gold");
-            generateProduct("R8", "Galleta integral");
-            generateProduct("R9", "Palmera chocolate");
-            generateProduct("R10", "Sandwich de pavo");
-            generateProduct("R11", "Palmera Integral");
-            generateProduct("R12", "Cuadrado trufa");
-            generateProduct("R13", "Pantera rosa");
-            generateProduct("R14", "Cafe con leche");
-            generateProduct("R15", "Cafe cortado");
-            generateProduct("R16", "Chocolate");
-            generateProduct("R17", "Te verde");
+            generateProduct("Choco-Bones Blancos", "Choco-Bones Blancos");
+            generateProduct("Manzana", "Manzana");
+            generateProduct("Choco-Bones Negros", "Choco-Bones Negros");
+            generateProduct("Chaskis barbacoa", "Chaskis barbacoa");
+            generateProduct("Doritos", "Doritos");
+            generateProduct("Patatas fritas", "Patatas fritas");
+            generateProduct("Oreo Gold", "Oreo Gold");
+            generateProduct("Galleta integral", "Galleta integral");
+            generateProduct("Palmera chocolate", "Palmera chocolate");
+            generateProduct("Sandwich de pavo", "Sandwich de pavo");
+            generateProduct("Palmera Integral", "Palmera Integral");
+            generateProduct("Cuadrado trufa", "Cuadrado trufa");
+            generateProduct("Pantera rosa", "Pantera rosa");
+            generateProduct("Cafe con leche", "Cafe con leche");
+            generateProduct("Cafe cortado", "Cafe cortado");
+            generateProduct("Chocolate", "Chocolate");
+            generateProduct("Te verde", "Te verde");
 
             generateMachine(slots, machineModel, "Machine1");
             generateMachine(slots, machineModel, "Machine2");

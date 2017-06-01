@@ -1,10 +1,7 @@
 package org.siorven.recommender;
 
 import org.siorven.model.*;
-import org.siorven.services.MachineService;
-import org.siorven.services.ProductService;
-import org.siorven.services.StatementService;
-import org.siorven.services.SuggestionService;
+import org.siorven.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import weka.associations.*;
@@ -41,6 +38,9 @@ public class AprioriAssociation {
 
     @Autowired
     private StatementService statementService;
+
+    @Autowired
+    private MachineProductService machineProductService;
 
     private Timestamp finishDate;
 
@@ -134,16 +134,18 @@ public class AprioriAssociation {
 
             for (Machine machine : machineList) {
                 if (!premises.isEmpty() && !consequences.isEmpty()) {
-                    for (Statement s : premises) {
-                        statementService.save(s);
+                    if(checkIfMachineHasPremises(machine, premises)) {
+                        for (Statement s : premises) {
+                            statementService.save(s);
+                        }
+                        for (Statement s : consequences) {
+                            statementService.save(s);
+                        }
+                        suggestion = new SuggestionAssociation(finishDate, machine, weight);
+                        suggestion.setConsequenceList(consequences);
+                        suggestion.setPremiseList(premises);
+                        suggestionService.save(suggestion);
                     }
-                    for (Statement s : consequences) {
-                        statementService.save(s);
-                    }
-                    suggestion = new SuggestionAssociation(finishDate, machine, weight);
-                    suggestion.setConsequenceList(consequences);
-                    suggestion.setPremiseList(premises);
-                    suggestionService.save(suggestion);
                 }
             }
         } catch (Exception e) {
@@ -153,6 +155,19 @@ public class AprioriAssociation {
         return suggestion;
     }
 
+    private boolean checkIfMachineHasPremises(Machine m, List<Statement> premises) {
+        boolean checker = false;
+        List<MachineProduct> machineProducts = machineProductService.findByMachine(m);
+        for(Statement s : premises) {
+            for (MachineProduct mp : machineProducts) {
+                if (mp.getProduct().getId() == s.getProduct().getId()){
+                    checker = true;
+                    break;
+                }
+            }
+        }
+        return checker;
+    }
     private boolean stringToBoolean(String s) throws Exception {
         if (TRUE.equalsIgnoreCase(s)) {
             return true;

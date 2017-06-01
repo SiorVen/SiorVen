@@ -40,6 +40,7 @@ public abstract class Suggestion implements IBoundleRepresentable {
 
     public abstract String toString(MessageSource messageSource, LocaleResolver resolver, HttpServletRequest request);
 
+    public abstract String getFinalConsequence();
 
     public Timestamp getGenerateDate() {
         return generateDate;
@@ -72,4 +73,5 @@ public abstract class Suggestion implements IBoundleRepresentable {
     public void setWeight(double weight) {
         this.weight = weight;
     }
+
 }
