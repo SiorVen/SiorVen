@@ -16,20 +16,21 @@ import java.sql.Timestamp;
 @Table(name = "suggestion")
 public class SuggestionStatistic extends Suggestion {
 
+    public static boolean MAX = true;
+    public static boolean MIN = false;
 
     @ManyToOne
-    private Product maxProduct;
+    private Product product;
 
-    @ManyToOne
-    private Product minProduct;
+    private boolean reason;
 
     public SuggestionStatistic() {
     }
 
-    public SuggestionStatistic(Timestamp generateDate, Machine machine, Product max, Product min, double weight) {
+    public SuggestionStatistic(Timestamp generateDate, Machine machine, Product product, boolean maxMin, double weight) {
         super(generateDate, machine, weight);
-        this.maxProduct = max;
-        this.minProduct = min;
+        this.product = product;
+        this.reason = maxMin;
     }
 
     /**
@@ -45,24 +46,7 @@ public class SuggestionStatistic extends Suggestion {
 
     @Override
     public String getFinalConsequence() {
-        return "Introducir " + maxProduct.getName() + "\nQuitar " + minProduct.getName();
-    }
-
-
-    public Product getMaxProduct() {
-        return maxProduct;
-    }
-
-    public void setMaxProduct(Product maxProduct) {
-        this.maxProduct = maxProduct;
-    }
-
-    public Product getMinProduct() {
-        return minProduct;
-    }
-
-    public void setMinProduct(Product minProduct) {
-        this.minProduct = minProduct;
+        return "Introducir " + product.getName();
     }
 
     @Override

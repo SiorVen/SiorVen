@@ -21,6 +21,12 @@ public class RecommenderMain {
     public static final int WEEK_IN_MILIS = 7 * DAY_IN_MILIS;
     public static final int SUCCESS_RATE = 10;
     public static final int MIN_INSTANCES_FOR_GOOD_SUGGESTIONS = 30;
+    public static final double MIN_RATE = 0.5;
+    public static final double MAX_RATE = 1.5;
+
+
+    private static boolean MAX = true;
+    private static boolean MIN = false;
 
     @Autowired
     private ProductService productService;
@@ -63,7 +69,7 @@ public class RecommenderMain {
 
         Timestamp weekBefore = new Timestamp(now.getTime() - WEEK_IN_MILIS);
         for (Machine machine : machineList) {
-            HashMap<Integer, Integer> machineProductQuantity = countProductOfSales(saleService.getSalesFromMachineBetweenDates(weekBefore, now, machine));
+            HashMap<Integer, Double> machineProductQuantity = countProductOfSales(saleService.getSalesFromMachineBetweenDates(weekBefore, now, machine));
             if (machineProductQuantity.size() > 0) {
                 generateMaxMinSuggestions(machine, machineProductQuantity);
             }
@@ -77,36 +83,56 @@ public class RecommenderMain {
 
     }
 
-    private void generateMaxMinSuggestions(Machine machine, HashMap<Integer, Integer> machineProductQuantity) {
-        Map.Entry<Integer, Integer> maxEntry = null;
-        Map.Entry<Integer, Integer> minEntry = null;
+    private void generateMaxMinSuggestions(Machine machine, HashMap<Integer, Double> machineProductQuantity) {
+        int totalSales = 0;
+        double mediaSales;
+        for (Map.Entry<Integer, Double> entry : machineProductQuantity.entrySet()) {
+            totalSales += entry.getValue();
+        }
+        List<MachineProduct> products = machineProductService.findByMachine(machine);
+        mediaSales = totalSales / ((double) products.size());
+        for (MachineProduct mp : products){
 
-        for (Map.Entry<Integer, Integer> entry : machineProductQuantity.entrySet()) {
-            if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
-                maxEntry = entry;
-            }
-            if (minEntry == null || entry.getValue().compareTo(minEntry.getValue()) < 0) {
-                minEntry = entry;
+            if(machineProductQuantity.containsKey(mp.getProduct().getId())){
+                Double saleQnt = machineProductQuantity.get(mp.getProduct().getId());
+                if (saleQnt.compareTo(mediaSales * MAX_RATE) > 0) {
+                    Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MIN, 10);
+                    suggestionService.save(maxMinSug);
+                }
+                if (saleQnt.compareTo(mediaSales * MIN_RATE) < 0) {
+                    Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MIN, 5);
+                    suggestionService.save(maxMinSug);
+                }
+            } else {
+                Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),MIN, 10);
+                suggestionService.save(maxMinSug);
             }
         }
-        if (maxEntry != null) {
-            Product maxProduct = productService.findById(maxEntry.getKey());
-            Product minProduct = productService.findById(minEntry.getKey());
-            Suggestion maxMinSug = new SuggestionStatistic(now, machine, maxProduct, minProduct, 10);
-            System.out.println(maxMinSug.toString(null, null, null));
-            suggestionService.save(maxMinSug);
+
+        for (Map.Entry<Integer, Double> entry : machineProductQuantity.entrySet()) {
+            if (entry.getValue().compareTo(mediaSales * MAX_RATE) > 0) {
+                Product maxProduct = productService.findById(entry.getKey());
+                Suggestion maxMinSug = new SuggestionStatistic(now, machine, maxProduct,MAX, 10);
+                suggestionService.save(maxMinSug);
+            }
+            if (entry.getValue().compareTo(mediaSales * MIN_RATE) < 0) {
+                Product minProduct = productService.findById(entry.getKey());
+                Suggestion maxMinSug = new SuggestionStatistic(now, machine, minProduct,MIN, 10);
+                suggestionService.save(maxMinSug);
+            }
         }
     }
 
-    private HashMap<Integer, Integer> countProductOfSales(List<Sale> saleList) {
-        HashMap<Integer, Integer> machineProductQuantity = new HashMap<>();
+    private HashMap<Integer, Double> countProductOfSales(List<Sale> saleList) {
+        HashMap<Integer, Double> machineProductQuantity = new HashMap<>();
         for (Sale sale : saleList) {
             Product p = sale.getProduct().getProduct();
             if (machineProductQuantity.containsKey(p.getId())) {
-                Integer sumQnty = machineProductQuantity.get(p.getId()) + sale.getQuantity();
+                Double sumQnty = machineProductQuantity.get(p.getId()) + sale.getQuantity();
                 machineProductQuantity.replace(p.getId(), sumQnty);
             } else {
-                machineProductQuantity.put(p.getId(), sale.getQuantity());
+                Double q = (double) sale.getQuantity();
+                machineProductQuantity.put(p.getId(), q);
             }
         }
 
@@ -130,13 +156,14 @@ public class RecommenderMain {
 
     private Instances getDataFromDatabase(FastVector atts) {
         Instances data = new Instances("prueba", atts, 0);
+
         for (Machine machine : machineList) {
             for (int i = 0; i < 30; i++) {
                 Timestamp from = new Timestamp(now.getTime() - (DAY_IN_MILIS * (i + 1)));
                 Timestamp to = new Timestamp(now.getTime() - (DAY_IN_MILIS * i));
                 List<Sale> machineDaySale = saleService.getSalesFromMachineBetweenDates(from, to, machine);
                 if (!machineDaySale.isEmpty()) {
-                    HashMap<Integer, Integer> productSales = countProductOfSales(machineDaySale);
+                    HashMap<Integer, Double> productSales = countProductOfSales(machineDaySale);
                     data.add(generateInstanceOfDay(atts, productSales));
                 }
             }
@@ -144,9 +171,9 @@ public class RecommenderMain {
         return data;
     }
 
-    private Instance generateInstanceOfDay(FastVector atts, HashMap<Integer, Integer> productSales) {
+    private Instance generateInstanceOfDay(FastVector atts, HashMap<Integer, Double> productSales) {
         Instance iExample = new DenseInstance(productList.size());
-        for (Map.Entry<Integer, Integer> entry : productSales.entrySet()) {
+        for (Map.Entry<Integer, Double> entry : productSales.entrySet()) {
             if (entry.getValue() > SUCCESS_RATE) {
                 Product p = productService.findById(entry.getKey());
                 for (int j = 0; j < atts.size(); j++) {
