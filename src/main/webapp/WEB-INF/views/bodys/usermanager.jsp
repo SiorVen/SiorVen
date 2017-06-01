@@ -29,19 +29,20 @@
         </thead>
     </table>
 </div>
+<input type="hidden" id="path" value="${pageContext.request.contextPath}">
 <script>
     $(document)
         .ready(
             function () {
-
+                var path = $('#path').val();
                 $('#usertable')
                     .dataTable(
                         {
                             language: {
-                                url: '../res/json/datatables.json'
+                                url: path + '/res/json/datatables.json'
                             },
                             "ajax": {
-                                "url": "../api/user/datatable",
+                                "url": path + "/api/user/datatable",
                                 "type": "POST"
                             },
                             "columnDefs": [{
@@ -53,11 +54,10 @@
                                 {
                                     "data": "id",
                                     "render": function (data, type, full, meta) {
-                                        return '<div class="btn-group" style="width: "><a class="btn btn-primary" href="../user/' + data + '"><i class="fa fa-user"></i></a>' +
-                                            '<a class="btn btn-warning" href="../user/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>' +
-                                            '<a class="btn btn-danger" href="../user/delete/' + data + '"><i class="fa fa-times"></i></a></div>';
+                                        return '<div class="btn-group" style="width: "><a class="btn btn-primary" href="' + path + '/user/' + data + '"><i class="fa fa-user"></i></a>' +
+                                            '<a class="btn btn-warning" href="' + path + '/user/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>' +
+                                            '<a class="btn btn-danger" href="' + path + '/user/delete/' + data + '"><i class="fa fa-times"></i></a></div>';
                                     }
-                                    //TODO: create methods to edit view and delete users prev urls
                                 }, {
                                     "data": "type"
                                 }, {

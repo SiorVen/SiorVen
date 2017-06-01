@@ -1,13 +1,9 @@
 package org.siorven.controller.webint;
 
 import org.apache.commons.io.FilenameUtils;
-import org.siorven.controller.handlers.errors.ResourceNotFoundException;
-import org.siorven.controller.webint.forms.MachineEditForm;
 import org.siorven.controller.webint.forms.MachineModelForm;
-import org.siorven.model.Machine;
 import org.siorven.model.MachineModel;
 import org.siorven.services.MachineModelService;
-import org.siorven.services.MachineService;
 import org.siorven.services.XmlValidationService;
 import org.siorven.utils.machineXmlParse.ModelXmlToModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,26 +15,29 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartException;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.LocaleResolver;
-
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.xml.sax.SAXParseException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Web controller for the new Machine actions on the interface
  */
 @Controller
-public class ModelController {
+public class ModelController implements HandlerExceptionResolver{
 
     public static final String MACHINE_MODEL = "machineModel";
-    public static final String MODEL_REGISTER_VIEW = "machineMachineRegister";
+    public static final String MODEL_REGISTER_VIEW = "modelRegister";
     public static final String REDIRECT_MODEL_REGISTER = "redirect:/model/register";
 
     /**
@@ -92,22 +91,22 @@ public class ModelController {
                                   RedirectAttributes redirectAttributes) throws IOException {
 
         if (bindingResult.hasErrors()) {
-            return REDIRECT_MODEL_REGISTER;
+            return MODEL_REGISTER_VIEW;
         }
 
         if (machine.getFile().isEmpty()) {
             String msg = messageSource.getMessage("error.model.notNull", null, locale.resolveLocale(request));
             bindingResult.addError(new FieldError(MACHINE_MODEL, "file", machine.getFile(), true, null, null, msg));
-            return REDIRECT_MODEL_REGISTER;
+            return MODEL_REGISTER_VIEW;
         }
         String ext = FilenameUtils.getExtension(machine.getFile().getOriginalFilename());
         if (isSuported(ext)) {
             try {
                 validator.ValidateMachine(new StreamSource(machine.getFile().getInputStream()));
-            } catch (IllegalArgumentException iae) {
-                String msg = messageSource.getMessage("error.model.validation", null, locale.resolveLocale(request));
+            } catch (SAXParseException spe) {
+                String msg = messageSource.getMessage("error.model.validation", new String[]{spe.getMessage()}, locale.resolveLocale(request));
                 bindingResult.addError(new FieldError(MACHINE_MODEL, "file", machine.getFile(), true, null, null, msg));
-                return REDIRECT_MODEL_REGISTER;
+                return MODEL_REGISTER_VIEW;
             }
             MachineModel machineModel = ModelXmlToModel.Xml2Model(machine.getFile());
             machineModelService.save(machineModel);
@@ -117,10 +116,10 @@ public class ModelController {
         } else {
             String msg = messageSource.getMessage("error.model.notXml", null, locale.resolveLocale(request));
             bindingResult.addError(new FieldError(MACHINE_MODEL, "file", machine.getFile(), true, null, null, msg));
-            return REDIRECT_MODEL_REGISTER;
+            return MODEL_REGISTER_VIEW;
         }
 
-        return REDIRECT_MODEL_REGISTER; //TODO: Should return a redirect to the machine manager
+        return "redirect:/machine/manager";
 
     }
 
@@ -131,4 +130,16 @@ public class ModelController {
         return flag;
     }
 
+    @Override
+    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) {
+        Map<String, Object> model = new HashMap<>();
+        if (exception instanceof MultipartException)
+        {
+            model.put("reason", "MAX FILE SIZE: " + exception.getMessage());
+        } else
+        {
+            model.put("reason", "Unexpected error: " + exception.getMessage());
+        }
+        return new ModelAndView("500", model);
+    }
 }

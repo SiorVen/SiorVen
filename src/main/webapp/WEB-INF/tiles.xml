@@ -28,6 +28,11 @@
         <put-attribute name="body" value="/WEB-INF/views/bodys/machineManager.jsp" />
     </definition>
 
+    <definition name="modelRegister" extends="index">
+        <put-attribute name="title" type="string" value="pages.modelRegister" />
+        <put-attribute name="body" value="/WEB-INF/views/bodys/modelRegister.jsp" />
+    </definition>
+
     <definition name="machineMachineRegister" extends="index">
         <put-attribute name="title" type="string" value="pages.manage" />
         <put-attribute name="body" value="/WEB-INF/views/bodys/machineRegister.jsp" />

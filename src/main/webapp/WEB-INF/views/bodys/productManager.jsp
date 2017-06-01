@@ -38,19 +38,20 @@
         </thead>
     </table>
 </div>
+<input type="hidden" id="path" value="${pageContext.request.contextPath}">
 <script>
     $(document)
         .ready(
             function () {
-
+                var path = $('#path').val();
                 $('#usertable')
                     .dataTable(
                         {
                             language: {
-                                url: '../res/json/datatables.json'
+                                url: path + '/res/json/datatables.json'
                             },
                             "ajax": {
-                                "url": "../api/product/datatable",
+                                "url": path + "/api/product/datatable",
                                 "type": "POST"
                             },
                             "columnDefs": [{
@@ -62,7 +63,7 @@
                                 {
                                     "data": "id",
                                     "render": function (data, type, full, meta) {
-                                        return '<div class="btn-group" style="width: "><a class="btn btn-primary" href="../product/' + data + '"><i class="fa fa-user"></i></a>' +
+                                        return '<div class="btn-group" style="width: "><a class="btn btn-primary" href="' + path + '/product/' + data + '"><i class="fa fa-user"></i></a>' +
                                             '</div>';
                                     }
                                 }, {

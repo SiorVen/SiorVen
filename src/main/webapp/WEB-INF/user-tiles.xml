@@ -28,8 +28,5 @@
         <put-attribute name="body" value="/WEB-INF/views/bodys/editUser.jsp"/>
     </definition>
 
-    <definition name="machineRegister" extends="index">
-        <put-attribute name="title" type="string" value="pages.modelRegister" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/modelRegister.jsp" />
-    </definition>
+
 </tiles-definitions>

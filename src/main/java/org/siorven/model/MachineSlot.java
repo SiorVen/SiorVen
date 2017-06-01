@@ -16,7 +16,7 @@ public class MachineSlot {
     @ManyToOne
     private Slot slot;
 
-    @OneToOne
+    @ManyToOne
     private Machine machine;
 
     public MachineSlot(Slot slot, Machine machine) {

@@ -16,15 +16,15 @@
                 <div id="legend">
                     <legend class=""><s:message code="pages.modelRegister" /></legend>
                 </div>
+                <div class="alert alert-danger"><s:message code="fileupload.maxsizeWarning"/></div>
                 <div class="control-group">
                     <!-- Model -->
                     <label class="control-label" for="file"><i class="fa fa-file-code-o" aria-hidden="true"></i>
                         <s:message code="form.machine.modelFile"/></label>
-                        <div class="controls">
-                            <sf:input path="file" type="file" cssClass="form-control" id="machineModel"/>
-                            <sf:errors path="file" cssClass="text-danger"/>
-                        </div>
-                </div>
+                        <sf:input path="file" type="file" cssClass="form-control file" id="file"
+                                  cssStyle="padding-bottom: 40px;"/>
+                        <sf:errors path="file" cssClass="text-danger"/>
+
                 <div class="control-group" style="margin-top: 20px">
                     <!-- Button -->
                     <div class="controls">

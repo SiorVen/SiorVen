@@ -36,7 +36,7 @@ public class MachineResource {
     @Future(groups = {PersistenceGroup.class}, message = "{formatError.DateFormat.NotPast}")
     private Timestamp estimatedCaducityDate;
 
-    @ManyToOne
+    @OneToOne
     private MachineSlot machineSlot;
 
     public MachineResource(Resource resource, int quantity, Timestamp repositionDate, Timestamp estimatedCaducityDate, MachineSlot machineSlot) {

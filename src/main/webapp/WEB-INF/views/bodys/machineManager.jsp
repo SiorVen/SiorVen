@@ -16,6 +16,9 @@
 <a type="button" class="btn btn-primary" style="margin: 20px" href="<c:url value="/machine/register"/>">
     <c:message code="action.createMachine"/>
 </a>
+<a type="button" class="btn btn-primary" style="margin: 20px" href="<c:url value="/model/register"/>">
+    <c:message code="pages.modelRegister"/>
+</a>
 <div class="container-fluid" style="overflow-x: scroll">
     <table id="machinetable"
            class="table table-striped table-bordered table-hover table-responsive"
@@ -30,20 +33,20 @@
         </thead>
     </table>
 </div>
-
+<input type="hidden" id="path" value="${pageContext.request.contextPath}">
 <script>
     $(document)
         .ready(
             function () {
-
+                var path = $('#path').val();
                 $('#machinetable')
                     .dataTable(
                         {
                             language: {
-                                url: '../res/json/datatables.json'
+                                url: path + '/res/json/datatables.json'
                             },
                             "ajax": {
-                                "url": "../api/machine/datatable",
+                                "url": path + "/api/machine/datatable",
                                 "type": "POST"
                             },
                             "columnDefs": [{
@@ -56,9 +59,9 @@
                                     "data": "id",
                                     "render": function (data, type, full, meta) {
                                         return '<div class="btn-group" style="width: "><a class="btn btn-primary" href="../machine/' + data + '"><i class="fa fa-building"></i></a>' +
-                                            '<a class="btn btn-warning" href="../machine/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>' +
-                                            '<a class="btn btn-danger" href="../suggestion/manager/' + data + '"><i class="fa fa-exclamation"></i></a>' +
-                                            '<a class="btn btn-success" href="../suggestion/manager/' + data + '"><i class="fa fa-microchip"></i></a></div>';
+                                            '<a class="btn btn-warning" href="' + path + '/machine/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>' +
+                                            '<a class="btn btn-danger" href="' + path + '/suggestion/manager/' + data + '"><i class="fa fa-exclamation"></i></a>' +
+                                            '<a class="btn btn-success" href="' + path + '/suggestion/manager/' + data + '"><i class="fa fa-microchip"></i></a></div>';
                                     }
                                 }, {
                                     "data": "alias"

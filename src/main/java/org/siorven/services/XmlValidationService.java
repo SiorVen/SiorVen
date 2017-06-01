@@ -3,6 +3,7 @@ package org.siorven.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import javax.servlet.ServletContext;
 import javax.xml.XMLConstants;
@@ -35,9 +36,11 @@ public class XmlValidationService {
         assert validator != null : "Validator initialization failed";
     }
 
-    public void ValidateMachine(StreamSource machineModel) throws IllegalArgumentException {
+    public void ValidateMachine(StreamSource machineModel) throws SAXParseException {
         try {
             validator.validate(machineModel);
+        } catch (SAXParseException spe){
+            throw spe;
         } catch (SAXException | IOException e) {
             e.printStackTrace();
         }
