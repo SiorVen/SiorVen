@@ -9,10 +9,6 @@ public class MachineEditForm {
 
     private String alias;
 
-    private String reference;
-
-    private String manufacturer;
-
     private int id;
 
     public int getId() {
@@ -42,19 +38,4 @@ public class MachineEditForm {
         this.alias = alias;
     }
 
-    public String getReference() {
-        return reference;
-    }
-
-    public void setReference(String reference) {
-        this.reference = reference;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
 }

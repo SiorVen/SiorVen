@@ -14,7 +14,7 @@
         <sf:form action="${pageContext.request.contextPath}/machine/edit" method="post" commandName="machine">
             <fieldset>
                 <div id="legend">
-                    <legend class=""><s:message code="pages.modelEdit"/></legend>
+                    <legend class=""><s:message code="pages.machineEdit"/></legend>
                 </div>
                 <div class="control-group">
                     <div class="control-group">
@@ -38,19 +38,10 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <!-- manufacturer -->
-                        <label class="control-label" for="alias"><i class="fa fa-user" aria-hidden="true"></i>
-                            <s:message code="form.machine.modelManufacturer"/></label>
-                        <div class="controls">
-                            <sf:input path="manufacturer" type="text" cssClass="form-control" id="manufacturer"/>
-                            <sf:errors path="manufacturer" cssClass="text-danger"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
                         <!-- id -->
                         <div class="controls">
                             <sf:input path="id" type="hidden" cssClass="form-control" id="reference"/>
-                            <sf:errors path="id" cssClass="text-danger"/>
+                            <sf:errors path="id" cssClass="text-danger" />
                         </div>
                     </div>
                 </div>

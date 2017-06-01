@@ -35,6 +35,7 @@
             function () {
                 var machineId = '<jstl:out value="${machineId}"/>';
                 var path = $("#path").val();
+                var emptyMsg = '<c:message code="suggestion.notEnoughSales"/>'
                 $('#machinetable')
                     .dataTable(
                         {
@@ -44,6 +45,9 @@
                             "ajax": {
                                 "url": path + "/api/suggestion/datatable/" + machineId,
                                 "type": "POST"
+                            },
+                            "language": {
+                                "emptyTable":  emptyMsg
                             },
                             "columns": [
                                 {
