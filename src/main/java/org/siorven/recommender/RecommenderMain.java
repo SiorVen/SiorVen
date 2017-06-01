@@ -89,7 +89,7 @@ public class RecommenderMain {
                 minEntry = entry;
             }
         }
-        if (!machineProductQuantity.isEmpty()) {
+        if (maxEntry != null) {
             Product maxProduct = productService.findById(maxEntry.getKey());
             Product minProduct = productService.findById(minEntry.getKey());
             Suggestion maxMinSug = new SuggestionStatistic(now, machine, maxProduct, minProduct, 10);
@@ -161,18 +161,18 @@ public class RecommenderMain {
     }
 
     private void createSales() {
-        for (int i = 0; i < 12; i++) {
-            Sale sale = new Sale(new Timestamp(now.getTime() - 10000), (MachineProduct) machineProductService.findAll().get(0), 20);
-            saleService.save(sale);
+        for (int j = 0; j < 50; j++) {
+            for (int i = 0; i < 15; i++) {
+                Sale sale = new Sale(new Timestamp(now.getTime() - (DAY_IN_MILIS * (j + 1))), (MachineProduct) machineProductService.findAll().get(0), 20);
+                saleService.save(sale);
 
-            sale = new Sale(new Timestamp(now.getTime() - DAY_IN_MILIS * 3), (MachineProduct) machineProductService.findAll().get(1), 10);
-            saleService.save(sale);
+                sale = new Sale(new Timestamp(now.getTime() - (DAY_IN_MILIS * (j + 1))), (MachineProduct) machineProductService.findAll().get(1), 10);
+                saleService.save(sale);
 
-            sale = new Sale(new Timestamp(now.getTime() - 10000), (MachineProduct) machineProductService.findAll().get(2), 20);
-            saleService.save(sale);
+                sale = new Sale(new Timestamp(now.getTime() - (DAY_IN_MILIS * (j + 1))), (MachineProduct) machineProductService.findAll().get(2), 20);
+                saleService.save(sale);
+            }
         }
-
-
     }
 
 }
