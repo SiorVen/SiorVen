@@ -1,7 +1,6 @@
 package org.siorven.controller.api;
 
 import org.siorven.model.Resource;
-import org.siorven.model.ResourceType;
 import org.siorven.services.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

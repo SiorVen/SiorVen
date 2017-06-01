@@ -70,7 +70,7 @@ public class RecommenderMain {
         }
 
         Instances data = generateDataForApriori();
-        if(data.size() > MIN_INSTANCES_FOR_GOOD_SUGGESTIONS) {
+        if (data.size() > MIN_INSTANCES_FOR_GOOD_SUGGESTIONS) {
             apriori.runApriori(data);
         }
 
@@ -89,7 +89,7 @@ public class RecommenderMain {
                 minEntry = entry;
             }
         }
-        if(!machineProductQuantity.isEmpty()) {
+        if (!machineProductQuantity.isEmpty()) {
             Product maxProduct = productService.findById(maxEntry.getKey());
             Product minProduct = productService.findById(minEntry.getKey());
             Suggestion maxMinSug = new SuggestionStatistic(now, machine, maxProduct, minProduct, 10);

@@ -43,7 +43,6 @@ public class CompartimentDistribution extends Distribution {
 
 
     /**
-     *
      * @param position
      * @return
      */

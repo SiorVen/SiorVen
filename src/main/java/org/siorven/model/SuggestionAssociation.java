@@ -37,7 +37,6 @@ public class SuggestionAssociation extends Suggestion {
     }
 
     /**
-     *
      * @param messageSource
      * @param resolver
      * @param request

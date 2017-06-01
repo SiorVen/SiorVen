@@ -47,7 +47,7 @@
                                 "type": "POST"
                             },
                             "language": {
-                                "emptyTable":  emptyMsg
+                                "emptyTable": emptyMsg
                             },
                             "columns": [
                                 {

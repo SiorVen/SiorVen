@@ -41,7 +41,7 @@
                         <!-- id -->
                         <div class="controls">
                             <sf:input path="id" type="hidden" cssClass="form-control" id="reference"/>
-                            <sf:errors path="id" cssClass="text-danger" />
+                            <sf:errors path="id" cssClass="text-danger"/>
                         </div>
                     </div>
                 </div>

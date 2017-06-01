@@ -134,7 +134,7 @@ public class AprioriAssociation {
 
             for (Machine machine : machineList) {
                 if (!premises.isEmpty() && !consequences.isEmpty()) {
-                    if(checkIfMachineHasPremises(machine, premises)) {
+                    if (checkIfMachineHasPremises(machine, premises)) {
                         for (Statement s : premises) {
                             statementService.save(s);
                         }
@@ -158,9 +158,9 @@ public class AprioriAssociation {
     private boolean checkIfMachineHasPremises(Machine m, List<Statement> premises) {
         boolean checker = false;
         List<MachineProduct> machineProducts = machineProductService.findByMachine(m);
-        for(Statement s : premises) {
+        for (Statement s : premises) {
             for (MachineProduct mp : machineProducts) {
-                if (mp.getProduct().getId() == s.getProduct().getId()){
+                if (mp.getProduct().getId() == s.getProduct().getId()) {
                     checker = true;
                     break;
                 }
@@ -168,6 +168,7 @@ public class AprioriAssociation {
         }
         return checker;
     }
+
     private boolean stringToBoolean(String s) throws Exception {
         if (TRUE.equalsIgnoreCase(s)) {
             return true;
