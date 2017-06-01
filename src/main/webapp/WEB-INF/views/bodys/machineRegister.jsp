@@ -15,7 +15,7 @@
                  commandName="machineModelRegister">
             <fieldset>
                 <div id="legend">
-                    <legend class=""><s:message code="pages.modelRegister"/></legend>
+                    <legend class=""><s:message code="pages.machineRegister"/></legend>
                 </div>
                 <div class="control-group">
                     <div class="control-group">
@@ -36,15 +36,6 @@
                         <div class="controls">
                             <sf:input path="alias" type="text" cssClass="form-control" id="alias"/>
                             <sf:errors path="alias" cssClass="text-danger"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <!-- manufacturer -->
-                        <label class="control-label" for="alias"><i class="fa fa-user" aria-hidden="true"></i>
-                            <s:message code="form.machine.modelManufacturer"/></label>
-                        <div class="controls">
-                            <sf:input path="manufacturer" type="text" cssClass="form-control" id="manufacturer"/>
-                            <sf:errors path="manufacturer" cssClass="text-danger"/>
                         </div>
                     </div>
                     <div class="control-group">

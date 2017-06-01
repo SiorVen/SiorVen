@@ -92,7 +92,6 @@ public class MachineController {
         MachineEditForm m = new MachineEditForm();
         m.setAlias(u.getAlias());
         m.setMachineModelId(u.getMachineModel().getId());
-        m.setManufacturer(u.getMachineModel().getManufacturer());
         m.setId(id);
         model.addAttribute("machine", m);
         return "machineEdit";
@@ -128,7 +127,6 @@ public class MachineController {
         Machine m = new Machine();
         m.setAlias(machineForm.getAlias());
         m.setMachineModel(machineModelService.findById(machineForm.getMachineModelId()));
-        m.getMachineModel().setManufacturer(machineForm.getManufacturer());
         machineService.save(m);
 
         return MACHINE_MANAGER_VIEW;
@@ -151,7 +149,6 @@ public class MachineController {
         Machine m = getMachineOrThrow(machineForm.getId());
         m.setAlias(machineForm.getAlias());
         m.setMachineModel(machineModelService.findById(machineForm.getMachineModelId()));
-        m.getMachineModel().setManufacturer(machineForm.getManufacturer());
         machineService.edit(m);
         return MACHINE_MANAGER_VIEW;
     }
@@ -169,10 +166,10 @@ public class MachineController {
         Machine u = getMachineOrThrow(id);
         MachineViewForm m = new MachineViewForm();
         m.setAlias(u.getAlias());
-        m.setManufacturer(u.getMachineModel().getManufacturer());
-        m.setReference(u.getMachineModel().getReference());
         m.setId(id);
         model.addAttribute("machineView", m);
+        model.addAttribute("reference", u.getMachineModel().getReference());
+        model.addAttribute("manufacturer", u.getMachineModel().getManufacturer());
 
         return "machineView";
     }

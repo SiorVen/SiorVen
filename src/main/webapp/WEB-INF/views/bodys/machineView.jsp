@@ -25,12 +25,12 @@
         <div class="well">
             <i class="fa fa-user fa-3x"></i>
             <strong class="h2"><spring:message code="form.machine.modelManufacturer"/>: </strong>
-            <span class="h3"><c:out value="${machineView.manufacturer}"/></span>
+            <span class="h3"><c:out value="${manufacturer}"/></span>
         </div>
         <div class="well">
             <i class="fa fa-user fa-3x"></i>
             <strong class="h2"><spring:message code="form.machine.modelFile"/>: </strong>
-            <span class="h3"><c:out value="${machineView.reference}"/></span>
+            <span class="h3"><c:out value="${reference}"/></span>
         </div>
     </div>
 </div>
