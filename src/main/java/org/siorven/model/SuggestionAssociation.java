@@ -37,7 +37,6 @@ public class SuggestionAssociation extends Suggestion {
     }
 
     /**
-     * TODO mensajean gestioa ondo in. Momentuz tostring simplea debugeetako
      *
      * @param messageSource
      * @param resolver
@@ -46,17 +45,16 @@ public class SuggestionAssociation extends Suggestion {
      */
     @Override
     public String toString(MessageSource messageSource, LocaleResolver resolver, HttpServletRequest request) {
-        String ret = "if ";
+        StringBuilder stb = new StringBuilder("if ");
         for (Statement s : premiseList) {
-            ret = ret + s.getProduct().getName() + "{" + s.isStatementResult() + "}; ";
+            stb.append(s.getProduct().getName() + "{" + s.isStatementResult() + "}; ");
         }
-
-        ret = ret + " --> ";
+        stb.append(" --> ");
 
         for (Statement s : consequenceList) {
-            ret = ret + s.getProduct().getName() + "{" + s.isStatementResult() + "};";
+            stb.append(s.getProduct().getName() + "{" + s.isStatementResult() + "};");
         }
-        return ret;
+        return stb.toString();
     }
 
     public List<Statement> getPremiseList() {

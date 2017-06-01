@@ -19,7 +19,6 @@
 
     <!-- <script type="text/javascript" src="<c:url value='/res/js/jquery-3.2.1.min.js' />"></script> -->
     <!-- Load jQuery UI CSS  -->
-    <!-- TODO hacer estas librerias locales -->
 
     <%--<link rel="stylesheet" href="<c:url value='/res/css/jquery-ui.css'/>"/>--%>
     <link rel="stylesheet" media="all" type="text/css"

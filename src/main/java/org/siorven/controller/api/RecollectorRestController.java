@@ -48,7 +48,7 @@ public class RecollectorRestController {
         datatables.put("data", data);
         for (Recollector recollector : recollectors) {
             Machine machine = recollector.getMachine();
-            String machineName = "";
+            String machineName;
             if (machine == null) {
                 machineName = messageSource.getMessage("recollector.notLinked", null, localeResolver.resolveLocale(request));
             } else {

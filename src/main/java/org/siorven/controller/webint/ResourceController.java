@@ -63,10 +63,13 @@ public class ResourceController {
     @GetMapping("/resource/register")
     public String showRegister(Model model, @RequestParam(required = false) Integer prodid) {
         model.addAttribute(RESOURCE, new Resource());
+        int id;
         if (prodid == null) {
-            prodid = new Integer(0);
+            id = 0;
+        } else {
+            id = prodid;
         }
-        model.addAttribute("prodid", prodid.intValue());
+        model.addAttribute("prodid", id);
         addResourceTypes(model);
         return RESOURCE_REGISTER_VIEW;
     }

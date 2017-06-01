@@ -44,7 +44,7 @@ public class ModelXmlToModel {
                 for (int i = 0; i < compartiments.getCompartiment().size(); i++) {
                     CompartimentXml compartimentXml = compartiments.getCompartiment().get(i);
                     Slot slot = new Slot();
-                    slot.setName(i + "");
+                    slot.setName(Integer.toString(i));
                     slot.setCapacity(compartimentXml.getCapacity().intValue());
                     slot.setUnit(ResourceType.unit(ResourceType.valueOf(compartimentXml.getResourceTypes().resourceType.get(0).value())));
                     compartimentDistribution.getSlots().add(slot);

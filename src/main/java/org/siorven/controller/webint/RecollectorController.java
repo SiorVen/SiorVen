@@ -34,13 +34,11 @@ public class RecollectorController {
     @PostMapping(value = "/recollector/link", params = {"machineId", "recollectorAlias"})
     public String linkRecollectorToMachine(@RequestParam("machineId") Integer machineId, @RequestParam("recollectorAlias") String recAlias, Model model) {
         Recollector r = recollectorService.findByAlias(recAlias);
-        boolean linked = false;
         if (r != null && r.getMachine() == null) {
             Machine m = machineService.findById(machineId);
             if (m != null) {
                 r.setMachine(m);
                 recollectorService.edit(r);
-                linked = true;
             }
         }
         return REDIRECT_RECOLLECTOR_MANAGER + machineId.intValue();
