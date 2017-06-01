@@ -68,7 +68,7 @@ public class AprioriAssociation {
             //Separate the result into rules
             finishDate = new Timestamp(new Date().getTime());
             List<Suggestion> suggestions = getSuggestionsFromAprioriRules(apriori);
-            if (suggestions.size() > 0) {
+            if (!suggestions.isEmpty()) {
                 for (Suggestion suggestion : suggestions) {
                     System.out.println(suggestion.toString(null, null, null));
                 }
@@ -133,7 +133,7 @@ public class AprioriAssociation {
             double weight = rule.getTotalSupport();
 
             for (Machine machine : machineList) {
-                if (premises.size() > 0 && consequences.size() > 0) {
+                if (!premises.isEmpty() && !consequences.isEmpty()) {
                     for (Statement s : premises) {
                         statementService.save(s);
                     }
@@ -169,7 +169,6 @@ public class AprioriAssociation {
             Product p = productService.findByName(ni.getAttribute().name());
             if (p != null) {
                 Statement statement = new Statement(p, stringToBoolean(ni.getItemValueAsString()));
-                //statementService.save(statement);
                 statementList.add(statement);
             }
         }

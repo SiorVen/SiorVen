@@ -18,11 +18,6 @@ public class InitIceServer {
 
     @Scheduled(fixedRate = Long.MAX_VALUE)
     public void initServer() {
-        /*String[] args = new String[1];
-        args[0] = SERVER_CONFIG;
-        Server app = new Server(args);
-        */
-        int status = server.run();
-        System.exit(status);
+        server.run();
     }
 }

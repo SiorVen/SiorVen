@@ -86,11 +86,13 @@ public class RecommenderMain {
                 minEntry = entry;
             }
         }
-        Product maxProduct = productService.findById(maxEntry.getKey());
-        Product minProduct = productService.findById(minEntry.getKey());
-        Suggestion maxMinSug = new SuggestionStatistic(now, machine, maxProduct, minProduct, 10);
-        System.out.println(maxMinSug.toString(null, null, null));
-        suggestionService.save(maxMinSug);
+        if(maxEntry != null && minEntry != null) {
+            Product maxProduct = productService.findById(maxEntry.getKey());
+            Product minProduct = productService.findById(minEntry.getKey());
+            Suggestion maxMinSug = new SuggestionStatistic(now, machine, maxProduct, minProduct, 10);
+            System.out.println(maxMinSug.toString(null, null, null));
+            suggestionService.save(maxMinSug);
+        }
     }
 
     private HashMap<Integer, Integer> countProductOfSales(List<Sale> saleList) {
@@ -110,9 +112,9 @@ public class RecommenderMain {
 
     private Instances generateDataForApriori() {
         FastVector atts = new FastVector(productList.size());
-        Vector attVals = new Vector();
+        ArrayList attVals = new ArrayList();
 
-        attVals.addElement("t");
+        attVals.add("t");
         for (Product p : productList) {
             atts.add(new Attribute(p.getName(), attVals));
         }
@@ -130,7 +132,7 @@ public class RecommenderMain {
                 Timestamp from = new Timestamp(now.getTime() - (DAY_IN_MILIS * (i + 1)));
                 Timestamp to = new Timestamp(now.getTime() - (DAY_IN_MILIS * i));
                 List<Sale> machineDaySale = saleService.getSalesFromMachineBetweenDates(from, to, machine);
-                if (machineDaySale.size() > 0) {
+                if (!machineDaySale.isEmpty()) {
                     HashMap<Integer, Integer> productSales = countProductOfSales(machineDaySale);
                     data.add(generateInstanceOfDay(atts, productSales));
                 }

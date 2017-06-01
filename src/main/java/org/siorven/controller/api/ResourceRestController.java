@@ -41,8 +41,6 @@ public class ResourceRestController {
 
         for (int i = 0; i < admins.size(); i++) {
             Resource resource = admins.get(i);
-            String unit = messageSource.getMessage(ResourceType.unit(resource.getResourceType()).toString(),
-                    null, localeResolver.resolveLocale(request));
             map.put(resource.getId() + "", resource.getName() + "");
         }
         return map;

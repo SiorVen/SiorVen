@@ -31,7 +31,7 @@ public class DatabaseInitializer {
 
     public void assertThereIsAnAdmin() {
         List<User> admins = userService.findbyRole(User.ROLE_ADMIN);
-        if (admins.size() < 1) {
+        if (admins.isEmpty()) {
             userService.save(new User("admin", "admin", "admin@siorven.eus", User.ROLE_ADMIN));
         }
     }

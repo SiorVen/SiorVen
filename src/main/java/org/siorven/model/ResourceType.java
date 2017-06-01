@@ -55,17 +55,12 @@ public enum ResourceType {
             case POWDER:
                 return Unit.G;
             case LIQUID:
-                return Unit.ML;
             case HOT_LIQUID:
-                return Unit.ML;
             case COLD_LIQUID:
                 return Unit.ML;
             case ITEM:
-                return Unit.U;
             case COLD_ITEM:
-                return Unit.U;
             case HOT_ITEM:
-                return Unit.U;
             default:
                 return Unit.U;
         }

@@ -18,38 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class SuggestionController {
 
-    public static final String MACHINE_MODEL = "machineModel";
-    public static final String MODEL_REGISTER_VIEW = "machineMachineRegister";
-    public static final String REDIRECT_MODEL_REGISTER = "redirect:/model/register";
-
-    /**
-     * Data access logic for the access to the Suggestion data on the DB
-     */
-
-    @Autowired
-    private SuggestionService suggestionService;
-
-    /**
-     * Message source for internationalization of the content
-     */
-    @Autowired
-    private MessageSource messageSource;
-
-    /**
-     * Locale resolver for the sent cookies or session attributes
-     */
-    @Autowired
-    private LocaleResolver locale;
-
-    /**
-     * Currently handled HTTP Request
-     */
-    @Autowired
-    private HttpServletRequest request;
-
-    @Autowired
-    private XmlValidationService validator;
-
     /**
      * Displays the suggestion manager
      *
