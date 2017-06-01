@@ -20,6 +20,5 @@
 
 package org.siorven.recolector.ice.generated;
 
-public abstract class Callback_DataCollector_shutdown extends Ice.OnewayCallback
-{
+public abstract class Callback_DataCollector_shutdown extends Ice.OnewayCallback {
 }

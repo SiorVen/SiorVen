@@ -20,16 +20,11 @@
 
 package org.siorven.recolector.ice.generated;
 
-public final class DataCollectorPrxHolder
-{
-    public
-    DataCollectorPrxHolder()
-    {
+public final class DataCollectorPrxHolder {
+    public DataCollectorPrxHolder() {
     }
 
-    public
-    DataCollectorPrxHolder(DataCollectorPrx value)
-    {
+    public DataCollectorPrxHolder(DataCollectorPrx value) {
         this.value = value;
     }
 

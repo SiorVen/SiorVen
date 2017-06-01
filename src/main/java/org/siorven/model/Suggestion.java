@@ -14,7 +14,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "suggestion")
-public abstract class Suggestion implements IBoundleRepresentable{
+public abstract class Suggestion implements IBoundleRepresentable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

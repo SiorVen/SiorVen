@@ -9,8 +9,8 @@
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="well">
-    <span class="h1" >
-        <c:message code="pages.mmachineManager" />
+    <span class="h1">
+        <c:message code="pages.mmachineManager"/>
     </span>
 </div>
 <a type="button" class="btn btn-primary" style="margin: 20px" href="<c:url value="/machine/register"/>">

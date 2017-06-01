@@ -13,18 +13,19 @@
             ${message}
     </div>
 </jstl:if>
-<div class="well" >
-<input type="hidden" id="path" value="${pageContext.request.contextPath}">
-<form:form action="${pageContext.request.contextPath}/product/${product.id}/ingredients/add" commandName="ingredientForm">
-    <label for="resource"><c:message code="form.ingredient.resource"/> </label><form:input path="name" name="name"
-                                                                                           id="resource"
-                                                                                           type="text"/>
-    <label for="qty"><c:message code="form.ingredient.qty"/> </label><form:input path="qty" name="qty" id="qty"
-                                                                                 type="text"/>
-    <button type="submit" class="btn btn-primary" style="margin: 20px">
-        <c:message code="action.addIngredient"/>
-    </button>
-</form:form>
+<div class="well">
+    <input type="hidden" id="path" value="${pageContext.request.contextPath}">
+    <form:form action="${pageContext.request.contextPath}/product/${product.id}/ingredients/add"
+               commandName="ingredientForm">
+        <label for="resource"><c:message code="form.ingredient.resource"/> </label><form:input path="name" name="name"
+                                                                                               id="resource"
+                                                                                               type="text"/>
+        <label for="qty"><c:message code="form.ingredient.qty"/> </label><form:input path="qty" name="qty" id="qty"
+                                                                                     type="text"/>
+        <button type="submit" class="btn btn-primary" style="margin: 20px">
+            <c:message code="action.addIngredient"/>
+        </button>
+    </form:form>
 </div>
 <div class="well">
     <span><c:message code="suggest.newResource"/></span>

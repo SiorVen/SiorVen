@@ -17,7 +17,8 @@ public class SuggestionService {
     @Autowired
     private SuggestionDao suggestionDao;
 
-    @Autowired MachineService machineService;
+    @Autowired
+    MachineService machineService;
 
     public void save(Suggestion suggestion) {
         suggestionDao.saveSuggestion(suggestion);
@@ -43,7 +44,7 @@ public class SuggestionService {
         return suggestionDao.findAll();
     }
 
-    public List findByMachine(int id){
+    public List findByMachine(int id) {
         Machine m = machineService.findById(id);
         return suggestionDao.findByMachine(m);
     }

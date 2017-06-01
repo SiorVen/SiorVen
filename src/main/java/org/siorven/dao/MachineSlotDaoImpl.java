@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Transactional
 @Repository
-public class MachineSlotDaoImpl implements MachineSlotDao{
+public class MachineSlotDaoImpl implements MachineSlotDao {
 
     /**
      * Session factory for the jdbc connection bean

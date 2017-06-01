@@ -4,12 +4,12 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <definition name="productManager" extends="index">
-        <put-attribute name="title" type="string" value="pages.productManager" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/productManager.jsp" />
+        <put-attribute name="title" type="string" value="pages.productManager"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/productManager.jsp"/>
     </definition>
 
     <definition name="viewProduct" extends="index">
-        <put-attribute name="title" type="string" value="pages.productView" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/productView.jsp" />
+        <put-attribute name="title" type="string" value="pages.productView"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/productView.jsp"/>
     </definition>
 </tiles-definitions>

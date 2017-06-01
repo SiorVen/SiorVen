@@ -28,8 +28,8 @@
     </bean>
 
     <context:component-scan base-package="org.siorven.controller"/>
-    <mvc:annotation-driven />
-    <mvc:resources mapping="/res/**" location="/rsc/" />
+    <mvc:annotation-driven/>
+    <mvc:resources mapping="/res/**" location="/rsc/"/>
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="defaultEncoding" value="UTF-8"/>
@@ -55,10 +55,10 @@
         </bean>
     </mvc:interceptors>
 
-    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 
     <bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="100000000" />
+        <property name="maxUploadSize" value="100000000"/>
     </bean>
 
 </beans>

@@ -20,73 +20,60 @@
 
 package org.siorven.recolector.ice.generated;
 
-public abstract class _DataCollectorDisp extends Ice.ObjectImpl implements DataCollector
-{
+public abstract class _DataCollectorDisp extends Ice.ObjectImpl implements DataCollector {
     protected void
     ice_copyStateFrom(Ice.Object __obj)
-        throws CloneNotSupportedException
-    {
+            throws CloneNotSupportedException {
         throw new CloneNotSupportedException();
     }
 
     public static final String[] __ids =
-    {
-        "::Demo::DataCollector",
-        "::Ice::Object"
-    };
+            {
+                    "::Demo::DataCollector",
+                    "::Ice::Object"
+            };
 
-    public boolean ice_isA(String s)
-    {
+    public boolean ice_isA(String s) {
         return java.util.Arrays.binarySearch(__ids, s) >= 0;
     }
 
-    public boolean ice_isA(String s, Ice.Current __current)
-    {
+    public boolean ice_isA(String s, Ice.Current __current) {
         return java.util.Arrays.binarySearch(__ids, s) >= 0;
     }
 
-    public String[] ice_ids()
-    {
+    public String[] ice_ids() {
         return __ids;
     }
 
-    public String[] ice_ids(Ice.Current __current)
-    {
+    public String[] ice_ids(Ice.Current __current) {
         return __ids;
     }
 
-    public String ice_id()
-    {
+    public String ice_id() {
         return __ids[0];
     }
 
-    public String ice_id(Ice.Current __current)
-    {
+    public String ice_id(Ice.Current __current) {
         return __ids[0];
     }
 
-    public static String ice_staticId()
-    {
+    public static String ice_staticId() {
         return __ids[0];
     }
 
-    public final void registerConnection(String UID)
-    {
+    public final void registerConnection(String UID) {
         registerConnection(UID, null);
     }
 
-    public final void saleDone(String UID, String code)
-    {
+    public final void saleDone(String UID, String code) {
         saleDone(UID, code, null);
     }
 
-    public final void shutdown(String UID)
-    {
+    public final void shutdown(String UID) {
         shutdown(UID, null);
     }
 
-    public static Ice.DispatchStatus ___registerConnection(DataCollector __obj, IceInternal.Incoming __inS, Ice.Current __current)
-    {
+    public static Ice.DispatchStatus ___registerConnection(DataCollector __obj, IceInternal.Incoming __inS, Ice.Current __current) {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         IceInternal.BasicStream __is = __inS.startReadParams();
         String UID;
@@ -97,8 +84,7 @@ public abstract class _DataCollectorDisp extends Ice.ObjectImpl implements DataC
         return Ice.DispatchStatus.DispatchOK;
     }
 
-    public static Ice.DispatchStatus ___saleDone(DataCollector __obj, IceInternal.Incoming __inS, Ice.Current __current)
-    {
+    public static Ice.DispatchStatus ___saleDone(DataCollector __obj, IceInternal.Incoming __inS, Ice.Current __current) {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         IceInternal.BasicStream __is = __inS.startReadParams();
         String UID;
@@ -111,8 +97,7 @@ public abstract class _DataCollectorDisp extends Ice.ObjectImpl implements DataC
         return Ice.DispatchStatus.DispatchOK;
     }
 
-    public static Ice.DispatchStatus ___shutdown(DataCollector __obj, IceInternal.Incoming __inS, Ice.Current __current)
-    {
+    public static Ice.DispatchStatus ___shutdown(DataCollector __obj, IceInternal.Incoming __inS, Ice.Current __current) {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         IceInternal.BasicStream __is = __inS.startReadParams();
         String UID;
@@ -124,68 +109,56 @@ public abstract class _DataCollectorDisp extends Ice.ObjectImpl implements DataC
     }
 
     private final static String[] __all =
-    {
-        "ice_id",
-        "ice_ids",
-        "ice_isA",
-        "ice_ping",
-        "registerConnection",
-        "saleDone",
-        "shutdown"
-    };
+            {
+                    "ice_id",
+                    "ice_ids",
+                    "ice_isA",
+                    "ice_ping",
+                    "registerConnection",
+                    "saleDone",
+                    "shutdown"
+            };
 
-    public Ice.DispatchStatus __dispatch(IceInternal.Incoming in, Ice.Current __current)
-    {
+    public Ice.DispatchStatus __dispatch(IceInternal.Incoming in, Ice.Current __current) {
         int pos = java.util.Arrays.binarySearch(__all, __current.operation);
-        if(pos < 0)
-        {
+        if (pos < 0) {
             throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
         }
 
-        switch(pos)
-        {
-            case 0:
-            {
+        switch (pos) {
+            case 0: {
                 return ___ice_id(this, in, __current);
             }
-            case 1:
-            {
+            case 1: {
                 return ___ice_ids(this, in, __current);
             }
-            case 2:
-            {
+            case 2: {
                 return ___ice_isA(this, in, __current);
             }
-            case 3:
-            {
+            case 3: {
                 return ___ice_ping(this, in, __current);
             }
-            case 4:
-            {
+            case 4: {
                 return ___registerConnection(this, in, __current);
             }
-            case 5:
-            {
+            case 5: {
                 return ___saleDone(this, in, __current);
             }
-            case 6:
-            {
+            case 6: {
                 return ___shutdown(this, in, __current);
             }
         }
 
-        assert(false);
+        assert (false);
         throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
     }
 
-    protected void __writeImpl(IceInternal.BasicStream __os)
-    {
+    protected void __writeImpl(IceInternal.BasicStream __os) {
         __os.startWriteSlice(ice_staticId(), -1, true);
         __os.endWriteSlice();
     }
 
-    protected void __readImpl(IceInternal.BasicStream __is)
-    {
+    protected void __readImpl(IceInternal.BasicStream __is) {
         __is.startReadSlice();
         __is.endReadSlice();
     }

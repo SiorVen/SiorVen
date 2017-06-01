@@ -38,6 +38,7 @@ public class SuggestionAssociation extends Suggestion {
 
     /**
      * TODO mensajean gestioa ondo in. Momentuz tostring simplea debugeetako
+     *
      * @param messageSource
      * @param resolver
      * @param request
@@ -46,13 +47,13 @@ public class SuggestionAssociation extends Suggestion {
     @Override
     public String toString(MessageSource messageSource, LocaleResolver resolver, HttpServletRequest request) {
         String ret = "if ";
-        for (Statement s : premiseList){
+        for (Statement s : premiseList) {
             ret = ret + s.getProduct().getName() + "{" + s.isStatementResult() + "}; ";
         }
 
         ret = ret + " --> ";
 
-        for (Statement s : consequenceList){
+        for (Statement s : consequenceList) {
             ret = ret + s.getProduct().getName() + "{" + s.isStatementResult() + "};";
         }
         return ret;

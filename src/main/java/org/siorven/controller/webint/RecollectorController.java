@@ -1,19 +1,16 @@
 package org.siorven.controller.webint;
 
-import org.siorven.exceptions.ResourceAlreadyRegistered;
 import org.siorven.model.Machine;
 import org.siorven.model.Recollector;
-import org.siorven.model.validacion.SpringFormGroup;
 import org.siorven.services.MachineService;
 import org.siorven.services.RecollectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by Gorospe on 31/05/2017.
@@ -21,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class RecollectorController {
 
+    public static final String REDIRECT_RECOLLECTOR_MANAGER = "redirect:/recollector/manager/";
     @Autowired
     private RecollectorService recollectorService;
 
@@ -33,19 +31,18 @@ public class RecollectorController {
         return "recollectorManager";
     }
 
-    //TODO Gestionar excepciones
     @PostMapping(value = "/recollector/link", params = {"machineId", "recollectorAlias"})
-    public String performRegister(@RequestParam("machineId") Integer machineId, @RequestParam("recollectorAlias") String recAlias, Model model) {
+    public String linkRecollectorToMachine(@RequestParam("machineId") Integer machineId, @RequestParam("recollectorAlias") String recAlias, Model model) {
         Recollector r = recollectorService.findByAlias(recAlias);
-
-        if(r != null && r.getMachine() == null) {
+        boolean linked = false;
+        if (r != null && r.getMachine() == null) {
             Machine m = machineService.findById(machineId);
-            if(m != null) {
+            if (m != null) {
                 r.setMachine(m);
                 recollectorService.edit(r);
+                linked = true;
             }
         }
-
-        return "redirect:/recollector/manager/"+machineId.intValue();
+        return REDIRECT_RECOLLECTOR_MANAGER + machineId.intValue();
     }
 }

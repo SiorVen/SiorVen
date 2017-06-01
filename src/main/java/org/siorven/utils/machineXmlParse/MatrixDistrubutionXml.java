@@ -1,4 +1,3 @@
-
 package org.siorven.utils.machineXmlParse;
 
 import javax.xml.bind.annotation.*;
@@ -7,9 +6,9 @@ import java.math.BigInteger;
 
 /**
  * <p>Java class for matrixDistrubutionXml complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="matrixDistrubutionXml">
  *   &lt;complexContent>
@@ -25,12 +24,10 @@ import java.math.BigInteger;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "matrixDistrubutionXml", propOrder = {
-    "resourceTypes"
+        "resourceTypes"
 })
 public class MatrixDistrubutionXml {
 
@@ -47,11 +44,9 @@ public class MatrixDistrubutionXml {
 
     /**
      * Gets the value of the resourceTypes property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ResourceTypes }
-     *     
+     *
+     * @return possible object is
+     * {@link ResourceTypes }
      */
     public ResourceTypes getResourceTypes() {
         return resourceTypes;
@@ -59,11 +54,9 @@ public class MatrixDistrubutionXml {
 
     /**
      * Sets the value of the resourceTypes property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ResourceTypes }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ResourceTypes }
      */
     public void setResourceTypes(ResourceTypes value) {
         this.resourceTypes = value;
@@ -71,11 +64,9 @@ public class MatrixDistrubutionXml {
 
     /**
      * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getName() {
         return name;
@@ -83,11 +74,9 @@ public class MatrixDistrubutionXml {
 
     /**
      * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setName(String value) {
         this.name = value;
@@ -95,7 +84,6 @@ public class MatrixDistrubutionXml {
 
     /**
      * Gets the value of the rows property.
-     * 
      */
     public int getRows() {
         return rows;
@@ -103,7 +91,6 @@ public class MatrixDistrubutionXml {
 
     /**
      * Sets the value of the rows property.
-     * 
      */
     public void setRows(int value) {
         this.rows = value;
@@ -111,7 +98,6 @@ public class MatrixDistrubutionXml {
 
     /**
      * Gets the value of the cols property.
-     * 
      */
     public int getCols() {
         return cols;
@@ -119,7 +105,6 @@ public class MatrixDistrubutionXml {
 
     /**
      * Sets the value of the cols property.
-     * 
      */
     public void setCols(int value) {
         this.cols = value;
@@ -127,11 +112,9 @@ public class MatrixDistrubutionXml {
 
     /**
      * Gets the value of the capacity property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
+     *
+     * @return possible object is
+     * {@link BigInteger }
      */
     public BigInteger getCapacity() {
         return capacity;
@@ -139,11 +122,9 @@ public class MatrixDistrubutionXml {
 
     /**
      * Sets the value of the capacity property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link BigInteger }
      */
     public void setCapacity(BigInteger value) {
         this.capacity = value;

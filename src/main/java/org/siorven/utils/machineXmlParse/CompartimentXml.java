@@ -1,19 +1,14 @@
-
 package org.siorven.utils.machineXmlParse;
 
+import javax.xml.bind.annotation.*;
 import java.math.BigInteger;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 
 
 /**
  * <p>Java class for compartimentXml complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="compartimentXml">
  *   &lt;complexContent>
@@ -27,12 +22,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "compartimentXml", propOrder = {
-    "resourceTypes"
+        "resourceTypes"
 })
 public class CompartimentXml {
 
@@ -45,11 +38,9 @@ public class CompartimentXml {
 
     /**
      * Gets the value of the resourceTypes property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ResourceTypes }
-     *     
+     *
+     * @return possible object is
+     * {@link ResourceTypes }
      */
     public ResourceTypes getResourceTypes() {
         return resourceTypes;
@@ -57,11 +48,9 @@ public class CompartimentXml {
 
     /**
      * Sets the value of the resourceTypes property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ResourceTypes }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ResourceTypes }
      */
     public void setResourceTypes(ResourceTypes value) {
         this.resourceTypes = value;
@@ -69,11 +58,9 @@ public class CompartimentXml {
 
     /**
      * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getName() {
         return name;
@@ -81,11 +68,9 @@ public class CompartimentXml {
 
     /**
      * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setName(String value) {
         this.name = value;
@@ -93,11 +78,9 @@ public class CompartimentXml {
 
     /**
      * Gets the value of the capacity property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
+     *
+     * @return possible object is
+     * {@link BigInteger }
      */
     public BigInteger getCapacity() {
         return capacity;
@@ -105,11 +88,9 @@ public class CompartimentXml {
 
     /**
      * Sets the value of the capacity property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link BigInteger }
      */
     public void setCapacity(BigInteger value) {
         this.capacity = value;

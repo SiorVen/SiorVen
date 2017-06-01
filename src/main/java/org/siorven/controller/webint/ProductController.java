@@ -48,7 +48,7 @@ public class ProductController {
     LocaleResolver resolver;
 
     @GetMapping("/product/manager")
-    public String showProductManager(){
+    public String showProductManager() {
         return "productManager";
     }
 
@@ -76,7 +76,7 @@ public class ProductController {
     public String deleteProduct(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         Product p = getProductOrThrow(id);
         List<MachineProduct> mps = machineProductService.findByProduct(p);
-        for(MachineProduct mp : mps)
+        for (MachineProduct mp : mps)
             machineProductService.delete(mp);
         productService.delete(p.getId());
         String msg = messageSource.getMessage("msg.product.deleted", new String[]{p.getName()}, resolver.resolveLocale(request));
@@ -99,9 +99,9 @@ public class ProductController {
 
     private void removeIngredientFromProduct(Ingredient ingredient) {
         Product p = ingredient.getProduct();
-        for (int i = 0; i < p.getRecipe().size(); i++){
+        for (int i = 0; i < p.getRecipe().size(); i++) {
             Ingredient in = p.getRecipe().get(i);
-            if(in.getId() == ingredient.getId()){
+            if (in.getId() == ingredient.getId()) {
                 p.getRecipe().remove(i);
             }
         }
@@ -120,7 +120,7 @@ public class ProductController {
     @PostMapping("/product/{id}/ingredients/add")
     public String addIngredient(@PathVariable("id") int id, @ModelAttribute("ingredientForm") @Validated Ingredientform ingredientform,
                                 RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             Product p = getProductOrThrow(id);
             model.addAttribute("product", p);
             return showProduct(id, model);
@@ -130,7 +130,7 @@ public class ProductController {
         Resource r = null;
         try {
             r = getResourceOrThrow(ingredientform.getName());
-        }catch (ResourceNotFoundException rnfe){
+        } catch (ResourceNotFoundException rnfe) {
             String msg = messageSource.getMessage("resource.notExist", new String[]{rnfe.getMessage()}, resolver.resolveLocale(request));
             bindingResult.addError(new FieldError("ingredientForm", "name", ingredientform.getName(), true, null, null, msg));
             return showProduct(id, model);
@@ -142,7 +142,7 @@ public class ProductController {
         p.getRecipe().add(i);
         ingredientService.save(i);
         productService.saveOrUpdate(p);
-        String msg = messageSource.getMessage("msg.ingredient.added", new String[]{ r.getName() }, resolver.resolveLocale(request));
+        String msg = messageSource.getMessage("msg.ingredient.added", new String[]{r.getName()}, resolver.resolveLocale(request));
         redirectAttributes.addFlashAttribute("message", msg);
         return "redirect:/product/" + id;
     }

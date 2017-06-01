@@ -28,7 +28,7 @@ public class ResourceService {
     public void save(Resource r) throws ResourceAlreadyRegistered {
         Resource oldResource = findByName(r.getName());
 
-        if(oldResource == null) {
+        if (oldResource == null) {
             resourceDao.save(r);
         } else {
             throw new ResourceAlreadyRegistered("error.resource.nameTaken");

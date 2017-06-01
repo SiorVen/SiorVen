@@ -1,7 +1,6 @@
 package org.siorven.dao;
 
 import org.siorven.model.Machine;
-import org.siorven.model.Product;
 import org.siorven.model.Sale;
 import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;

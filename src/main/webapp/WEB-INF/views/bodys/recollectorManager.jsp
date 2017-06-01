@@ -11,8 +11,8 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <div class="well">
     <input type="hidden" id="path" value="${pageContext.request.contextPath}">
-    <span class="h1" >
-        <c:message code="pages.recollectorManager" />
+    <span class="h1">
+        <c:message code="pages.recollectorManager"/>
     </span>
 </div>
 <div class="container-fluid" style="overflow-x: scroll">
@@ -54,10 +54,10 @@
                                 {
                                     "data": "alias",
                                     "render": function (data, type, full, meta) {
-                                        return ' <form action="'+path+'/recollector/link" method="post">' +
-                                            '<input type="hidden" name="recollectorAlias" value="'+data+'"/>' +
-                                            '<input type="hidden" name="machineId" value="'+machineId+'"/>' +
-                                            '<input type="hidden" name="' + csfrKey + '" value="' + csfrToken  + '"/>' +
+                                        return ' <form action="' + path + '/recollector/link" method="post">' +
+                                            '<input type="hidden" name="recollectorAlias" value="' + data + '"/>' +
+                                            '<input type="hidden" name="machineId" value="' + machineId + '"/>' +
+                                            '<input type="hidden" name="' + csfrKey + '" value="' + csfrToken + '"/>' +
                                             '<button type="submit" class="btn btn-primary" name="b" value="" >' +
                                             '<i class="fa fa-link"></i></button></form> ';
                                     }

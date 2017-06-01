@@ -21,10 +21,10 @@ import java.io.IOException;
 @Service
 public class XmlValidationService {
 
-   private Validator validator;
+    private Validator validator;
 
-   @Autowired
-    public XmlValidationService(ServletContext context){
+    @Autowired
+    public XmlValidationService(ServletContext context) {
         File schemaFile = new File(context.getRealPath("/rsc/xsd/machine.xsd"));
         SchemaFactory schemaFactory = SchemaFactory
                 .newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -39,7 +39,7 @@ public class XmlValidationService {
     public void ValidateMachine(StreamSource machineModel) throws SAXParseException {
         try {
             validator.validate(machineModel);
-        } catch (SAXParseException spe){
+        } catch (SAXParseException spe) {
             throw spe;
         } catch (SAXException | IOException e) {
             e.printStackTrace();

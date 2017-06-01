@@ -20,8 +20,7 @@
 
 package org.siorven.recolector.ice.generated;
 
-public interface DataCollectorPrx extends Ice.ObjectPrx
-{
+public interface DataCollectorPrx extends Ice.ObjectPrx {
     public void registerConnection(String UID);
 
     public void registerConnection(String UID, java.util.Map<String, String> __ctx);

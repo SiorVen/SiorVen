@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="well">
-    <span class="h1" >
-        <c:message code="pages.userManager" />
+    <span class="h1">
+        <c:message code="pages.userManager"/>
     </span>
 </div>
 <jstl:if test="${message != null}">

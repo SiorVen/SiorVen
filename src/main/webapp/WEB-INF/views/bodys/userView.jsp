@@ -7,7 +7,7 @@
         <c:when test="${user != null}">
             <div class="jumbotron">
                 <div class="jumbotron">
-                    <span class="h1" ><spring:message code="user.profile" /></span>
+                    <span class="h1"><spring:message code="user.profile"/></span>
                 </div>
                 <br>
                 <div class="well">
@@ -22,12 +22,13 @@
                     <span class="h3"><c:out value="${user.email}"/></span>
                 </div>
                 <div class="well">
-                    <i class="fa fa-users fa-3x" ></i>
+                    <i class="fa fa-users fa-3x"></i>
                     <strong class="h2"><spring:message code="form.user.permission"/>: </strong>
                     <span class="h3"><c:out value="${user.permission}"/></span>
                 </div>
                 <br>
-                <a class="btn btn-primary" href="<spring:url value="/user/edit/${user.id}"/>"><spring:message code="pages.editUser"/></a>
+                <a class="btn btn-primary" href="<spring:url value="/user/edit/${user.id}"/>"><spring:message
+                        code="pages.editUser"/></a>
             </div>
         </c:when>
         <c:otherwise>

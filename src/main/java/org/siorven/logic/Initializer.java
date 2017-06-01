@@ -118,7 +118,7 @@ public class Initializer {
         Machine machine = new Machine(machineName, machineModel);
         machineService.save(machine);
 
-        MachineSlot machineSlot = new MachineSlot(slots.get(0),machine);
+        MachineSlot machineSlot = new MachineSlot(slots.get(0), machine);
         machineSlotService.save(machineSlot);
 
         List<MachineProduct> machineProducts = new ArrayList<>();
@@ -181,7 +181,7 @@ public class Initializer {
         Resource resource = new Resource(name, resourceType);
         try {
             resourceService.save(resource);
-        }catch (ResourceAlreadyRegistered e){
+        } catch (ResourceAlreadyRegistered e) {
             System.out.println(e.getMessage());
         }
         return resource;

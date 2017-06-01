@@ -80,7 +80,7 @@ public class ResourceDaoImpl implements ResourceDao {
 
     @Override
     public List<Resource> findByLikeName(String nombreResource) {
-        Criteria crit = getSession().createCriteria(Resource.class).add(Restrictions.like("name","%"  + nombreResource + "%"));
+        Criteria crit = getSession().createCriteria(Resource.class).add(Restrictions.like("name", "%" + nombreResource + "%"));
         return crit.list();
     }
 }

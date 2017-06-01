@@ -13,7 +13,7 @@
 <div class="container-fluid">
     <div class="jumbotron">
         <div class="jumbotron">
-            <span class="h1" ><spring:message code="view.machine" /></span>
+            <span class="h1"><spring:message code="view.machine"/></span>
         </div>
         <br>
         <div class="well">

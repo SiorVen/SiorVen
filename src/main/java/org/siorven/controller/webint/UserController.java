@@ -61,11 +61,12 @@ public class UserController {
 
     /**
      * GET method of the newUser register action, returns the register file
+     *
      * @param model MachineModel of the response scope
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @GetMapping("/user/register")
-    public String showRegister(Model model){
+    public String showRegister(Model model) {
         model.addAttribute(USER, new User());
         addUserTypes(model);
         return REGISTER_VIEW;
@@ -74,9 +75,9 @@ public class UserController {
     /**
      * POST method of the newUser register action, checks the form data and rejects it with the according error message(s)
      *
-     * @param usuario The newUser with the data collected from the web form
+     * @param usuario       The newUser with the data collected from the web form
      * @param bindingResult The error wrapper of the validation errors
-     * @param model MachineModel of the response scope
+     * @param model         MachineModel of the response scope
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/user/register")
@@ -235,7 +236,8 @@ public class UserController {
 
     /**
      * Checs if a newUser's username or/and email are in use and adds the according message to the {@link BindingResult bindingResult}
-     * @param usuario User that is going to be checked
+     *
+     * @param usuario       User that is going to be checked
      * @param bindingResult The error wrapper of the validation errors
      * @return Whether an error was found or not
      */
@@ -259,6 +261,7 @@ public class UserController {
     /**
      * Adds a {@link LinkedHashMap LinkedHashMap<String, String>} to the response model
      * with the different newUser types and their internationalized representation
+     *
      * @param model MachineModel of the response scope
      */
     private void addUserTypes(Model model) {

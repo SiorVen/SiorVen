@@ -3,8 +3,8 @@ package org.siorven.services;
 import org.siorven.dao.MachineProductDao;
 import org.siorven.model.Machine;
 import org.siorven.model.MachineProduct;
-import org.siorven.model.Slot;
 import org.siorven.model.Product;
+import org.siorven.model.Slot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +43,7 @@ public class MachineProductService {
         return machineProductDao.findAll();
     }
 
-    public MachineProduct getMachineProductFromSlot (Slot slot){
+    public MachineProduct getMachineProductFromSlot(Slot slot) {
         return machineProductDao.getMachineProductFromSlot(slot);
     }
 

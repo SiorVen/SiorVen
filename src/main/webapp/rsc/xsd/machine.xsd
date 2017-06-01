@@ -49,7 +49,7 @@
 
     <xs:complexType name="matrixDistrubutionXml">
         <xs:sequence>
-            <xs:element type="resourceTypes" name="resourceTypes" minOccurs="1" />
+            <xs:element type="resourceTypes" name="resourceTypes" minOccurs="1"/>
         </xs:sequence>
         <xs:attribute name="name" type="xs:string" use="required"/>
         <xs:attribute name="rows" type="xs:int" use="required"/>
@@ -66,7 +66,7 @@
 
     <xs:complexType name="compartimentXml">
         <xs:sequence>
-            <xs:element type="resourceTypes" name="resourceTypes" minOccurs="1" />
+            <xs:element type="resourceTypes" name="resourceTypes" minOccurs="1"/>
         </xs:sequence>
         <xs:attribute name="name" type="xs:string" use="required"/>
         <xs:attribute name="capacity" type="xs:integer" use="required"/>

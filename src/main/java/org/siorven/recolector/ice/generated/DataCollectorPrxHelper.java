@@ -23,473 +23,412 @@ package org.siorven.recolector.ice.generated;
 /**
  * Provides type-specific helper functions.
  **/
-public final class DataCollectorPrxHelper extends Ice.ObjectPrxHelperBase implements DataCollectorPrx
-{
+public final class DataCollectorPrxHelper extends Ice.ObjectPrxHelperBase implements DataCollectorPrx {
     private static final String __registerConnection_name = "registerConnection";
 
-    public void registerConnection(String UID)
-    {
+    public void registerConnection(String UID) {
         registerConnection(UID, null, false);
     }
 
-    public void registerConnection(String UID, java.util.Map<String, String> __ctx)
-    {
+    public void registerConnection(String UID, java.util.Map<String, String> __ctx) {
         registerConnection(UID, __ctx, true);
     }
 
-    private void registerConnection(String UID, java.util.Map<String, String> __ctx, boolean __explicitCtx)
-    {
+    private void registerConnection(String UID, java.util.Map<String, String> __ctx, boolean __explicitCtx) {
         end_registerConnection(begin_registerConnection(UID, __ctx, __explicitCtx, true, null));
     }
 
-    public Ice.AsyncResult begin_registerConnection(String UID)
-    {
+    public Ice.AsyncResult begin_registerConnection(String UID) {
         return begin_registerConnection(UID, null, false, false, null);
     }
 
-    public Ice.AsyncResult begin_registerConnection(String UID, java.util.Map<String, String> __ctx)
-    {
+    public Ice.AsyncResult begin_registerConnection(String UID, java.util.Map<String, String> __ctx) {
         return begin_registerConnection(UID, __ctx, true, false, null);
     }
 
-    public Ice.AsyncResult begin_registerConnection(String UID, Ice.Callback __cb)
-    {
+    public Ice.AsyncResult begin_registerConnection(String UID, Ice.Callback __cb) {
         return begin_registerConnection(UID, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_registerConnection(String UID, java.util.Map<String, String> __ctx, Ice.Callback __cb)
-    {
+    public Ice.AsyncResult begin_registerConnection(String UID, java.util.Map<String, String> __ctx, Ice.Callback __cb) {
         return begin_registerConnection(UID, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_registerConnection(String UID, Callback_DataCollector_registerConnection __cb)
-    {
+    public Ice.AsyncResult begin_registerConnection(String UID, Callback_DataCollector_registerConnection __cb) {
         return begin_registerConnection(UID, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_registerConnection(String UID, java.util.Map<String, String> __ctx, Callback_DataCollector_registerConnection __cb)
-    {
+    public Ice.AsyncResult begin_registerConnection(String UID, java.util.Map<String, String> __ctx, Callback_DataCollector_registerConnection __cb) {
         return begin_registerConnection(UID, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_registerConnection(String UID, 
-                                                    IceInternal.Functional_VoidCallback __responseCb, 
-                                                    IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
-    {
+    public Ice.AsyncResult begin_registerConnection(String UID,
+                                                    IceInternal.Functional_VoidCallback __responseCb,
+                                                    IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb) {
         return begin_registerConnection(UID, null, false, false, __responseCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_registerConnection(String UID, 
-                                                    IceInternal.Functional_VoidCallback __responseCb, 
-                                                    IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
-                                                    IceInternal.Functional_BoolCallback __sentCb)
-    {
+    public Ice.AsyncResult begin_registerConnection(String UID,
+                                                    IceInternal.Functional_VoidCallback __responseCb,
+                                                    IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                                    IceInternal.Functional_BoolCallback __sentCb) {
         return begin_registerConnection(UID, null, false, false, __responseCb, __exceptionCb, __sentCb);
     }
 
-    public Ice.AsyncResult begin_registerConnection(String UID, 
-                                                    java.util.Map<String, String> __ctx, 
-                                                    IceInternal.Functional_VoidCallback __responseCb, 
-                                                    IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
-    {
+    public Ice.AsyncResult begin_registerConnection(String UID,
+                                                    java.util.Map<String, String> __ctx,
+                                                    IceInternal.Functional_VoidCallback __responseCb,
+                                                    IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb) {
         return begin_registerConnection(UID, __ctx, true, false, __responseCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_registerConnection(String UID, 
-                                                    java.util.Map<String, String> __ctx, 
-                                                    IceInternal.Functional_VoidCallback __responseCb, 
-                                                    IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
-                                                    IceInternal.Functional_BoolCallback __sentCb)
-    {
+    public Ice.AsyncResult begin_registerConnection(String UID,
+                                                    java.util.Map<String, String> __ctx,
+                                                    IceInternal.Functional_VoidCallback __responseCb,
+                                                    IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                                    IceInternal.Functional_BoolCallback __sentCb) {
         return begin_registerConnection(UID, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
     }
 
-    private Ice.AsyncResult begin_registerConnection(String UID, 
-                                                     java.util.Map<String, String> __ctx, 
-                                                     boolean __explicitCtx, 
-                                                     boolean __synchronous, 
-                                                     IceInternal.Functional_VoidCallback __responseCb, 
-                                                     IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
-                                                     IceInternal.Functional_BoolCallback __sentCb)
-    {
-        return begin_registerConnection(UID, 
-                                        __ctx, 
-                                        __explicitCtx, 
-                                        __synchronous, 
-                                        new IceInternal.Functional_OnewayCallback(__responseCb, __exceptionCb, __sentCb));
+    private Ice.AsyncResult begin_registerConnection(String UID,
+                                                     java.util.Map<String, String> __ctx,
+                                                     boolean __explicitCtx,
+                                                     boolean __synchronous,
+                                                     IceInternal.Functional_VoidCallback __responseCb,
+                                                     IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                                     IceInternal.Functional_BoolCallback __sentCb) {
+        return begin_registerConnection(UID,
+                __ctx,
+                __explicitCtx,
+                __synchronous,
+                new IceInternal.Functional_OnewayCallback(__responseCb, __exceptionCb, __sentCb));
     }
 
-    private Ice.AsyncResult begin_registerConnection(String UID, 
-                                                     java.util.Map<String, String> __ctx, 
-                                                     boolean __explicitCtx, 
-                                                     boolean __synchronous, 
-                                                     IceInternal.CallbackBase __cb)
-    {
+    private Ice.AsyncResult begin_registerConnection(String UID,
+                                                     java.util.Map<String, String> __ctx,
+                                                     boolean __explicitCtx,
+                                                     boolean __synchronous,
+                                                     IceInternal.CallbackBase __cb) {
         IceInternal.OutgoingAsync __result = getOutgoingAsync(__registerConnection_name, __cb);
-        try
-        {
+        try {
             __result.prepare(__registerConnection_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
             IceInternal.BasicStream __os = __result.startWriteParams(Ice.FormatType.DefaultFormat);
             __os.writeString(UID);
             __result.endWriteParams();
             __result.invoke();
-        }
-        catch(Ice.Exception __ex)
-        {
+        } catch (Ice.Exception __ex) {
             __result.abort(__ex);
         }
         return __result;
     }
 
-    public void end_registerConnection(Ice.AsyncResult __iresult)
-    {
+    public void end_registerConnection(Ice.AsyncResult __iresult) {
         __end(__iresult, __registerConnection_name);
     }
 
     private static final String __saleDone_name = "saleDone";
 
-    public void saleDone(String UID, String code)
-    {
+    public void saleDone(String UID, String code) {
         saleDone(UID, code, null, false);
     }
 
-    public void saleDone(String UID, String code, java.util.Map<String, String> __ctx)
-    {
+    public void saleDone(String UID, String code, java.util.Map<String, String> __ctx) {
         saleDone(UID, code, __ctx, true);
     }
 
-    private void saleDone(String UID, String code, java.util.Map<String, String> __ctx, boolean __explicitCtx)
-    {
+    private void saleDone(String UID, String code, java.util.Map<String, String> __ctx, boolean __explicitCtx) {
         end_saleDone(begin_saleDone(UID, code, __ctx, __explicitCtx, true, null));
     }
 
-    public Ice.AsyncResult begin_saleDone(String UID, String code)
-    {
+    public Ice.AsyncResult begin_saleDone(String UID, String code) {
         return begin_saleDone(UID, code, null, false, false, null);
     }
 
-    public Ice.AsyncResult begin_saleDone(String UID, String code, java.util.Map<String, String> __ctx)
-    {
+    public Ice.AsyncResult begin_saleDone(String UID, String code, java.util.Map<String, String> __ctx) {
         return begin_saleDone(UID, code, __ctx, true, false, null);
     }
 
-    public Ice.AsyncResult begin_saleDone(String UID, String code, Ice.Callback __cb)
-    {
+    public Ice.AsyncResult begin_saleDone(String UID, String code, Ice.Callback __cb) {
         return begin_saleDone(UID, code, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_saleDone(String UID, String code, java.util.Map<String, String> __ctx, Ice.Callback __cb)
-    {
+    public Ice.AsyncResult begin_saleDone(String UID, String code, java.util.Map<String, String> __ctx, Ice.Callback __cb) {
         return begin_saleDone(UID, code, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_saleDone(String UID, String code, Callback_DataCollector_saleDone __cb)
-    {
+    public Ice.AsyncResult begin_saleDone(String UID, String code, Callback_DataCollector_saleDone __cb) {
         return begin_saleDone(UID, code, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_saleDone(String UID, String code, java.util.Map<String, String> __ctx, Callback_DataCollector_saleDone __cb)
-    {
+    public Ice.AsyncResult begin_saleDone(String UID, String code, java.util.Map<String, String> __ctx, Callback_DataCollector_saleDone __cb) {
         return begin_saleDone(UID, code, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_saleDone(String UID, 
-                                          String code, 
-                                          IceInternal.Functional_VoidCallback __responseCb, 
-                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
-    {
+    public Ice.AsyncResult begin_saleDone(String UID,
+                                          String code,
+                                          IceInternal.Functional_VoidCallback __responseCb,
+                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb) {
         return begin_saleDone(UID, code, null, false, false, __responseCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_saleDone(String UID, 
-                                          String code, 
-                                          IceInternal.Functional_VoidCallback __responseCb, 
-                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
-                                          IceInternal.Functional_BoolCallback __sentCb)
-    {
+    public Ice.AsyncResult begin_saleDone(String UID,
+                                          String code,
+                                          IceInternal.Functional_VoidCallback __responseCb,
+                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                          IceInternal.Functional_BoolCallback __sentCb) {
         return begin_saleDone(UID, code, null, false, false, __responseCb, __exceptionCb, __sentCb);
     }
 
-    public Ice.AsyncResult begin_saleDone(String UID, 
-                                          String code, 
-                                          java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_VoidCallback __responseCb, 
-                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
-    {
+    public Ice.AsyncResult begin_saleDone(String UID,
+                                          String code,
+                                          java.util.Map<String, String> __ctx,
+                                          IceInternal.Functional_VoidCallback __responseCb,
+                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb) {
         return begin_saleDone(UID, code, __ctx, true, false, __responseCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_saleDone(String UID, 
-                                          String code, 
-                                          java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_VoidCallback __responseCb, 
-                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
-                                          IceInternal.Functional_BoolCallback __sentCb)
-    {
+    public Ice.AsyncResult begin_saleDone(String UID,
+                                          String code,
+                                          java.util.Map<String, String> __ctx,
+                                          IceInternal.Functional_VoidCallback __responseCb,
+                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                          IceInternal.Functional_BoolCallback __sentCb) {
         return begin_saleDone(UID, code, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
     }
 
-    private Ice.AsyncResult begin_saleDone(String UID, 
-                                           String code, 
-                                           java.util.Map<String, String> __ctx, 
-                                           boolean __explicitCtx, 
-                                           boolean __synchronous, 
-                                           IceInternal.Functional_VoidCallback __responseCb, 
-                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
-                                           IceInternal.Functional_BoolCallback __sentCb)
-    {
-        return begin_saleDone(UID, 
-                              code, 
-                              __ctx, 
-                              __explicitCtx, 
-                              __synchronous, 
-                              new IceInternal.Functional_OnewayCallback(__responseCb, __exceptionCb, __sentCb));
+    private Ice.AsyncResult begin_saleDone(String UID,
+                                           String code,
+                                           java.util.Map<String, String> __ctx,
+                                           boolean __explicitCtx,
+                                           boolean __synchronous,
+                                           IceInternal.Functional_VoidCallback __responseCb,
+                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                           IceInternal.Functional_BoolCallback __sentCb) {
+        return begin_saleDone(UID,
+                code,
+                __ctx,
+                __explicitCtx,
+                __synchronous,
+                new IceInternal.Functional_OnewayCallback(__responseCb, __exceptionCb, __sentCb));
     }
 
-    private Ice.AsyncResult begin_saleDone(String UID, 
-                                           String code, 
-                                           java.util.Map<String, String> __ctx, 
-                                           boolean __explicitCtx, 
-                                           boolean __synchronous, 
-                                           IceInternal.CallbackBase __cb)
-    {
+    private Ice.AsyncResult begin_saleDone(String UID,
+                                           String code,
+                                           java.util.Map<String, String> __ctx,
+                                           boolean __explicitCtx,
+                                           boolean __synchronous,
+                                           IceInternal.CallbackBase __cb) {
         IceInternal.OutgoingAsync __result = getOutgoingAsync(__saleDone_name, __cb);
-        try
-        {
+        try {
             __result.prepare(__saleDone_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
             IceInternal.BasicStream __os = __result.startWriteParams(Ice.FormatType.DefaultFormat);
             __os.writeString(UID);
             __os.writeString(code);
             __result.endWriteParams();
             __result.invoke();
-        }
-        catch(Ice.Exception __ex)
-        {
+        } catch (Ice.Exception __ex) {
             __result.abort(__ex);
         }
         return __result;
     }
 
-    public void end_saleDone(Ice.AsyncResult __iresult)
-    {
+    public void end_saleDone(Ice.AsyncResult __iresult) {
         __end(__iresult, __saleDone_name);
     }
 
     private static final String __shutdown_name = "shutdown";
 
-    public void shutdown(String UID)
-    {
+    public void shutdown(String UID) {
         shutdown(UID, null, false);
     }
 
-    public void shutdown(String UID, java.util.Map<String, String> __ctx)
-    {
+    public void shutdown(String UID, java.util.Map<String, String> __ctx) {
         shutdown(UID, __ctx, true);
     }
 
-    private void shutdown(String UID, java.util.Map<String, String> __ctx, boolean __explicitCtx)
-    {
+    private void shutdown(String UID, java.util.Map<String, String> __ctx, boolean __explicitCtx) {
         end_shutdown(begin_shutdown(UID, __ctx, __explicitCtx, true, null));
     }
 
-    public Ice.AsyncResult begin_shutdown(String UID)
-    {
+    public Ice.AsyncResult begin_shutdown(String UID) {
         return begin_shutdown(UID, null, false, false, null);
     }
 
-    public Ice.AsyncResult begin_shutdown(String UID, java.util.Map<String, String> __ctx)
-    {
+    public Ice.AsyncResult begin_shutdown(String UID, java.util.Map<String, String> __ctx) {
         return begin_shutdown(UID, __ctx, true, false, null);
     }
 
-    public Ice.AsyncResult begin_shutdown(String UID, Ice.Callback __cb)
-    {
+    public Ice.AsyncResult begin_shutdown(String UID, Ice.Callback __cb) {
         return begin_shutdown(UID, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_shutdown(String UID, java.util.Map<String, String> __ctx, Ice.Callback __cb)
-    {
+    public Ice.AsyncResult begin_shutdown(String UID, java.util.Map<String, String> __ctx, Ice.Callback __cb) {
         return begin_shutdown(UID, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_shutdown(String UID, Callback_DataCollector_shutdown __cb)
-    {
+    public Ice.AsyncResult begin_shutdown(String UID, Callback_DataCollector_shutdown __cb) {
         return begin_shutdown(UID, null, false, false, __cb);
     }
 
-    public Ice.AsyncResult begin_shutdown(String UID, java.util.Map<String, String> __ctx, Callback_DataCollector_shutdown __cb)
-    {
+    public Ice.AsyncResult begin_shutdown(String UID, java.util.Map<String, String> __ctx, Callback_DataCollector_shutdown __cb) {
         return begin_shutdown(UID, __ctx, true, false, __cb);
     }
 
-    public Ice.AsyncResult begin_shutdown(String UID, 
-                                          IceInternal.Functional_VoidCallback __responseCb, 
-                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
-    {
+    public Ice.AsyncResult begin_shutdown(String UID,
+                                          IceInternal.Functional_VoidCallback __responseCb,
+                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb) {
         return begin_shutdown(UID, null, false, false, __responseCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_shutdown(String UID, 
-                                          IceInternal.Functional_VoidCallback __responseCb, 
-                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
-                                          IceInternal.Functional_BoolCallback __sentCb)
-    {
+    public Ice.AsyncResult begin_shutdown(String UID,
+                                          IceInternal.Functional_VoidCallback __responseCb,
+                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                          IceInternal.Functional_BoolCallback __sentCb) {
         return begin_shutdown(UID, null, false, false, __responseCb, __exceptionCb, __sentCb);
     }
 
-    public Ice.AsyncResult begin_shutdown(String UID, 
-                                          java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_VoidCallback __responseCb, 
-                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
-    {
+    public Ice.AsyncResult begin_shutdown(String UID,
+                                          java.util.Map<String, String> __ctx,
+                                          IceInternal.Functional_VoidCallback __responseCb,
+                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb) {
         return begin_shutdown(UID, __ctx, true, false, __responseCb, __exceptionCb, null);
     }
 
-    public Ice.AsyncResult begin_shutdown(String UID, 
-                                          java.util.Map<String, String> __ctx, 
-                                          IceInternal.Functional_VoidCallback __responseCb, 
-                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
-                                          IceInternal.Functional_BoolCallback __sentCb)
-    {
+    public Ice.AsyncResult begin_shutdown(String UID,
+                                          java.util.Map<String, String> __ctx,
+                                          IceInternal.Functional_VoidCallback __responseCb,
+                                          IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                          IceInternal.Functional_BoolCallback __sentCb) {
         return begin_shutdown(UID, __ctx, true, false, __responseCb, __exceptionCb, __sentCb);
     }
 
-    private Ice.AsyncResult begin_shutdown(String UID, 
-                                           java.util.Map<String, String> __ctx, 
-                                           boolean __explicitCtx, 
-                                           boolean __synchronous, 
-                                           IceInternal.Functional_VoidCallback __responseCb, 
-                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
-                                           IceInternal.Functional_BoolCallback __sentCb)
-    {
-        return begin_shutdown(UID, 
-                              __ctx, 
-                              __explicitCtx, 
-                              __synchronous, 
-                              new IceInternal.Functional_OnewayCallback(__responseCb, __exceptionCb, __sentCb));
+    private Ice.AsyncResult begin_shutdown(String UID,
+                                           java.util.Map<String, String> __ctx,
+                                           boolean __explicitCtx,
+                                           boolean __synchronous,
+                                           IceInternal.Functional_VoidCallback __responseCb,
+                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                           IceInternal.Functional_BoolCallback __sentCb) {
+        return begin_shutdown(UID,
+                __ctx,
+                __explicitCtx,
+                __synchronous,
+                new IceInternal.Functional_OnewayCallback(__responseCb, __exceptionCb, __sentCb));
     }
 
-    private Ice.AsyncResult begin_shutdown(String UID, 
-                                           java.util.Map<String, String> __ctx, 
-                                           boolean __explicitCtx, 
-                                           boolean __synchronous, 
-                                           IceInternal.CallbackBase __cb)
-    {
+    private Ice.AsyncResult begin_shutdown(String UID,
+                                           java.util.Map<String, String> __ctx,
+                                           boolean __explicitCtx,
+                                           boolean __synchronous,
+                                           IceInternal.CallbackBase __cb) {
         IceInternal.OutgoingAsync __result = getOutgoingAsync(__shutdown_name, __cb);
-        try
-        {
+        try {
             __result.prepare(__shutdown_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
             IceInternal.BasicStream __os = __result.startWriteParams(Ice.FormatType.DefaultFormat);
             __os.writeString(UID);
             __result.endWriteParams();
             __result.invoke();
-        }
-        catch(Ice.Exception __ex)
-        {
+        } catch (Ice.Exception __ex) {
             __result.abort(__ex);
         }
         return __result;
     }
 
-    public void end_shutdown(Ice.AsyncResult __iresult)
-    {
+    public void end_shutdown(Ice.AsyncResult __iresult) {
         __end(__iresult, __shutdown_name);
     }
 
     /**
      * Contacts the remote server to verify that the object implements this type.
      * Raises a local exception if a communication error occurs.
+     *
      * @param __obj The untyped proxy.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    public static DataCollectorPrx checkedCast(Ice.ObjectPrx __obj)
-    {
+    public static DataCollectorPrx checkedCast(Ice.ObjectPrx __obj) {
         return checkedCastImpl(__obj, ice_staticId(), DataCollectorPrx.class, DataCollectorPrxHelper.class);
     }
 
     /**
      * Contacts the remote server to verify that the object implements this type.
      * Raises a local exception if a communication error occurs.
+     *
      * @param __obj The untyped proxy.
      * @param __ctx The Context map to send with the invocation.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    public static DataCollectorPrx checkedCast(Ice.ObjectPrx __obj, java.util.Map<String, String> __ctx)
-    {
+    public static DataCollectorPrx checkedCast(Ice.ObjectPrx __obj, java.util.Map<String, String> __ctx) {
         return checkedCastImpl(__obj, __ctx, ice_staticId(), DataCollectorPrx.class, DataCollectorPrxHelper.class);
     }
 
     /**
      * Contacts the remote server to verify that a facet of the object implements this type.
      * Raises a local exception if a communication error occurs.
-     * @param __obj The untyped proxy.
+     *
+     * @param __obj   The untyped proxy.
      * @param __facet The name of the desired facet.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    public static DataCollectorPrx checkedCast(Ice.ObjectPrx __obj, String __facet)
-    {
+    public static DataCollectorPrx checkedCast(Ice.ObjectPrx __obj, String __facet) {
         return checkedCastImpl(__obj, __facet, ice_staticId(), DataCollectorPrx.class, DataCollectorPrxHelper.class);
     }
 
     /**
      * Contacts the remote server to verify that a facet of the object implements this type.
      * Raises a local exception if a communication error occurs.
-     * @param __obj The untyped proxy.
+     *
+     * @param __obj   The untyped proxy.
      * @param __facet The name of the desired facet.
-     * @param __ctx The Context map to send with the invocation.
+     * @param __ctx   The Context map to send with the invocation.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    public static DataCollectorPrx checkedCast(Ice.ObjectPrx __obj, String __facet, java.util.Map<String, String> __ctx)
-    {
+    public static DataCollectorPrx checkedCast(Ice.ObjectPrx __obj, String __facet, java.util.Map<String, String> __ctx) {
         return checkedCastImpl(__obj, __facet, __ctx, ice_staticId(), DataCollectorPrx.class, DataCollectorPrxHelper.class);
     }
 
     /**
      * Downcasts the given proxy to this type without contacting the remote server.
+     *
      * @param __obj The untyped proxy.
      * @return A proxy for this type.
      **/
-    public static DataCollectorPrx uncheckedCast(Ice.ObjectPrx __obj)
-    {
+    public static DataCollectorPrx uncheckedCast(Ice.ObjectPrx __obj) {
         return uncheckedCastImpl(__obj, DataCollectorPrx.class, DataCollectorPrxHelper.class);
     }
 
     /**
      * Downcasts the given proxy to this type without contacting the remote server.
-     * @param __obj The untyped proxy.
+     *
+     * @param __obj   The untyped proxy.
      * @param __facet The name of the desired facet.
      * @return A proxy for this type.
      **/
-    public static DataCollectorPrx uncheckedCast(Ice.ObjectPrx __obj, String __facet)
-    {
+    public static DataCollectorPrx uncheckedCast(Ice.ObjectPrx __obj, String __facet) {
         return uncheckedCastImpl(__obj, __facet, DataCollectorPrx.class, DataCollectorPrxHelper.class);
     }
 
     public static final String[] __ids =
-    {
-        "::Demo::DataCollector",
-        "::Ice::Object"
-    };
+            {
+                    "::Demo::DataCollector",
+                    "::Ice::Object"
+            };
 
     /**
      * Provides the Slice type ID of this type.
+     *
      * @return The Slice type ID.
      **/
-    public static String ice_staticId()
-    {
+    public static String ice_staticId() {
         return __ids[0];
     }
 
-    public static void __write(IceInternal.BasicStream __os, DataCollectorPrx v)
-    {
+    public static void __write(IceInternal.BasicStream __os, DataCollectorPrx v) {
         __os.writeProxy(v);
     }
 
-    public static DataCollectorPrx __read(IceInternal.BasicStream __is)
-    {
+    public static DataCollectorPrx __read(IceInternal.BasicStream __is) {
         Ice.ObjectPrx proxy = __is.readProxy();
-        if(proxy != null)
-        {
+        if (proxy != null) {
             DataCollectorPrxHelper result = new DataCollectorPrxHelper();
             result.__copyFrom(proxy);
             return result;

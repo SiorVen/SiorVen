@@ -21,8 +21,7 @@
 package org.siorven.recolector.ice.generated;
 
 public interface DataCollector extends Ice.Object,
-                                       _DataCollectorOperations, _DataCollectorOperationsNC
-{
+        _DataCollectorOperations, _DataCollectorOperationsNC {
     public static final String ice_staticId = "::Demo::DataCollector";
 
     public static final long serialVersionUID = -1024424563L;

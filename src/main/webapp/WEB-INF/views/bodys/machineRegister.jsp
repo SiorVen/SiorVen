@@ -11,18 +11,21 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="container-fluid">
     <div class="jumbotron col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-offset-0 col-xs-12">
-        <sf:form action="${pageContext.request.contextPath}/machine/register" method="post" commandName="machineModelRegister">
+        <sf:form action="${pageContext.request.contextPath}/machine/register" method="post"
+                 commandName="machineModelRegister">
             <fieldset>
                 <div id="legend">
-                    <legend class=""><s:message code="pages.modelRegister" /></legend>
+                    <legend class=""><s:message code="pages.modelRegister"/></legend>
                 </div>
                 <div class="control-group">
                     <div class="control-group">
                         <!-- Modelo -->
-                        <label class="control-label" for="machineModelId"><i class="fa fa-users" aria-hidden="true"></i> <s:message
-                                code="form.machine.modelFile"/></label>
+                        <label class="control-label" for="machineModelId"><i class="fa fa-users" aria-hidden="true"></i>
+                            <s:message
+                                    code="form.machine.modelFile"/></label>
                         <div class="controls">
-                            <sf:select path="machineModelId" id="machineModelId" items="${models}" cssClass="form-control"/>
+                            <sf:select path="machineModelId" id="machineModelId" items="${models}"
+                                       cssClass="form-control"/>
                             <sf:errors path="machineModelId" cssClass="text-danger"/>
                         </div>
                     </div>

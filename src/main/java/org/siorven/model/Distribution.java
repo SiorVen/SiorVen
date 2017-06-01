@@ -31,7 +31,7 @@ public abstract class Distribution implements IResourceContainer {
     }
 
     public Distribution() {
-        slotList =  new ArrayList<>();
+        slotList = new ArrayList<>();
     }
 
     public int getId() {

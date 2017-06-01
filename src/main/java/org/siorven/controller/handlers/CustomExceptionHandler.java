@@ -13,14 +13,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class CustomExceptionHandler {
 
     @ExceptionHandler(ForbiddenActionException.class) //403
-    public ModelAndView handleForbiddenActionException(ForbiddenActionException ex){
+    public ModelAndView handleForbiddenActionException(ForbiddenActionException ex) {
         ModelAndView modelAndView = new ModelAndView("403");
         modelAndView.addObject("reason", ex.getMessage());
         return modelAndView;
     }
 
     @ExceptionHandler(ResourceNotFoundException.class) //403
-    public ModelAndView handleResourceNotFoundException(ResourceNotFoundException ex){
+    public ModelAndView handleResourceNotFoundException(ResourceNotFoundException ex) {
         ModelAndView modelAndView = new ModelAndView("404");
         modelAndView.addObject("reason", ex.getMessage());
         return modelAndView;

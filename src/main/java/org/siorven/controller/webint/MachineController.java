@@ -100,11 +100,12 @@ public class MachineController {
 
     /**
      * GET method of the machine register action, returns the register file
+     *
      * @param model Model of the response scope
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @GetMapping("/machine/register")
-    public String showMachineRegisterInterface(Model model){
+    public String showMachineRegisterInterface(Model model) {
         anadirModelos(model);
         model.addAttribute("machineModelRegister", new MachineEditForm());
         return MODEL_REGISTER_VIEW;
@@ -113,13 +114,13 @@ public class MachineController {
     /**
      * POST method of the new machine register action, checks the form data and rejects it with the according error message(s)
      *
-     * @param machineForm The machine with the data collected from the web form
+     * @param machineForm   The machine with the data collected from the web form
      * @param bindingResult The error wrapper of the validation errors
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/machine/register")
     public String performMachineRegister(@ModelAttribute(MACHINE_MODEL) @Validated MachineEditForm machineForm, BindingResult bindingResult,
-                                  RedirectAttributes redirectAttributes) throws IOException {
+                                         RedirectAttributes redirectAttributes) throws IOException {
 
         if (bindingResult.hasErrors()) {
             return REDIRECT_MODEL_REGISTER;
@@ -134,13 +135,13 @@ public class MachineController {
     }
 
 
-        /**
-         * Edits a newUser
-         *
-         * @param machineForm            newUser to update
-         * @param redirectAttributes Redirected attributes to the manager
-         * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
-         */
+    /**
+     * Edits a newUser
+     *
+     * @param machineForm        newUser to update
+     * @param redirectAttributes Redirected attributes to the manager
+     * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
+     */
     @PostMapping("/machine/edit")
     public String editMachine(@ModelAttribute("machine") @Validated(SpringFormEditGroup.class) MachineEditForm machineForm, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) throws ServletException {
         anadirModelos(model);
@@ -176,10 +177,10 @@ public class MachineController {
         return "machineView";
     }
 
-        private void anadirModelos(Model model) {
+    private void anadirModelos(Model model) {
         List<MachineModel> m = machineModelService.findAll();
         LinkedHashMap<Integer, String> roles = new LinkedHashMap<>();
-        for(int i = 0; i < m.size(); i++) {
+        for (int i = 0; i < m.size(); i++) {
             roles.put(m.get(i).getId(), m.get(i).getReference());
         }
         model.addAttribute("models", roles);

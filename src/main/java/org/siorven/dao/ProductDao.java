@@ -1,6 +1,5 @@
 package org.siorven.dao;
 
-import org.siorven.model.Ingredient;
 import org.siorven.model.Product;
 import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;

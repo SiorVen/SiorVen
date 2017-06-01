@@ -33,7 +33,6 @@ public class ResourceController {
     public static final String REDIRECT_PRODUCT_MANAGER = "redirect:/product/manager";
 
 
-
     @Autowired
     private ResourceService resourceService;
 
@@ -57,16 +56,17 @@ public class ResourceController {
 
     /**
      * GET method of the newResource register action, returns the register file
+     *
      * @param model MachineModel of the response scope
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @GetMapping("/resource/register")
-    public String showRegister(Model model, @RequestParam(required = false) Integer prodid){
+    public String showRegister(Model model, @RequestParam(required = false) Integer prodid) {
         model.addAttribute(RESOURCE, new Resource());
-        if(prodid == null){
+        if (prodid == null) {
             prodid = new Integer(0);
         }
-        model.addAttribute("prodid",prodid.intValue());
+        model.addAttribute("prodid", prodid.intValue());
         addResourceTypes(model);
         return RESOURCE_REGISTER_VIEW;
     }
@@ -74,9 +74,9 @@ public class ResourceController {
     /**
      * POST method of the newUser register action, checks the form data and rejects it with the according error message(s)
      *
-     * @param resource The newResource with the data collected from the web form
+     * @param resource      The newResource with the data collected from the web form
      * @param bindingResult The error wrapper of the validation errors
-     * @param model MachineModel of the response scope
+     * @param model         MachineModel of the response scope
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/resource/register")
@@ -89,7 +89,7 @@ public class ResourceController {
         }
         try {
             resourceService.save(resource);
-        }catch (ResourceAlreadyRegistered e){
+        } catch (ResourceAlreadyRegistered e) {
             String msg = messageSource.getMessage(e.getMessage(),
                     new String[]{resource.getName()}, locale.resolveLocale(request));
             bindingResult.addError(new FieldError(RESOURCE, "name", resource.getName(), true, null, null, msg));
@@ -100,9 +100,9 @@ public class ResourceController {
                 new String[]{resource.getName()}, locale.resolveLocale(request));
         redirectAttributes.addFlashAttribute("message", msg);
 
-        if(prodid > 0) {
+        if (prodid > 0) {
             return REDIRECT_PRODUCT_REGISTER + prodid;
-        }else{
+        } else {
             return REDIRECT_PRODUCT_MANAGER;
         }
     }
@@ -110,6 +110,7 @@ public class ResourceController {
     /**
      * Adds a {@link LinkedHashMap LinkedHashMap<String, String>} to the response model
      * with the different resource types and their internationalized representation
+     *
      * @param model MachineModel of the response scope
      */
     private void addResourceTypes(Model model) {

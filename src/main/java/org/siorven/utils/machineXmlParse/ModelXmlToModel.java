@@ -26,19 +26,19 @@ public class ModelXmlToModel {
         model.setReference(modelXml.getModelReference());
         for (Object ditrib : modelXml.getDistributions().getMatrixOrCompartiments()) {
 
-            if(ditrib.getClass() == MatrixDistrubutionXml.class){
+            if (ditrib.getClass() == MatrixDistrubutionXml.class) {
                 MatrixDistrubutionXml matrix = (MatrixDistrubutionXml) ditrib;
                 MatrixDistribution matrixDistrubution = new MatrixDistribution(matrix.getName(), matrix.getCols(), matrix.getCols());
                 for (int i = 0; i < matrix.getCols() * matrix.getRows(); i++) {
                     Slot slot = new Slot();
                     slot.setUnit(ResourceType.unit(ResourceType.valueOf(matrix.getResourceTypes().resourceType.get(0).value())));
-                    slot.setName((i/matrix.getCols()) + ":" + (i%matrix.getCols())); //Format will be "col:row" ("x:y")
+                    slot.setName((i / matrix.getCols()) + ":" + (i % matrix.getCols())); //Format will be "col:row" ("x:y")
                     slot.setCapacity(matrix.getCapacity().intValue());
                     matrixDistrubution.getSlots().add(slot);
                 }
                 model.getAviableDistributions().add(matrixDistrubution);
             }
-            if(ditrib.getClass() == CompartimentDistributionXml.class){
+            if (ditrib.getClass() == CompartimentDistributionXml.class) {
                 CompartimentDistributionXml compartiments = (CompartimentDistributionXml) ditrib;
                 CompartimentDistribution compartimentDistribution = new CompartimentDistribution(compartiments.getName(), compartiments.getCompartiment().size());
                 for (int i = 0; i < compartiments.getCompartiment().size(); i++) {

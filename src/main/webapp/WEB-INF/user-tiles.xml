@@ -4,13 +4,13 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <definition name="login" extends="index">
-        <put-attribute name="title" type="string" value="pages.index" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/login.jsp" />
+        <put-attribute name="title" type="string" value="pages.index"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/login.jsp"/>
     </definition>
 
     <definition name="register" extends="index">
-        <put-attribute name="title" type="string" value="pages.register" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/register.jsp" />
+        <put-attribute name="title" type="string" value="pages.register"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/register.jsp"/>
     </definition>
 
     <definition name="userManager" extends="index">

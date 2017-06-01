@@ -11,10 +11,11 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="container-fluid">
     <div class="jumbotron col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-offset-0 col-xs-12">
-        <sf:form action="${pageContext.request.contextPath}/model/register" method="post" commandName="machineModel" enctype="multipart/form-data">
+        <sf:form action="${pageContext.request.contextPath}/model/register" method="post" commandName="machineModel"
+                 enctype="multipart/form-data">
             <fieldset>
                 <div id="legend">
-                    <legend class=""><s:message code="pages.modelRegister" /></legend>
+                    <legend class=""><s:message code="pages.modelRegister"/></legend>
                 </div>
                 <div class="alert alert-danger"><s:message code="fileupload.maxsizeWarning"/></div>
                 <div class="control-group">
@@ -25,14 +26,14 @@
                                   cssStyle="padding-bottom: 40px;"/>
                         <sf:errors path="file" cssClass="text-danger"/>
 
-                <div class="control-group" style="margin-top: 20px">
-                    <!-- Button -->
-                    <div class="controls">
-                        <button type="submit" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
-                            <s:message code="form.machine.register"/>
-                        </button>
+                    <div class="control-group" style="margin-top: 20px">
+                        <!-- Button -->
+                        <div class="controls">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
+                                <s:message code="form.machine.register"/>
+                            </button>
+                        </div>
                     </div>
-                </div>
             </fieldset>
         </sf:form>
     </div>

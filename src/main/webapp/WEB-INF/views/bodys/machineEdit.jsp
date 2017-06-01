@@ -14,15 +14,17 @@
         <sf:form action="${pageContext.request.contextPath}/machine/edit" method="post" commandName="machine">
             <fieldset>
                 <div id="legend">
-                    <legend class=""><s:message code="pages.modelEdit" /></legend>
+                    <legend class=""><s:message code="pages.modelEdit"/></legend>
                 </div>
                 <div class="control-group">
                     <div class="control-group">
                         <!-- Permiso -->
-                        <label class="control-label" for="machineModelId"><i class="fa fa-users" aria-hidden="true"></i> <s:message
-                                code="form.machine.modelFile"/></label>
+                        <label class="control-label" for="machineModelId"><i class="fa fa-users" aria-hidden="true"></i>
+                            <s:message
+                                    code="form.machine.modelFile"/></label>
                         <div class="controls">
-                            <sf:select path="machineModelId" id="machineModelId" items="${models}" cssClass="form-control"/>
+                            <sf:select path="machineModelId" id="machineModelId" items="${models}"
+                                       cssClass="form-control"/>
                             <sf:errors path="machineModelId" cssClass="text-danger"/>
                         </div>
                     </div>

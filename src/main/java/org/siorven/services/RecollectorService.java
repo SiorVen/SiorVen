@@ -16,27 +16,27 @@ public class RecollectorService {
     @Autowired
     private RecollectorDao recollectorDao;
 
-    public void save(Recollector recollector){
+    public void save(Recollector recollector) {
         recollectorDao.saveRecollector(recollector);
     }
 
-    public void edit(Recollector recollector){
+    public void edit(Recollector recollector) {
         recollectorDao.editRecollector(recollector);
     }
 
-    public void editOrSave(Recollector recollector){
+    public void editOrSave(Recollector recollector) {
         recollectorDao.editOrSaveRecollector(recollector);
     }
 
-    public void delete(Recollector recollector){
+    public void delete(Recollector recollector) {
         recollectorDao.deleteRecollector(recollector.getAlias());
     }
 
-    public Recollector findByAlias(String alias){
+    public Recollector findByAlias(String alias) {
         return recollectorDao.findByAlias(alias);
     }
 
-    public List<Recollector> findAll(){
+    public List<Recollector> findAll() {
         return recollectorDao.findAll();
     }
 }

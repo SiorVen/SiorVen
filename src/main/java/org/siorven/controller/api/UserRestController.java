@@ -113,7 +113,7 @@ public class UserRestController {
             try {
                 request.logout();
             } catch (ServletException e) {
-               throw e;
+                throw e;
             }
         }
     }

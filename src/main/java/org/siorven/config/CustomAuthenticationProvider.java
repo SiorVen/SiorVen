@@ -32,13 +32,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         User user = (User) customUserDetailsService.loadUserByUsername(usuario);
 
-        if(user != null){
-            if (passwordEncoder.matches(password, user.getPassword())){
+        if (user != null) {
+            if (passwordEncoder.matches(password, user.getPassword())) {
                 user.setPassword("");
                 return new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
-            }
-            else {
-               throw new BadCredentialsException("Contraseña incorrecta");
+            } else {
+                throw new BadCredentialsException("Contraseña incorrecta");
             }
         }
         throw new BadCredentialsException("Usuario desconocido");

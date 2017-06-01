@@ -24,7 +24,7 @@ public class MachineSlot {
         this.machine = machine;
     }
 
-    public MachineSlot (){
+    public MachineSlot() {
 
     }
 

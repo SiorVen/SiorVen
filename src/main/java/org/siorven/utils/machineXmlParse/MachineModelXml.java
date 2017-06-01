@@ -1,4 +1,3 @@
-
 package org.siorven.utils.machineXmlParse;
 
 import javax.xml.bind.annotation.*;
@@ -8,9 +7,9 @@ import java.util.List;
 
 /**
  * <p>Java class for machineModelXml complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="machineModelXml">
  *   &lt;complexContent>
@@ -46,16 +45,14 @@ import java.util.List;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlRootElement(name = "model")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "machineModelXml", propOrder = {
-    "manufacturer",
-    "modelReference",
-    "products",
-    "distributions"
+        "manufacturer",
+        "modelReference",
+        "products",
+        "distributions"
 })
 public class MachineModelXml {
 
@@ -70,11 +67,9 @@ public class MachineModelXml {
 
     /**
      * Gets the value of the manufacturer property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getManufacturer() {
         return manufacturer;
@@ -82,11 +77,9 @@ public class MachineModelXml {
 
     /**
      * Sets the value of the manufacturer property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setManufacturer(String value) {
         this.manufacturer = value;
@@ -94,11 +87,9 @@ public class MachineModelXml {
 
     /**
      * Gets the value of the modelReference property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getModelReference() {
         return modelReference;
@@ -106,11 +97,9 @@ public class MachineModelXml {
 
     /**
      * Sets the value of the modelReference property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setModelReference(String value) {
         this.modelReference = value;
@@ -118,11 +107,9 @@ public class MachineModelXml {
 
     /**
      * Gets the value of the products property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MachineModelXml.Products }
-     *     
+     *
+     * @return possible object is
+     * {@link MachineModelXml.Products }
      */
     public MachineModelXml.Products getProducts() {
         return products;
@@ -130,11 +117,9 @@ public class MachineModelXml {
 
     /**
      * Sets the value of the products property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MachineModelXml.Products }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link MachineModelXml.Products }
      */
     public void setProducts(MachineModelXml.Products value) {
         this.products = value;
@@ -142,11 +127,9 @@ public class MachineModelXml {
 
     /**
      * Gets the value of the distributions property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MachineModelXml.Distributions }
-     *     
+     *
+     * @return possible object is
+     * {@link MachineModelXml.Distributions }
      */
     public MachineModelXml.Distributions getDistributions() {
         return distributions;
@@ -154,11 +137,9 @@ public class MachineModelXml {
 
     /**
      * Sets the value of the distributions property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MachineModelXml.Distributions }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link MachineModelXml.Distributions }
      */
     public void setDistributions(MachineModelXml.Distributions value) {
         this.distributions = value;
@@ -167,9 +148,9 @@ public class MachineModelXml {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     * <p>
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     * <p>
      * <pre>
      * &lt;complexType>
      *   &lt;complexContent>
@@ -182,43 +163,39 @@ public class MachineModelXml {
      *   &lt;/complexContent>
      * &lt;/complexType>
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "matrixOrCompartiments"
+            "matrixOrCompartiments"
     })
     public static class Distributions {
 
         @XmlElements({
-            @XmlElement(name = "matrix", type = MatrixDistrubutionXml.class),
-            @XmlElement(name = "compartiments", type = CompartimentDistributionXml.class)
+                @XmlElement(name = "matrix", type = MatrixDistrubutionXml.class),
+                @XmlElement(name = "compartiments", type = CompartimentDistributionXml.class)
         })
         protected List<Object> matrixOrCompartiments;
 
         /**
          * Gets the value of the matrixOrCompartiments property.
-         * 
+         * <p>
          * <p>
          * This accessor method returns a reference to the live list,
          * not a snapshot. Therefore any modification you make to the
          * returned list will be present inside the JAXB object.
          * This is why there is not a <CODE>set</CODE> method for the matrixOrCompartiments property.
-         * 
+         * <p>
          * <p>
          * For example, to add a new item, do as follows:
          * <pre>
          *    getMatrixOrCompartiments().add(newItem);
          * </pre>
-         * 
-         * 
+         * <p>
+         * <p>
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link MatrixDistrubutionXml }
          * {@link CompartimentDistributionXml }
-         * 
-         * 
          */
         public List<Object> getMatrixOrCompartiments() {
             if (matrixOrCompartiments == null) {
@@ -232,9 +209,9 @@ public class MachineModelXml {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     * <p>
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     * <p>
      * <pre>
      * &lt;complexType>
      *   &lt;complexContent>
@@ -246,12 +223,10 @@ public class MachineModelXml {
      *   &lt;/complexContent>
      * &lt;/complexType>
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "product"
+            "product"
     })
     public static class Products {
 
@@ -260,25 +235,23 @@ public class MachineModelXml {
 
         /**
          * Gets the value of the product property.
-         * 
+         * <p>
          * <p>
          * This accessor method returns a reference to the live list,
          * not a snapshot. Therefore any modification you make to the
          * returned list will be present inside the JAXB object.
          * This is why there is not a <CODE>set</CODE> method for the product property.
-         * 
+         * <p>
          * <p>
          * For example, to add a new item, do as follows:
          * <pre>
          *    getProduct().add(newItem);
          * </pre>
-         * 
-         * 
+         * <p>
+         * <p>
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link String }
-         * 
-         * 
          */
         public List<String> getProduct() {
             if (product == null) {

@@ -12,14 +12,14 @@
         <sonar.exclusions>main/webapp/rsc/**</sonar.exclusions>
     </properties>
     <distributionManagement>
-    <repository>
-        <uniqueVersion>false</uniqueVersion>
-        <id>SiorVen</id>
-        <name>GGA</name>
-        <url>http://localhost:8080/SiorVen</url>
-        <layout>default</layout>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>SiorVen</id>
+            <name>GGA</name>
+            <url>http://localhost:8080/SiorVen</url>
+            <layout>default</layout>
 
-    </repository>
+        </repository>
     </distributionManagement>
     <build>
         <finalName>SiorVen</finalName>

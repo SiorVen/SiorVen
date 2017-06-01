@@ -22,16 +22,16 @@ public class DatabaseInitializer {
     Initializer initializer;
 
     @Scheduled(fixedRate = Long.MAX_VALUE) //Runs once
-    public void initDb(){
+    public void initDb() {
         initializer.initExample();
         assertThereIsAnAdmin();
 
 
     }
 
-    public void assertThereIsAnAdmin(){
+    public void assertThereIsAnAdmin() {
         List<User> admins = userService.findbyRole(User.ROLE_ADMIN);
-        if(admins.size() < 1){
+        if (admins.size() < 1) {
             userService.save(new User("admin", "admin", "admin@siorven.eus", User.ROLE_ADMIN));
         }
     }

@@ -37,7 +37,7 @@ public class ProductRestController {
     LocaleResolver resolver;
 
     @PostMapping(value = "/api/product/datatable", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map<String, List<Map<String, String>>> datatableAll(){
+    public Map<String, List<Map<String, String>>> datatableAll() {
         List<Product> users = productService.findAll();
 
         Map<String, List<Map<String, String>>> datatables = new HashMap<>();
@@ -70,7 +70,6 @@ public class ProductRestController {
         }
         return datatables;
     }
-
 
 
 }

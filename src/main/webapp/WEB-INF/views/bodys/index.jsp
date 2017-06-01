@@ -3,7 +3,7 @@
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div class="container-fluid" >
+<div class="container-fluid">
     <div class="jumbotron">
         <jstl:if test="${message != null}">
             <div class="alert alert-info alert-dismissable">
@@ -12,9 +12,9 @@
             </div>
         </jstl:if>
         <div class="jumbotron">
-            <div class="h1"><s:message code="global.wellcome" /></div>
+            <div class="h1"><s:message code="global.wellcome"/></div>
         </div>
-        <hr />
-        <p class="h2"><s:message code="global.reference" /></p>
+        <hr/>
+        <p class="h2"><s:message code="global.reference"/></p>
     </div>
 </div>

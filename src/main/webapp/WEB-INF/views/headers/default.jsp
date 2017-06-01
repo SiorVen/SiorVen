@@ -41,13 +41,13 @@
                 <sec:authentication property="principal" var="principal"/>
                 <c:set value="${principal.username}" var="username"/>
                 <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-                    <spring:message code="role.ROLE_ADMIN" var="role" />
+                    <spring:message code="role.ROLE_ADMIN" var="role"/>
                 </sec:authorize>
                 <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-                    <spring:message code="role.ROLE_ADMIN" var="role" />
+                    <spring:message code="role.ROLE_ADMIN" var="role"/>
                 </sec:authorize>
-                <sec:authorize access="!hasAnyAuthority({'ROLE_ADMIN', 'ROLE_REP'})" >
-                    <spring:message code="role.unknown" var="role" />
+                <sec:authorize access="!hasAnyAuthority({'ROLE_ADMIN', 'ROLE_REP'})">
+                    <spring:message code="role.unknown" var="role"/>
                 </sec:authorize>
                 <li>
                     <a><spring:message code="msg.wellcome" arguments="${username},${role}"/></a>

@@ -1,6 +1,5 @@
 package org.siorven.model;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.siorven.logic.Configuration;
 import org.siorven.logic.Mapper;
 
@@ -23,14 +22,14 @@ public class Machine {
 
     private String alias;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "model_id")
     private MachineModel machineModel;
 
-    @OneToMany(mappedBy = "machine", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "machine", cascade = CascadeType.ALL)
     private List<MachineProduct> machineProductList;
 
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "resource_id")
     private List<MachineResource> machineResourceList;
 

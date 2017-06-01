@@ -1,6 +1,5 @@
 package org.siorven.controller.api;
 
-import org.siorven.model.Machine;
 import org.siorven.model.Suggestion;
 import org.siorven.services.SuggestionService;
 import org.springframework.beans.factory.annotation.Autowired;

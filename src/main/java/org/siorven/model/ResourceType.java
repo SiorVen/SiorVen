@@ -7,43 +7,43 @@ import javax.xml.bind.annotation.XmlEnum;
  */
 @XmlEnum
 public enum ResourceType {
-    POWDER{
+    POWDER {
         @Override
         public String toString() {
             return "resourceType.powder";
         }
     },
-    LIQUID{
+    LIQUID {
         @Override
         public String toString() {
             return "resourceType.liquid";
         }
     },
-    HOT_LIQUID{
+    HOT_LIQUID {
         @Override
         public String toString() {
             return "resourceType.hotLiquid";
         }
     },
-    COLD_LIQUID{
+    COLD_LIQUID {
         @Override
         public String toString() {
             return "resourceType.coldLiquid";
         }
     },
-    ITEM{
+    ITEM {
         @Override
         public String toString() {
             return "resourceType.item";
         }
     },
-    COLD_ITEM{
+    COLD_ITEM {
         @Override
         public String toString() {
             return "resourceType.coldItem";
         }
     },
-    HOT_ITEM{
+    HOT_ITEM {
         @Override
         public String toString() {
             return "resourceType.hotItem";

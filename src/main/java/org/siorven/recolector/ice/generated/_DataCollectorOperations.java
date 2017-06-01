@@ -20,8 +20,7 @@
 
 package org.siorven.recolector.ice.generated;
 
-public interface _DataCollectorOperations
-{
+public interface _DataCollectorOperations {
     void registerConnection(String UID, Ice.Current __current);
 
     void saleDone(String UID, String code, Ice.Current __current);

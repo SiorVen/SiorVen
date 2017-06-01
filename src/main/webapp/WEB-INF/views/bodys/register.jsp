@@ -7,7 +7,7 @@
         <sf:form action="${pageContext.request.contextPath}/user/register" method="post" commandName="user">
             <fieldset>
                 <div id="legend">
-                    <legend class=""><s:message code="pages.register" /></legend>
+                    <legend class=""><s:message code="pages.register"/></legend>
                 </div>
                 <div class="control-group">
                     <!-- Username -->
@@ -38,8 +38,9 @@
                 </div>
                 <div class="control-group">
                     <!-- Permiso -->
-                    <label class="control-label" for="permission"><i class="fa fa-users" aria-hidden="true"></i> <s:message
-                            code="form.user.permission"/></label>
+                    <label class="control-label" for="permission"><i class="fa fa-users" aria-hidden="true"></i>
+                        <s:message
+                                code="form.user.permission"/></label>
                     <div class="controls">
                         <sf:select path="permission" id="permission" items="${userTypes}" cssClass="form-control"/>
                         <sf:errors path="permission" cssClass="text-danger"/>
@@ -57,7 +58,7 @@
         </sf:form>
 
         <div class="well">
-            <p><s:message code="LOPDNotice" /></p>
+            <p><s:message code="LOPDNotice"/></p>
         </div>
 
     </div>

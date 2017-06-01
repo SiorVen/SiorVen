@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Listener that processes when a login attempt is not successful
+ *
  * @see LoginAttemptService
  */
 @Component

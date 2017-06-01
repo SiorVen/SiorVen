@@ -1,19 +1,23 @@
 package org.siorven.recommender;
 
 import org.siorven.model.*;
-import org.siorven.services.*;
+import org.siorven.services.MachineService;
+import org.siorven.services.ProductService;
+import org.siorven.services.StatementService;
+import org.siorven.services.SuggestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import weka.associations.*;
-import weka.core.*;
+import weka.core.Instances;
 import weka.core.converters.ArffLoader;
-import weka.filters.unsupervised.attribute.AddID;
-import weka.filters.unsupervised.attribute.NumericToNominal;
 
 import javax.servlet.ServletContext;
 import java.io.File;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by joseb on 17/05/2017.
@@ -64,7 +68,7 @@ public class AprioriAssociation {
             //Separate the result into rules
             finishDate = new Timestamp(new Date().getTime());
             List<Suggestion> suggestions = getSuggestionsFromAprioriRules(apriori);
-            if(suggestions.size() > 0 ) {
+            if (suggestions.size() > 0) {
                 for (Suggestion suggestion : suggestions) {
                     System.out.println(suggestion.toString(null, null, null));
                 }
@@ -89,7 +93,7 @@ public class AprioriAssociation {
         System.out.println("Resultados de uno en uno");
         for (AssociationRule rule : listaRules) {
             Suggestion sug = getAndSaveSuggestionsFromRule(rule);
-            if(sug != null) {
+            if (sug != null) {
                 suggestionList.add(sug);
             }
         }
@@ -128,12 +132,12 @@ public class AprioriAssociation {
 
             double weight = rule.getTotalSupport();
 
-            for(Machine machine : machineList) {
-                if(premises.size() > 0 && consequences.size() > 0 ) {
-                    for(Statement s : premises){
+            for (Machine machine : machineList) {
+                if (premises.size() > 0 && consequences.size() > 0) {
+                    for (Statement s : premises) {
                         statementService.save(s);
                     }
-                    for(Statement s : consequences){
+                    for (Statement s : consequences) {
                         statementService.save(s);
                     }
                     suggestion = new SuggestionAssociation(finishDate, machine, weight);
@@ -163,8 +167,8 @@ public class AprioriAssociation {
         for (Item i : rule) {
             NominalItem ni = (NominalItem) i;
             Product p = productService.findByName(ni.getAttribute().name());
-            if(p!=null) {
-                Statement statement = new Statement(p,stringToBoolean(ni.getItemValueAsString()));
+            if (p != null) {
+                Statement statement = new Statement(p, stringToBoolean(ni.getItemValueAsString()));
                 //statementService.save(statement);
                 statementList.add(statement);
             }

@@ -26,7 +26,8 @@ public class Recollector {
         this.alias = alias;
     }
 
-    public Recollector (){}
+    public Recollector() {
+    }
 
     public int getId() {
         return id;

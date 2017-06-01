@@ -4,59 +4,59 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <definition name="default" template="/WEB-INF/views/layouts/default.jsp">
-        <put-attribute name="title" value="" />
-        <put-attribute name="header" value="" />
-        <put-attribute name="sidemenu" value="" />
-        <put-attribute name="body" value="" />
-        <put-attribute name="rsc" value="" />
+        <put-attribute name="title" value=""/>
+        <put-attribute name="header" value=""/>
+        <put-attribute name="sidemenu" value=""/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="rsc" value=""/>
     </definition>
 
     <definition name="index" extends="default">
-        <put-attribute name="title" type="string" value="pages.index" />
-        <put-attribute name="header" value="/WEB-INF/views/headers/default.jsp" />
-        <put-attribute name="sidemenu" value="/WEB-INF/views/menus/default.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/index.jsp" />
+        <put-attribute name="title" type="string" value="pages.index"/>
+        <put-attribute name="header" value="/WEB-INF/views/headers/default.jsp"/>
+        <put-attribute name="sidemenu" value="/WEB-INF/views/menus/default.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/index.jsp"/>
     </definition>
 
     <definition name="machineEdit" extends="index">
-        <put-attribute name="title" type="string" value="pages.modelRegister" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/machineEdit.jsp" />
+        <put-attribute name="title" type="string" value="pages.modelRegister"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineEdit.jsp"/>
     </definition>
 
     <definition name="machineManager" extends="index">
-        <put-attribute name="title" type="string" value="pages.manage" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/machineManager.jsp" />
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineManager.jsp"/>
     </definition>
 
     <definition name="modelRegister" extends="index">
-        <put-attribute name="title" type="string" value="pages.modelRegister" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/modelRegister.jsp" />
+        <put-attribute name="title" type="string" value="pages.modelRegister"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/modelRegister.jsp"/>
     </definition>
 
     <definition name="machineMachineRegister" extends="index">
-        <put-attribute name="title" type="string" value="pages.manage" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/machineRegister.jsp" />
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineRegister.jsp"/>
     </definition>
 
     <definition name="machineView" extends="index">
-        <put-attribute name="title" type="string" value="pages.manage" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/machineView.jsp" />
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineView.jsp"/>
     </definition>
 
 
     <definition name="resourceRegister" extends="index">
-        <put-attribute name="title" type="string" value="pages.manage" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/resourceRegister.jsp" />
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/resourceRegister.jsp"/>
     </definition>
 
     <definition name="suggestionManager" extends="index">
-        <put-attribute name="title" type="string" value="pages.manage" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/suggestionManager.jsp" />
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/suggestionManager.jsp"/>
     </definition>
 
     <definition name="recollectorManager" extends="index">
-        <put-attribute name="title" type="string" value="pages.manage" />
-        <put-attribute name="body" value="/WEB-INF/views/bodys/recollectorManager.jsp" />
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/recollectorManager.jsp"/>
     </definition>
 
 </tiles-definitions>

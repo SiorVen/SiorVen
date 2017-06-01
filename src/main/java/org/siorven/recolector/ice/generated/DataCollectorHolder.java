@@ -20,35 +20,25 @@
 
 package org.siorven.recolector.ice.generated;
 
-public final class DataCollectorHolder extends Ice.ObjectHolderBase<DataCollector>
-{
-    public
-    DataCollectorHolder()
-    {
+public final class DataCollectorHolder extends Ice.ObjectHolderBase<DataCollector> {
+    public DataCollectorHolder() {
     }
 
-    public
-    DataCollectorHolder(DataCollector value)
-    {
+    public DataCollectorHolder(DataCollector value) {
         this.value = value;
     }
 
     public void
-    patch(Ice.Object v)
-    {
-        if(v == null || v instanceof DataCollector)
-        {
-            value = (DataCollector)v;
-        }
-        else
-        {
+    patch(Ice.Object v) {
+        if (v == null || v instanceof DataCollector) {
+            value = (DataCollector) v;
+        } else {
             IceInternal.Ex.throwUOE(type(), v);
         }
     }
 
     public String
-    type()
-    {
+    type() {
         return _DataCollectorDisp.ice_staticId();
     }
 }

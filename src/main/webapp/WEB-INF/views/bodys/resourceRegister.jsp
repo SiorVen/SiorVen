@@ -7,7 +7,7 @@
         <sf:form action="${pageContext.request.contextPath}/resource/register" method="post" commandName="resource">
             <fieldset>
                 <div id="legend">
-                    <legend class=""><s:message code="pages.register" /></legend>
+                    <legend class=""><s:message code="pages.register"/></legend>
                 </div>
                 <div class="control-group">
                     <!-- Username -->
@@ -20,10 +20,12 @@
                 </div>
                 <div class="control-group">
                     <!-- Permiso -->
-                    <label class="control-label" for="resourceType"><i class="fa fa-users" aria-hidden="true"></i> <s:message
-                            code="form.resource.resourceType"/></label>
+                    <label class="control-label" for="resourceType"><i class="fa fa-users" aria-hidden="true"></i>
+                        <s:message
+                                code="form.resource.resourceType"/></label>
                     <div class="controls">
-                        <sf:select path="resourceType" id="resourceType" items="${resourceType}" cssClass="form-control"/>
+                        <sf:select path="resourceType" id="resourceType" items="${resourceType}"
+                                   cssClass="form-control"/>
                         <sf:errors path="resourceType" cssClass="text-danger"/>
                     </div>
                 </div>

@@ -34,7 +34,7 @@ import java.util.Map;
  * Web controller for the new Machine actions on the interface
  */
 @Controller
-public class ModelController implements HandlerExceptionResolver{
+public class ModelController implements HandlerExceptionResolver {
 
     public static final String MACHINE_MODEL = "machineModel";
     public static final String MODEL_REGISTER_VIEW = "modelRegister";
@@ -70,11 +70,12 @@ public class ModelController implements HandlerExceptionResolver{
 
     /**
      * GET method of the machine register action, returns the register file
+     *
      * @param model Model of the response scope
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @GetMapping("/model/register")
-    public String showMachineRegister(Model model){
+    public String showMachineRegister(Model model) {
         model.addAttribute("machineModel", new MachineModelForm());
         return MODEL_REGISTER_VIEW;
     }
@@ -82,7 +83,7 @@ public class ModelController implements HandlerExceptionResolver{
     /**
      * POST method of the new machine register action, checks the form data and rejects it with the according error message(s)
      *
-     * @param machine The machine with the data collected from the web form
+     * @param machine       The machine with the data collected from the web form
      * @param bindingResult The error wrapper of the validation errors
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
@@ -111,7 +112,7 @@ public class ModelController implements HandlerExceptionResolver{
             MachineModel machineModel = ModelXmlToModel.Xml2Model(machine.getFile());
             machineModelService.save(machineModel);
             String msg = messageSource.getMessage("message.model.success",
-                            new String[]{machineModel.getManufacturer() + " " + machineModel.getReference()}, locale.resolveLocale(request));
+                    new String[]{machineModel.getManufacturer() + " " + machineModel.getReference()}, locale.resolveLocale(request));
             redirectAttributes.addFlashAttribute("message", msg);
         } else {
             String msg = messageSource.getMessage("error.model.notXml", null, locale.resolveLocale(request));
@@ -126,18 +127,16 @@ public class ModelController implements HandlerExceptionResolver{
     private boolean isSuported(String ext) {
         String normalizedExtension = ext.toLowerCase();
         boolean flag = false;
-            if (normalizedExtension.compareTo("xml") == 0) flag = true;
+        if (normalizedExtension.compareTo("xml") == 0) flag = true;
         return flag;
     }
 
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) {
         Map<String, Object> model = new HashMap<>();
-        if (exception instanceof MultipartException)
-        {
+        if (exception instanceof MultipartException) {
             model.put("reason", "MAX FILE SIZE: " + exception.getMessage());
-        } else
-        {
+        } else {
             model.put("reason", "Unexpected error: " + exception.getMessage());
         }
         return new ModelAndView("500", model);

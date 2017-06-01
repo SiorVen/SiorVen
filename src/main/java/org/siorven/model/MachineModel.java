@@ -34,7 +34,7 @@ public class MachineModel {
     }
 
     public MachineModel() {
-        aviableDistributions =  new ArrayList<>();
+        aviableDistributions = new ArrayList<>();
     }
 
     public int getId() {

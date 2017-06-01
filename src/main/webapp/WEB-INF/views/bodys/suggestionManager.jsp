@@ -10,24 +10,24 @@
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="well">
     <input type="hidden" id="path" value="${pageContext.request.contextPath}">
-    <span class="h1" >
-        <c:message code="pages.suggestionManager" />
+    <span class="h1">
+        <c:message code="pages.suggestionManager"/>
     </span>
 </div>
-    <div class="container-fluid" style="overflow-x: scroll">
-        <table id="machinetable"
-               class="table table-striped table-bordered table-hover table-responsive"
-               style="width: 100%;">
-            <thead>
-            <tr>
-                <th><c:message code="suggestion.date"/></th>
-                <th><c:message code="suggestion.weight"/></th>
-                <th><c:message code="suggestion.reason"/></th>
-                <th><c:message code="suggestion.consequence"/></th> <!-- To string -->
-            </tr>
-            </thead>
-        </table>
-    </div>
+<div class="container-fluid" style="overflow-x: scroll">
+    <table id="machinetable"
+           class="table table-striped table-bordered table-hover table-responsive"
+           style="width: 100%;">
+        <thead>
+        <tr>
+            <th><c:message code="suggestion.date"/></th>
+            <th><c:message code="suggestion.weight"/></th>
+            <th><c:message code="suggestion.reason"/></th>
+            <th><c:message code="suggestion.consequence"/></th> <!-- To string -->
+        </tr>
+        </thead>
+    </table>
+</div>
 </div>
 <script>
     $(document)
@@ -46,7 +46,7 @@
                                 "type": "POST"
                             },
                             "columns": [
-                                 {
+                                {
                                     "data": "generateDate"
                                 }, {
                                     "data": "weight"

@@ -2,7 +2,6 @@ package org.siorven.services;
 
 import org.siorven.dao.SaleDao;
 import org.siorven.model.Machine;
-import org.siorven.model.Product;
 import org.siorven.model.Sale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
