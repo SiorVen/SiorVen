@@ -17,12 +17,8 @@ import java.util.*;
 @Component
 public class RecommenderMain {
 
-    public static final int DAY_IN_MILIS = 24 * 60 * 60 * 1000;
-    public static final int WEEK_IN_MILIS = 7 * DAY_IN_MILIS;
-    public static final int SUCCESS_RATE = 10;
-    public static final int MIN_INSTANCES_FOR_GOOD_SUGGESTIONS = 30;
-    public static final double MIN_RATE = 0.5;
-    public static final double MAX_RATE = 1.5;
+    private static final int DAY_IN_MILIS = 24 * 60 * 60 * 1000;
+    private static final int MIN_INSTANCES_FOR_GOOD_SUGGESTIONS = 30;
 
     @Autowired
     private ProductService productService;
@@ -42,6 +38,9 @@ public class RecommenderMain {
     @Autowired
     private SuggestionService suggestionService;
 
+    @Autowired
+    private ConfigParamService conf;
+
     private static List<Product> productList;
 
     private List<Sale> machineLastSales;
@@ -55,7 +54,6 @@ public class RecommenderMain {
 
     @Scheduled(initialDelay = 10000, fixedDelay = DAY_IN_MILIS)
     public void probe() {
-        System.out.println("STARTING PROBE!!!!");
         now = new Timestamp(new Date().getTime());
         machineList = machineService.findAll();
         productList = productService.findAll();
@@ -63,7 +61,7 @@ public class RecommenderMain {
         createSales();
         allSales = saleService.getAllSales();
 
-        Timestamp weekBefore = new Timestamp(now.getTime() - WEEK_IN_MILIS);
+        Timestamp weekBefore = new Timestamp(now.getTime() - conf.getInt(ConfigParam.SUGG_MAXMIN_DAYPERIOD) * DAY_IN_MILIS);
         for (Machine machine : machineList) {
             HashMap<Integer, Double> machineProductQuantity = countProductOfSales(saleService.getSalesFromMachineBetweenDates(weekBefore, now, machine));
             if (machineProductQuantity.size() > 0) {
@@ -91,11 +89,11 @@ public class RecommenderMain {
 
             if(machineProductQuantity.containsKey(mp.getProduct().getId())){
                 Double saleQnt = machineProductQuantity.get(mp.getProduct().getId());
-                if (saleQnt.compareTo(mediaSales * MAX_RATE) > 0) {
+                if (saleQnt.compareTo(mediaSales * conf.getDouble(ConfigParam.SUGG_MAXMIN_RATIOMAX)) > 0) {
                     Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MAX, 10);
                     suggestionService.save(maxMinSug);
                 }
-                if (saleQnt.compareTo(mediaSales * MIN_RATE) < 0) {
+                if (saleQnt.compareTo(mediaSales * conf.getDouble(ConfigParam.SUGG_MAXMIN_RATIOMIN)) < 0) {
                     Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MIN, 5);
                     suggestionService.save(maxMinSug);
                 }
@@ -133,7 +131,6 @@ public class RecommenderMain {
 
         Instances data = getDataFromDatabase(atts);
 
-        System.out.println(data);
         return data;
     }
 
@@ -141,7 +138,7 @@ public class RecommenderMain {
         Instances data = new Instances("prueba", atts, 0);
 
         for (Machine machine : machineList) {
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < conf.getInt(ConfigParam.SUGG_APRIORI_DAYPERIOD); i++) {
                 Timestamp from = new Timestamp(now.getTime() - (DAY_IN_MILIS * (i + 1)));
                 Timestamp to = new Timestamp(now.getTime() - (DAY_IN_MILIS * i));
                 List<Sale> machineDaySale = saleService.getSalesFromMachineBetweenDates(from, to, machine);
@@ -157,7 +154,7 @@ public class RecommenderMain {
     private Instance generateInstanceOfDay(FastVector atts, HashMap<Integer, Double> productSales) {
         Instance iExample = new DenseInstance(productList.size());
         for (Map.Entry<Integer, Double> entry : productSales.entrySet()) {
-            if (entry.getValue() > SUCCESS_RATE) {
+            if (entry.getValue() > conf.getInt(ConfigParam.SUGG_APRIORI_SUCCESSALES)) {
                 Product p = productService.findById(entry.getKey());
                 for (int j = 0; j < atts.size(); j++) {
                     if (((Attribute) atts.get(j)).name().equalsIgnoreCase(p.getName())) {

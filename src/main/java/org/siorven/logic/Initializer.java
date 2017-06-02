@@ -62,7 +62,7 @@ public class Initializer {
     private List<Product> productList;
 
     public void initExample() {
-        System.out.println("Init DB");
+
         try {
             resourceList = new ArrayList<>();
             productList = new ArrayList<>();
@@ -107,10 +107,7 @@ public class Initializer {
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Database already created");
         }
-
-        System.out.println("DB created");
 
     }
 
@@ -182,7 +179,7 @@ public class Initializer {
         try {
             resourceService.save(resource);
         } catch (ResourceAlreadyRegistered e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return resource;
     }

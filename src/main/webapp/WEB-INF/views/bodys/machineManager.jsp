@@ -61,7 +61,7 @@
                                         return '<div class="btn-group" style="width: "><a class="btn btn-primary" href="../machine/' + data + '"><i class="fa fa-building"></i></a>' +
                                             '<a class="btn btn-warning" href="' + path + '/machine/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>' +
                                             '<a class="btn btn-danger" href="' + path + '/suggestion/manager/' + data + '"><i class="fa fa-exclamation"></i></a>' +
-                                            '<a class="btn btn-success" href="' + path + '/suggestion/manager/' + data + '"><i class="fa fa-microchip"></i></a></div>';
+                                            '<a class="btn btn-success" href="' + path + '/recollector/manager/' + data + '"><i class="fa fa-microchip"></i></a></div>';
                                     }
                                 }, {
                                     "data": "alias"

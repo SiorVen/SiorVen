@@ -18,7 +18,6 @@ public class DataCollector extends _DataCollectorDisp {
 
     private Map<String, Machine> collectorList = new HashMap<>();
 
-
     @Autowired
     private SaleService saleService;
 
@@ -36,7 +35,7 @@ public class DataCollector extends _DataCollectorDisp {
 
     @Override
     public void shutdown(String alias, Current current) {
-        System.out.println("Unregister recolector: " + alias);
+
         Recollector r = recollectorService.findByAlias(alias);
         if (r != null) {
             r.setConnection(false);
@@ -48,7 +47,7 @@ public class DataCollector extends _DataCollectorDisp {
 
     @Override
     public void registerConnection(String alias, Current __current) {
-        System.out.println("New machine registered with UID: " + alias);
+
         Recollector r = recollectorService.findByAlias(alias);
         if (r == null) {
             recollectorService.save(new Recollector(alias, true));
@@ -63,7 +62,7 @@ public class DataCollector extends _DataCollectorDisp {
 
     @Override
     public void saleDone(String UID, String code, Current __current) {
-        System.out.println("Sale acomplished, code: " + code);
+
         Recollector recollector = recollectorService.findByAlias(UID);
         Machine machine = recollector.getMachine();
         int pcode = Integer.parseInt(code);
@@ -74,7 +73,7 @@ public class DataCollector extends _DataCollectorDisp {
             spendResources(mp);
             saleService.save(sale);
         } catch (Exception e) {
-            System.out.println("bad code");
+            e.printStackTrace();
         }
 
 

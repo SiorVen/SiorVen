@@ -127,7 +127,7 @@ public class ProductController {
         }
 
         Product p = getProductOrThrow(id);
-        Resource r = null;
+        Resource r;
         try {
             r = getResourceOrThrow(ingredientform.getName());
         } catch (ResourceNotFoundException rnfe) {

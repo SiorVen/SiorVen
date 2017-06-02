@@ -20,10 +20,11 @@
            style="width: 100%;">
         <thead>
         <tr>
+            <th><c:message code="suggestion.suggestion"/></th>
             <th><c:message code="suggestion.date"/></th>
             <th><c:message code="suggestion.weight"/></th>
+            <th><c:message code="suggestion.method"/></th> <!-- To string -->
             <th><c:message code="suggestion.reason"/></th>
-            <th><c:message code="suggestion.consequence"/></th> <!-- To string -->
         </tr>
         </thead>
     </table>
@@ -51,13 +52,15 @@
                             },
                             "columns": [
                                 {
+                                    "data": "suggestion"
+                                }, {
                                     "data": "generateDate"
                                 }, {
                                     "data": "weight"
                                 }, {
-                                    "data": "reason"
+                                    "data": "method"
                                 }, {
-                                    "data": "consequence"
+                                    "data": "reason"
                                 }]
                         });
             });

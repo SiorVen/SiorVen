@@ -3,11 +3,10 @@ package org.siorven.model;
 
 import org.siorven.model.interfaces.IBoundleRepresentable;
 import org.springframework.context.MessageSource;
-import org.springframework.web.servlet.LocaleResolver;
 
 import javax.persistence.*;
-import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
+import java.util.Locale;
 
 /**
  * Created by Andoni on 22/05/2017.
@@ -37,10 +36,6 @@ public abstract class Suggestion implements IBoundleRepresentable {
         this.machine = machine;
         this.weight = weight;
     }
-
-    public abstract String toString(MessageSource messageSource, LocaleResolver resolver, HttpServletRequest request);
-
-    public abstract String getFinalConsequence();
 
     public Timestamp getGenerateDate() {
         return generateDate;
@@ -74,4 +69,7 @@ public abstract class Suggestion implements IBoundleRepresentable {
         this.weight = weight;
     }
 
+    public abstract String printReason(MessageSource messageSource, Locale locale);
+
+    public abstract String printSuggestion(MessageSource messageSource, Locale locale);
 }

@@ -57,15 +57,17 @@ public class SuggestionRestController {
         Map<String, List<Map<String, String>>> datatables = new HashMap<>();
         List<Map<String, String>> data = new ArrayList<>();
         datatables.put("data", data);
-        for (Suggestion m : suggestions) {
+        for (Suggestion s : suggestions) {
             Map<String, String> entry = new HashMap<>();
-            entry.put("generateDate", m.getGenerateDate() + "");
-            entry.put("weight", String.valueOf(m.getWeight()));
-            entry.put("reason", messageSource.getMessage(m.geyClassKey(), null, localeResolver.resolveLocale(request)));
-            entry.put("consequence", m.toString(messageSource, localeResolver, request));
+            entry.put("suggestion", s.printSuggestion(messageSource, localeResolver.resolveLocale(request)));
+            entry.put("generateDate", s.getGenerateDate() + "");
+            entry.put("weight", String.valueOf(s.getWeight()));
+            entry.put("method", messageSource.getMessage(s.geyClassKey(), null, localeResolver.resolveLocale(request)));
+            entry.put("reason", s.printReason(messageSource, localeResolver.resolveLocale(request)));
             data.add(entry);
         }
         return datatables;
     }
+
 
 }

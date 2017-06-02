@@ -109,12 +109,10 @@ public class UserRestController {
     }
 
     private void logoutIfSame(User deleted, User user) throws ServletException {
-        if (user.getId() == deleted.getId()) {
-            try {
-                request.logout();
-            } catch (ServletException e) {
-                throw e;
-            }
+        if (user.getId() == deleted.getId()) try {
+            request.logout();
+        } catch (ServletException e) {
+            throw e;
         }
     }
 

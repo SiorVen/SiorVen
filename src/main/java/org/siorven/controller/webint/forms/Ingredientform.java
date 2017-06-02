@@ -9,9 +9,9 @@ import javax.validation.constraints.Min;
  */
 public class Ingredientform {
 
-    @Min(value = 1, message = "error.ingredient.minQty")
+    @Min(value = 1, message = "{error.ingredient.minQty}")
     private int qty;
-    @NotEmpty(message = "error.ingredient.resourceEmpty")
+    @NotEmpty(message = "{error.ingredient.resourceEmpty}")
     private String name;
 
     public Ingredientform() {

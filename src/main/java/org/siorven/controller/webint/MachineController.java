@@ -177,8 +177,8 @@ public class MachineController {
     private void anadirModelos(Model model) {
         List<MachineModel> m = machineModelService.findAll();
         LinkedHashMap<Integer, String> roles = new LinkedHashMap<>();
-        for (int i = 0; i < m.size(); i++) {
-            roles.put(m.get(i).getId(), m.get(i).getReference());
+        for (MachineModel aM : m) {
+            roles.put(aM.getId(), aM.getReference());
         }
         model.addAttribute("models", roles);
     }

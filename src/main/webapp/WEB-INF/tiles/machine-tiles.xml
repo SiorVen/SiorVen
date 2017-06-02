@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="machineEdit" extends="index">
+        <put-attribute name="title" type="string" value="pages.modelRegister"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineEdit.jsp"/>
+    </definition>
+
+    <definition name="machineManager" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineManager.jsp"/>
+    </definition>
+
+    <definition name="modelRegister" extends="index">
+        <put-attribute name="title" type="string" value="pages.modelRegister"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/modelRegister.jsp"/>
+    </definition>
+
+    <definition name="machineMachineRegister" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineRegister.jsp"/>
+    </definition>
+
+    <definition name="machineView" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/machineView.jsp"/>
+    </definition>
+
+</tiles-definitions>

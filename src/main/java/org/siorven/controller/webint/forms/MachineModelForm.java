@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
  * Created by ander on 29/05/2017.
  */
 public class MachineModelForm {
-    @NotNull(message = "error.model.notNull")
+    @NotNull(message = "{error.model.notNull}")
     private MultipartFile file;
 
     public MachineModelForm() {

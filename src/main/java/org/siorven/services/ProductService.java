@@ -1,9 +1,5 @@
 package org.siorven.services;
 
-/**
- * Created by Andoni on 24/05/2017.
- */
-
 import org.siorven.dao.ProductDao;
 import org.siorven.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;

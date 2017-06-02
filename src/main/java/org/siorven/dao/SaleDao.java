@@ -56,9 +56,10 @@ public interface SaleDao {
     List getAllSales();
 
     /**
-     * Return a list of the sales made on a given date
-     *
-     * @param date
+     * Gets the sales on a machine between 2 dates
+     * @param fromDate
+     * @param toDate
+     * @param machine
      * @return
      */
     List getSalesFromMachineBetweenDates(Timestamp fromDate, Timestamp toDate, Machine machine);

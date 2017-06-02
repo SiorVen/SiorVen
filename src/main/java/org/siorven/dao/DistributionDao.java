@@ -7,10 +7,6 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 /**
- * Created by Andoni on 17/05/2017.
- */
-
-/**
  * Data access interface for the distribution
  *
  * @see

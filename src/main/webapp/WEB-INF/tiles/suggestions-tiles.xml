@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <definition name="suggestionManager" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/suggestionManager.jsp"/>
+    </definition>
+
+    <definition name="recollectorManager" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/recollectorManager.jsp"/>
+    </definition>
+
+    <definition name="suggestionConfig" extends="index">
+        <put-attribute name="title" type="string" value="pages.suggestionConfig"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/iaConfig.jsp"/>
+    </definition>
+
+</tiles-definitions>

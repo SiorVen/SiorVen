@@ -2,13 +2,12 @@ package org.siorven.model;
 
 import org.hibernate.annotations.IndexColumn;
 import org.springframework.context.MessageSource;
-import org.springframework.web.servlet.LocaleResolver;
 
 import javax.persistence.*;
-import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Gorospe on 25/05/2017.
@@ -36,41 +35,42 @@ public class SuggestionAssociation extends Suggestion {
         consequenceList = new ArrayList<>();
     }
 
-    /**
-     * @param messageSource
-     * @param resolver
-     * @param request
-     * @return
-     */
     @Override
-    public String toString(MessageSource messageSource, LocaleResolver resolver, HttpServletRequest request) {
-        StringBuilder stb = new StringBuilder(" ");
-        for (Statement s : premiseList) {
-            stb.append(s.getProduct().getName() + "{" + s.isStatementResult() + "}; ");
-        }
-        stb.append(" --> ");
-
-        for (Statement s : consequenceList) {
-            stb.append(s.getProduct().getName() + "{" + s.isStatementResult() + "};");
-        }
-        return stb.toString();
-    }
-
-    @Override
-    public String getFinalConsequence() {
+    public String printReason(MessageSource messageSource, Locale locale) {
         StringBuilder stb = new StringBuilder("");
-        for (Statement s : consequenceList) {
-            stb.append(booleanToString(s.isStatementResult()) + " " + s.getProduct().getName() + "\n");
+        String and = messageSource.getMessage("suggestion.and", null, locale);
+        String not = messageSource.getMessage("suggestion.not", null, locale);
+        for (int i = 0; i < premiseList.size(); i++) {
+            Statement s = premiseList.get(i);
+            if (i != 0)
+                if (i != premiseList.size() - 1)
+                    stb.append(", ");
+                else
+                    stb.append(" ").append(and).append(" ");
+            if (!s.isStatementResult())
+                stb.append(not).append(" ");
+            stb.append(s.getProduct().getName()).append(i);
         }
-        return stb.toString();
+        return messageSource.getMessage("suggestion.isSold", new String[]{stb.toString()}, locale);
     }
 
-    private String booleanToString(boolean state) {
-        if (state) {
-            return "Introducir";
-        } else {
-            return "Quitar";
+    @Override
+    public String printSuggestion(MessageSource messageSource, Locale locale) {
+        StringBuilder stb = new StringBuilder("");
+        String add = messageSource.getMessage("suggestion.add", null, locale);
+        String and = messageSource.getMessage("suggestion.and", null, locale);
+        String remove = messageSource.getMessage("suggestion.remove", null, locale);
+        for (int i = 0; i < consequenceList.size(); i++) {
+            Statement s = consequenceList.get(i);
+            if (i != 0)
+                if (i != consequenceList.size() - 1)
+                    stb.append(", ");
+                else
+                    stb.append(" ").append(and).append(" ");
+            stb.append(s.isStatementResult() ? add : remove).append(" ");
+            stb.append(s.getProduct().getName()).append(i);
         }
+        return stb.toString();
     }
 
     public List<Statement> getPremiseList() {

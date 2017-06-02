@@ -13,6 +13,7 @@
             ${message}
     </div>
 </jstl:if>
+<div class="well">
 <form:form action="${pageContext.request.contextPath}/product/new" method="post">
     <div class="control-group">
         <label class="control-label" for="name"><i class="fa fa-cart-plus" aria-hidden="true"></i>
@@ -25,6 +26,7 @@
         <c:message code="action.createProduct"/>
     </button>
 </form:form>
+</div>
 
 <div class="container-fluid" style="overflow-x: scroll">
     <table id="usertable"
@@ -58,7 +60,7 @@
                                 "targets": 0,
                                 "orderable": false
                             },
-                                {"width": "120px", "targets": 0}],
+                                {"width": "50px", "targets": 0}],
                             "columns": [
                                 {
                                     "data": "id",

@@ -27,7 +27,6 @@ public class Server {
         Ice.ObjectAdapter adapter = ic.createObjectAdapter("DataCollector");
         adapter.add(dataCollector, Ice.Util.stringToIdentity("dataCollector"));
         adapter.activate();
-        System.out.println("Server running");
         ic.waitForShutdown();
         return 0;
     }

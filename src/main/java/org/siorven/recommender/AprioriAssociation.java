@@ -57,22 +57,12 @@ public class AprioriAssociation {
         try {
             loader.setSource(new File(servletContext.getRealPath("/WEB-INF/data/dataset1.arff")));
 
-            Instances data = outData;//loader.getDataSet();
-
             // build associator and configure parameters
-            Apriori apriori = prepareAprioriAssociator(data);
-
-            // output associator
-            System.out.println(apriori);
+            Apriori apriori = prepareAprioriAssociator(outData);
 
             //Separate the result into rules
             finishDate = new Timestamp(new Date().getTime());
-            List<Suggestion> suggestions = getSuggestionsFromAprioriRules(apriori);
-            if (!suggestions.isEmpty()) {
-                for (Suggestion suggestion : suggestions) {
-                    System.out.println(suggestion.toString(null, null, null));
-                }
-            }
+            getSuggestionsFromAprioriRules(apriori);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,12 +80,8 @@ public class AprioriAssociation {
         List<Suggestion> suggestionList = new ArrayList<>();
         AssociationRules rules = apriori.getAssociationRules();
         List<AssociationRule> listaRules = rules.getRules();
-        System.out.println("Resultados de uno en uno");
         for (AssociationRule rule : listaRules) {
-            Suggestion sug = getAndSaveSuggestionsFromRule(rule);
-            if (sug != null) {
-                suggestionList.add(sug);
-            }
+            getAndSaveSuggestionsFromRule(rule);
         }
 
         return suggestionList;
@@ -149,9 +135,8 @@ public class AprioriAssociation {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error parsing rule");
+            e.printStackTrace();
         }
-
         return suggestion;
     }
 

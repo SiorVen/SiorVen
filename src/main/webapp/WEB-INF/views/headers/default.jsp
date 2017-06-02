@@ -65,6 +65,12 @@
                             <spring:message code="action.manageMachines"/>
                         </a>
                     </li>
+                    <li>
+                        <a href="<c:url value="/suggestion/config" />">
+                            <i class="fa fa-gear fa-fw"></i>
+                            <spring:message code="pages.suggestionConfig"/>
+                        </a>
+                    </li>
                 </sec:authorize>
                 <li>
                     <a href="#" onclick="$('#logout-form').submit()"><i

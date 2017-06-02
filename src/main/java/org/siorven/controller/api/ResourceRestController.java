@@ -38,8 +38,7 @@ public class ResourceRestController {
         Map<String, Object> map = new HashMap<>();
         List<Resource> admins = resourceService.findBylikeName(nombreResource);
 
-        for (int i = 0; i < admins.size(); i++) {
-            Resource resource = admins.get(i);
+        for (Resource resource : admins) {
             map.put(resource.getId() + "", resource.getName() + "");
         }
         return map;

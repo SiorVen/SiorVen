@@ -12,4 +12,10 @@
         <put-attribute name="title" type="string" value="pages.productView"/>
         <put-attribute name="body" value="/WEB-INF/views/bodys/productView.jsp"/>
     </definition>
+
+    <definition name="resourceRegister" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/resourceRegister.jsp"/>
+    </definition>
+
 </tiles-definitions>

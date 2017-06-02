@@ -125,15 +125,13 @@ public class UserController {
         msg = handleDeleteUser(u);
         User user = UserUtils.getCurrentUser();
 
-        if (user.getId() == u.getId()) {
-            try {
-                msg = messageSource.getMessage("msg.selfDelete", null, locale.resolveLocale(request));
-                redirectAttributes.addFlashAttribute("message", msg);
-                request.logout();
-                return "redirect:/";
-            } catch (ServletException e) {
-                throw e;
-            }
+        if (user.getId() == u.getId()) try {
+            msg = messageSource.getMessage("msg.selfDelete", null, locale.resolveLocale(request));
+            redirectAttributes.addFlashAttribute("message", msg);
+            request.logout();
+            return "redirect:/";
+        } catch (ServletException e) {
+            throw e;
         }
 
         redirectAttributes.addFlashAttribute("message", msg);
@@ -192,15 +190,13 @@ public class UserController {
 
         User user = UserUtils.getCurrentUser();
 
-        if (user.getId() == oldUser.getId()) {
-            try {
-                String msg = messageSource.getMessage("msg.selfEditLogin", null, locale.resolveLocale(request));
-                redirectAttributes.addFlashAttribute("message", msg);
-                request.logout();
-                return "redirect:/";
-            } catch (ServletException e) {
-                throw e;
-            }
+        if (user.getId() == oldUser.getId()) try {
+            String msg = messageSource.getMessage("msg.selfEditLogin", null, locale.resolveLocale(request));
+            redirectAttributes.addFlashAttribute("message", msg);
+            request.logout();
+            return "redirect:/";
+        } catch (ServletException e) {
+            throw e;
         }
 
         String msg = messageSource.getMessage("msg.userEdited", new String[]{oldUser.getUsername()}, locale.resolveLocale(request));
