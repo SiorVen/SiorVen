@@ -24,10 +24,6 @@ public class RecommenderMain {
     public static final double MIN_RATE = 0.5;
     public static final double MAX_RATE = 1.5;
 
-
-    private static boolean MAX = true;
-    private static boolean MIN = false;
-
     @Autowired
     private ProductService productService;
 
@@ -96,7 +92,7 @@ public class RecommenderMain {
             if(machineProductQuantity.containsKey(mp.getProduct().getId())){
                 Double saleQnt = machineProductQuantity.get(mp.getProduct().getId());
                 if (saleQnt.compareTo(mediaSales * MAX_RATE) > 0) {
-                    Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MIN, 10);
+                    Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MAX, 10);
                     suggestionService.save(maxMinSug);
                 }
                 if (saleQnt.compareTo(mediaSales * MIN_RATE) < 0) {
@@ -104,20 +100,7 @@ public class RecommenderMain {
                     suggestionService.save(maxMinSug);
                 }
             } else {
-                Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),MIN, 10);
-                suggestionService.save(maxMinSug);
-            }
-        }
-
-        for (Map.Entry<Integer, Double> entry : machineProductQuantity.entrySet()) {
-            if (entry.getValue().compareTo(mediaSales * MAX_RATE) > 0) {
-                Product maxProduct = productService.findById(entry.getKey());
-                Suggestion maxMinSug = new SuggestionStatistic(now, machine, maxProduct,MAX, 10);
-                suggestionService.save(maxMinSug);
-            }
-            if (entry.getValue().compareTo(mediaSales * MIN_RATE) < 0) {
-                Product minProduct = productService.findById(entry.getKey());
-                Suggestion maxMinSug = new SuggestionStatistic(now, machine, minProduct,MIN, 10);
+                Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MIN, 10);
                 suggestionService.save(maxMinSug);
             }
         }
