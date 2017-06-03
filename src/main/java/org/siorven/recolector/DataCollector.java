@@ -19,6 +19,9 @@ public class DataCollector extends _DataCollectorDisp {
     private Map<String, Machine> collectorList = new HashMap<>();
 
     @Autowired
+    private MailService mailService;
+
+    @Autowired
     private SaleService saleService;
 
     @Autowired
@@ -83,6 +86,8 @@ public class DataCollector extends _DataCollectorDisp {
         for (MachineIngredient mi : mp.getRecipe()) {
             MachineResource mr = mi.getResource();
             int quantity = mr.getQuantity() - mi.getQty();
+            if (quantity <= 0)
+                mailService.notify(mr);
             mr.setQuantity(quantity);
             machineResourceService.edit(mr);
         }
