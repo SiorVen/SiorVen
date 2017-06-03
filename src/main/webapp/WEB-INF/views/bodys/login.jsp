@@ -22,7 +22,7 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="checkbox">
             <label>
-                <input name="recuerdame" value="remember-me" type="checkbox" checked=""> <s:message
+                <input name="recuerdame" type="checkbox" checked=""> <s:message
                     code="form.login.rememberme"/>
             </label>
         </div>
