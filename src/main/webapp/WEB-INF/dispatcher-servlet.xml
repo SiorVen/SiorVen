@@ -63,4 +63,11 @@
         <property name="maxUploadSize" value="100000000"/>
     </bean>
 
+
+    <bean name="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <!-- add your properties here property name="..." value="..."></property-->
+    </bean>
+
+
+
 </beans>
