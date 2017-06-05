@@ -19,13 +19,13 @@ import java.util.Locale;
 public class MailService {
 
     @Autowired
-    JavaMailSender mailSender;
+    private JavaMailSender mailSender;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    MessageSource messageSource;
+    private MessageSource messageSource;
 
 
     public void notify(MachineResource mr) {

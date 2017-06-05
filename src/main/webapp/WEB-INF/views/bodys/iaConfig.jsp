@@ -5,6 +5,9 @@
 <div class="container-fluid">
     <div class="jumbotron col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-offset-0 col-xs-12">
         <sf:form action="${pageContext.request.contextPath}/suggestion/config" method="post" commandName="conf">
+            <div class="alert alert-dismissable alert-warning">
+                <s:message code="message.config.NoEffectTillNextDay"/>
+            </div>
             <fieldset>
                 <div id="legend">
                     <legend class=""><s:message code="pages.suggestionConfig"/></legend>
@@ -60,7 +63,7 @@
                 <div class="control-group" style="margin-top: 20px">
                     <!-- Button -->
                     <div class="controls">
-                        <button type="submit" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save" aria-hidden="true"></i>
                             <s:message code="form.save"/>
                         </button>
                     </div>

@@ -15,10 +15,10 @@
 
         <label for="inputEmail" class="sr-only"><s:message code="form.login.emailOrUser"/></label>
         <input id="inputEmail" class="form-control" placeholder="<s:message code="form.login.emailOrUser"/>"
-               name="usuario" required="" autofocus="" type="text">
+               name="usuario" required autofocus type="text">
         <label for="inputPassword" class="sr-only"><s:message code="form.login.pass"/></label>
         <input id="inputPassword" class="form-control" placeholder="<s:message code="form.login.pass"/>" name="clave"
-               required="" type="password">
+               required type="password">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="checkbox">
             <label>
@@ -28,5 +28,9 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit"><s:message code="form.login.submit"/></button>
     </form>
-
+    <script>
+        window.onload = function() {
+            document.getElementById("inputEmail").focus();
+        }
+    </script>
 </div>
