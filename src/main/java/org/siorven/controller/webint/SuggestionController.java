@@ -25,14 +25,13 @@ import javax.servlet.http.HttpServletRequest;
 public class SuggestionController {
 
     @Autowired
-    ConfigParamService configParamService;
-
+    private ConfigParamService configParamService;
     @Autowired
-    MessageSource messageSource;
+    private MessageSource messageSource;
     @Autowired
-    HttpServletRequest request;
+    private HttpServletRequest request;
     @Autowired
-    LocaleResolver resolver;
+    private LocaleResolver resolver;
 
 
     /**

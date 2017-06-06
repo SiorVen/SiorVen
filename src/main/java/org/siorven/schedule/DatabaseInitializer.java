@@ -1,5 +1,7 @@
 package org.siorven.schedule;
 
+import org.siorven.exceptions.EmailInUseException;
+import org.siorven.exceptions.UsernameInUseException;
 import org.siorven.logic.Initializer;
 import org.siorven.model.ConfigParam;
 import org.siorven.model.User;
@@ -54,7 +56,11 @@ public class DatabaseInitializer {
     private void assertThereIsAnAdmin() {
         List<User> admins = userService.findbyRole(User.ROLE_ADMIN);
         if (admins.isEmpty()) {
-            userService.save(new User("admin", "admin", "admin@siorven.eus", User.ROLE_ADMIN));
+            try {
+                userService.save(new User("admin", "admin", "admin@siorven.eus", User.ROLE_ADMIN));
+            } catch (UsernameInUseException | EmailInUseException e) {
+                e.printStackTrace();
+            }
         }
     }
 

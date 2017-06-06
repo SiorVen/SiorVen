@@ -1,6 +1,8 @@
 package org.siorven.services;
 
 import org.siorven.dao.UserDao;
+import org.siorven.exceptions.EmailInUseException;
+import org.siorven.exceptions.UsernameInUseException;
 import org.siorven.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -30,12 +32,14 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
 
+
     /**
      * Saves a user to the database after encoding the password with the SCRYPT PKDF.
      *
      * @param u The user to be saved
      */
-    public void save(User u) {
+    public void save(User u) throws UsernameInUseException, EmailInUseException {
+        checkifInUse(u);
         String claveUsr = u.getPassword();
         u.setPassword(passwordEncoder.encode(claveUsr));
         userDao.saveUser(u);
@@ -47,8 +51,8 @@ public class UserService {
      *
      * @param user User to be saved or updated
      */
-    public void saveOrUpdate(User user) {
-
+    public void saveOrUpdate(User user) throws UsernameInUseException, EmailInUseException {
+        checkifInUse(user);
         User oldUser = userDao.findById(user.getId());
 
         if (Objects.equals(oldUser.getPermission(), User.ROLE_ADMIN) && !Objects.equals(user.getPermission(), User.ROLE_ADMIN)) {
@@ -130,6 +134,18 @@ public class UserService {
      */
     public User findById(int id) {
         return userDao.findById(id);
+    }
+
+    private void checkifInUse(User usuario) throws EmailInUseException, UsernameInUseException {
+        boolean ret = false;
+        User u = findByEmail(usuario.getEmail());
+        if (u != null && u.getId() != usuario.getId()) {
+            throw new EmailInUseException();
+        }
+        u = findByUsername(usuario.getUsername());
+        if (u != null && u.getId() != usuario.getId()) {
+            throw new UsernameInUseException();
+        }
     }
 
 

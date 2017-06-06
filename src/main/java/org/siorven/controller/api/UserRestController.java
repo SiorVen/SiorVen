@@ -90,7 +90,7 @@ public class UserRestController {
      * Deletes a user by its id
      *
      * @param id Id os the user
-     * @return returns CONFLICT (409) if the user being deleted is the last admin return OK (200) if else
+     * @return returns FORBIDDEN (403) if the user being deleted is the last admin return OK (200) if else
      */
     @DeleteMapping(value = "/api/user/{id}")
     public ResponseEntity delete(@PathVariable("id") int id) throws ServletException {
