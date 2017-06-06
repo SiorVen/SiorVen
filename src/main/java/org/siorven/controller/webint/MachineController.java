@@ -134,7 +134,7 @@ public class MachineController {
 
 
     /**
-     * Edits a newUser
+     * Edits a machine
      *
      * @param machineForm        newUser to update
      * @param redirectAttributes Redirected attributes to the manager

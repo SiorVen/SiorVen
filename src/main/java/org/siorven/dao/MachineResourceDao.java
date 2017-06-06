@@ -1,5 +1,6 @@
 package org.siorven.dao;
 
+import org.siorven.model.Machine;
 import org.siorven.model.MachineResource;
 import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;
@@ -37,7 +38,7 @@ public interface MachineResourceDao {
      *
      * @param id The id of the Resource in machine to be deleted
      */
-    void delete(String id);
+    void delete(int id);
 
     /**
      * Finds a persisted Resource in machine by its id
@@ -45,7 +46,7 @@ public interface MachineResourceDao {
      * @param id The id of the Resource in machine to be searched
      * @return The Resource in machine or null if it wasn't found
      */
-    MachineResource findById(String id);
+    MachineResource findById(int id);
 
     /**
      * Returns all the persisted Resources in machine
@@ -54,4 +55,5 @@ public interface MachineResourceDao {
      */
     List getAllResources();
 
+    List findByMachine(Machine m);
 }

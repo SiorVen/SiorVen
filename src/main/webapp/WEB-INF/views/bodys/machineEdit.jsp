@@ -18,7 +18,7 @@
                 </div>
                 <div class="control-group">
                     <div class="control-group">
-                        <!-- Permiso -->
+                        <!-- modelo -->
                         <label class="control-label" for="machineModelId"><i class="fa fa-users" aria-hidden="true"></i>
                             <s:message
                                     code="form.machine.modelFile"/></label>

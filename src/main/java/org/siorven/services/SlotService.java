@@ -1,6 +1,8 @@
 package org.siorven.services;
 
+import org.siorven.dao.MachineSlotDao;
 import org.siorven.dao.SlotDao;
+import org.siorven.model.MachineSlot;
 import org.siorven.model.Slot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,12 @@ public class SlotService {
      */
     @Autowired
     private SlotDao slotDao;
+
+    /**
+     * Data acces object for the machineSlot table on the database
+     */
+    @Autowired
+    private MachineSlotService machineslotService;
 
     /**
      * Saves a slot to the database.
@@ -83,5 +91,25 @@ public class SlotService {
     public List findAll() {
         return slotDao.getAllSlots();
     }
+
+    /**
+     * Returns the free the slots on the database
+     *
+     * @return The list of slots
+     */
+    public List findFree() {
+        List<Slot> slots =  slotDao.getAllSlots();
+        List<MachineSlot> machineSlots = machineslotService.findAll();
+        for(int i = 0; i < slots.size(); i++){
+            for(int j = 0; j < machineSlots.size(); j++){
+                if(machineSlots.get(j).getSlot().getId() == slots.get(i).getId()){
+                    slots.remove(i);
+                }
+            }
+
+        }
+    return slots;
+    }
+
 
 }

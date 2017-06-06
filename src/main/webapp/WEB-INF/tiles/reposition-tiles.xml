@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="repositionManager" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/repositionManager.jsp"/>
+    </definition>
+
+    <definition name="repositionDatatable" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/repositionDatatable.jsp"/>
+    </definition>
+
+    <definition name="repositionEdit" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/editReposition.jsp"/>
+    </definition>
+
+    <definition name="repositionAdd" extends="index">
+        <put-attribute name="title" type="string" value="pages.manage"/>
+        <put-attribute name="body" value="/WEB-INF/views/bodys/addReposition.jsp"/>
+    </definition>
+</tiles-definitions>
