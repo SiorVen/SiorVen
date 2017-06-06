@@ -66,15 +66,16 @@
         </sf:form>
     </div>
 </div>
+<input type="hidden" id="path" value="${pageContext.request.contextPath}">
 <script>
-
     $(document)
         .ready(
             function () {
-                var noResult = '<jstl:out value="${noResult}"/>';
+                var noResult = '<c:out value="${noResult}"/>';
                 var path = $("#path").val();
                 $("#productAdd").autocomplete({
                     source: path + "/api/reposition/search",
                     noResult: noResult
                 });
+            });
 </script>
