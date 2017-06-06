@@ -1,6 +1,7 @@
 package org.siorven.services;
 
 import org.siorven.dao.MachineResourceDao;
+import org.siorven.model.Machine;
 import org.siorven.model.MachineResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,12 @@ public class MachineResourceService {
      */
     @Autowired
     private MachineResourceDao machineResourceDao;
+
+    /**
+     * Data acces object for the user table on the database
+     */
+    @Autowired
+    private MachineService machineService;
 
     /**
      * Saves a resource in machine to the database.
@@ -51,7 +58,7 @@ public class MachineResourceService {
      *
      * @param id The id of the MachineResource to be deleted from the database
      */
-    public void delete(String id) {
+    public void delete(int id) {
         machineResourceDao.delete(id);
     }
 
@@ -61,7 +68,7 @@ public class MachineResourceService {
      * @param id The id of the requested MachineResource
      * @return The MachineResource or null if it wasn't found
      */
-    public MachineResource findById(String id) {
+    public MachineResource findById(int id) {
         return machineResourceDao.findById(id);
     }
 
@@ -72,5 +79,10 @@ public class MachineResourceService {
      */
     public List findAll() {
         return machineResourceDao.getAllResources();
+    }
+
+    public List findByMachine(int id) {
+        Machine m = machineService.findById(id);
+        return machineResourceDao.findByMachine(m);
     }
 }

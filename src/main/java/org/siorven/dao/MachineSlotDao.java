@@ -1,5 +1,6 @@
 package org.siorven.dao;
 
+import org.siorven.model.Machine;
 import org.siorven.model.MachineSlot;
 import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +22,8 @@ public interface MachineSlotDao {
     void deleteMachineSlot(int id);
 
     MachineSlot findById(int id);
+
+    List findByMachineId(Machine m);
 
     List findAll();
 

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Andoni
-  Date: 30/05/2017
-  Time: 18:12
+  Date: 01/06/2017
+  Time: 9:59
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,20 +11,18 @@
 <div class="well">
     <input type="hidden" id="path" value="${pageContext.request.contextPath}">
     <span class="h1">
-        <c:message code="pages.suggestionManager"/>
+        <c:message code="pages.repositionManager"/>
     </span>
 </div>
 <div class="container-fluid" style="overflow-x: scroll">
-    <table id="machinetable"
+    <table id="repositiontable"
            class="table table-striped table-bordered table-hover table-responsive"
            style="width: 100%;">
         <thead>
         <tr>
-            <th><c:message code="suggestion.suggestion"/></th>
-            <th><c:message code="suggestion.date"/></th>
-            <th><c:message code="suggestion.weight"/></th>
-            <th><c:message code="suggestion.method"/></th> <!-- To string -->
-            <th><c:message code="suggestion.reason"/></th>
+            <th><c:message code="form.product.data"/></th>
+            <th><c:message code="form.product.name"/></th>
+            <th><c:message code="form.product.quantity"/></th>
         </tr>
         </thead>
     </table>
@@ -35,33 +33,29 @@
             function () {
                 var machineId = '<jstl:out value="${machineId}"/>';
                 var path = $("#path").val();
-                var emptyMsg = '<c:message code="suggestion.notEnoughSales"/>'
-                $('#machinetable')
+                $('#repositiontable')
                     .dataTable(
                         {
                             language: {
                                 url: path + '/res/json/datatables.json'
                             },
                             "ajax": {
-                                "url": path + "/api/suggestion/datatable/" + machineId,
+                                "url": path + "/api/reposition/datatable/" + machineId,
                                 "type": "POST"
-                            },
-                            "language": {
-                                "emptyTable": emptyMsg
                             },
                             "columns": [
                                 {
-                                    "data": "suggestion"
+                                    "data": "id",
+                                    "render": function (data, type, full, meta) {
+                                        return '<div class="btn-group" style="width: "><a class="btn btn-primary" href="/reposition/edit/' + data + '"><i class="fa fa-building"></i></a>' +
+                                            '<a class="btn btn-warning" href="' + path + '/reposition/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>' +
+                                            '<a class="btn btn-danger" href="' + path + '/reposition/add/' + data + '"><i class="fa fa-exclamation"></i></a>';
+                                    }
                                 }, {
-                                    "data": "generateDate"
+                                    "data": "name"
                                 }, {
-                                    "data": "weight"
-                                }, {
-                                    "data": "method"
-                                }, {
-                                    "data": "reason"
+                                    "data": "quantity"
                                 }]
                         });
             });
 </script>
-

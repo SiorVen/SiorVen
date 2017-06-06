@@ -4,6 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.siorven.model.Machine;
 import org.siorven.model.MachineSlot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -58,6 +59,12 @@ public class MachineSlotDaoImpl implements MachineSlotDao {
     public MachineSlot findById(int id) {
         Criteria crit = getSession().createCriteria(MachineSlot.class).add(Restrictions.eq("id", id));
         return (MachineSlot) crit.uniqueResult();
+    }
+
+    @Override
+    public List findByMachineId(Machine m) {
+        Criteria crit = getSession().createCriteria(MachineSlot.class).add(Restrictions.eq("machine", m));
+        return crit.list();
     }
 
     @Override

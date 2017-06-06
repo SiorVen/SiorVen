@@ -4,7 +4,9 @@ package org.siorven.dao;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.siorven.model.Machine;
 import org.siorven.model.MachineResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -50,12 +52,12 @@ public class MachineResourceDaoImpl implements MachineResourceDao {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(int id) {
         getSession().delete(findById(id));
     }
 
     @Override
-    public MachineResource findById(String id) {
+    public MachineResource findById(int id) {
         Criteria crit = getSession().createCriteria(MachineResource.class).add(Restrictions.eq("id", id));
         return (MachineResource) crit.uniqueResult();
     }
@@ -63,5 +65,14 @@ public class MachineResourceDaoImpl implements MachineResourceDao {
     @Override
     public List getAllResources() {
         return getSession().createCriteria(MachineResource.class).list();
+    }
+
+    @Override
+    public List findByMachine(Machine m) {
+        Criteria c = getSession().createCriteria(MachineResource.class, "machine_resource");
+        c.createAlias("machine_resource.machineSlot", "mslot"); // inner join by default
+        c.createAlias("mslot.machine", "machine");
+        c.add(Restrictions.eq("machine.id", m.getId())).addOrder(Order.desc("id"));
+        return c.list();
     }
 }
