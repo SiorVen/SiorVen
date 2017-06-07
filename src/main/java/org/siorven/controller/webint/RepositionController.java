@@ -5,20 +5,14 @@ import org.siorven.model.MachineResource;
 import org.siorven.model.MachineSlot;
 import org.siorven.model.Slot;
 import org.siorven.model.validacion.SpringFormEditGroup;
-import org.siorven.services.MachineResourceService;
-import org.siorven.services.MachineSlotService;
-import org.siorven.services.SlotService;
-import org.siorven.services.XmlValidationService;
+import org.siorven.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -45,6 +39,12 @@ public class RepositionController {
      * Service with the suggestion data access logic
      */
     @Autowired
+    private ResourceService resourceService;
+
+    /**
+     * Service with the suggestion data access logic
+     */
+    @Autowired
     private SlotService slotService;
 
 
@@ -53,6 +53,12 @@ public class RepositionController {
      */
     @Autowired
     private MachineSlotService machineSlotService;
+
+    /**
+     * Service with the suggestion data access logic
+     */
+    @Autowired
+    private MachineService machineService;
 
     /**
      * Message source for internationalization of the content
@@ -112,9 +118,10 @@ public class RepositionController {
      */
     @GetMapping("/reposition/add/{id}")
     public String showRepositionRegisterInterface(@PathVariable("id") int id, Model model) {
-        MachineResource resource = machineResourceService.findById(id);
-        anadirSlotAdd(model, resource.getMachineSlot().getMachine().getId());
-        model.addAttribute("machineResourceAdd", new MachineResourceForm());
+        anadirSlotAdd(model, id);
+        MachineResourceForm m = new MachineResourceForm();
+        m.setId(id);
+        model.addAttribute("machineResourceAdd", m);
         return "repositionAdd";
     }
 
@@ -133,12 +140,16 @@ public class RepositionController {
             return "repositionManager";
         }
         MachineResource m  = new MachineResource();
-        //m.setResource();
-        //m.setAlias(machineForm.getAlias());
-        //m.setMachineModel(machineModelService.findById(machineForm.getMachineModelId()));
-        //machineService.save(m);
+        MachineSlot slot = new MachineSlot();
+        slot.setSlot(slotService.findById(machineResourceForm.getMachineSlotId()));
+        slot.setMachine(machineService.findById(machineResourceForm.getId()));
+        machineSlotService.save(slot);
+        m.setResource(resourceService.findByName(machineResourceForm.getProduct()));
+        m.setMachineSlot(slot);
+        m.setQuantity(machineResourceForm.getQuantity());
+        machineResourceService.save(m);
 
-        return "repositionManager";
+        return "redirect:/reposition/manager/"+machineResourceForm.getId();
     }
     /**
      * Edits a reposition
@@ -158,6 +169,22 @@ public class RepositionController {
         resource.setMachineSlot(machineSlotService.findById(machineResourceForm.getMachineSlotId()));
         machineResourceService.edit(resource);
         return "redirect:/reposition/manager/"+resource.getMachineSlot().getMachine().getId();
+    }
+
+    /**
+     * Fills a reposition
+     *
+     * @param machineResourceForm        reposition to update
+     * @param redirectAttributes Redirected attributes to the manager
+     * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
+     */
+    @PostMapping(value = "/reposition/fill", params = {"id"})
+    public String fillReposition(@RequestParam("id") Integer id, @ModelAttribute("machineResource") @Validated(SpringFormEditGroup.class) MachineResourceForm machineResourceForm, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) throws ServletException {
+
+        MachineResource m = machineResourceService.findById(id);
+        m.setQuantity(m.getMachineSlot().getSlot().getCapacity());
+        machineResourceService.edit(m);
+        return "redirect:/reposition/manager/"+machineResourceService.findById(machineResourceForm.getId()).getMachineSlot().getMachine().getId();
     }
 
     private  void anadirSlotAdd(Model model, int machineId) {

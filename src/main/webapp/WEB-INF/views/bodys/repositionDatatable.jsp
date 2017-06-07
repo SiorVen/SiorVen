@@ -8,11 +8,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <div class="well">
     <input type="hidden" id="path" value="${pageContext.request.contextPath}">
     <span class="h1">
         <c:message code="pages.repositionManager"/>
     </span>
+</div>
+<a type="button" class="btn btn-primary" style="margin: 20px" href="<c:url value="/reposition/add/${machineId}"/>">
+    <c:message code="action.createReposition"/>
+    </a>
+<div class="control-group">
+    <!-- id -->
+    <div class="controls">
+        <sf:input path="id" type="hidden" cssClass="form-control" id="reference"/>
+        <sf:errors path="id" cssClass="text-danger"/>
+    </div>
 </div>
 <div class="container-fluid" style="overflow-x: scroll">
     <table id="repositiontable"
@@ -32,6 +43,8 @@
         .ready(
             function () {
                 var machineId = '<jstl:out value="${machineId}"/>';
+                var csfrKey = '<jstl:out value="${_csrf.parameterName}"/>';
+                var csfrToken = '<jstl:out value="${_csrf.token}"/>';
                 var path = $("#path").val();
                 $('#repositiontable')
                     .dataTable(
@@ -47,9 +60,13 @@
                                 {
                                     "data": "id",
                                     "render": function (data, type, full, meta) {
-                                        return '<div class="btn-group" style="width: "><a class="btn btn-primary" href="/reposition/edit/' + data + '"><i class="fa fa-building"></i></a>' +
-                                            '<a class="btn btn-warning" href="' + path + '/reposition/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>' +
-                                            '<a class="btn btn-danger" href="' + path + '/reposition/add/' + data + '"><i class="fa fa-exclamation"></i></a>';
+                                        return ' <form action="' + path + '/reposition/fill" method="post">'+
+                                        '<div class="btn-group" style="width: ">' +
+                                        '<a class="btn btn-warning" href="' + path + '/reposition/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>'+
+                                            '<input type="hidden" name="id" value="' + data + '"/>'+
+                                            '<input type="hidden" name="' + csfrKey + '" value="' + csfrToken + '"/>'+
+                                            '<button type="submit" class="btn btn-primary" name="b" value="" >' +
+                                            '<i class="fa fa-link"></i></button></div></form>';
                                     }
                                 }, {
                                     "data": "name"

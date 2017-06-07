@@ -32,5 +32,8 @@
             <strong class="h2"><spring:message code="form.machine.modelFile"/>: </strong>
             <span class="h3"><c:out value="${reference}"/></span>
         </div>
+        <br>
+        <a class="btn btn-primary" href="<spring:url value="/reposition/manager/${machineView.id}"/>"><spring:message
+                code="pages.repositionManager"/></a>
     </div>
 </div>

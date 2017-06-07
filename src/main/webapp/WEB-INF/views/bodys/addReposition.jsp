@@ -11,7 +11,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="container-fluid">
     <div class="jumbotron col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-offset-0 col-xs-12">
-        <sf:form action="${pageContext.request.contextPath}/reposition/add" method="post" commandName="machineResourceAdd">
+        <sf:form action="${pageContext.request.contextPath}/reposition/register" method="post" commandName="machineResourceAdd">
             <fieldset>
                 <div id="legend">
                     <legend class=""><s:message code="pages.repositionAdd"/></legend>
@@ -20,7 +20,7 @@
                     <div class="control-group">
                         <!-- name -->
                         <label class="control-label" for="productAdd"><i class="fa fa-user" aria-hidden="true"></i>
-                            <s:message code="form.machine.alias"/></label>
+                            <s:message code="pages.productView"/></label>
                         <div class="controls">
                             <sf:input path="product" type="text" cssClass="form-control" id="productAdd"/>
                             <sf:errors path="product" cssClass="text-danger"/>
@@ -29,7 +29,7 @@
                         <div class="control-group">
                             <!-- quantity -->
                             <label class="control-label" for="quantityAdd"><i class="fa fa-user" aria-hidden="true"></i>
-                                <s:message code="form.machine.alias"/></label>
+                                <s:message code="form.ingredient.qty"/></label>
                             <div class="controls">
                                 <sf:input path="quantity" type="text" cssClass="form-control" id="quantityAdd"/>
                                 <sf:errors path="quantity" cssClass="text-danger"/>
@@ -39,7 +39,7 @@
                             <!-- slot -->
                             <label class="control-label" for="machineSlotIdAdd"><i class="fa fa-users" aria-hidden="true"></i>
                                 <s:message
-                                        code="form.machine.modelFile"/></label>
+                                        code="form.reposition.slot"/></label>
                             <div class="controls">
                                 <sf:select path="machineSlotId" id="machineSlotIdAdd" items="${slots}"
                                            cssClass="form-control"/>
@@ -57,7 +57,7 @@
                         <!-- Button -->
                         <div class="controls">
                             <button type="submit" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
-                                <s:message code="form.machine.register"/>
+                                <s:message code="form.user.register"/>
                             </button>
                         </div>
                     </div>
