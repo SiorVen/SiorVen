@@ -8,6 +8,7 @@ public class MachineViewForm extends MachineEditForm {
     private String modelAlias;
 
     public MachineViewForm() {
+        //empty constructor
     }
 
     public String getModelAlias() {

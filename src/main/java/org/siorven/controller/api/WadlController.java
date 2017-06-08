@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import javax.annotation.Generated;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.namespace.QName;
 import java.lang.annotation.Annotation;
@@ -19,7 +20,6 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 
 @Controller
 @RequestMapping("/api/application.wadl")

@@ -31,6 +31,7 @@ public class AlgorithmConf {
     private Integer minMaxPeriod;
 
     public AlgorithmConf() {
+        //empty constructor
     }
 
     public Double getRatioMin() {

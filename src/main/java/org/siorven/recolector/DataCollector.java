@@ -16,25 +16,26 @@ import java.util.Map;
 @Component
 public class DataCollector extends _DataCollectorDisp {
 
-    private Map<String, Machine> collectorList = new HashMap<>();
+    private transient Map<String, Machine> collectorList = new HashMap<>();
 
     @Autowired
-    private MailService mailService;
+    private transient MailService mailService;
 
     @Autowired
-    private SaleService saleService;
+
+    private transient SaleService saleService;
 
     @Autowired
-    private RecollectorService recollectorService;
+    private transient RecollectorService recollectorService;
 
     @Autowired
-    private MachineProductService machineProductService;
+    private transient MachineProductService machineProductService;
 
     @Autowired
-    private MachineService machineService;
+    private transient MachineService machineService;
 
     @Autowired
-    private MachineResourceService machineResourceService;
+    private transient MachineResourceService machineResourceService;
 
     @Override
     public void shutdown(String alias, Current current) {
@@ -91,28 +92,4 @@ public class DataCollector extends _DataCollectorDisp {
             machineResourceService.edit(mr);
         }
     }
-
-    private void generateSaleFromCode(String code, Machine machine) {
-        Map<String, Object> positionParam = new HashMap<>();
-        String[] separatedCode = code.split("[:]");
-        positionParam.put(separatedCode[0], Integer.parseInt(separatedCode[0]));
-        positionParam.put(separatedCode[1], Integer.parseInt(separatedCode[1]));
-        MachineModel model = machine.getMachineModel();
-        Slot slot = null;
-        for (Distribution d : model.getAviableDistributions()) {
-            slot = d.findSlot(positionParam);
-            if (slot != null) {
-                break;
-            }
-        }
-
-        if (slot != null) {
-            MachineProduct mp = machineProductService.getMachineProductFromSlot(slot);
-            Sale sale = new Sale(new Timestamp(new Date().getTime()), mp, 1);
-            saleService.save(sale);
-        }
-
-
-    }
-
 }

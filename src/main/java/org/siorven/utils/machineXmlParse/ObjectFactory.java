@@ -33,6 +33,7 @@ public class ObjectFactory {
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.siorven.utils.machineXmlParse
      */
     public ObjectFactory() {
+        //empty constructor
     }
 
     /**

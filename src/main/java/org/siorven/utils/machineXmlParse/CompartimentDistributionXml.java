@@ -56,7 +56,7 @@ public class CompartimentDistributionXml {
      */
     public List<CompartimentXml> getCompartiment() {
         if (compartiment == null) {
-            compartiment = new ArrayList<CompartimentXml>();
+            compartiment = new ArrayList<>();
         }
         return this.compartiment;
     }

@@ -20,6 +20,7 @@ public class MachineEditForm {
     }
 
     public MachineEditForm() {
+        //empty constructor
     }
 
     public int getMachineModelId() {
