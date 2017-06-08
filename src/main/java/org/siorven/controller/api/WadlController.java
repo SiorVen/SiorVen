@@ -117,7 +117,6 @@ public class WadlController {
                 // Response
                 if ( !mediaTypes.isEmpty() ) {
                     Response wadlResponse = new Response();
-                    Class methodReturn = handlerMethod.getReturnType().getClass();
                     ResponseStatus status = handlerMethod.getMethodAnnotation(ResponseStatus.class);
                     if(status==null) {
                         wadlResponse.getStatus().add((long)(HttpStatus.OK.value()));
@@ -133,8 +132,9 @@ public class WadlController {
                     }
                     wadlMethod.getResponse().add(wadlResponse);
                 }
-
-                wadlResource.getMethodOrResource().add(wadlMethod);
+                if(wadlResource != null) {
+                    wadlResource.getMethodOrResource().add(wadlMethod);
+                }
 
             }
 
@@ -173,8 +173,9 @@ public class WadlController {
     }
 
     private String cleanDefault(String value) {
-        value = value.replaceAll("\t", "");
-        value = value.replaceAll("\n", "");
-        return value;
+        String ret = value;
+        ret = ret.replaceAll("\t", "");
+        ret = ret.replaceAll("\n", "");
+        return ret;
     }
 }
