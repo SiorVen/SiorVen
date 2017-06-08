@@ -31,6 +31,7 @@ import java.util.List;
 @Controller
 public class ProductController {
 
+    public static final String MESSAGE = "message";
     @Autowired
     ProductService productService;
 
@@ -60,7 +61,7 @@ public class ProductController {
         productService.save(p);
         String msg = messageSource.getMessage("msg.product.added",
                 new String[]{p.getName()}, resolver.resolveLocale(request));
-        redirectAttributes.addFlashAttribute("message", msg);
+        redirectAttributes.addFlashAttribute(MESSAGE, msg);
         return "redirect:/product/manager";
     }
 
@@ -80,7 +81,7 @@ public class ProductController {
             machineProductService.delete(mp);
         productService.delete(p.getId());
         String msg = messageSource.getMessage("msg.product.deleted", new String[]{p.getName()}, resolver.resolveLocale(request));
-        redirectAttributes.addAttribute("message", msg);
+        redirectAttributes.addAttribute(MESSAGE, msg);
         return "redirect:/product/manager";
     }
 
@@ -93,7 +94,7 @@ public class ProductController {
         ingredientService.edit(i);
         ingredientService.delete(i);
         String msg = messageSource.getMessage("msg.ingredient.deleted", new String[]{i.getResource().getName()}, resolver.resolveLocale(request));
-        redirectAttributes.addFlashAttribute("message", msg);
+        redirectAttributes.addFlashAttribute(MESSAGE, msg);
         return "redirect:/product/" + productId;
     }
 
@@ -143,7 +144,7 @@ public class ProductController {
         ingredientService.save(i);
         productService.saveOrUpdate(p);
         String msg = messageSource.getMessage("msg.ingredient.added", new String[]{r.getName()}, resolver.resolveLocale(request));
-        redirectAttributes.addFlashAttribute("message", msg);
+        redirectAttributes.addFlashAttribute(MESSAGE, msg);
         return "redirect:/product/" + id;
     }
 

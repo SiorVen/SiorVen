@@ -65,7 +65,7 @@ public class UserRestController {
         datatables.put("data", data);
         for (User u : users) {
             Map<String, String> entry = new HashMap<>();
-            entry.put("id", u.getId() + "");
+            entry.put("id", Integer.toString(u.getId()));
             entry.put("type", UserUtils.permissionCodeToHuman(u.getPermission(), messageSource, localeResolver, request));
             entry.put("username", u.getUsername());
             entry.put("email", u.getEmail());

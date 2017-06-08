@@ -1,6 +1,5 @@
 package org.siorven.services;
 
-import org.siorven.dao.MachineSlotDao;
 import org.siorven.dao.SlotDao;
 import org.siorven.model.MachineSlot;
 import org.siorven.model.Slot;

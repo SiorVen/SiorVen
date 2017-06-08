@@ -1,6 +1,6 @@
 package org.siorven.controller.webint;
 
-import org.siorven.exceptions.ResourceAlreadyRegistered;
+import org.siorven.exceptions.ResourceAlreadyRegisteredException;
 import org.siorven.model.Resource;
 import org.siorven.model.ResourceType;
 import org.siorven.model.validacion.SpringFormGroup;
@@ -92,7 +92,7 @@ public class ResourceController {
         }
         try {
             resourceService.save(resource);
-        } catch (ResourceAlreadyRegistered e) {
+        } catch (ResourceAlreadyRegisteredException e) {
             String msg = messageSource.getMessage(e.getMessage(),
                     new String[]{resource.getName()}, locale.resolveLocale(request));
             bindingResult.addError(new FieldError(RESOURCE, "name", resource.getName(), true, null, null, msg));

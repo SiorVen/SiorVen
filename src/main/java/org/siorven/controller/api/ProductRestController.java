@@ -45,7 +45,7 @@ public class ProductRestController {
         datatables.put("data", data);
         for (Product p : users) {
             Map<String, String> entry = new HashMap<>();
-            entry.put("id", p.getId() + "");
+            entry.put("id", Integer.toString(p.getId()));
             entry.put("name", p.getName());
             data.add(entry);
         }
@@ -61,9 +61,9 @@ public class ProductRestController {
         datatables.put("data", data);
         for (Ingredient i : product.getRecipe()) {
             Map<String, String> entry = new HashMap<>();
-            entry.put("id", i.getId() + "");
+            entry.put("id", Integer.toString(i.getId()));
             entry.put("name", i.getResource().getName());
-            entry.put("qty", i.getQuantity() + "");
+            entry.put("qty", Integer.toString(i.getQuantity()));
             String unit = messageSource.getMessage(ResourceType.unit(i.getResource().getResourceType()).toString(), null, resolver.resolveLocale(request));
             entry.put("unit", unit);
             data.add(entry);

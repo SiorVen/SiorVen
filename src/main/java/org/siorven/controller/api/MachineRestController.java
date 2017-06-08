@@ -61,7 +61,7 @@ public class MachineRestController {
         datatables.put("data", data);
         for (Machine m : machines) {
             Map<String, String> entry = new HashMap<>();
-            entry.put("id", m.getId() + "");
+            entry.put("id", Integer.toString(m.getId()));
             entry.put("alias", m.getAlias());
             entry.put("modelRef", m.getMachineModel().getReference());
             entry.put("manufacturer", m.getMachineModel().getManufacturer());

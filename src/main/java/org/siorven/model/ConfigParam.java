@@ -9,12 +9,12 @@ import javax.persistence.Id;
 @Entity
 public class ConfigParam {
 
-    public final static String SUGG_MAXMIN_RATIOMIN = "SuggestionMAXMIN_MinRatio";
-    public final static String SUGG_MAXMIN_RATIOMAX = "SuggestionMAXMIN_MaxRatio";
-    public final static String SUGG_MAXMIN_DAYPERIOD = "SuggestionMAXMIN_SuccesSales";
+    public static final String SUGG_MAXMIN_RATIOMIN = "SuggestionMAXMIN_MinRatio";
+    public static final String SUGG_MAXMIN_RATIOMAX = "SuggestionMAXMIN_MaxRatio";
+    public static final String SUGG_MAXMIN_DAYPERIOD = "SuggestionMAXMIN_SuccesSales";
 
-    public final static String SUGG_APRIORI_SUCCESSALES = "SuggestionAPRIORI_SuccesSales";
-    public final static String SUGG_APRIORI_DAYPERIOD = "SuggestionAPRIORI_DayPeriod";
+    public static final String SUGG_APRIORI_SUCCESSALES = "SuggestionAPRIORI_SuccesSales";
+    public static final String SUGG_APRIORI_DAYPERIOD = "SuggestionAPRIORI_DayPeriod";
 
     @Id
     String key;

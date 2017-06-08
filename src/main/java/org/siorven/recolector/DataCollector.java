@@ -45,7 +45,6 @@ public class DataCollector extends _DataCollectorDisp {
             recollectorService.edit(r);
         }
         collectorList.remove(alias);
-        //current.adapter.getCommunicator().shutdown();
     }
 
     @Override

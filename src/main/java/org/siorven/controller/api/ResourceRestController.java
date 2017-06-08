@@ -39,7 +39,7 @@ public class ResourceRestController {
         List<Resource> admins = resourceService.findBylikeName(nombreResource);
 
         for (Resource resource : admins) {
-            map.put(resource.getId() + "", resource.getName() + "");
+            map.put(Integer.toString(resource.getId()), resource.getName());
         }
         return map;
     }

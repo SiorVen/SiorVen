@@ -29,6 +29,8 @@ import java.util.List;
 public class RepositionController {
 
 
+    public static final String REDIRECT_REPOSITION_MANAGER = "redirect:/reposition/manager/";
+    public static final String REPOSITION_MANAGER = "repositionManager";
     /**
      * Service with the suggestion data access logic
      */
@@ -89,7 +91,7 @@ public class RepositionController {
     @GetMapping("/reposition/manager/{id}")
     public String showRepositionManager(@PathVariable int id, Model model) {
         model.addAttribute("machineId", id);
-        return "repositionManager";
+        return REPOSITION_MANAGER;
     }
     /**
      * Shows the edit reposition page
@@ -118,7 +120,7 @@ public class RepositionController {
      */
     @GetMapping("/reposition/add/{id}")
     public String showRepositionRegisterInterface(@PathVariable("id") int id, Model model) {
-        anadirSlotAdd(model, id);
+        anadirSlotAdd(model);
         MachineResourceForm m = new MachineResourceForm();
         m.setId(id);
         model.addAttribute("machineResourceAdd", m);
@@ -137,7 +139,7 @@ public class RepositionController {
                                          RedirectAttributes redirectAttributes) throws IOException {
 
         if (bindingResult.hasErrors()) {
-            return "repositionManager";
+            return REPOSITION_MANAGER;
         }
         MachineResource m  = new MachineResource();
         MachineSlot slot = new MachineSlot();
@@ -149,7 +151,7 @@ public class RepositionController {
         m.setQuantity(machineResourceForm.getQuantity());
         machineResourceService.save(m);
 
-        return "redirect:/reposition/manager/"+machineResourceForm.getId();
+        return REDIRECT_REPOSITION_MANAGER +machineResourceForm.getId();
     }
     /**
      * Edits a reposition
@@ -162,13 +164,13 @@ public class RepositionController {
     public String editReposition(@ModelAttribute("machineResource") @Validated(SpringFormEditGroup.class) MachineResourceForm machineResourceForm, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) throws ServletException {
         MachineResource resource = machineResourceService.findById(machineResourceForm.getId());
         if (bindingResult.hasErrors()) {
-            return "repositionManager";
+            return REPOSITION_MANAGER;
         }
         anadirSlots(model, resource.getMachineSlot().getMachine().getId());
         resource.setQuantity(machineResourceForm.getQuantity());
         resource.setMachineSlot(machineSlotService.findById(machineResourceForm.getMachineSlotId()));
         machineResourceService.edit(resource);
-        return "redirect:/reposition/manager/"+resource.getMachineSlot().getMachine().getId();
+        return REDIRECT_REPOSITION_MANAGER+resource.getMachineSlot().getMachine().getId();
     }
 
     /**
@@ -184,10 +186,10 @@ public class RepositionController {
         MachineResource m = machineResourceService.findById(id);
         m.setQuantity(m.getMachineSlot().getSlot().getCapacity());
         machineResourceService.edit(m);
-        return "redirect:/reposition/manager/"+machineResourceService.findById(machineResourceForm.getId()).getMachineSlot().getMachine().getId();
+        return REDIRECT_REPOSITION_MANAGER+machineResourceService.findById(machineResourceForm.getId()).getMachineSlot().getMachine().getId();
     }
 
-    private  void anadirSlotAdd(Model model, int machineId) {
+    private  void anadirSlotAdd(Model model) {
         List<Slot> m = slotService.findFree();
         LinkedHashMap<Integer, String> roles = new LinkedHashMap<>();
         for (int i = 0; i < m.size(); i++) {

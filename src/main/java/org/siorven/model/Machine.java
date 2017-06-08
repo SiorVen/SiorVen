@@ -1,8 +1,5 @@
 package org.siorven.model;
 
-import org.siorven.logic.Configuration;
-import org.siorven.logic.Mapper;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,25 +29,6 @@ public class Machine {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "resource_id")
     private List<MachineResource> machineResourceList;
-
-    @Transient
-    private Configuration configuration;
-
-    @Transient
-    private String record;
-
-    @Transient
-    private Mapper mapper;
-
-    public Machine(String alias, MachineModel machineModel, List<MachineProduct> machineProductList, List<MachineResource> machineResourceList, Configuration configuration, String record, Mapper mapper) {
-        this.alias = alias;
-        this.machineModel = machineModel;
-        this.machineProductList = machineProductList;
-        this.machineResourceList = machineResourceList;
-        this.configuration = configuration;
-        this.record = record;
-        this.mapper = mapper;
-    }
 
     public Machine(String alias, MachineModel machineModel, List<MachineProduct> machineProductList, List<MachineResource> machineResourceList) {
         this.alias = alias;
@@ -108,30 +86,6 @@ public class Machine {
 
     public void setMachineResourceList(List<MachineResource> machineResourceList) {
         this.machineResourceList = machineResourceList;
-    }
-
-    public Configuration getConfiguration() {
-        return configuration;
-    }
-
-    public void setConfiguration(Configuration configuration) {
-        this.configuration = configuration;
-    }
-
-    public String getRecord() {
-        return record;
-    }
-
-    public void setRecord(String record) {
-        this.record = record;
-    }
-
-    public Mapper getMapper() {
-        return mapper;
-    }
-
-    public void setMapper(Mapper mapper) {
-        this.mapper = mapper;
     }
 
 }

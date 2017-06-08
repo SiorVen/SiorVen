@@ -22,12 +22,12 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _ResourceTypes_QNAME = new QName("", "resourceTypes");
-    private final static QName _Compartiment_QNAME = new QName("", "compartiment");
-    private final static QName _Compartiments_QNAME = new QName("", "compartiments");
-    private final static QName _Model_QNAME = new QName("", "model");
-    private final static QName _Distribution_QNAME = new QName("", "distribution");
-    private final static QName _Matrix_QNAME = new QName("", "matrix");
+    private static final QName _ResourceTypes_QNAME = new QName("", "resourceTypes");
+    private static final QName _Compartiment_QNAME = new QName("", "compartiment");
+    private static final QName _Compartiments_QNAME = new QName("", "compartiments");
+    private static final QName _Model_QNAME = new QName("", "model");
+    private static final QName _Distribution_QNAME = new QName("", "distribution");
+    private static final QName _Matrix_QNAME = new QName("", "matrix");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.siorven.utils.machineXmlParse
@@ -96,7 +96,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "", name = "resourceTypes")
     public JAXBElement<ResourceTypes> createResourceTypes(ResourceTypes value) {
-        return new JAXBElement<ResourceTypes>(_ResourceTypes_QNAME, ResourceTypes.class, null, value);
+        return new JAXBElement<>(_ResourceTypes_QNAME, ResourceTypes.class, null, value);
     }
 
     /**
@@ -104,7 +104,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "", name = "compartiment")
     public JAXBElement<CompartimentXml> createCompartiment(CompartimentXml value) {
-        return new JAXBElement<CompartimentXml>(_Compartiment_QNAME, CompartimentXml.class, null, value);
+        return new JAXBElement<>(_Compartiment_QNAME, CompartimentXml.class, null, value);
     }
 
     /**
@@ -112,7 +112,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "", name = "compartiments")
     public JAXBElement<CompartimentDistributionXml> createCompartiments(CompartimentDistributionXml value) {
-        return new JAXBElement<CompartimentDistributionXml>(_Compartiments_QNAME, CompartimentDistributionXml.class, null, value);
+        return new JAXBElement<>(_Compartiments_QNAME, CompartimentDistributionXml.class, null, value);
     }
 
     /**
@@ -120,7 +120,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "", name = "model")
     public JAXBElement<MachineModelXml> createModel(MachineModelXml value) {
-        return new JAXBElement<MachineModelXml>(_Model_QNAME, MachineModelXml.class, null, value);
+        return new JAXBElement<>(_Model_QNAME, MachineModelXml.class, null, value);
     }
 
     /**
@@ -128,7 +128,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "", name = "distribution")
     public JAXBElement<DistributionXml> createDistribution(DistributionXml value) {
-        return new JAXBElement<DistributionXml>(_Distribution_QNAME, DistributionXml.class, null, value);
+        return new JAXBElement<>(_Distribution_QNAME, DistributionXml.class, null, value);
     }
 
     /**
@@ -136,7 +136,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "", name = "matrix")
     public JAXBElement<MatrixDistrubutionXml> createMatrix(MatrixDistrubutionXml value) {
-        return new JAXBElement<MatrixDistrubutionXml>(_Matrix_QNAME, MatrixDistrubutionXml.class, null, value);
+        return new JAXBElement<>(_Matrix_QNAME, MatrixDistrubutionXml.class, null, value);
     }
 
 }

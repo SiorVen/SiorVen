@@ -41,11 +41,7 @@ public class RecommenderMain {
     @Autowired
     private ConfigParamService conf;
 
-    private static List<Product> productList;
-
-    private List<Sale> machineLastSales;
-
-    private List<Sale> allSales;
+    private List<Product> productList;
 
     private List<Machine> machineList;
 
@@ -59,7 +55,6 @@ public class RecommenderMain {
         productList = productService.findAll();
 
         createSales();
-        allSales = saleService.getAllSales();
 
         Timestamp weekBefore = new Timestamp(now.getTime() - conf.getInt(ConfigParam.SUGG_MAXMIN_DAYPERIOD) * DAY_IN_MILIS);
         for (Machine machine : machineList) {
@@ -129,9 +124,8 @@ public class RecommenderMain {
             atts.add(new Attribute(p.getName(), attVals));
         }
 
-        Instances data = getDataFromDatabase(atts);
+        return getDataFromDatabase(atts);
 
-        return data;
     }
 
     private Instances getDataFromDatabase(FastVector atts) {
