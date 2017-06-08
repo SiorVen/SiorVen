@@ -93,7 +93,7 @@ public class WadlController {
                             waldParam.setStyle(ParamStyle.QUERY);
                             waldParam.setRequired(param2.required());
                             String defaultValue = cleanDefault(param2.defaultValue());
-                            if ( !defaultValue.equals("") ) {
+                            if ( !"".equals(defaultValue) ) {
                                 waldParam.setDefault(defaultValue);
                             }
                             waldParam.setType(nm);
