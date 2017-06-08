@@ -83,7 +83,8 @@ public class UserService {
      */
     public User findByEmailOrUsername(String string) {
         User user = findByUsername(string);
-        if (user != null) return user;
+        if (user != null)
+            return user;
         return findByEmail(string);
     }
 
@@ -137,7 +138,6 @@ public class UserService {
     }
 
     private void checkifInUse(User usuario) throws EmailInUseException, UsernameInUseException {
-        boolean ret = false;
         User u = findByEmail(usuario.getEmail());
         if (u != null && u.getId() != usuario.getId()) {
             throw new EmailInUseException();

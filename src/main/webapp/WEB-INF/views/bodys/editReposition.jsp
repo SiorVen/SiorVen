@@ -13,7 +13,7 @@
                     <div class="control-group">
                         <!-- name -->
                         <label class="control-label" for="product"><i class="fa fa-user" aria-hidden="true"></i>
-                            <s:message code="form.machine.alias"/></label>
+                            <s:message code="pages.productView"/></label>
                         <div class="controls">
                             <sf:input path="product" type="text" cssClass="form-control" id="product" readonly="true"/>
                             <sf:errors path="product" cssClass="text-danger"/>
@@ -23,7 +23,7 @@
                         <div class="control-group">
                             <!-- quantity -->
                             <label class="control-label" for="quantity"><i class="fa fa-user" aria-hidden="true"></i>
-                                <s:message code="form.machine.alias"/></label>
+                                <s:message code="form.ingredient.qty"/></label>
                             <div class="controls">
                                 <sf:input path="quantity" type="text" cssClass="form-control" id="quantity"/>
                                 <sf:errors path="quantity" cssClass="text-danger"/>
@@ -33,7 +33,7 @@
                             <!-- slot -->
                             <label class="control-label" for="machineSlotId"><i class="fa fa-users" aria-hidden="true"></i>
                                 <s:message
-                                        code="form.machine.modelFile"/></label>
+                                        code="form.reposition.slot"/></label>
                             <div class="controls">
                                 <sf:select path="machineSlotId" id="machineSlotId" items="${slots}"
                                            cssClass="form-control"/>
@@ -52,7 +52,7 @@
                     <!-- Button -->
                     <div class="controls">
                         <button type="submit" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
-                            <s:message code="form.machine.register"/>
+                            <s:message code="form.user.edit"/>
                         </button>
                     </div>
                 </div>

@@ -14,6 +14,8 @@ public class MachineResourceForm {
 
     int machineSlotId;
 
+    int machineId;
+
     public MachineResourceForm() {
     }
 
@@ -47,5 +49,13 @@ public class MachineResourceForm {
 
     public void setMachineSlotId(int machineSlotId) {
         this.machineSlotId = machineSlotId;
+    }
+
+    public int getMachineId() {
+        return machineId;
+    }
+
+    public void setMachineId(int machineId) {
+        this.machineId = machineId;
     }
 }

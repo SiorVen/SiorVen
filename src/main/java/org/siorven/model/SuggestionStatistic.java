@@ -15,8 +15,8 @@ import java.util.Locale;
 @Table(name = "suggestion")
 public class SuggestionStatistic extends Suggestion {
 
-    public static boolean MAX = true;
-    public static boolean MIN = false;
+    public static final boolean MAX = true;
+    public static final boolean MIN = false;
 
     @ManyToOne
     private Product product;
