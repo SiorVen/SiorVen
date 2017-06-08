@@ -75,6 +75,7 @@ public class UserServiceTest {
         user1.setPermission("ROLE_REP");
         user1.setId(2);
 
+
         when(userDao.findById(1)).thenReturn(user);
         when(userDao.findById(2)).thenReturn(user1);
 
