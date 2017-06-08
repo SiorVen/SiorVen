@@ -31,8 +31,8 @@
     </bean>
 
     <context:component-scan base-package="org.siorven.controller"/>
-    <mvc:annotation-driven/>
-    <mvc:resources mapping="/res/**" location="/rsc/"/>
+    <mvc:annotation-driven />
+    <mvc:resources mapping="/res/**" location="/rsc/" />
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="defaultEncoding" value="UTF-8"/>

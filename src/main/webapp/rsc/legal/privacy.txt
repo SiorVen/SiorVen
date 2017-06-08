@@ -1,0 +1,35 @@
++-----------------------------------------+
+|Política de Privacidad de SiorVen - (GGA)|
++-----------------------------------------+
+
+Este documento describe los derechos de los individuos identificados por los
+datos almacenados en el sistema SiorVen y el uso que se puede llegar a dar
+a esos datos.
+
+1. DEFINICIÓN
+  a)SiorVen
+    Se refiere a el sistema comprendido por la applicación basada en web de
+    optimización de la reposición de las máquinas vending. El sistema define
+    dos tipos de usuarios ADMINISTRADORES y REPONEDORES. Los administradores
+    se reservan el derecho de supervision sobre los demas usuarios.
+  b) Datos personales
+    El sistema SiorVen puede llegar a almacenar los siguientes datos para cada
+    individuo:
+      - email
+      - nombre y apellidos
+
+2. USOS DE LOS DATOS PERSONALES
+  a) Autenticación
+    Un uso de estos datos será la identificación de los usuarios para poder
+    llevar cabo una autenticación en combinación con una contraseña.
+  b) Jerarquia de usuarios
+    Los usuarios de tipo Administrador tendran derecho a gestionar (eliminar,
+    editar y crear) y ver los datos de los demas usuarios del sistema SiorVen.
+
+3. DERECHOS
+  a) Eliminar y modificar sus datos
+    Cada usuario tendra derecho a realizar cambios o eliminar sus datos ya sea
+    directamente o solicitandoselo a un administrador. La responsabilidad de la
+    retirada o modificación bajodemanda de estos datos recaerá en los administradores
+    del sistema ya que el sistema obliga a que por lo menos 1 este presente en
+    el sistema.

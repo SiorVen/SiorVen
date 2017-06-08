@@ -8,7 +8,7 @@ DataCollector.Endpoints=ssl -p 10001
 #
 # Only listen on the localhost interface by default.
 #
-Ice.Default.Host=localhost
+Ice.Default.Host=0.0.0.0
 
 #
 # For JavaScript browser clients using a secure WebSocket (WSS),
@@ -20,7 +20,7 @@ Ice.Default.Host=localhost
 #
 # Warn about connection exceptions
 #
-Ice.Warn.Connections=1
+Ice.Warn.Connections=0
 
 #
 # Network Tracing
@@ -30,7 +30,7 @@ Ice.Warn.Connections=1
 # 2 = like 1, but more detailed
 # 3 = like 2, but also trace data transfer
 #
-Ice.Trace.Network=2
+Ice.Trace.Network=0
 
 #
 # Protocol Tracing
@@ -46,7 +46,7 @@ Ice.Trace.Network=2
 # 0 = no security tracing
 # 1 = trace messages
 #
-IceSSL.Trace.Security=1
+IceSSL.Trace.Security=0
 
 #
 # SSL Configuration
