@@ -45,8 +45,9 @@ public class UserRestController {
      *
      * @return The users
      */
-    @GetMapping(value = "/api/user/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/api/user/all", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
     public Collection<User> getAll() {
+
         return userService.findAll();
     }
 
