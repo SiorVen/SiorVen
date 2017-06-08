@@ -8,7 +8,6 @@ import org.siorven.model.MachineModel;
 import org.siorven.model.validacion.SpringFormEditGroup;
 import org.siorven.services.MachineModelService;
 import org.siorven.services.MachineService;
-import org.siorven.services.XmlValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -33,10 +32,10 @@ import java.util.List;
  */
 @Controller
 public class MachineController {
-    public static final String MACHINE_MODEL = "machineModel";
-    public static final String MODEL_REGISTER_VIEW = "machineMachineRegister";
-    public static final String REDIRECT_MODEL_REGISTER = "redirect:/model/register";
-    public static final String MACHINE_MANAGER_VIEW = "machineManager";
+    private static final String MACHINE_MODEL = "machineModel";
+    private static final String MODEL_REGISTER_VIEW = "machineMachineRegister";
+    private static final String REDIRECT_MODEL_REGISTER = "redirect:/model/register";
+    private static final String MACHINE_MANAGER_VIEW = "machineManager";
 
 
     /**
@@ -66,9 +65,6 @@ public class MachineController {
     @Autowired
     private HttpServletRequest request;
 
-    @Autowired
-    private XmlValidationService validator;
-
     /**
      * Displays the machine manager
      *
@@ -87,7 +83,7 @@ public class MachineController {
      */
     @GetMapping("/machine/edit/{id}")
     public String showEditMachine(@PathVariable("id") int id, Model model) {
-        anadirModelos(model);
+        addModels(model);
         Machine u = getMachineOrThrow(id);
         MachineEditForm m = new MachineEditForm();
         m.setAlias(u.getAlias());
@@ -105,7 +101,7 @@ public class MachineController {
      */
     @GetMapping("/machine/register")
     public String showMachineRegisterInterface(Model model) {
-        anadirModelos(model);
+        addModels(model);
         model.addAttribute("machineModelRegister", new MachineEditForm());
         return MODEL_REGISTER_VIEW;
     }
@@ -142,7 +138,7 @@ public class MachineController {
      */
     @PostMapping("/machine/edit")
     public String editMachine(@ModelAttribute("machine") @Validated(SpringFormEditGroup.class) MachineEditForm machineForm, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) throws ServletException {
-        anadirModelos(model);
+        addModels(model);
         if (bindingResult.hasErrors()) {
             return MACHINE_MANAGER_VIEW;
         }
@@ -174,7 +170,7 @@ public class MachineController {
         return "machineView";
     }
 
-    private void anadirModelos(Model model) {
+    private void addModels(Model model) {
         List<MachineModel> m = machineModelService.findAll();
         LinkedHashMap<Integer, String> roles = new LinkedHashMap<>();
         for (MachineModel aM : m) {
