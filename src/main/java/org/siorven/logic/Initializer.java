@@ -127,6 +127,8 @@ public class Initializer {
             MachineIngredient machineIngredient = createMachineIngredient(machineResource, 1);
             machineRecipe.add(machineIngredient);
             MachineProduct machineProduct1 = createMachineProduct(productList.get(i), PRICE, machineRecipe, machine);
+            machineIngredient.setMachineProduct(machineProduct1);
+            machineIngredientService.edit(machineIngredient);
             machineProducts.add(machineProduct1);
             machineResourceList.add(machineResource);
         }

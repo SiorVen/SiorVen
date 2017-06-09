@@ -12,6 +12,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,6 +23,8 @@ import java.util.List;
 /**
  * The class that defines a user of the web page
  */
+@XmlRootElement(name = "user")
+@XmlAccessorType(XmlAccessType.NONE)
 @Entity
 @Table(name = "USERS")
 public class User implements UserDetails, CredentialsContainer {
@@ -28,24 +34,29 @@ public class User implements UserDetails, CredentialsContainer {
     private static final String EMAIL_REGEX = "^\\S+@\\S+$";
     private static final String PERMISO_REGEX = "^(" + ROLE_REPONEDOR + "|" + ROLE_ADMIN + ")$";
 
+    @XmlElement
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @XmlElement
     @Column(unique = true)
     @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{NotEmpty.user.username}")
     @Size(min = 3, max = 15, groups = {SpringFormGroup.class, SpringFormEditGroup.class}, message = "{Size.user.username}")
     private String username;
 
+    @XmlElement
     @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class}, message = "{NotEmpty.user.password}")
     @Size(min = 3, max = 15, groups = {SpringFormGroup.class}, message = "{Size.user.password}")
     private String password;
 
+    @XmlElement
     @Column(unique = true)
     @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{NotEmpty.user.email}")
     @Pattern(regexp = EMAIL_REGEX, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{Pattern.user.email}")
     private String email;
 
+    @XmlElement
     @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{NotEmpty.user.permission}")
     @Pattern(regexp = PERMISO_REGEX, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{Pattern.user.permission}")
     private String permission;

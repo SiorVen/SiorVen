@@ -45,7 +45,7 @@ public class UserRestController {
      *
      * @return The users
      */
-    @GetMapping(value = "/api/user/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/api/user/all", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
     public Collection<User> getAll() {
 
         return userService.findAll();
@@ -80,7 +80,7 @@ public class UserRestController {
      * @param id the id of the requested user
      * @return NOT_FOUND (404) if there is no user with such id or the user
      */
-    @GetMapping(value = "/api/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/api/user/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Object get(@PathVariable("id") int id) {
         User u = userService.findById(id);
         if (u == null) return new ResponseEntity(HttpStatus.NOT_FOUND);

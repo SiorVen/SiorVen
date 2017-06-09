@@ -4,7 +4,9 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.siorven.model.Machine;
 import org.siorven.model.MachineIngredient;
+import org.siorven.model.MachineProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,5 +65,14 @@ public class MachineIngredientDaoImpl implements MachineIngredientDao {
     @Override
     public List findAll() {
         return getSession().createCriteria(MachineIngredient.class).list();
+    }
+
+    @Override
+    public List getRecipeFromMachineProduct(MachineProduct machineProduct) {
+        Criteria c = getSession().createCriteria(MachineIngredient.class, "machine_ingredient");
+        c.createAlias("machine_ingredient.machineProduct", "mp"); // inner join by default
+        c.add(Restrictions.eq("mp.id", machineProduct.getId()));
+
+        return c.list();
     }
 }

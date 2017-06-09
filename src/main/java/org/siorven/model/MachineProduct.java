@@ -27,7 +27,7 @@ public class MachineProduct {
     @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private float price;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "machineProduct")
     private List<MachineIngredient> recipe;
 
     @ManyToOne(fetch = FetchType.EAGER)

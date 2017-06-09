@@ -19,10 +19,6 @@ public class DataCollector extends _DataCollectorDisp {
     private transient Map<String, Machine> collectorList = new HashMap<>();
 
     @Autowired
-    private transient MailService mailService;
-
-    @Autowired
-
     private transient SaleService saleService;
 
     @Autowired
@@ -33,9 +29,6 @@ public class DataCollector extends _DataCollectorDisp {
 
     @Autowired
     private transient MachineService machineService;
-
-    @Autowired
-    private transient MachineResourceService machineResourceService;
 
     @Override
     public void shutdown(String alias, Current current) {
@@ -73,23 +66,9 @@ public class DataCollector extends _DataCollectorDisp {
             List<MachineProduct> mpList = machineProductService.findByMachine(machine);
             MachineProduct mp = mpList.get(pcode);
             Sale sale = new Sale(new Timestamp(new Date().getTime()), mp, 1);
-            spendResources(mp);
-            saleService.save(sale);
+            saleService.generateSale(sale, mp);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-
-
-    }
-
-    private void spendResources(MachineProduct mp) {
-        for (MachineIngredient mi : mp.getRecipe()) {
-            MachineResource mr = mi.getResource();
-            int quantity = mr.getQuantity() - mi.getQty();
-            if (quantity <= 0)
-                mailService.notify(mr);
-            mr.setQuantity(quantity);
-            machineResourceService.edit(mr);
         }
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.LocaleResolver;
 
 import java.util.List;
 import java.util.Locale;
@@ -37,7 +38,6 @@ public class MailService {
         String txt = messageSource.getMessage("resource.mail.ranOut",
                 new String[]{mr.getResource().getName(), mr.getMachineSlot().getMachine().getAlias()}, new Locale("es"));
         message.setText(txt);
-
         String subject = messageSource.getMessage("resource.mail.ranOut.subject", null, new Locale("es"));
         message.setSubject(subject);
 

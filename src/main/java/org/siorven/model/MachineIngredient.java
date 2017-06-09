@@ -25,6 +25,9 @@ public class MachineIngredient {
     @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private int qty;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private MachineProduct machineProduct;
+
 
     public MachineIngredient(MachineResource resource, int qty) {
         this.resource = resource;
@@ -56,5 +59,13 @@ public class MachineIngredient {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public MachineProduct getMachineProduct() {
+        return machineProduct;
+    }
+
+    public void setMachineProduct(MachineProduct machineProduct) {
+        this.machineProduct = machineProduct;
     }
 }
