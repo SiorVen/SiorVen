@@ -112,13 +112,11 @@ public class MachineControllerTest {
         Machine machine = new Machine();
         machine.setAlias("Test machine");
         machine.setId(1);
-        machine.setRecord("Test");
         machine.setMachineModel(model);
 
         Machine machine1 = new Machine();
         machine.setAlias("Test machine1");
         machine.setId(2);
-        machine.setRecord("Test1");
 
         Mockito.when(machineService.findById(1)).thenReturn(machine);
 
