@@ -5,23 +5,27 @@
 //
 // **********************************************************************
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import Demo.*;
-import Ice.Communicator;
 
 public class Client {
 	private static Scanner teclado;
+	private static InetAddress address;
+	private static Ice.Communicator communicator;
 
 	public static void main(String[] args) {
 		int status = 0;
 		java.util.List<String> extraArgs = new java.util.ArrayList<>();
 
-		//
-		// try with resource block - communicator is automatically destroyed
-		// at the end of this try block
-		//
-		Ice.Communicator communicator = null;
+		try {
+			address = InetAddress.getByName("champi.sytes.net");
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+
 		try {
 			communicator = Ice.Util.initialize(args);
 			if (!extraArgs.isEmpty()) {
@@ -42,15 +46,16 @@ public class Client {
 
 	private static int run(Ice.Communicator communicator) {
 		teclado = new Scanner(System.in);
-		DataCollectorPrx twoway = (DataCollectorPrx) DataCollectorPrxHelper
-				.checkedCast(communicator.propertyToProxy("DataCollector.Proxy")).ice_twoway().ice_secure(true);
+		Ice.ObjectPrx base = communicator.stringToProxy("dataCollector:ssl -h "+address.getHostAddress()+" -p 7052");
+		DataCollectorPrx twoway = (DataCollectorPrx) DataCollectorPrxHelper.checkedCast(base).ice_twoway().ice_secure(true);
+
 		if (twoway == null) {
 			System.err.println("invalid proxy");
 			return 1;
 		}
 
 		String option = null;
-		
+
 		System.out.println("Introducir alias de la maquina");
 		String alias = teclado.nextLine();
 
@@ -59,7 +64,7 @@ public class Client {
 		while (!(option = menu()).equalsIgnoreCase("shutdown")) {
 			twoway.saleDone(alias, option);
 		}
-		
+
 		twoway.shutdown(alias);
 
 		return 0;

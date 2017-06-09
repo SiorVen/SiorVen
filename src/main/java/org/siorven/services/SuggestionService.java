@@ -85,4 +85,14 @@ public class SuggestionService {
         Machine m = machineService.findById(id);
         return suggestionDao.findByMachine(m);
     }
+
+    /**
+     * Save all the suggestions of a list
+     * @param suggestions
+     */
+    public void saveSuggestionList(List<Suggestion> suggestions){
+        for (Suggestion sg : suggestions){
+            suggestionDao.saveSuggestion(sg);
+        }
+    }
 }

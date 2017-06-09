@@ -2,7 +2,7 @@
 # The client reads this property to create the reference to the
 # "hello" object in the server.
 #
-DataCollector.Proxy=dataCollector:ssl -p 10001
+DataCollector.Proxy=dataCollector:ssl -p 7052
 
 #
 # Uncomment to use the WebSocket transports instead.
@@ -12,7 +12,7 @@ DataCollector.Proxy=dataCollector:ssl -p 10001
 #
 # Only connect to the localhost interface by default.
 #
-Ice.Default.Host=0.0.0.0
+Ice.Default.Host=85.84.20.64
 
 #
 # Warn about connection exceptions.
