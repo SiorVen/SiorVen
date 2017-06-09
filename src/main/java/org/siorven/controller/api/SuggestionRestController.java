@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
- * Created by Andoni on 31/05/2017.
+ * Rest API with the suggestions
  */
 @RestController
 public class SuggestionRestController {

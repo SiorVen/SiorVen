@@ -66,7 +66,7 @@ public class SlotDaoImpl implements SlotDao {
     }
 
     @Override
-    public List getAllSlots() {
+    public List<Slot> getAllSlots() {
         return getSession().createCriteria(Slot.class).list();
     }
 }

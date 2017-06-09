@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by Gorospe on 25/05/2017.
+ * Suggestion data access logic
  */
 @Service
 public class SuggestionService {
@@ -20,31 +20,68 @@ public class SuggestionService {
     @Autowired
     MachineService machineService;
 
+    /**
+     * Save suggestion
+     *
+     * @param suggestion The suggestion
+     */
     public void save(Suggestion suggestion) {
         suggestionDao.saveSuggestion(suggestion);
     }
 
+    /**
+     * Edit suggestion
+     *
+     * @param suggestion The suggestion
+     */
     public void edit(Suggestion suggestion) {
         suggestionDao.editSuggestion(suggestion);
     }
 
+    /**
+     * Save a suggestion if it is new or update it if it exists
+     *
+     * @param suggestion The suggestion
+     */
     public void saveOrUpdate(Suggestion suggestion) {
         suggestionDao.editOrSaveSuggestion(suggestion);
     }
 
+    /**
+     * Delete suggestion
+     *
+     * @param suggestion The suggestion
+     */
     public void delete(Suggestion suggestion) {
         suggestionDao.deleteSuggestion(suggestion.getId());
     }
 
+    /**
+     * Get suggestion that has a given id
+     *
+     * @param id The id of the suggestion
+     * @return null if the suggestion wasn't found
+     */
     public Suggestion findById(int id) {
         return suggestionDao.findById(id);
     }
 
-    public List findAll() {
+    /**
+     * Finds all the suggestions
+     *
+     * @return The list containing all the suggestions
+     */
+    public List<Suggestion> findAll() {
         return suggestionDao.findAll();
     }
 
-    public List findByMachine(int id) {
+    /**
+     * Find the suggestions of a machine
+     *
+     * @param id The id of the machine
+     * @return The list of suggestions
+     */
+    public List<Suggestion> findByMachine(int id) {
         Machine m = machineService.findById(id);
         return suggestionDao.findByMachine(m);
     }

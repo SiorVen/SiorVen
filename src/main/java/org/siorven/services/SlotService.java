@@ -97,17 +97,17 @@ public class SlotService {
      * @return The list of slots
      */
     public List findFree() {
-        List<Slot> slots =  slotDao.getAllSlots();
+        List<Slot> slots = slotDao.getAllSlots();
         List<MachineSlot> machineSlots = machineslotService.findAll();
-        for(int i = 0; i < slots.size(); i++){
-            for(int j = 0; j < machineSlots.size(); j++){
-                if(machineSlots.get(j).getSlot().getId() == slots.get(i).getId()){
+        for (int i = 0; i < slots.size(); i++) {
+            for (int j = 0; j < machineSlots.size(); j++) {
+                if (machineSlots.get(j).getSlot().getId() == slots.get(i).getId()) {
                     slots.remove(i);
                 }
             }
 
         }
-    return slots;
+        return slots;
     }
 
 

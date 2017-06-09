@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by Andoni on 30/05/2017.
+ * Handles the actions and mapping that are suggestion related
  */
 @Controller
 public class SuggestionController {
@@ -45,6 +46,12 @@ public class SuggestionController {
         return "suggestionManager";
     }
 
+    /**
+     * Shows the suggestion config page
+     *
+     * @param model The request/response model
+     * @return The view key for the {@link ViewResolver}
+     */
     @GetMapping("/suggestion/config")
     public String showSuggestionConfig(Model model) {
         AlgorithmConf conf = new AlgorithmConf();
@@ -57,10 +64,18 @@ public class SuggestionController {
         return "suggestionConfig";
     }
 
+    /**
+     * Submission of the suggestion config form
+     *
+     * @param algorithmConf      The suggestion config form
+     * @param bindingResult      The Binding Result
+     * @param redirectAttributes The Redirect Attributes
+     * @return The view key for the {@link ViewResolver}
+     */
     @PostMapping("/suggestion/config")
     public String editConf(@ModelAttribute("conf") @Validated AlgorithmConf algorithmConf, BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
-        if(bindingResult.hasErrors())
+        if (bindingResult.hasErrors())
             return "suggestionConfig";
 
         configParamService.save(ConfigParam.SUGG_APRIORI_DAYPERIOD, algorithmConf.getAsociationUsedDays());

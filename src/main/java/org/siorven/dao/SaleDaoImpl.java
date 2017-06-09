@@ -62,12 +62,12 @@ public class SaleDaoImpl implements SaleDao {
     }
 
     @Override
-    public List getAllSales() {
+    public List<Sale> getAllSales() {
         return getSession().createCriteria(Sale.class).list();
     }
 
     @Override
-    public List getSalesFromMachineBetweenDates(Timestamp fromDate, Timestamp toDate, Machine machine) {
+    public List<Sale> getSalesFromMachineBetweenDates(Timestamp fromDate, Timestamp toDate, Machine machine) {
         Criteria c = getSession().createCriteria(Sale.class, "sale");
         c.createAlias("sale.product", "prod"); // inner join by default
         c.createAlias("prod.machine", "machine");

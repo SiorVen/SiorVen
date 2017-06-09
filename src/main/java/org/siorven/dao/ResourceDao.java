@@ -60,7 +60,7 @@ public interface ResourceDao {
      *
      * @return A {@link List} conta1ining all the Resources
      */
-    List getAllResources();
+    List<Resource> getAllResources();
 
     /**
      * Finds persisted resources by their resource type
@@ -68,7 +68,13 @@ public interface ResourceDao {
      * @param resourceType The resource type of the resource to be searched
      * @return The list of resources with that resource type
      */
-    List findByResourceType(String resourceType);
+    List<Resource> findByResourceType(String resourceType);
 
-    List<Resource> findByLikeName(String nombreResource);
+    /**
+     * Finds persisted resources by their resource name applying a %name% pattern
+     *
+     * @param resourceName The resource type of the resource to be searched
+     * @return The list of resources
+     */
+    List<Resource> findByLikeName(String resourceName);
 }

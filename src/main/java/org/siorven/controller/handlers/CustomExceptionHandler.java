@@ -7,11 +7,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Created by ander on 21/05/2017.
+ * Exception handler for the mapping exceptions
  */
 @ControllerAdvice
 public class CustomExceptionHandler {
 
+    /**
+     * Handler for access forbidden exceptions
+     *
+     * @param ex The exception
+     * @return The page to show in case of error
+     */
     @ExceptionHandler(ForbiddenActionException.class) //403
     public ModelAndView handleForbiddenActionException(ForbiddenActionException ex) {
         ModelAndView modelAndView = new ModelAndView("403");
@@ -19,7 +25,13 @@ public class CustomExceptionHandler {
         return modelAndView;
     }
 
-    @ExceptionHandler(ResourceNotFoundException.class) //403
+    /**
+     * Handler for resource not found exceptions
+     *
+     * @param ex The exception
+     * @return The page to show in case of error
+     */
+    @ExceptionHandler(ResourceNotFoundException.class) //404
     public ModelAndView handleResourceNotFoundException(ResourceNotFoundException ex) {
         ModelAndView modelAndView = new ModelAndView("404");
         modelAndView.addObject("reason", ex.getMessage());

@@ -66,7 +66,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public List getAllProducts() {
+    public List<Product> getAllProducts() {
         return getSession().createCriteria(Product.class).list();
     }
 

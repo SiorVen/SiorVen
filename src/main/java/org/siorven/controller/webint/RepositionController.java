@@ -7,30 +7,27 @@ import org.siorven.model.Slot;
 import org.siorven.model.validacion.SpringFormEditGroup;
 import org.siorven.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
- * Created by Andoni on 01/06/2017.
+ * Contains the mappings for the reposition related actions
  */
 @Controller
 public class RepositionController {
 
 
-    public static final String REDIRECT_REPOSITION_MANAGER = "redirect:/reposition/manager/";
-    public static final String REPOSITION_MANAGER = "repositionManager";
+    private static final String REDIRECT_REPOSITION_MANAGER = "redirect:/reposition/manager/";
+    private static final String REPOSITION_MANAGER = "repositionManager";
     /**
      * Service with the suggestion data access logic
      */
@@ -63,27 +60,6 @@ public class RepositionController {
     private MachineService machineService;
 
     /**
-     * Message source for internationalization of the content
-     */
-    @Autowired
-    private MessageSource messageSource;
-
-    /**
-     * Locale resolver for the sent cookies or session attributes
-     */
-    @Autowired
-    private LocaleResolver locale;
-
-    /**
-     * Currently handled HTTP Request
-     */
-    @Autowired
-    private HttpServletRequest request;
-
-    @Autowired
-    private XmlValidationService validator;
-
-    /**
      * Displays the suggestion manager
      *
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
@@ -93,6 +69,7 @@ public class RepositionController {
         model.addAttribute("machineId", id);
         return REPOSITION_MANAGER;
     }
+
     /**
      * Shows the edit reposition page
      *
@@ -130,8 +107,8 @@ public class RepositionController {
     /**
      * POST method of the new machine register action, checks the form data and rejects it with the according error message(s)
      *
-     * @param machineResourceForm   The machine with the data collected from the web form
-     * @param bindingResult The error wrapper of the validation errors
+     * @param machineResourceForm The machine with the data collected from the web form
+     * @param bindingResult       The error wrapper of the validation errors
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/reposition/register")
@@ -141,7 +118,7 @@ public class RepositionController {
         if (bindingResult.hasErrors()) {
             return REPOSITION_MANAGER;
         }
-        MachineResource m  = new MachineResource();
+        MachineResource m = new MachineResource();
         MachineSlot slot = new MachineSlot();
         slot.setSlot(slotService.findById(machineResourceForm.getMachineSlotId()));
         slot.setMachine(machineService.findById(machineResourceForm.getId()));
@@ -151,13 +128,14 @@ public class RepositionController {
         m.setQuantity(machineResourceForm.getQuantity());
         machineResourceService.save(m);
 
-        return REDIRECT_REPOSITION_MANAGER +machineResourceForm.getId();
+        return REDIRECT_REPOSITION_MANAGER + machineResourceForm.getId();
     }
+
     /**
      * Edits a reposition
      *
-     * @param machineResourceForm        reposition to update
-     * @param redirectAttributes Redirected attributes to the manager
+     * @param machineResourceForm reposition to update
+     * @param redirectAttributes  Redirected attributes to the manager
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/reposition/edit")
@@ -170,14 +148,14 @@ public class RepositionController {
         resource.setQuantity(machineResourceForm.getQuantity());
         resource.setMachineSlot(machineSlotService.findById(machineResourceForm.getMachineSlotId()));
         machineResourceService.edit(resource);
-        return REDIRECT_REPOSITION_MANAGER+resource.getMachineSlot().getMachine().getId();
+        return REDIRECT_REPOSITION_MANAGER + resource.getMachineSlot().getMachine().getId();
     }
 
     /**
      * Fills a reposition
      *
-     * @param machineResourceForm        reposition to update
-     * @param redirectAttributes Redirected attributes to the manager
+     * @param machineResourceForm reposition to update
+     * @param redirectAttributes  Redirected attributes to the manager
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping(value = "/reposition/fill", params = {"id"})
@@ -186,10 +164,15 @@ public class RepositionController {
         MachineResource m = machineResourceService.findById(id);
         m.setQuantity(m.getMachineSlot().getSlot().getCapacity());
         machineResourceService.edit(m);
-        return REDIRECT_REPOSITION_MANAGER+machineResourceService.findById(machineResourceForm.getId()).getMachineSlot().getMachine().getId();
+        return REDIRECT_REPOSITION_MANAGER + machineResourceService.findById(machineResourceForm.getId()).getMachineSlot().getMachine().getId();
     }
 
-    private  void anadirSlotAdd(Model model) {
+    /**
+     * Adds the free slots to a map and puts that map in the model
+     *
+     * @param model The request/response model
+     */
+    private void anadirSlotAdd(Model model) {
         List<Slot> m = slotService.findFree();
         LinkedHashMap<Integer, String> roles = new LinkedHashMap<>();
         for (int i = 0; i < m.size(); i++) {
@@ -197,6 +180,13 @@ public class RepositionController {
         }
         model.addAttribute("slots", roles);
     }
+
+    /**
+     * Puts the slots of a machine in a map in the request/response model
+     *
+     * @param model     The request/response model
+     * @param machineId The id of the machine
+     */
     private void anadirSlots(Model model, int machineId) {
         List<MachineSlot> m = machineSlotService.findByMachineId(machineId);
         LinkedHashMap<Integer, String> roles = new LinkedHashMap<>();

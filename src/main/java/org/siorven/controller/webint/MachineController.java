@@ -170,6 +170,11 @@ public class MachineController {
         return "machineView";
     }
 
+    /**
+     * Adds the machine models to the response model
+     *
+     * @param model The response/request model
+     */
     private void addModels(Model model) {
         List<MachineModel> m = machineModelService.findAll();
         LinkedHashMap<Integer, String> roles = new LinkedHashMap<>();
@@ -179,6 +184,12 @@ public class MachineController {
         model.addAttribute("models", roles);
     }
 
+    /**
+     * Gets a machine from the database or throws a {@link ResourceNotFoundException}
+     *
+     * @param id the machine ID
+     * @return The machine if found
+     */
     private Machine getMachineOrThrow(int id) {
         Machine u = machineService.findById(id);
         if (u == null) {

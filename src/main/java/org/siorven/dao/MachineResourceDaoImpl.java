@@ -63,12 +63,12 @@ public class MachineResourceDaoImpl implements MachineResourceDao {
     }
 
     @Override
-    public List getAllResources() {
+    public List<MachineResource> getAllResources() {
         return getSession().createCriteria(MachineResource.class).list();
     }
 
     @Override
-    public List findByMachine(Machine m) {
+    public List<MachineResource> findByMachine(Machine m) {
         Criteria c = getSession().createCriteria(MachineResource.class, "machine_resource");
         c.createAlias("machine_resource.machineSlot", "mslot"); // inner join by default
         c.createAlias("mslot.machine", "machine");

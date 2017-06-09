@@ -32,7 +32,6 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
 
-
     /**
      * Saves a user to the database after encoding the password with the SCRYPT PKDF.
      *
@@ -57,7 +56,7 @@ public class UserService {
 
         if (Objects.equals(oldUser.getPermission(), User.ROLE_ADMIN) && !Objects.equals(user.getPermission(), User.ROLE_ADMIN) && userDao.findByRole(User.ROLE_ADMIN).size() <= 1) {
 
-                throw new DataIntegrityViolationException("error.lastAdmin");
+            throw new DataIntegrityViolationException("error.lastAdmin");
         }
 
         userDao.editOrSave(user);
@@ -136,6 +135,13 @@ public class UserService {
         return userDao.findById(id);
     }
 
+    /**
+     * Checks if the username and email are already registered
+     *
+     * @param usuario The user to be checked
+     * @throws EmailInUseException    If the email is in use
+     * @throws UsernameInUseException If the username is in use
+     */
     private void checkifInUse(User usuario) throws EmailInUseException, UsernameInUseException {
         User u = findByEmail(usuario.getEmail());
         if (u != null && u.getId() != usuario.getId()) {

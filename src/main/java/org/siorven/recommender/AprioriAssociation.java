@@ -130,7 +130,7 @@ public class AprioriAssociation {
                     suggestion = new SuggestionAssociation(finishDate, machine, weight);
                     suggestion.setConsequenceList(consequences);
                     suggestion.setPremiseList(premises);
-                     suggestionService.save(suggestion);
+                    suggestionService.save(suggestion);
                 }
             }
         } catch (Exception e) {

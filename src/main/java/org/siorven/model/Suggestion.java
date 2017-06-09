@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.Locale;
 
 /**
- * Created by Andoni on 22/05/2017.
+ * Represents a suggestion
  */
 @Entity
 @Table(name = "suggestion")

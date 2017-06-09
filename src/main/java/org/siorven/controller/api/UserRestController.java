@@ -45,7 +45,7 @@ public class UserRestController {
      *
      * @return The users
      */
-    @GetMapping(value = "/api/user/all", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/api/user/all", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Collection<User> getAll() {
 
         return userService.findAll();
@@ -109,6 +109,14 @@ public class UserRestController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    /**
+     * checks that the the current user is distinct from the deleted one
+     * to decide wether to log out the user or not
+     *
+     * @param deleted The user to be deleted
+     * @param user    The currently logged user
+     * @throws ServletException If the logout() call is unsuccessful
+     */
     private void logoutIfSame(User deleted, User user) throws ServletException {
         if (user.getId() == deleted.getId()) try {
             request.logout();

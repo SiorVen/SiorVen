@@ -9,18 +9,18 @@ import org.springframework.web.servlet.LocaleResolver;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by ander on 22/05/2017.
+ * Some utilities for the user handling
  */
 public class UserUtils {
 
     /**
      * Gets the permision codo to human readable internationalized text
      *
-     * @param permission
-     * @param messageSource
-     * @param localeResolver
-     * @param request
-     * @return
+     * @param permission     The permision key
+     * @param messageSource  The Message Source
+     * @param localeResolver The locale Resolver
+     * @param request        The request
+     * @return The Internationalized representation of the permission type
      */
     public static String permissionCodeToHuman(String permission, MessageSource messageSource, LocaleResolver localeResolver, HttpServletRequest request) {
         switch (permission) {
@@ -33,6 +33,11 @@ public class UserUtils {
         }
     }
 
+    /**
+     * Gets the currently logged in user
+     *
+     * @return The user
+     */
     public static User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return (User) authentication.getPrincipal();

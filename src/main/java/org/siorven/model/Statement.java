@@ -3,7 +3,7 @@ package org.siorven.model;
 import javax.persistence.*;
 
 /**
- * Created by Gorospe on 25/05/2017.
+ * Represents a statement (yes no) product
  */
 @Entity
 @Table(name = "statement")

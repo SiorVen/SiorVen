@@ -61,7 +61,7 @@ public class IngredientDaoImpl implements IngredientDao {
     }
 
     @Override
-    public List getAllIngredients() {
+    public List<Ingredient> getAllIngredients() {
         return getSession().createCriteria(Ingredient.class).list();
     }
 }

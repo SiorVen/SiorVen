@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.Locale;
 
 /**
- * Created by Gorospe on 25/05/2017.
+ * Represents a suggestion whose reason is a statistic (min max) one
  */
 @Entity
 @Table(name = "suggestion")
@@ -35,18 +35,18 @@ public class SuggestionStatistic extends Suggestion {
 
     @Override
     public String printReason(MessageSource messageSource, Locale locale) {
-        if(isMax){
+        if (isMax) {
             return messageSource.getMessage("suggestion.soldALot", new String[]{product.getName()}, locale);
-        }else {
+        } else {
             return messageSource.getMessage("suggestion.notSoldALot", new String[]{product.getName()}, locale);
         }
     }
 
     @Override
     public String printSuggestion(MessageSource messageSource, Locale locale) {
-        if(isMax){
+        if (isMax) {
             return messageSource.getMessage("suggestion.addX", new String[]{product.getName()}, locale);
-        }else {
+        } else {
             return messageSource.getMessage("suggestion.removeX", new String[]{product.getName()}, locale);
         }
     }

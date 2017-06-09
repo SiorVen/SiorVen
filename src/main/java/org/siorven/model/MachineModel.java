@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Andoni on 16/05/2017.
+ * Represents a machine model
  */
 @Entity
 @Table(name = "model")

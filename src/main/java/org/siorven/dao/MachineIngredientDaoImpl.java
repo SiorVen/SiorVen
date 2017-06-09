@@ -4,7 +4,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.siorven.model.Machine;
 import org.siorven.model.MachineIngredient;
 import org.siorven.model.MachineProduct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +62,7 @@ public class MachineIngredientDaoImpl implements MachineIngredientDao {
     }
 
     @Override
-    public List findAll() {
+    public List<MachineIngredient> findAll() {
         return getSession().createCriteria(MachineIngredient.class).list();
     }
 

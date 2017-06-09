@@ -4,7 +4,7 @@ package org.siorven.model;
 import javax.persistence.*;
 
 /**
- * Created by joseb on 23/05/2017.
+ * Represents a product type
  */
 @Entity
 @Table(name = "product_type")

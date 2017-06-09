@@ -62,13 +62,13 @@ public class MachineSlotDaoImpl implements MachineSlotDao {
     }
 
     @Override
-    public List findByMachineId(Machine m) {
+    public List<MachineSlot> findByMachine(Machine m) {
         Criteria crit = getSession().createCriteria(MachineSlot.class).add(Restrictions.eq("machine", m));
         return crit.list();
     }
 
     @Override
-    public List findAll() {
+    public List<MachineSlot> findAll() {
         return getSession().createCriteria(MachineSlot.class).list();
     }
 }

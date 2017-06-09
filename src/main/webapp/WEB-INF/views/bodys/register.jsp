@@ -56,7 +56,7 @@
                 </div>
             </fieldset>
         </sf:form>
-        <a href="<s:url value="/res/legal/privacy.txt"/>" >
+        <a href="<s:url value="/res/legal/privacy.txt"/>">
             <div class="well">
                 <p><s:message code="LOPDNotice"/></p>
             </div>

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Gorospe on 31/05/2017.
+ * Rest controller for the recollector related actions
  */
 @RestController
 public class RecollectorRestController {

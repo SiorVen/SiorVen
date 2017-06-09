@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created by Andoni on 19/05/2017.
+ * Represents a product
  */
 @Entity
 @Table(name = "product")

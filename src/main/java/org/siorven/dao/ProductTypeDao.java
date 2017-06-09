@@ -7,7 +7,9 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 /**
- * Created by Andoni on 24/05/2017.
+ * Data access layer for product types
+ *
+ * @see ProductType
  */
 public interface ProductTypeDao {
     /**

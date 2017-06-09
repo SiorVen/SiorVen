@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.Min;
 
 /**
- * Created by ander on 30/05/2017.
+ * Model for the new Ingredient form
  */
 public class Ingredientform {
 

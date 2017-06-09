@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 
 /**
- * Created by Andoni on 21/05/2017.
+ * Represent a ingredient
  */
 @Entity
 @Table(name = "ingredient")

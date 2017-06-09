@@ -17,7 +17,7 @@
 </div>
 <a type="button" class="btn btn-primary" style="margin: 20px" href="<c:url value="/reposition/add/${machineId}"/>">
     <c:message code="action.createReposition"/>
-    </a>
+</a>
 <div class="control-group">
     <!-- id -->
     <div class="controls">
@@ -60,11 +60,11 @@
                                 {
                                     "data": "id",
                                     "render": function (data, type, full, meta) {
-                                        return ' <form action="' + path + '/reposition/fill" method="post">'+
-                                        '<div class="btn-group" style="width: ">' +
-                                        '<a class="btn btn-warning" href="' + path + '/reposition/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>'+
-                                            '<input type="hidden" name="id" value="' + data + '"/>'+
-                                            '<input type="hidden" name="' + csfrKey + '" value="' + csfrToken + '"/>'+
+                                        return ' <form action="' + path + '/reposition/fill" method="post">' +
+                                            '<div class="btn-group" style="width: ">' +
+                                            '<a class="btn btn-warning" href="' + path + '/reposition/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>' +
+                                            '<input type="hidden" name="id" value="' + data + '"/>' +
+                                            '<input type="hidden" name="' + csfrKey + '" value="' + csfrToken + '"/>' +
                                             '<button type="submit" class="btn btn-primary" name="b" value="" >' +
                                             '<i class="fa fa-link"></i></button></div></form>';
                                     }

@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by ander on 29/05/2017.
+ * Model for the new machine model form
  */
 public class MachineModelForm {
     @NotNull(message = "{error.model.notNull}")

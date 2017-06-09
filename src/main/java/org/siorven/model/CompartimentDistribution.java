@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Andoni on 16/05/2017.
+ * Represents a distribution based on compartments
  */
 @Entity
 @Table(name = "distribution")
@@ -41,17 +41,12 @@ public class CompartimentDistribution extends Distribution {
         this.numCompartiment = numCompartiment;
     }
 
-
-    /**
-     * @param position
-     * @return
-     */
     @Override
     public Slot findSlot(Map<String, Object> position) {
         Slot retSlot = null;
         String slotName = (String) position.get(SLOT_NAME);
-        for (Slot slot : getSlots()){
-            if(slot.getName().equalsIgnoreCase(slotName)){
+        for (Slot slot : getSlots()) {
+            if (slot.getName().equalsIgnoreCase(slotName)) {
                 retSlot = slot;
                 break;
             }

@@ -3,7 +3,7 @@ package org.siorven.model;
 import javax.persistence.*;
 
 /**
- * Created by Andoni on 16/05/2017.
+ * Represents a resource
  */
 @Entity
 @Table(name = "resource")

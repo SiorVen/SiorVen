@@ -36,9 +36,8 @@ import java.util.Map;
 @Controller
 public class ModelController implements HandlerExceptionResolver {
 
-    public static final String MACHINE_MODEL = "machineModel";
-    public static final String MODEL_REGISTER_VIEW = "modelRegister";
-    public static final String REDIRECT_MODEL_REGISTER = "redirect:/model/register";
+    private static final String MACHINE_MODEL = "machineModel";
+    private static final String MODEL_REGISTER_VIEW = "modelRegister";
 
     /**
      * Data access logic for the access to the newUser data on the DB
@@ -124,6 +123,12 @@ public class ModelController implements HandlerExceptionResolver {
 
     }
 
+    /**
+     * Checks if a file extension is within the supported ones (XML)
+     *
+     * @param ext The extension to be checked
+     * @return true if its valid false if not
+     */
     private boolean isSuported(String ext) {
         String normalizedExtension = ext.toLowerCase();
         boolean flag = false;

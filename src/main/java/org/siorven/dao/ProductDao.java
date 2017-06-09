@@ -7,7 +7,9 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 /**
- * Created by Andoni on 24/05/2017.
+ * Data access layer for products
+ *
+ * @see Product
  */
 public interface ProductDao {
 
@@ -58,8 +60,8 @@ public interface ProductDao {
     /**
      * Returns all the persisted Products
      *
-     * @return A {@link List} conta1ining all the Products
+     * @return A {@link List} containing all the Products
      */
-    List getAllProducts();
+    List<Product> getAllProducts();
 
 }

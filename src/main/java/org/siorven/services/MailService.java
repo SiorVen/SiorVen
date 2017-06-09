@@ -7,13 +7,12 @@ import org.springframework.context.MessageSource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.LocaleResolver;
 
 import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by ander on 03/06/2017.
+ * Service of the mail
  */
 
 @Service
@@ -29,6 +28,11 @@ public class MailService {
     private MessageSource messageSource;
 
 
+    /**
+     * notifies the users that a machine resource's stock is gone
+     *
+     * @param mr The machine resource
+     */
     public void notify(MachineResource mr) {
         SimpleMailMessage message = new SimpleMailMessage();
 
@@ -44,6 +48,11 @@ public class MailService {
         mailSender.send(message);
     }
 
+    /**
+     * Gets a array containing the email addresses of all the users
+     *
+     * @return The emails
+     */
     private String[] mails() {
         List<User> users = userService.findAll();
 

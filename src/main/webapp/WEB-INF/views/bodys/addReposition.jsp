@@ -11,7 +11,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="container-fluid">
     <div class="jumbotron col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-offset-0 col-xs-12">
-        <sf:form action="${pageContext.request.contextPath}/reposition/register" method="post" commandName="machineResourceAdd">
+        <sf:form action="${pageContext.request.contextPath}/reposition/register" method="post"
+                 commandName="machineResourceAdd">
             <fieldset>
                 <div id="legend">
                     <legend class=""><s:message code="pages.repositionAdd"/></legend>
@@ -26,33 +27,34 @@
                             <sf:errors path="product" cssClass="text-danger"/>
                         </div>
                     </div>
-                        <div class="control-group">
-                            <!-- quantity -->
-                            <label class="control-label" for="quantityAdd"><i class="fa fa-user" aria-hidden="true"></i>
-                                <s:message code="form.ingredient.qty"/></label>
-                            <div class="controls">
-                                <sf:input path="quantity" type="text" cssClass="form-control" id="quantityAdd"/>
-                                <sf:errors path="quantity" cssClass="text-danger"/>
-                            </div>
+                    <div class="control-group">
+                        <!-- quantity -->
+                        <label class="control-label" for="quantityAdd"><i class="fa fa-user" aria-hidden="true"></i>
+                            <s:message code="form.ingredient.qty"/></label>
+                        <div class="controls">
+                            <sf:input path="quantity" type="text" cssClass="form-control" id="quantityAdd"/>
+                            <sf:errors path="quantity" cssClass="text-danger"/>
                         </div>
-                        <div class="control-group">
-                            <!-- slot -->
-                            <label class="control-label" for="machineSlotIdAdd"><i class="fa fa-users" aria-hidden="true"></i>
-                                <s:message
-                                        code="form.reposition.slot"/></label>
-                            <div class="controls">
-                                <sf:select path="machineSlotId" id="machineSlotIdAdd" items="${slots}"
-                                           cssClass="form-control"/>
-                                <sf:errors path="machineSlotId" cssClass="text-danger"/>
-                            </div>
+                    </div>
+                    <div class="control-group">
+                        <!-- slot -->
+                        <label class="control-label" for="machineSlotIdAdd"><i class="fa fa-users"
+                                                                               aria-hidden="true"></i>
+                            <s:message
+                                    code="form.reposition.slot"/></label>
+                        <div class="controls">
+                            <sf:select path="machineSlotId" id="machineSlotIdAdd" items="${slots}"
+                                       cssClass="form-control"/>
+                            <sf:errors path="machineSlotId" cssClass="text-danger"/>
                         </div>
-                        <div class="control-group">
-                            <!-- id -->
-                            <div class="controls">
-                                <sf:input path="id" type="hidden" cssClass="form-control" id="reference"/>
-                                <sf:errors path="id" cssClass="text-danger"/>
-                            </div>
+                    </div>
+                    <div class="control-group">
+                        <!-- id -->
+                        <div class="controls">
+                            <sf:input path="id" type="hidden" cssClass="form-control" id="reference"/>
+                            <sf:errors path="id" cssClass="text-danger"/>
                         </div>
+                    </div>
                     <div class="control-group" style="margin-top: 20px">
                         <!-- Button -->
                         <div class="controls">

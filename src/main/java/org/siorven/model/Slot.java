@@ -10,7 +10,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 /**
- * Created by Andoni on 16/05/2017.
+ * Represents the ideal slot of a model
  */
 @Entity
 @Table(name = "slot")

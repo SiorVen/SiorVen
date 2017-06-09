@@ -6,7 +6,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.siorven.dao.MachineDao;
 import org.siorven.dao.SuggestionDao;
-import org.siorven.model.*;
+import org.siorven.model.Machine;
+import org.siorven.model.Suggestion;
+import org.siorven.model.SuggestionAssociation;
+import org.siorven.model.SuggestionStatistic;
 import org.siorven.services.MachineService;
 import org.siorven.services.SuggestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,29 +36,38 @@ public class SuggestionServiceTest {
     Suggestion suggestion;
 
     @Configuration
-    static class SuggestionServiceTestConfiguration{
+    static class SuggestionServiceTestConfiguration {
 
         @Bean
-        public SuggestionService suggestionService() { return new SuggestionService();}
+        public SuggestionService suggestionService() {
+            return new SuggestionService();
+        }
 
         @Bean
-        public MachineService machineService() { return new MachineService();}
+        public MachineService machineService() {
+            return new MachineService();
+        }
 
         @Bean
-        public SuggestionDao suggestionDao() { return Mockito.mock(SuggestionDao.class);}
+        public SuggestionDao suggestionDao() {
+            return Mockito.mock(SuggestionDao.class);
+        }
 
         @Bean
-        public MachineDao machineDao() { return Mockito.mock(MachineDao.class);}
+        public MachineDao machineDao() {
+            return Mockito.mock(MachineDao.class);
+        }
 
     }
 
     @Autowired
     private SuggestionDao suggestionDao;
 
-    @Autowired SuggestionService suggestionService;
+    @Autowired
+    SuggestionService suggestionService;
 
     @Before
-    public void setup(){
+    public void setup() {
 
         Machine machine = new Machine();
         machine.setId(1);
@@ -85,14 +97,14 @@ public class SuggestionServiceTest {
     }
 
     @Test
-    public void testFindById(){
+    public void testFindById() {
         Suggestion suggestion = suggestionService.findById(1);
-        assertEquals(1,suggestion.getId());
+        assertEquals(1, suggestion.getId());
         assertEquals(10.0, suggestion.getWeight(), 0.1);
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         List<Suggestion> suggestions = suggestionService.findAll();
         assertEquals(2, suggestions.size());
         assertEquals(1, suggestions.get(0).getId());

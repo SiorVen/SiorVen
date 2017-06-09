@@ -4,7 +4,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="container-fluid">
     <div class="jumbotron col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-offset-0 col-xs-12">
-        <sf:form action="${pageContext.request.contextPath}/reposition/edit" method="post" commandName="machineResource">
+        <sf:form action="${pageContext.request.contextPath}/reposition/edit" method="post"
+                 commandName="machineResource">
             <fieldset>
                 <div id="legend">
                     <legend class=""><s:message code="pages.repositionEdit"/></legend>
@@ -31,7 +32,8 @@
                         </div>
                         <div class="control-group">
                             <!-- slot -->
-                            <label class="control-label" for="machineSlotId"><i class="fa fa-users" aria-hidden="true"></i>
+                            <label class="control-label" for="machineSlotId"><i class="fa fa-users"
+                                                                                aria-hidden="true"></i>
                                 <s:message
                                         code="form.reposition.slot"/></label>
                             <div class="controls">
@@ -47,15 +49,15 @@
                                 <sf:errors path="id" cssClass="text-danger"/>
                             </div>
                         </div>
-                </div>
-                <div class="control-group" style="margin-top: 20px">
-                    <!-- Button -->
-                    <div class="controls">
-                        <button type="submit" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
-                            <s:message code="form.user.edit"/>
-                        </button>
                     </div>
-                </div>
+                    <div class="control-group" style="margin-top: 20px">
+                        <!-- Button -->
+                        <div class="controls">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
+                                <s:message code="form.user.edit"/>
+                            </button>
+                        </div>
+                    </div>
             </fieldset>
         </sf:form>
     </div>

@@ -37,7 +37,7 @@ public class UserController {
     private static final String REGISTER_VIEW = "register";
     private static final String USER = "user";
     private static final String REDIRECT_USER_MANAGER = "redirect:/user/manager";
-    public static final String MESSAGE = "message";
+    private static final String MESSAGE = "message";
     /**
      * Data access logic for the access to the newUser data on the DB
      */
@@ -62,6 +62,11 @@ public class UserController {
     @Autowired
     private HttpServletRequest request;
 
+    /**
+     * Shortcut method to get the current requests locale
+     *
+     * @return The request locale
+     */
     private Locale locale() {
         return locale.resolveLocale(request);
     }
@@ -151,6 +156,12 @@ public class UserController {
         return REDIRECT_USER_MANAGER;
     }
 
+    /**
+     * Handles the deletion of a user
+     *
+     * @param u The user to be deleted
+     * @return The message result of the deletion or attempt of deletion of the user
+     */
     private String handleDeleteUser(User u) {
         String msg;
         try {
@@ -223,6 +234,12 @@ public class UserController {
         return REDIRECT_USER_MANAGER;
     }
 
+    /**
+     * Combines the fields of a modified user with the unmodified ones
+     *
+     * @param newUser The modified user
+     * @return The merged user
+     */
     private User mergeWithOldUser(@ModelAttribute("user") @Validated(SpringFormEditGroup.class) User newUser) {
         User oldUser = userService.findById(newUser.getId());
         oldUser.setPermission(newUser.getPermission());
@@ -263,6 +280,12 @@ public class UserController {
         model.addAttribute("userTypes", roles);
     }
 
+    /**
+     * Gets the user with the given ID or throws a {@link ResourceNotFoundException}
+     *
+     * @param id The id of the user
+     * @return The user if found
+     */
     private User getUserOrThrow(int id) {
         User u = userService.findById(id);
         if (u == null) {

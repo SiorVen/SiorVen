@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by joseb on 24/05/2017.
+ * Distribution data access logic
  */
 @Service
 public class DistributionService {
@@ -19,7 +19,7 @@ public class DistributionService {
     /**
      * Save distribution
      *
-     * @param distribution
+     * @param distribution The distribution
      */
     public void save(Distribution distribution) {
         distributionDao.saveDistribution(distribution);
@@ -28,7 +28,7 @@ public class DistributionService {
     /**
      * Edit distribution
      *
-     * @param distribution
+     * @param distribution The distribution
      */
     public void edit(Distribution distribution) {
         distributionDao.editDistribution(distribution);
@@ -37,7 +37,7 @@ public class DistributionService {
     /**
      * Save a distribution if it is new or update it if it exists
      *
-     * @param distribution
+     * @param distribution The distribution
      */
     public void saveOrUpdate(Distribution distribution) {
         distributionDao.editOrSaveDistribution(distribution);
@@ -46,7 +46,7 @@ public class DistributionService {
     /**
      * Delete distribution
      *
-     * @param distribution
+     * @param distribution The distribution
      */
     public void delete(Distribution distribution) {
         distributionDao.deleteDistribution(distribution.getId());
@@ -55,14 +55,19 @@ public class DistributionService {
     /**
      * Get distribution that has a given id
      *
-     * @param id
+     * @param id The id of the distribution
      * @return null if the distribution wasn't found
      */
     public Distribution findById(int id) {
         return distributionDao.findDistributionById(id);
     }
 
-    public List findAll() {
+    /**
+     * Finds all the distributions
+     *
+     * @return The list containing all the distributions
+     */
+    public List<Distribution> findAll() {
         return distributionDao.getAllDistributions();
     }
 }

@@ -31,7 +31,7 @@ public class UserServiceTest {
     private User user;
 
     @Configuration
-    static class UserServiceTestConfiguration{
+    static class UserServiceTestConfiguration {
 
         @Bean
         public UserService userService() {
@@ -39,12 +39,12 @@ public class UserServiceTest {
         }
 
         @Bean
-        public UserDao userDao(){
+        public UserDao userDao() {
             return Mockito.mock(UserDao.class);
         }
 
         @Bean
-        public PasswordEncoder passwordEncoder(){
+        public PasswordEncoder passwordEncoder() {
             return new SCryptPasswordEncoder();
         }
 
@@ -60,7 +60,7 @@ public class UserServiceTest {
     private PasswordEncoder passwordEncoder;
 
     @Before
-    public void setup(){
+    public void setup() {
         user = new User();
         user.setUsername("test");
         user.setPassword("test");
@@ -68,7 +68,7 @@ public class UserServiceTest {
         user.setPermission("ROLE_ADMIN");
         user.setId(1);
 
-        User user1 =  new User();
+        User user1 = new User();
         user1.setUsername("test2");
         user1.setPassword("test2");
         user1.setEmail("test2@test.eus");
@@ -90,7 +90,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testFindById(){
+    public void testFindById() {
         User user = userService.findById(1);
         assertEquals(1, user.getId());
         assertEquals("test", user.getUsername());
@@ -110,7 +110,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         List<User> users = userService.findAll();
         assertEquals(2, users.size());
         assertEquals(1, users.get(0).getId());
@@ -118,7 +118,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testFindAdmins(){
+    public void testFindAdmins() {
         List<User> users = userService.findbyRole("ROLE_ADMIN");
         assertEquals(1, users.get(0).getId());
     }

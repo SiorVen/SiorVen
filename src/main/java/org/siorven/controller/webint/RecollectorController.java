@@ -13,17 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * Created by Gorospe on 31/05/2017.
+ * Contains the mapping for the recollector related actions
  */
 @Controller
 public class RecollectorController {
 
-    public static final String REDIRECT_RECOLLECTOR_MANAGER = "redirect:/recollector/manager/";
+    private static final String REDIRECT_RECOLLECTOR_MANAGER = "redirect:/recollector/manager/";
+
     @Autowired
     private RecollectorService recollectorService;
 
     @Autowired
     private MachineService machineService;
+
 
     @GetMapping("/recollector/manager/{id}")
     public String showSuggestionManager(@PathVariable int id, Model model) {

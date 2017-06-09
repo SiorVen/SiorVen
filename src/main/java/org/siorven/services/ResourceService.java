@@ -87,7 +87,7 @@ public class ResourceService {
      *
      * @return The list of resource
      */
-    public List findAll() {
+    public List<Resource> findAll() {
         return resourceDao.getAllResources();
     }
 
@@ -97,11 +97,17 @@ public class ResourceService {
      * @param resourceType The resource type of the requested resources
      * @return The list of resources
      */
-    public List findByResourceType(String resourceType) {
+    public List<Resource> findByResourceType(String resourceType) {
         return resourceDao.findByResourceType(resourceType);
     }
 
-    public List<Resource> findBylikeName(String nombreResource) {
-        return resourceDao.findByLikeName(nombreResource);
+    /**
+     * Finds the resources with the name like %resourceName%
+     *
+     * @param resourceName The string to be fitted in the regex
+     * @return The resource list
+     */
+    public List<Resource> findBylikeName(String resourceName) {
+        return resourceDao.findByLikeName(resourceName);
     }
 }

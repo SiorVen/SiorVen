@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by ander on 01/06/2017.
+ * Holds a parameter and its value as a key value
  */
 @Entity
 public class ConfigParam {
@@ -17,9 +17,9 @@ public class ConfigParam {
     public static final String SUGG_APRIORI_DAYPERIOD = "SuggestionAPRIORI_DayPeriod";
 
     @Id
-    String key;
+    private String key;
 
-    String value;
+    private String value;
 
     public ConfigParam(String key, String value) {
         this.key = key;

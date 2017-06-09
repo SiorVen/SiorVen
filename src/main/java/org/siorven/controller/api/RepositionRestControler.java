@@ -5,28 +5,16 @@ import org.siorven.model.Resource;
 import org.siorven.services.MachineResourceService;
 import org.siorven.services.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.LocaleResolver;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
- * Created by Andoni on 01/06/2017.
+ * Rest controller for the reposition related actions
  */
 @RestController
 public class RepositionRestControler {
-
-    @Autowired
-    private MessageSource messageSource;
-
-    @Autowired
-    private LocaleResolver localeResolver;
-
-    @Autowired
-    private HttpServletRequest request;
 
     /**
      * Service with the suggestion data access logic
@@ -72,12 +60,17 @@ public class RepositionRestControler {
         return datatables;
     }
 
-
+    /**
+     * Searches the resources by their name with a like %name% sql query
+     *
+     * @param resourceName The string to search by
+     * @return A json structure with the results
+     */
     @RequestMapping(value = "api/reposition/search", produces = "application/json", params = {"term"})
     @ResponseBody
-    public Map<String, Object> findAll(@RequestParam("term") String nombreResource) {
+    public Map<String, Object> findAll(@RequestParam("term") String resourceName) {
         Map<String, Object> map = new HashMap<>();
-        List<Resource> admins = resourceService.findBylikeName(nombreResource);
+        List<Resource> admins = resourceService.findBylikeName(resourceName);
 
         for (Resource resource : admins) {
             map.put(Integer.toString(resource.getId()), resource.getName());

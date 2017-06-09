@@ -7,8 +7,6 @@ import org.mockito.Mockito;
 import org.siorven.contexts.ControllerContext;
 import org.siorven.controller.webint.MachineController;
 import org.siorven.controller.webint.forms.MachineEditForm;
-import org.siorven.controller.webint.forms.MachineModelForm;
-import org.siorven.controller.webint.forms.MachineViewForm;
 import org.siorven.dao.MachineDao;
 import org.siorven.dao.MachineModelDao;
 import org.siorven.model.Machine;
@@ -35,9 +33,7 @@ import static org.mockito.Mockito.mock;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Created by Andoni on 08/06/2017.
@@ -57,19 +53,22 @@ public class MachineControllerTest {
         public MachineDao machineDao() {
             return mock(MachineDao.class);
         }
+
         @Bean
         public LocaleResolver localeResolver() {
             return mock(LocaleResolver.class);
         }
 
         @Bean
-        public MachineController machineController(){
+        public MachineController machineController() {
             return new MachineController();
         }
+
         @Bean
-        public MachineService machineService(){
+        public MachineService machineService() {
             return mock(MachineService.class);
         }
+
         @Bean
         public MachineModelService machineModelService() {
             return mock(MachineModelService.class);
@@ -81,7 +80,7 @@ public class MachineControllerTest {
         }
 
         @Bean
-        public XmlValidationService xmlValidationService(){
+        public XmlValidationService xmlValidationService() {
             return mock(XmlValidationService.class);
         }
 
@@ -140,6 +139,7 @@ public class MachineControllerTest {
                 .andExpect(model().attributeExists("manufacturer"))
                 .andExpect(mvcResult -> assertEquals("machineView", mvcResult.getModelAndView().getViewName()));
     }
+
     @Test
     public void testViewMachineAdd() throws Exception {
         mockMvc
@@ -184,8 +184,8 @@ public class MachineControllerTest {
         machine.setAlias("testEdited");
         mockMvc
                 .perform(post("/machine/edit")
-                        .param("alias",m.getAlias())
-                        .param("id",String.valueOf(m.getId()))
+                        .param("alias", m.getAlias())
+                        .param("id", String.valueOf(m.getId()))
                         .param("machineModelId", String.valueOf(m.getMachineModelId()))
                         .with(csrf()))
                 .andExpect(status().isOk())

@@ -23,6 +23,11 @@ public class XmlValidationService {
 
     private Validator validator;
 
+    /**
+     * Builds the validator
+     *
+     * @param context The ServletContext
+     */
     @Autowired
     public XmlValidationService(ServletContext context) {
         File schemaFile = new File(context.getRealPath("/rsc/xsd/machine.xsd"));
@@ -36,6 +41,12 @@ public class XmlValidationService {
         assert validator != null : "Validator initialization failed";
     }
 
+    /**
+     * Validates a machine XML
+     *
+     * @param machineModel The stream containing the XML
+     * @throws SAXParseException If the XML is not valid
+     */
     public void ValidateMachine(StreamSource machineModel) throws SAXParseException {
         try {
             validator.validate(machineModel);

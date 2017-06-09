@@ -10,7 +10,7 @@ import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 
 /**
- * Created by ander on 29/05/2017.
+ * Parses the XML model descriptor structure into the application model descriptor
  */
 public class ModelXmlToModel {
 
@@ -39,6 +39,7 @@ public class ModelXmlToModel {
                 model.getAviableDistributions().add(matrixDistrubution);
             }
             if (ditrib.getClass() == CompartimentDistributionXml.class) {
+                assert ditrib instanceof CompartimentDistributionXml : "distribution must be of type CompartimentDistributionXml";
                 CompartimentDistributionXml compartiments = (CompartimentDistributionXml) ditrib;
                 CompartimentDistribution compartimentDistribution = new CompartimentDistribution(compartiments.getName(), compartiments.getCompartiment().size());
                 for (int i = 0; i < compartiments.getCompartiment().size(); i++) {

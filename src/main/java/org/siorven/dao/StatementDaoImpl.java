@@ -61,7 +61,7 @@ public class StatementDaoImpl implements StatementDao {
     }
 
     @Override
-    public List findAll() {
+    public List<Statement> findAll() {
         return getSession().createCriteria(Statement.class).list();
     }
 }

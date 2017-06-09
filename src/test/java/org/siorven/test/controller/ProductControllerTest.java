@@ -3,17 +3,22 @@ package org.siorven.test.controller;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.siorven.contexts.ControllerContext;
 import org.siorven.controller.webint.ProductController;
 import org.siorven.controller.webint.forms.Ingredientform;
-import org.siorven.dao.*;
+import org.siorven.dao.IngredientDao;
+import org.siorven.dao.MachineProductDao;
+import org.siorven.dao.ProductDao;
+import org.siorven.dao.ResourceDao;
 import org.siorven.model.Ingredient;
 import org.siorven.model.MachineProduct;
 import org.siorven.model.Product;
 import org.siorven.model.Resource;
-import org.siorven.services.*;
+import org.siorven.services.IngredientService;
+import org.siorven.services.MachineProductService;
+import org.siorven.services.ProductService;
+import org.siorven.services.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,9 +39,7 @@ import static org.mockito.Mockito.mock;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Created by Andoni on 09/06/2017.
@@ -52,7 +55,9 @@ public class ProductControllerTest {
     @Configuration
     static class ProductControllerTestConfig extends ControllerContext {
         @Bean
-        public ProductDao productDao() { return mock(ProductDao.class);}
+        public ProductDao productDao() {
+            return mock(ProductDao.class);
+        }
 
         @Bean
         public LocaleResolver localeResolver() {
@@ -60,29 +65,44 @@ public class ProductControllerTest {
         }
 
         @Bean
-        public ProductController productController() { return new ProductController();}
+        public ProductController productController() {
+            return new ProductController();
+        }
 
         @Bean
-        public ProductService productService(){ return mock(ProductService.class);}
+        public ProductService productService() {
+            return mock(ProductService.class);
+        }
 
         @Bean
-        public MachineProductService machineProductService() { return mock(MachineProductService.class);}
+        public MachineProductService machineProductService() {
+            return mock(MachineProductService.class);
+        }
 
         @Bean
-        public MachineProductDao machineProductDao() { return mock(MachineProductDao.class);}
+        public MachineProductDao machineProductDao() {
+            return mock(MachineProductDao.class);
+        }
 
         @Bean
-        public ResourceDao resourceDao() { return mock(ResourceDao.class);}
+        public ResourceDao resourceDao() {
+            return mock(ResourceDao.class);
+        }
 
         @Bean
-        public ResourceService resourceService() { return mock(ResourceService.class);}
+        public ResourceService resourceService() {
+            return mock(ResourceService.class);
+        }
 
         @Bean
-        public IngredientDao ingredientDao() { return mock(IngredientDao.class);}
+        public IngredientDao ingredientDao() {
+            return mock(IngredientDao.class);
+        }
 
         @Bean
-        public IngredientService igredientService() { return mock(IngredientService.class);}
-
+        public IngredientService igredientService() {
+            return mock(IngredientService.class);
+        }
 
 
     }

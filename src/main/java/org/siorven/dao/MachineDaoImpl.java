@@ -61,7 +61,7 @@ public class MachineDaoImpl implements MachineDao {
     }
 
     @Override
-    public List findAll() {
+    public List<Machine> findAll() {
         return getSession().createCriteria(Machine.class).list();
     }
 }

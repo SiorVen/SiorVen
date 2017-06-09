@@ -68,19 +68,19 @@ public class ResourceDaoImpl implements ResourceDao {
     }
 
     @Override
-    public List getAllResources() {
+    public List<Resource> getAllResources() {
         return getSession().createCriteria(Resource.class).list();
     }
 
     @Override
-    public List findByResourceType(String resourceType) {
+    public List<Resource> findByResourceType(String resourceType) {
         Criteria crit = getSession().createCriteria(Resource.class).add(Restrictions.eq("resourceType", resourceType));
         return crit.list();
     }
 
     @Override
-    public List<Resource> findByLikeName(String nombreResource) {
-        Criteria crit = getSession().createCriteria(Resource.class).add(Restrictions.like("name", "%" + nombreResource + "%"));
+    public List<Resource> findByLikeName(String resourceName) {
+        Criteria crit = getSession().createCriteria(Resource.class).add(Restrictions.like("name", "%" + resourceName + "%"));
         return crit.list();
     }
 }

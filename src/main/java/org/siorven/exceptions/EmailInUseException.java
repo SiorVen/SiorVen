@@ -1,7 +1,8 @@
 package org.siorven.exceptions;
 
 /**
- * Created by ander on 05/06/2017.
+ * Exception to be used when a user is trying to get persisted while a user with
+ * the same email is already persisted
  */
 public class EmailInUseException extends ResourceAlreadyRegisteredException {
 }

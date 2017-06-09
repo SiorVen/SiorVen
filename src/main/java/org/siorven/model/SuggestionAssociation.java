@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by Gorospe on 25/05/2017.
+ * Represents a suggestion whose reason is an association rule
  */
 @Entity
 @Table(name = "suggestion")

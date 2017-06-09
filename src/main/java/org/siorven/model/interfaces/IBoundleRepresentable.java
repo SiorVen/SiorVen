@@ -1,9 +1,14 @@
 package org.siorven.model.interfaces;
 
 /**
- * Created by Andoni on 31/05/2017.
+ * The implementor should contain a key that is present on a resource variable in order to internationalize
+ * its representation
  */
 public interface IBoundleRepresentable {
-
+    /**
+     * Should contain the key to the bundle message containing the implementors representation
+     *
+     * @return The key
+     */
     String geyClassKey();
 }

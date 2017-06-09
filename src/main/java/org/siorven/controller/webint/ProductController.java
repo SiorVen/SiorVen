@@ -19,6 +19,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,33 +27,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ander on 29/05/2017.
+ * Contains the mapping for the product related actions
  */
 @Controller
 public class ProductController {
 
-    public static final String MESSAGE = "message";
-    @Autowired
-    ProductService productService;
+    private static final String MESSAGE = "message";
 
     @Autowired
-    MachineProductService machineProductService;
+    private ProductService productService;
     @Autowired
-    ResourceService resourceService;
+    private MachineProductService machineProductService;
     @Autowired
-    IngredientService ingredientService;
+    private ResourceService resourceService;
     @Autowired
-    MessageSource messageSource;
+    private IngredientService ingredientService;
     @Autowired
-    HttpServletRequest request;
+    private MessageSource messageSource;
     @Autowired
-    LocaleResolver resolver;
+    private HttpServletRequest request;
+    @Autowired
+    private LocaleResolver resolver;
 
+    /**
+     * Shows the product manager
+     *
+     * @return The view key for the {@link ViewResolver}
+     */
     @GetMapping("/product/manager")
     public String showProductManager() {
         return "productManager";
     }
 
+    /**
+     * Processes the request to create a new product
+     *
+     * @param name               The name of the new product
+     * @param redirectAttributes The Redirect Attributes
+     * @return The view key for the {@link ViewResolver}
+     */
     @PostMapping("/product/new")
     public String newProduct(@RequestParam("name") String name, RedirectAttributes redirectAttributes) {
         Product p = new Product();
@@ -65,6 +78,13 @@ public class ProductController {
         return "redirect:/product/manager";
     }
 
+    /**
+     * Shows the view of a product
+     *
+     * @param id    The product's id
+     * @param model The response/request model
+     * @return The view key for the {@link ViewResolver}
+     */
     @GetMapping("/product/{id}")
     public String showProduct(@PathVariable("id") int id, Model model) {
         Product p = getProductOrThrow(id);
@@ -73,6 +93,15 @@ public class ProductController {
         return "viewProduct";
     }
 
+    //TODO: Should be POST or DELETE
+
+    /**
+     * Deletes the product with the given id id
+     *
+     * @param id                 The id of the product
+     * @param redirectAttributes The Redirect Attributes
+     * @return The view key for the {@link ViewResolver}
+     */
     @GetMapping("/product/delete/{id}")
     public String deleteProduct(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         Product p = getProductOrThrow(id);
@@ -85,6 +114,13 @@ public class ProductController {
         return "redirect:/product/manager";
     }
 
+    /**
+     * Deletes the ingredient with the given id
+     *
+     * @param id                 The id of the ingredient
+     * @param redirectAttributes The Redirect Attributes
+     * @return The view key for the {@link ViewResolver}
+     */
     @GetMapping("/ingredient/delete/{id}")
     public String deleteIngredient(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         Ingredient i = getIngredientOrThrow(id);
@@ -98,6 +134,11 @@ public class ProductController {
         return "redirect:/product/" + productId;
     }
 
+    /**
+     * Removes the ingredient from its containing product
+     *
+     * @param ingredient The ingredient to be deleted
+     */
     private void removeIngredientFromProduct(Ingredient ingredient) {
         Product p = ingredient.getProduct();
         for (int i = 0; i < p.getRecipe().size(); i++) {
@@ -109,6 +150,12 @@ public class ProductController {
         productService.edit(p);
     }
 
+    /**
+     * Gets the ingredient from the database or throws a {@link ResourceNotFoundException}
+     *
+     * @param id The id of the ingredient
+     * @return The ingredient if found
+     */
     private Ingredient getIngredientOrThrow(int id) {
         Ingredient i = ingredientService.findById(id);
         if (i == null) {
@@ -118,8 +165,18 @@ public class ProductController {
         return i;
     }
 
+    /**
+     * Adds a ingredient to the selected product
+     *
+     * @param id                 The id of the product
+     * @param ingredientForm     The ingredient form
+     * @param redirectAttributes The Redirect Attributes
+     * @param bindingResult      The binding Result
+     * @param model              The request/response model
+     * @return The view key for the {@link ViewResolver}
+     */
     @PostMapping("/product/{id}/ingredients/add")
-    public String addIngredient(@PathVariable("id") int id, @ModelAttribute("ingredientForm") @Validated Ingredientform ingredientform,
+    public String addIngredient(@PathVariable("id") int id, @ModelAttribute("ingredientForm") @Validated Ingredientform ingredientForm,
                                 RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             Product p = getProductOrThrow(id);
@@ -130,15 +187,15 @@ public class ProductController {
         Product p = getProductOrThrow(id);
         Resource r;
         try {
-            r = getResourceOrThrow(ingredientform.getName());
+            r = getResourceOrThrow(ingredientForm.getName());
         } catch (ResourceNotFoundException rnfe) {
             String msg = messageSource.getMessage("resource.notExist", new String[]{rnfe.getMessage()}, resolver.resolveLocale(request));
-            bindingResult.addError(new FieldError("ingredientForm", "name", ingredientform.getName(), true, null, null, msg));
+            bindingResult.addError(new FieldError("ingredientForm", "name", ingredientForm.getName(), true, null, null, msg));
             return showProduct(id, model);
         }
         Ingredient i = new Ingredient();
         i.setResource(r);
-        i.setQuantity(ingredientform.getQty());
+        i.setQuantity(ingredientForm.getQty());
         i.setProduct(p);
         p.getRecipe().add(i);
         ingredientService.save(i);
@@ -148,6 +205,12 @@ public class ProductController {
         return "redirect:/product/" + id;
     }
 
+    /**
+     * Gets the resource with the given name or throws {@link ResourceNotFoundException}
+     *
+     * @param name The name of the resource
+     * @return The resource
+     */
     private Resource getResourceOrThrow(String name) {
         Resource r = resourceService.findByName(name);
         if (r == null) {
@@ -156,6 +219,12 @@ public class ProductController {
         return r;
     }
 
+    /**
+     * Gets a product or throws a {@link ResourceNotFoundException}
+     *
+     * @param id The id of the product
+     * @return The product
+     */
     private Product getProductOrThrow(int id) {
         Product p = productService.findById(id);
         if (p == null) {

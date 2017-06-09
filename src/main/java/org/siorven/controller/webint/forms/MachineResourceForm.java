@@ -1,20 +1,20 @@
 package org.siorven.controller.webint.forms;
 
 /**
- * Created by Andoni on 04/06/2017.
+ * Model for the machine resource form
  */
 public class MachineResourceForm {
 
 
-    String product;
+    private String product;
 
-    int quantity;
+    private int quantity;
 
-    int id;
+    private int id;
 
-    int machineSlotId;
+    private int machineSlotId;
 
-    int machineId;
+    private int machineId;
 
     public MachineResourceForm() {
         //empty constructor

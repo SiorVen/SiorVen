@@ -60,7 +60,7 @@ public class MachineModelDaoImpl implements MachineModelDao {
     }
 
     @Override
-    public List findAll() {
+    public List<MachineModel> findAll() {
         return getSession().createCriteria(MachineModel.class).list();
     }
 }

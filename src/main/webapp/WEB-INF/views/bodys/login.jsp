@@ -29,7 +29,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit"><s:message code="form.login.submit"/></button>
     </form>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             document.getElementById("inputEmail").focus();
         }
     </script>

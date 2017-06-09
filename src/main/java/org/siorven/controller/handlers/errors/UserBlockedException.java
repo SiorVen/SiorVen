@@ -1,7 +1,7 @@
 package org.siorven.controller.handlers.errors;
 
 /**
- * Created by ander on 23/05/2017.
+ * Exception to be thrown in case that a user is blocked and attempt access
  */
 public class UserBlockedException extends RuntimeException {
 

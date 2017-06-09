@@ -14,18 +14,18 @@
     </div>
 </jstl:if>
 <div class="well">
-<form:form action="${pageContext.request.contextPath}/product/new" method="post">
-    <div class="control-group">
-        <label class="control-label" for="name"><i class="fa fa-cart-plus" aria-hidden="true"></i>
-            <c:message code="form.product.name"/></label>
-        <div class="controls">
-            <input type="text" class="form-control" id="name" name="name"/>
+    <form:form action="${pageContext.request.contextPath}/product/new" method="post">
+        <div class="control-group">
+            <label class="control-label" for="name"><i class="fa fa-cart-plus" aria-hidden="true"></i>
+                <c:message code="form.product.name"/></label>
+            <div class="controls">
+                <input type="text" class="form-control" id="name" name="name"/>
+            </div>
         </div>
-    </div>
-    <button type="submit" class="btn btn-primary" style="margin: 20px">
-        <c:message code="action.createProduct"/>
-    </button>
-</form:form>
+        <button type="submit" class="btn btn-primary" style="margin: 20px">
+            <c:message code="action.createProduct"/>
+        </button>
+    </form:form>
 </div>
 
 <div class="container-fluid" style="overflow-x: scroll">

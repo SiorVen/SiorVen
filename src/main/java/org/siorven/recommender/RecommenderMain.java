@@ -80,20 +80,20 @@ public class RecommenderMain {
         }
         List<MachineProduct> products = machineProductService.findByMachine(machine);
         mediaSales = totalSales / ((double) products.size());
-        for (MachineProduct mp : products){
+        for (MachineProduct mp : products) {
 
-            if(machineProductQuantity.containsKey(mp.getProduct().getId())){
+            if (machineProductQuantity.containsKey(mp.getProduct().getId())) {
                 Double saleQnt = machineProductQuantity.get(mp.getProduct().getId());
                 if (saleQnt.compareTo(mediaSales * conf.getDouble(ConfigParam.SUGG_MAXMIN_RATIOMAX)) > 0) {
-                    Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MAX, 10);
+                    Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(), SuggestionStatistic.MAX, 10);
                     suggestionService.save(maxMinSug);
                 }
                 if (saleQnt.compareTo(mediaSales * conf.getDouble(ConfigParam.SUGG_MAXMIN_RATIOMIN)) < 0) {
-                    Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MIN, 5);
+                    Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(), SuggestionStatistic.MIN, 5);
                     suggestionService.save(maxMinSug);
                 }
             } else {
-                Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MIN, 10);
+                Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(), SuggestionStatistic.MIN, 10);
                 suggestionService.save(maxMinSug);
             }
         }

@@ -17,15 +17,17 @@
     <input type="hidden" id="path" value="${pageContext.request.contextPath}">
     <form:form action="${pageContext.request.contextPath}/product/${product.id}/ingredients/add"
                commandName="ingredientForm">
-    <div class="control-group col-lg-5">
-        <label for="resource" class="control-label"><s:message code="form.ingredient.resource"/> </label><form:input path="name" name="name"
-                                                                                               id="resource"
-                                                                                               cssClass="form-control inline"  type="text"/>
-    </div>
-    <div class="control-group col-lg-5">
-        <label for="qty"><s:message code="form.ingredient.qty"/> </label><form:input path="qty" name="qty" id="qty" cssClass="form-control inline"
-                                                                                     type="text"/>
-    </div>
+        <div class="control-group col-lg-5">
+            <label for="resource" class="control-label"><s:message code="form.ingredient.resource"/> </label><form:input
+                path="name" name="name"
+                id="resource"
+                cssClass="form-control inline" type="text"/>
+        </div>
+        <div class="control-group col-lg-5">
+            <label for="qty"><s:message code="form.ingredient.qty"/> </label><form:input path="qty" name="qty" id="qty"
+                                                                                         cssClass="form-control inline"
+                                                                                         type="text"/>
+        </div>
         <button type="submit" class="btn btn-primary" style="margin: 20px">
             <s:message code="action.addIngredient"/>
         </button>

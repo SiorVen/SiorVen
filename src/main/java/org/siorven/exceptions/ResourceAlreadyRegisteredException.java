@@ -1,9 +1,11 @@
 package org.siorven.exceptions;
 
 /**
- * Created by Gorospe on 30/05/2017.
+ * Indicated that a resource is being persisted and shouldn't as its content is
+ * duplicating some existing one
  */
 public class ResourceAlreadyRegisteredException extends Exception {
+
     public ResourceAlreadyRegisteredException() {
         super();
     }

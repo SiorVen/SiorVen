@@ -1,9 +1,15 @@
 package org.siorven.recolector;
 
 import Ice.Current;
-import org.siorven.model.*;
+import org.siorven.model.Machine;
+import org.siorven.model.MachineProduct;
+import org.siorven.model.Recollector;
+import org.siorven.model.Sale;
 import org.siorven.recolector.ice.generated._DataCollectorDisp;
-import org.siorven.services.*;
+import org.siorven.services.MachineProductService;
+import org.siorven.services.MachineService;
+import org.siorven.services.RecollectorService;
+import org.siorven.services.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

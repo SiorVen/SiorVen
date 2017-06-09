@@ -1,7 +1,7 @@
 package org.siorven.controller.webint.forms;
 
 /**
- * Created by Andoni on 30/05/2017.
+ * Model for the machine new machine Form
  */
 public class MachineViewForm extends MachineEditForm {
 

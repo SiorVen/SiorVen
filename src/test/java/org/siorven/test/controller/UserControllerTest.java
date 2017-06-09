@@ -10,10 +10,8 @@ import org.siorven.dao.UserDao;
 import org.siorven.model.User;
 import org.siorven.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,12 +23,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -45,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
 
     @Configuration
-    static class IndexControllerTestConfig extends ControllerContext{
+    static class IndexControllerTestConfig extends ControllerContext {
         @Bean
         public UserDao userDao() {
             return Mockito.mock(UserDao.class);
@@ -57,7 +50,7 @@ public class UserControllerTest {
         }
 
         @Bean
-        public PasswordEncoder passwordEncoder(){
+        public PasswordEncoder passwordEncoder() {
             return new SCryptPasswordEncoder();
         }
 
@@ -200,7 +193,6 @@ public class UserControllerTest {
                 .andExpect(result ->
                         assertEquals("redirect:/user/manager", result.getModelAndView().getViewName()));
     }
-
 
 
 }

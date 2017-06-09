@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Gorospe on 26/05/2017.
+ * Debug-aimed initialization of the database
  */
 @Component
 public class Initializer {

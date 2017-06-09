@@ -1,6 +1,7 @@
 package org.siorven.dao;
 
 import org.siorven.model.Machine;
+import org.siorven.model.MachineIngredient;
 import org.siorven.model.MachineResource;
 import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;
@@ -8,7 +9,9 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 /**
- * Created by Andoni on 24/05/2017.
+ * Data access layer for the resources in machine
+ *
+ * @see MachineIngredient
  */
 public interface MachineResourceDao {
 
@@ -53,7 +56,13 @@ public interface MachineResourceDao {
      *
      * @return A {@link List} conta1ining all the Resources in machine
      */
-    List getAllResources();
+    List<MachineResource> getAllResources();
 
-    List findByMachine(Machine m);
+    /**
+     * Finds the machine resources on the given machine
+     *
+     * @param m The machine
+     * @return The list of machine resources
+     */
+    List<MachineResource> findByMachine(Machine m);
 }

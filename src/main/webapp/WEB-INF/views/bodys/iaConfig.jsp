@@ -14,10 +14,12 @@
                 </div>
                 <div class="control-group">
                     <!-- asociationUsedDays -->
-                    <label class="control-label" for="asociationUsedDays"><i class="fa fa-calendar" aria-hidden="true"></i>
+                    <label class="control-label" for="asociationUsedDays"><i class="fa fa-calendar"
+                                                                             aria-hidden="true"></i>
                         <s:message code="form.confParam.asociationUsedDays"/></label>
                     <div class="controls">
-                        <sf:input path="asociationUsedDays" type="text" cssClass="form-control" id="asociationUsedDays"/>
+                        <sf:input path="asociationUsedDays" type="text" cssClass="form-control"
+                                  id="asociationUsedDays"/>
                         <sf:errors path="asociationUsedDays" cssClass="text-danger"/>
                     </div>
                 </div>

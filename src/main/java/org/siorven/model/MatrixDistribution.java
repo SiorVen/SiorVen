@@ -12,29 +12,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Andoni on 16/05/2017.
+ * Represents a distribution based on a matrix where each cell is a slot
  */
 @Entity
 @Table(name = "Distribution")
 public class MatrixDistribution extends Distribution {
 
-    public static final String ROW = "distribution.matrix.row";
-    public static final String COLUMN = "distribution.matrix.column";
-
-    @Column(name = "lines")
-    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
-    private int lines;
+    private static final String ROW = "distribution.matrix.row";
+    private static final String COLUMN = "distribution.matrix.column";
 
     @Column(name = "rows")
+    @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private int rows;
 
     @Column(name = "columns")
     @Min(value = 0, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{formatError.negativeNumber}")
     private int columns;
 
-    public MatrixDistribution(String description, int lines, int columns) {
+    public MatrixDistribution(String description, int rows, int columns) {
         super(description);
-        this.lines = lines;
+        this.rows = rows;
         this.columns = columns;
 
     }

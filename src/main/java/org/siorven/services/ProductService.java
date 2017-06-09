@@ -14,7 +14,7 @@ import java.util.List;
 public class ProductService {
 
     /**
-     * Data acces object for the user table on the database
+     * Data access object for the user table on the database
      */
     @Autowired
     private ProductDao productDao;
@@ -81,7 +81,7 @@ public class ProductService {
      *
      * @return The list of product
      */
-    public List findAll() {
+    public List<Product> findAll() {
         return productDao.getAllProducts();
     }
 

@@ -29,7 +29,7 @@ public class MachineServiceTest {
     private Machine machine;
 
     @Configuration
-    static class UserServiceTestConfiguration{
+    static class UserServiceTestConfiguration {
 
         @Bean
         public MachineService machineService() {
@@ -37,7 +37,7 @@ public class MachineServiceTest {
         }
 
         @Bean
-        public MachineDao machineDao(){
+        public MachineDao machineDao() {
             return Mockito.mock(MachineDao.class);
         }
 
@@ -50,7 +50,7 @@ public class MachineServiceTest {
     private MachineService machineService;
 
     @Before
-    public void setup(){
+    public void setup() {
         machine = new Machine();
         machine.setId(1);
         machine.setAlias("Machine test");
@@ -69,14 +69,14 @@ public class MachineServiceTest {
     }
 
     @Test
-    public void testFindById(){
+    public void testFindById() {
         Machine machine = machineService.findById(1);
         assertEquals(1, machine.getId());
         assertEquals("Machine test", machine.getAlias());
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         List<Machine> allmachines = machineService.findAll();
         assertEquals(2, allmachines.size());
         assertEquals(1, allmachines.get(0).getId());

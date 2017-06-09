@@ -60,7 +60,7 @@ public class DistributionDaoImpl implements DistributionDao {
     }
 
     @Override
-    public List getAllDistributions() {
+    public List<Distribution> getAllDistributions() {
         return getSession().createCriteria(Distribution.class).list();
     }
 }

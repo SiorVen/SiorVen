@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Created by ander on 26/05/2017.
+ * Contains the task to initialize the database on startup
  */
 @Component
 public class DatabaseInitializer {
@@ -28,13 +28,19 @@ public class DatabaseInitializer {
     @Autowired
     ConfigParamService configParamService;
 
-    @Scheduled(fixedRate = Long.MAX_VALUE) //Runs once
+    /**
+     * Runs once to initialize the database
+     */
+    @Scheduled(fixedRate = Long.MAX_VALUE)
     public void initDb() {
         initSuggestionConf();
         initializer.initExample();
         assertThereIsAnAdmin();
     }
 
+    /**
+     * Initializes the suggestion configuration if absent
+     */
     private void initSuggestionConf() {
         setIfAbsent(ConfigParam.SUGG_APRIORI_DAYPERIOD, 30);
         setIfAbsent(ConfigParam.SUGG_APRIORI_SUCCESSALES, 12);
@@ -43,16 +49,36 @@ public class DatabaseInitializer {
         setIfAbsent(ConfigParam.SUGG_MAXMIN_RATIOMIN, 0.5);
     }
 
-    private void setIfAbsent(String key, int value){
+    /**
+     * Sets a config param if it doesn't Exist
+     *
+     * @param key   The configuration parameter name
+     * @param value The configuration parameter value
+     */
+    private void setIfAbsent(String key, int value) {
         if (configParamService.get(key) == null)
             configParamService.save(key, value);
     }
 
-    private void setIfAbsent(String key, double value){
+    /**
+     * Sets a config param if it doesn't Exist
+     *
+     * @param key   The configuration parameter name
+     * @param value The configuration parameter value
+     */
+    private void setIfAbsent(String key, double value) {
         if (configParamService.get(key) == null)
             configParamService.save(key, value);
     }
 
+    /**
+     * Checks if an admin exists and creates a default one if not with:
+     * <p>
+     * Username: admin
+     * <br/>
+     * Password: admin
+     * </p>
+     */
     private void assertThereIsAnAdmin() {
         List<User> admins = userService.findbyRole(User.ROLE_ADMIN);
         if (admins.isEmpty()) {
@@ -63,7 +89,6 @@ public class DatabaseInitializer {
             }
         }
     }
-
 
 
 }

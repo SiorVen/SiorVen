@@ -68,7 +68,7 @@ public class SuggestionDaoImpl implements SuggestionDao {
     }
 
     @Override
-    public List findByMachine(Machine m) {
+    public List<Suggestion> findByMachine(Machine m) {
         Criteria crit = getSession().createCriteria(Suggestion.class).add(Restrictions.eq("machine", m));
         return crit.addOrder(Order.desc("weight")).list();
     }

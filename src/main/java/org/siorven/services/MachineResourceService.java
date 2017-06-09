@@ -77,11 +77,17 @@ public class MachineResourceService {
      *
      * @return The list of MachineResource
      */
-    public List findAll() {
+    public List<MachineResource> findAll() {
         return machineResourceDao.getAllResources();
     }
 
-    public List findByMachine(int id) {
+    /**
+     * Gets the list of machine resources in a machine
+     *
+     * @param id The id of the machine
+     * @return The list of machine resources
+     */
+    public List<MachineResource> findByMachine(int id) {
         Machine m = machineService.findById(id);
         return machineResourceDao.findByMachine(m);
     }

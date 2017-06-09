@@ -53,15 +53,16 @@ public interface SaleDao {
      *
      * @return A {@link List} conta1ining all the sale
      */
-    List getAllSales();
+    List<Sale> getAllSales();
 
     /**
      * Gets the sales on a machine between 2 dates
-     * @param fromDate
-     * @param toDate
-     * @param machine
-     * @return
+     *
+     * @param fromDate The date that sets the beginning of the period
+     * @param toDate   The date that sets the end of the period
+     * @param machine  The machine
+     * @return The list of sales
      */
-    List getSalesFromMachineBetweenDates(Timestamp fromDate, Timestamp toDate, Machine machine);
+    List<Sale> getSalesFromMachineBetweenDates(Timestamp fromDate, Timestamp toDate, Machine machine);
 
 }

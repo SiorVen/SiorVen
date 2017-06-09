@@ -60,7 +60,7 @@ public class ConfigParamDaoImpl implements ConfigParamDao {
     }
 
     @Override
-    public List getAllConfigParams() {
+    public List<ConfigParam> getAllConfigParams() {
         return getSession().createCriteria(ConfigParam.class).list();
     }
 }

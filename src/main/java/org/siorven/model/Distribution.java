@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Andoni on 16/05/2017.
+ * Abstract class that defines a distribution
  */
 @Entity
 @Table(name = "Distribution")

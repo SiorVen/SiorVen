@@ -42,6 +42,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
     }
 
+    /**
+     * Gets the IP of the client whether its behind a proxy or not
+     *
+     * @return The IP address
+     */
     private String getClientIP() {
         String xfHeader = request.getHeader("X-Forwarded-For");
         if (xfHeader == null) {

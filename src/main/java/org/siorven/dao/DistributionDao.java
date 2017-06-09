@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Data access interface for the distribution
  *
- * @see
+ * @see Distribution
  */
 public interface DistributionDao {
 
@@ -49,5 +49,10 @@ public interface DistributionDao {
      */
     Distribution findDistributionById(int id);
 
-    List getAllDistributions();
+    /**
+     * Gets all the distributions on the database
+     *
+     * @return The list of distributions
+     */
+    List<Distribution> getAllDistributions();
 }

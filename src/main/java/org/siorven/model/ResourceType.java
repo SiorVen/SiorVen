@@ -3,7 +3,7 @@ package org.siorven.model;
 import javax.xml.bind.annotation.XmlEnum;
 
 /**
- * Created by ander on 26/05/2017.
+ * Enumerator containing the resource types
  */
 @XmlEnum
 public enum ResourceType {
@@ -50,6 +50,12 @@ public enum ResourceType {
         }
     };
 
+    /**
+     * Relations Units with Resource types
+     *
+     * @param type The resource type
+     * @return Corresponding unit
+     */
     public static Unit unit(ResourceType type) {
         switch (type) {
             case POWDER:

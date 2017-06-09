@@ -47,5 +47,10 @@ public interface ConfigParamDao {
      */
     ConfigParam findConfigParamBykey(String key);
 
-    List getAllConfigParams();
+    /**
+     * Gets all the configuration parameters
+     *
+     * @return The list of configuration parameters in the persistence holder
+     */
+    List<ConfigParam> getAllConfigParams();
 }

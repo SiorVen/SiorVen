@@ -60,7 +60,7 @@ public interface SlotDao {
      *
      * @return A {@link List} containing all the slots
      */
-    List getAllSlots();
+    List<Slot> getAllSlots();
 
 
 }

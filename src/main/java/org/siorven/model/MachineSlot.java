@@ -3,7 +3,7 @@ package org.siorven.model;
 import javax.persistence.*;
 
 /**
- * Created by Gorospe on 29/05/2017.
+ * Represents the slot of a machine
  */
 @Entity
 @Table(name = "machine_slot")

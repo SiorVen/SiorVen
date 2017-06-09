@@ -80,7 +80,7 @@ public class ProductTypeService {
      *
      * @return The list of product type
      */
-    public List findAll() {
+    public List<ProductType> findAll() {
         return productTypeDao.getAllProductTypes();
     }
 }

@@ -5,7 +5,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by ander on 01/06/2017.
+ * Class that defines the model for the form of the configuration of
+ * the suggestion processing algorithm
  */
 public class AlgorithmConf {
 

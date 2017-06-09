@@ -3,7 +3,7 @@ package org.siorven.model;
 import javax.persistence.*;
 
 /**
- * Created by Gorospe on 31/05/2017.
+ * Represents a data recollector
  */
 @Entity
 @Table(name = "recollector")

@@ -28,10 +28,10 @@ import java.util.LinkedHashMap;
  */
 @Controller
 public class ResourceController {
-    public static final String RESOURCE_REGISTER_VIEW = "resourceRegister";
-    public static final String RESOURCE = "resource";
-    public static final String REDIRECT_PRODUCT_REGISTER = "redirect:/product/";
-    public static final String REDIRECT_PRODUCT_MANAGER = "redirect:/product/manager";
+    private static final String RESOURCE_REGISTER_VIEW = "resourceRegister";
+    private static final String RESOURCE = "resource";
+    private static final String REDIRECT_PRODUCT_REGISTER = "redirect:/product/";
+    private static final String REDIRECT_PRODUCT_MANAGER = "redirect:/product/manager";
 
 
     @Autowired

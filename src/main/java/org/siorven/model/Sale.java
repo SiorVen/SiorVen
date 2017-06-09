@@ -10,7 +10,7 @@ import javax.validation.constraints.Min;
 import java.sql.Timestamp;
 
 /**
- * Created by Gorospe on 25/05/2017.
+ * Represents the sale of a product on a machine
  */
 @Entity
 @Table(name = "sale")

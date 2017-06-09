@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by ander on 29/05/2017.
+ * Rest controller for the product related methods
  */
 @RestController
 public class ProductRestController {
@@ -36,6 +36,11 @@ public class ProductRestController {
     @Autowired
     LocaleResolver resolver;
 
+    /**
+     * Gets the product data formatted as a json for the js Datatables API
+     *
+     * @return the json data
+     */
     @PostMapping(value = "/api/product/datatable", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, List<Map<String, String>>> datatableAll() {
         List<Product> users = productService.findAll();
@@ -52,6 +57,12 @@ public class ProductRestController {
         return datatables;
     }
 
+    /**
+     * Gets a products recipe in a format prepared for datatables as json
+     *
+     * @param id The id of the product
+     * @return The Json data
+     */
     @PostMapping(value = "/api/product/{id}/ingredients/datatable", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, List<Map<String, String>>> datatableIngredients(@PathVariable("id") int id) {
         Product product = productService.findById(id);

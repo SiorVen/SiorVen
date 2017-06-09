@@ -1,23 +1,34 @@
 package org.siorven.model;
 
 /**
- * Created by ander on 26/05/2017.
+ * Represents a unit
  */
 public enum Unit {
 
+    /**
+     * Grams - Weight
+     */
     G { //Weight
 
         @Override
         public String toString() {
             return "unit.grams";
         }
-    }, ML { //Volume
+    },
+    /**
+     * Millilitres - Volume
+     */
+    ML { //Volume
 
         @Override
         public String toString() {
             return "unit.milliliters";
         }
-    }, U { //Units
+    },
+    /**
+     * Unit - Elements
+     */
+    U { //Units
 
         @Override
         public String toString() {

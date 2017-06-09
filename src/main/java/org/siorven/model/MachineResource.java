@@ -7,7 +7,7 @@ import javax.validation.constraints.Future;
 import java.sql.Timestamp;
 
 /**
- * Created by Andoni on 16/05/2017.
+ * Represents a resource stored in a machine
  */
 @Entity
 @Table(name = "machine_resource")
