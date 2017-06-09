@@ -3,7 +3,7 @@
 # "Hello". The following line sets the endpoints for this
 # adapter.
 #
-DataCollector.Endpoints=ssl -p 10001
+DataCollector.Endpoints=ssl -p 7052
 
 #
 # Only listen on the localhost interface by default.
