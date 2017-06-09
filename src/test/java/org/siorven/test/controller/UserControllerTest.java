@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.siorven.contexts.ControllerContext;
 import org.siorven.controller.webint.UserController;
 import org.siorven.dao.UserDao;
 import org.siorven.model.User;
@@ -44,7 +45,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
 
     @Configuration
-    static class IndexControllerTestConfig {
+    static class IndexControllerTestConfig extends ControllerContext{
         @Bean
         public UserDao userDao() {
             return Mockito.mock(UserDao.class);
@@ -70,21 +71,6 @@ public class UserControllerTest {
             return Mockito.mock(UserService.class);
         }
 
-        @Bean
-        public MessageSource messageSource() {
-            ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-            messageSource.setBasenames("org.siorven.msgs.fields", "org.siorven.msgs.general", "org.siorven.msgs.pages", "ValidationMessages");
-            return messageSource;
-        }
-
-        @Bean
-        public ViewResolver viewResolver() throws Exception {
-            ViewResolver viewResolver = Mockito.mock(ViewResolver.class);
-            View view = Mockito.mock(View.class);
-            Mockito.doNothing().when(view).render(Mockito.anyMap(), Mockito.any(HttpServletRequest.class), Mockito.any(HttpServletResponse.class));
-            Mockito.when(viewResolver.resolveViewName(Mockito.anyString(), Mockito.any(Locale.class))).thenReturn(view);
-            return viewResolver;
-        }
     }
 
     private MockMvc mockMvc;

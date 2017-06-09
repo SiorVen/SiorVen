@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.siorven.contexts.ControllerContext;
 import org.siorven.controller.webint.IndexController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,21 +32,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class IndexControllerTest {
 
     @Configuration
-    static class IndexControllerTestConfig {
+    static class IndexControllerTestConfig extends ControllerContext {
 
         @Bean
         public IndexController indexController() {
             return new IndexController();
         }
 
-        @Bean
-        public ViewResolver viewResolver() throws Exception {
-            ViewResolver viewResolver = Mockito.mock(ViewResolver.class);
-            View view = Mockito.mock(View.class);
-            Mockito.doNothing().when(view).render(Mockito.anyMap(), Mockito.any(HttpServletRequest.class), Mockito.any(HttpServletResponse.class));
-            Mockito.when(viewResolver.resolveViewName(Mockito.anyString(), Mockito.any(Locale.class))).thenReturn(view);
-            return viewResolver;
-        }
     }
 
     @Autowired
