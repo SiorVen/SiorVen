@@ -15,6 +15,7 @@ public class Ingredientform {
     private String name;
 
     public Ingredientform() {
+        //empty constructor
     }
 
 

@@ -37,6 +37,7 @@ public class UserController {
     private static final String REGISTER_VIEW = "register";
     private static final String USER = "user";
     private static final String REDIRECT_USER_MANAGER = "redirect:/user/manager";
+    public static final String MESSAGE = "message";
     /**
      * Data access logic for the access to the newUser data on the DB
      */
@@ -107,7 +108,7 @@ public class UserController {
         }
         String msg = messageSource.getMessage("msg.userRegisteredSuccesfully",
                 new String[]{usuario.getUsername()}, locale());
-        redirectAttributes.addFlashAttribute("message", msg);
+        redirectAttributes.addFlashAttribute(MESSAGE, msg);
 
         return REDIRECT_USER_MANAGER;
     }
@@ -139,14 +140,14 @@ public class UserController {
 
         if (user.getId() == u.getId()) try {
             msg = messageSource.getMessage("msg.selfDelete", null, locale());
-            redirectAttributes.addFlashAttribute("message", msg);
+            redirectAttributes.addFlashAttribute(MESSAGE, msg);
             request.logout();
             return "redirect:/";
         } catch (ServletException e) {
             throw e;
         }
 
-        redirectAttributes.addFlashAttribute("message", msg);
+        redirectAttributes.addFlashAttribute(MESSAGE, msg);
         return REDIRECT_USER_MANAGER;
     }
 
@@ -193,7 +194,7 @@ public class UserController {
             userService.saveOrUpdate(oldUser);
         } catch (DataIntegrityViolationException dive) {
             String msg = messageSource.getMessage(dive.getMessage(), null, locale());
-            redirectAttributes.addFlashAttribute("message", msg);
+            redirectAttributes.addFlashAttribute(MESSAGE, msg);
             return REDIRECT_USER_MANAGER;
         } catch (UsernameInUseException e) {
             String msg = messageSource.getMessage("error.user.emailTaken", null, locale());
@@ -209,7 +210,7 @@ public class UserController {
 
         if (user.getId() == oldUser.getId()) try {
             String msg = messageSource.getMessage("msg.selfEditLogin", null, locale());
-            redirectAttributes.addFlashAttribute("message", msg);
+            redirectAttributes.addFlashAttribute(MESSAGE, msg);
             request.logout();
             return "redirect:/";
         } catch (ServletException e) {
@@ -217,7 +218,7 @@ public class UserController {
         }
 
         String msg = messageSource.getMessage("msg.userEdited", new String[]{oldUser.getUsername()}, locale());
-        redirectAttributes.addFlashAttribute("message", msg);
+        redirectAttributes.addFlashAttribute(MESSAGE, msg);
 
         return REDIRECT_USER_MANAGER;
     }

@@ -54,7 +54,7 @@ public class ResourceTypes {
      */
     public List<ResourceType> getResourceType() {
         if (resourceType == null) {
-            resourceType = new ArrayList<ResourceType>();
+            resourceType = new ArrayList<>();
         }
         return this.resourceType;
     }

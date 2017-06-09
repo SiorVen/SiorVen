@@ -45,7 +45,7 @@ public class UserRestController {
      *
      * @return The users
      */
-    @GetMapping(value = "/api/user/all", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/api/user/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<User> getAll() {
 
         return userService.findAll();
@@ -65,7 +65,7 @@ public class UserRestController {
         datatables.put("data", data);
         for (User u : users) {
             Map<String, String> entry = new HashMap<>();
-            entry.put("id", u.getId() + "");
+            entry.put("id", Integer.toString(u.getId()));
             entry.put("type", UserUtils.permissionCodeToHuman(u.getPermission(), messageSource, localeResolver, request));
             entry.put("username", u.getUsername());
             entry.put("email", u.getEmail());

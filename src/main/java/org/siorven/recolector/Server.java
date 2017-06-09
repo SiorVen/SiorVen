@@ -12,10 +12,6 @@ public class Server {
     @Autowired
     private DataCollector dataCollector;
 
-    /*public Server(String[] args){
-        ic = Ice.Util.initialize(args);
-    }*/
-
     public Server() {
 
     }

@@ -1,5 +1,6 @@
 package org.siorven.recommender;
 
+import org.siorven.controller.handlers.errors.ResourceNotFoundException;
 import org.siorven.model.*;
 import org.siorven.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,19 +120,17 @@ public class AprioriAssociation {
             double weight = rule.getTotalSupport();
 
             for (Machine machine : machineList) {
-                if (!premises.isEmpty() && !consequences.isEmpty()) {
-                    if (checkIfMachineHasPremises(machine, premises)) {
-                        for (Statement s : premises) {
-                            statementService.save(s);
-                        }
-                        for (Statement s : consequences) {
-                            statementService.save(s);
-                        }
-                        suggestion = new SuggestionAssociation(finishDate, machine, weight);
-                        suggestion.setConsequenceList(consequences);
-                        suggestion.setPremiseList(premises);
-                        suggestionService.save(suggestion);
+                if (!premises.isEmpty() && !consequences.isEmpty() && checkIfMachineHasPremises(machine, premises)) {
+                    for (Statement s : premises) {
+                        statementService.save(s);
                     }
+                    for (Statement s : consequences) {
+                        statementService.save(s);
+                    }
+                    suggestion = new SuggestionAssociation(finishDate, machine, weight);
+                    suggestion.setConsequenceList(consequences);
+                    suggestion.setPremiseList(premises);
+                     suggestionService.save(suggestion);
                 }
             }
         } catch (Exception e) {
@@ -154,7 +153,7 @@ public class AprioriAssociation {
         return checker;
     }
 
-    private boolean stringToBoolean(String s) throws Exception {
+    private boolean stringToBoolean(String s) throws ClassCastException {
         if (TRUE.equalsIgnoreCase(s)) {
             return true;
         } else if (FALSE.equalsIgnoreCase(s)) {
@@ -163,7 +162,7 @@ public class AprioriAssociation {
         throw new ClassCastException();
     }
 
-    private List<Statement> parseStatements(Collection<Item> rule) throws Exception {
+    private List<Statement> parseStatements(Collection<Item> rule) throws ResourceNotFoundException {
         List<Statement> statementList = new ArrayList<>();
         for (Item i : rule) {
             NominalItem ni = (NominalItem) i;

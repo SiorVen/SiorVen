@@ -1,7 +1,7 @@
 package org.siorven.services;
 
 import org.siorven.dao.ResourceDao;
-import org.siorven.exceptions.ResourceAlreadyRegistered;
+import org.siorven.exceptions.ResourceAlreadyRegisteredException;
 import org.siorven.model.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,13 +25,13 @@ public class ResourceService {
      *
      * @param r The resource to be saved
      */
-    public void save(Resource r) throws ResourceAlreadyRegistered {
+    public void save(Resource r) throws ResourceAlreadyRegisteredException {
         Resource oldResource = findByName(r.getName());
 
         if (oldResource == null) {
             resourceDao.save(r);
         } else {
-            throw new ResourceAlreadyRegistered("error.resource.nameTaken");
+            throw new ResourceAlreadyRegisteredException("error.resource.nameTaken");
         }
     }
 

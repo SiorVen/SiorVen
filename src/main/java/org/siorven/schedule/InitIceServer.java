@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class InitIceServer {
 
-    private static String SERVER_CONFIG = "--Ice.Config=/org/siorven/ice/config.server";
-
     @Autowired
     private Server server;
 

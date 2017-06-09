@@ -48,6 +48,4 @@ public class SuggestionService {
         Machine m = machineService.findById(id);
         return suggestionDao.findByMachine(m);
     }
-
-    //TODO: Aqui deberian estar las funciones que arranquen el analisis de los datos por si se quiere lanzar a mano.
 }

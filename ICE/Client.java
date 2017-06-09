@@ -11,7 +11,6 @@ import Demo.*;
 import Ice.Communicator;
 
 public class Client {
-	private static final String UID = "1";
 	private static Scanner teclado;
 
 	public static void main(String[] args) {

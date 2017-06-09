@@ -12,6 +12,7 @@ public class MachineModelForm {
     private MultipartFile file;
 
     public MachineModelForm() {
+        //empty constructor
     }
 
     public MultipartFile getFile() {

@@ -1,6 +1,6 @@
 package org.siorven.controller.webint;
 
-import org.siorven.exceptions.ResourceAlreadyRegistered;
+import org.siorven.exceptions.ResourceAlreadyRegisteredException;
 import org.siorven.model.Resource;
 import org.siorven.model.ResourceType;
 import org.siorven.model.validacion.SpringFormGroup;
@@ -20,6 +20,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.EnumMap;
 import java.util.LinkedHashMap;
 
 /**
@@ -92,7 +93,7 @@ public class ResourceController {
         }
         try {
             resourceService.save(resource);
-        } catch (ResourceAlreadyRegistered e) {
+        } catch (ResourceAlreadyRegisteredException e) {
             String msg = messageSource.getMessage(e.getMessage(),
                     new String[]{resource.getName()}, locale.resolveLocale(request));
             bindingResult.addError(new FieldError(RESOURCE, "name", resource.getName(), true, null, null, msg));
@@ -117,7 +118,7 @@ public class ResourceController {
      * @param model MachineModel of the response scope
      */
     private void addResourceTypes(Model model) {
-        LinkedHashMap<ResourceType, String> resourceTypes = new LinkedHashMap<>();
+        EnumMap<ResourceType, String> resourceTypes = new EnumMap<>(ResourceType.class);
         resourceTypes.put(ResourceType.COLD_ITEM, messageSource.getMessage(ResourceType.COLD_ITEM.toString(), null, locale.resolveLocale(request)));
         resourceTypes.put(ResourceType.COLD_LIQUID, messageSource.getMessage(ResourceType.COLD_LIQUID.toString(), null, locale.resolveLocale(request)));
         resourceTypes.put(ResourceType.HOT_ITEM, messageSource.getMessage(ResourceType.HOT_ITEM.toString(), null, locale.resolveLocale(request)));

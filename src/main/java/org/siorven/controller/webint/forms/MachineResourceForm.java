@@ -17,6 +17,7 @@ public class MachineResourceForm {
     int machineId;
 
     public MachineResourceForm() {
+        //empty constructor
     }
 
     public String getProduct() {

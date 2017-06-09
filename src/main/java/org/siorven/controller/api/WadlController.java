@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import javax.annotation.Generated;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.namespace.QName;
 import java.lang.annotation.Annotation;
@@ -20,11 +21,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 @Controller
 @RequestMapping("/api/application.wadl")
 public class WadlController {
-    String xs_namespace="http://www.w3.org/2001/XMLSchema" ;
+    String xsNamespace ="http://www.w3.org/2001/XMLSchema" ;
     @Autowired
     private RequestMappingHandlerMapping handlerMapping;
     @Autowired
@@ -149,10 +149,10 @@ public class WadlController {
         QName nm = new QName("");
         String classname=type.toString();
         if (classname.indexOf("String")>=0) {
-            nm = new QName(xs_namespace,"string","xs");
+            nm = new QName(xsNamespace,"string","xs");
 
         }else if(classname.indexOf("Integer")>=0) {
-            nm = new QName(xs_namespace,"int","xs");
+            nm = new QName(xsNamespace,"int","xs");
         }
         return nm;
     }

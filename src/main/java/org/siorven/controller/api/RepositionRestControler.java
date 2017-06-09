@@ -3,7 +3,6 @@ package org.siorven.controller.api;
 import org.siorven.model.MachineResource;
 import org.siorven.model.Resource;
 import org.siorven.services.MachineResourceService;
-import org.siorven.services.MachineService;
 import org.siorven.services.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -81,7 +80,7 @@ public class RepositionRestControler {
         List<Resource> admins = resourceService.findBylikeName(nombreResource);
 
         for (Resource resource : admins) {
-            map.put(resource.getId() + "", resource.getName() + "");
+            map.put(Integer.toString(resource.getId()), resource.getName());
         }
         return map;
     }

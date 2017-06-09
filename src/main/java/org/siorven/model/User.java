@@ -23,10 +23,10 @@ import java.util.List;
 @Table(name = "USERS")
 public class User implements UserDetails, CredentialsContainer {
 
-    public final static String ROLE_ADMIN = "ROLE_ADMIN";
-    public final static String ROLE_REPONEDOR = "ROLE_REP";
-    private final static String EMAIL_REGEX = "^\\S+@\\S+$";
-    private final static String PERMISO_REGEX = "^(" + ROLE_REPONEDOR + "|" + ROLE_ADMIN + ")$";
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
+    public static final String ROLE_REPONEDOR = "ROLE_REP";
+    private static final String EMAIL_REGEX = "^\\S+@\\S+$";
+    private static final String PERMISO_REGEX = "^(" + ROLE_REPONEDOR + "|" + ROLE_ADMIN + ")$";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

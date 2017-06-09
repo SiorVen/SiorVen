@@ -48,10 +48,16 @@ public class CompartimentDistribution extends Distribution {
      */
     @Override
     public Slot findSlot(Map<String, Object> position) {
-        /*for (Slot slot : getSlots()){
-            if(slot.getName().equalsIgnoreCase())
-        }*/
-        return null;
+        Slot retSlot = null;
+        String slotName = (String) position.get(SLOT_NAME);
+        for (Slot slot : getSlots()){
+            if(slot.getName().equalsIgnoreCase(slotName)){
+                retSlot = slot;
+                break;
+            }
+        }
+
+        return retSlot;
     }
 
     @Override

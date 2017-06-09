@@ -1,6 +1,6 @@
 package org.siorven.logic;
 
-import org.siorven.exceptions.ResourceAlreadyRegistered;
+import org.siorven.exceptions.ResourceAlreadyRegisteredException;
 import org.siorven.model.*;
 import org.siorven.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -178,7 +178,7 @@ public class Initializer {
         Resource resource = new Resource(name, resourceType);
         try {
             resourceService.save(resource);
-        } catch (ResourceAlreadyRegistered e) {
+        } catch (ResourceAlreadyRegisteredException e) {
             e.printStackTrace();
         }
         return resource;

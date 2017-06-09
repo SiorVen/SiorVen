@@ -55,10 +55,9 @@ public class UserService {
         checkifInUse(user);
         User oldUser = userDao.findById(user.getId());
 
-        if (Objects.equals(oldUser.getPermission(), User.ROLE_ADMIN) && !Objects.equals(user.getPermission(), User.ROLE_ADMIN)) {
-            if (userDao.findByRole(User.ROLE_ADMIN).size() <= 1) {
+        if (Objects.equals(oldUser.getPermission(), User.ROLE_ADMIN) && !Objects.equals(user.getPermission(), User.ROLE_ADMIN) && userDao.findByRole(User.ROLE_ADMIN).size() <= 1) {
+
                 throw new DataIntegrityViolationException("error.lastAdmin");
-            }
         }
 
         userDao.editOrSave(user);
