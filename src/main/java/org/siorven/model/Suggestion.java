@@ -29,6 +29,7 @@ public abstract class Suggestion implements IBoundleRepresentable {
 
 
     public Suggestion() {
+        //empty constructor
     }
 
     public Suggestion(Timestamp generateDate, Machine machine, double weight) {

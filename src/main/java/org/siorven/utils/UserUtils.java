@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class UserUtils {
 
+    private UserUtils() {
+        //empty constructor
+    }
+
     /**
      * Gets the permision codo to human readable internationalized text
      *

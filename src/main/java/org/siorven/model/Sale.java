@@ -40,6 +40,7 @@ public class Sale {
     }
 
     public Sale() {
+        //empty constructor
     }
 
     public int getId() {

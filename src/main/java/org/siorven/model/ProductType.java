@@ -21,6 +21,7 @@ public class ProductType {
     }
 
     public ProductType() {
+        //empty constructor
     }
 
     public int getId() {

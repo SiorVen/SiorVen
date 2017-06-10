@@ -32,7 +32,11 @@ public class AlgorithmConf {
     private Integer minMaxPeriod;
 
     public AlgorithmConf() {
-        //empty constructor
+        ratioMin = 0.5;
+        ratioMax = 0.5;
+        successSaleNo = 10;
+        asociationUsedDays = 20;
+        minMaxPeriod = 10;
     }
 
     public Double getRatioMin() {

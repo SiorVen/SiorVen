@@ -27,6 +27,7 @@ public class ConfigParam {
     }
 
     public ConfigParam() {
+        //empty constructor
     }
 
     public String getKey() {

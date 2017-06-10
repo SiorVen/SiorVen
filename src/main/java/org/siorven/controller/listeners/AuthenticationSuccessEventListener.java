@@ -19,6 +19,7 @@ public class AuthenticationSuccessEventListener
     @Autowired
     private LoginAttemptService loginAttemptService;
 
+    @Override
     public void onApplicationEvent(AuthenticationSuccessEvent e) {
         WebAuthenticationDetails auth = (WebAuthenticationDetails)
                 e.getAuthentication().getDetails();

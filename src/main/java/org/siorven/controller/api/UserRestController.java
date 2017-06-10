@@ -45,7 +45,7 @@ public class UserRestController {
      *
      * @return The users
      */
-    @GetMapping(value = "/api/user/all", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/api/user/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<User> getAll() {
 
         return userService.findAll();
@@ -83,7 +83,8 @@ public class UserRestController {
     @GetMapping(value = "/api/user/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Object get(@PathVariable("id") int id) {
         User u = userService.findById(id);
-        if (u == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
+        if (u == null)
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         return u;
     }
 
@@ -97,7 +98,8 @@ public class UserRestController {
     public ResponseEntity delete(@PathVariable("id") int id) throws ServletException {
         try {
             User deletedUser = userService.findById(id);
-            if (deletedUser == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
+            if (deletedUser == null)
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
             userService.delete(deletedUser);
             User currentUser = UserUtils.getCurrentUser();
 
@@ -118,11 +120,12 @@ public class UserRestController {
      * @throws ServletException If the logout() call is unsuccessful
      */
     private void logoutIfSame(User deleted, User user) throws ServletException {
-        if (user.getId() == deleted.getId()) try {
-            request.logout();
-        } catch (ServletException e) {
-            throw e;
-        }
+        if (user.getId() == deleted.getId())
+            try {
+                request.logout();
+            } catch (ServletException e) {
+                throw e;
+            }
     }
 
 

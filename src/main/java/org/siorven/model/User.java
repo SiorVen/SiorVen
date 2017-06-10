@@ -69,6 +69,7 @@ public class User implements UserDetails, CredentialsContainer {
     }
 
     public User() {
+        //empty constructor
     }
 
     public User(String username, String password) {
@@ -82,6 +83,7 @@ public class User implements UserDetails, CredentialsContainer {
         this.password = password;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
@@ -117,6 +119,7 @@ public class User implements UserDetails, CredentialsContainer {
         return authorities;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }

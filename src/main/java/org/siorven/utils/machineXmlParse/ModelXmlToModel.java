@@ -14,6 +14,10 @@ import java.io.IOException;
  */
 public class ModelXmlToModel {
 
+    private ModelXmlToModel() {
+        //empty constructor
+    }
+
     public static MachineModel Xml2Model(MultipartFile file) {
         MachineModelXml modelXml = readXmlObject(file);
         assert modelXml != null : "Model should not be null at this point";

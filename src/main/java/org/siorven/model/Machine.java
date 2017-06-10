@@ -46,6 +46,7 @@ public class Machine {
 
 
     public Machine() {
+        //empty constructor
     }
 
     public int getId() {

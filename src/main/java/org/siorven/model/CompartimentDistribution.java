@@ -31,6 +31,7 @@ public class CompartimentDistribution extends Distribution {
     }
 
     public CompartimentDistribution() {
+        //empty constructor
     }
 
     public int getNumCompartiment() {

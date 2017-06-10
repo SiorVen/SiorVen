@@ -27,6 +27,7 @@ public class Recollector {
     }
 
     public Recollector() {
+        //empty constructor
     }
 
     public int getId() {

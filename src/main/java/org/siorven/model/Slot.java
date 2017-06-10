@@ -39,6 +39,7 @@ public class Slot {
     }
 
     public Slot() {
+        //empty constructor
     }
 
     public int getId() {

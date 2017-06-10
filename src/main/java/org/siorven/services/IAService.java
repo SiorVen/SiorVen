@@ -5,10 +5,12 @@ import org.siorven.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import weka.associations.*;
-import weka.core.Instances;
 
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Service that provides functions of artificial intelligence, generating MaxMin and Association suggestions
@@ -39,12 +41,13 @@ public class IAService {
      * Generate suggestions of maximum and minimum sold product.
      * Takes into account a ratio for maximum and another for minimum.
      * If a product is sold more than the media plus the ratio is considered a maximum, and the same happens for minimum.
-     * @param machine machine that which sales are evaluated.
+     *
+     * @param machine                machine that which sales are evaluated.
      * @param machineProductQuantity List of machine products and the quantity of the number of sales for each one.
      * @param now
      * @return
      */
-    public List<Suggestion> generateMaxMinSuggestions(Machine machine, HashMap<Integer, Double> machineProductQuantity, Timestamp now) {
+    public List<Suggestion> generateMaxMinSuggestions(Machine machine, Map<Integer, Double> machineProductQuantity, Timestamp now) {
         int totalSales = 0;
         double mediaSales;
         ArrayList<Suggestion> maxMinSuggestions = new ArrayList<>();
@@ -53,24 +56,21 @@ public class IAService {
         }
         List<MachineProduct> products = machineProductService.findByMachine(machine);
         mediaSales = totalSales / ((double) products.size());
-        for (MachineProduct mp : products){
+        for (MachineProduct mp : products) {
 
-            if(machineProductQuantity.containsKey(mp.getProduct().getId())){
+            if (machineProductQuantity.containsKey(mp.getProduct().getId())) {
                 Double saleQnt = machineProductQuantity.get(mp.getProduct().getId());
                 if (saleQnt.compareTo(mediaSales * conf.getDouble(ConfigParam.SUGG_MAXMIN_RATIOMAX)) > 0) {
-                    Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MAX, 10);
+                    Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(), SuggestionStatistic.MAX, 10);
                     maxMinSuggestions.add(maxMinSug);
-                    //suggestionService.save(maxMinSug);
                 }
                 if (saleQnt.compareTo(mediaSales * conf.getDouble(ConfigParam.SUGG_MAXMIN_RATIOMIN)) < 0) {
-                    Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MIN, 5);
+                    Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(), SuggestionStatistic.MIN, 5);
                     maxMinSuggestions.add(maxMinSug);
-                    //suggestionService.save(maxMinSug);
                 }
             } else {
-                Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(),SuggestionStatistic.MIN, 10);
+                Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(), SuggestionStatistic.MIN, 10);
                 maxMinSuggestions.add(maxMinSug);
-                //suggestionService.save(maxMinSug);
             }
         }
         return maxMinSuggestions;
@@ -116,7 +116,6 @@ public class IAService {
                     suggestion.setConsequenceList(consequences);
                     suggestion.setPremiseList(premises);
                     suggestions.add(suggestion);
-                    //suggestionService.save(suggestion);
                 }
             }
         } catch (Exception e) {
@@ -127,7 +126,8 @@ public class IAService {
 
     /**
      * Check if the products of a premise are located in a specific machine
-     * @param m The machine to check the products
+     *
+     * @param m        The machine to check the products
      * @param premises
      * @return
      */
@@ -147,6 +147,7 @@ public class IAService {
 
     /**
      * Function to parse a string (t or f) to boolean
+     *
      * @param s
      * @return
      * @throws ClassCastException
@@ -162,6 +163,7 @@ public class IAService {
 
     /**
      * Generate a list of statements from a determinated rule
+     *
      * @param rule
      * @return
      * @throws ResourceNotFoundException

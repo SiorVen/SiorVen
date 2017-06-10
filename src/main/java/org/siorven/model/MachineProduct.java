@@ -42,6 +42,7 @@ public class MachineProduct {
     }
 
     public MachineProduct() {
+        //empty constructor
     }
 
     public int getId() {

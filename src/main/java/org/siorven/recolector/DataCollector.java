@@ -57,7 +57,7 @@ public class DataCollector extends _DataCollectorDisp {
             r.setConnection(true);
             recollectorService.edit(r);
         }
-        Machine m = (Machine) machineService.findAll().get(0);
+        Machine m = machineService.findAll().get(0);
         collectorList.put(alias, m);
 
     }

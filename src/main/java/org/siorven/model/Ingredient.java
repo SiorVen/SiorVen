@@ -34,6 +34,7 @@ public class Ingredient {
     }
 
     public Ingredient() {
+        //empty constructor
     }
 
     public int getId() {

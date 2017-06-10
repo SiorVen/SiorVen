@@ -71,7 +71,7 @@ public class RecommenderMain {
             if (data.size() > MIN_INSTANCES_FOR_GOOD_SUGGESTIONS) {
                 apriori.runApriori(data);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -80,6 +80,7 @@ public class RecommenderMain {
 
     /**
      * Group the sales into product and count the quantity of sales for each product
+     *
      * @param saleList
      * @return
      */
@@ -101,6 +102,7 @@ public class RecommenderMain {
 
     /**
      * Create data to run Apriori algorithm
+     *
      * @return
      */
     private Instances generateDataForApriori() {
@@ -118,6 +120,7 @@ public class RecommenderMain {
 
     /**
      * Get data from database and generate instances for Apriori
+     *
      * @param atts list of attributes that represent products
      * @return
      */
@@ -140,7 +143,8 @@ public class RecommenderMain {
 
     /**
      * Create an instace from the sales taking into account a confidentiality parameter
-     * @param atts  list of attributes tha represent products
+     *
+     * @param atts         list of attributes tha represent products
      * @param productSales list of product and the quantity of the sales per day for each of them
      * @return
      */
@@ -149,15 +153,30 @@ public class RecommenderMain {
         for (Map.Entry<Integer, Double> entry : productSales.entrySet()) {
             if (entry.getValue() > conf.getInt(ConfigParam.SUGG_APRIORI_SUCCESSALES)) {
                 Product p = productService.findById(entry.getKey());
-                for (int j = 0; j < atts.size(); j++) {
-                    if (((Attribute) atts.get(j)).name().equalsIgnoreCase(p.getName())) {
-                        iExample.setValue((Attribute) atts.elementAt(j), "t");
-                        break;
-                    }
+                int numAttribute = checkNumAttribute(atts, p);
+                if (numAttribute != -1) {
+                    iExample.setValue((Attribute) atts.elementAt(numAttribute), "t");
                 }
             }
         }
         return iExample;
+    }
+
+    /**
+     * Check which of the attributes is the same as the product
+     *
+     * @param atts
+     * @param p
+     * @return the number of the attribute or -1 if something went wrong
+     */
+    private int checkNumAttribute(FastVector atts, Product p) {
+        int errorFinding = -1;
+        for (int j = 0; j < atts.size(); j++) {
+            if (((Attribute) atts.get(j)).name().equalsIgnoreCase(p.getName())) {
+                return j;
+            }
+        }
+        return errorFinding;
     }
 
     /**

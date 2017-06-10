@@ -27,6 +27,7 @@ public class SuggestionAssociation extends Suggestion {
     private List<Statement> consequenceList;
 
     public SuggestionAssociation() {
+        //empty constructor
     }
 
     public SuggestionAssociation(Timestamp generateDate, Machine machine, double weight) {

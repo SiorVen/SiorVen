@@ -26,6 +26,7 @@ public class Resource {
     }
 
     public Resource() {
+        //empty constructor
     }
 
     public int getId() {

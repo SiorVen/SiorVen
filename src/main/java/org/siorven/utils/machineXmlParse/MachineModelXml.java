@@ -199,7 +199,7 @@ public class MachineModelXml {
          */
         public List<Object> getMatrixOrCompartiments() {
             if (matrixOrCompartiments == null) {
-                matrixOrCompartiments = new ArrayList<Object>();
+                matrixOrCompartiments = new ArrayList<>();
             }
             return this.matrixOrCompartiments;
         }
@@ -255,7 +255,7 @@ public class MachineModelXml {
          */
         public List<String> getProduct() {
             if (product == null) {
-                product = new ArrayList<String>();
+                product = new ArrayList<>();
             }
             return this.product;
         }

@@ -88,10 +88,11 @@ public class SuggestionService {
 
     /**
      * Save all the suggestions of a list
+     *
      * @param suggestions
      */
-    public void saveSuggestionList(List<Suggestion> suggestions){
-        for (Suggestion sg : suggestions){
+    public void saveSuggestionList(List<Suggestion> suggestions) {
+        for (Suggestion sg : suggestions) {
             suggestionDao.saveSuggestion(sg);
         }
     }

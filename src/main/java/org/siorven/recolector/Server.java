@@ -13,7 +13,7 @@ public class Server {
     private DataCollector dataCollector;
 
     public Server() {
-
+        //empty constructor
     }
 
     public int run() {
