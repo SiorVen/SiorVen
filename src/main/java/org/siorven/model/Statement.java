@@ -25,6 +25,7 @@ public class Statement {
     }
 
     public Statement() {
+        //empty constructor
     }
 
     public Product getProduct() {

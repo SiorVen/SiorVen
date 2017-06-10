@@ -33,8 +33,8 @@ public class WadlController {
     private WebApplicationContext webApplicationContext;
 
     @RequestMapping(method = RequestMethod.GET, produces = {"application/xml"})
-    public @ResponseBody
-    Application generateWadl(HttpServletRequest request) {
+    @ResponseBody
+    public Application generateWadl(HttpServletRequest request) {
         Application result = new Application();
         Doc doc = new Doc();
         doc.setTitle("Spring REST Service WADL");

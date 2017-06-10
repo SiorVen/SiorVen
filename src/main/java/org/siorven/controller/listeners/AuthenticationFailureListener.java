@@ -19,6 +19,7 @@ public class AuthenticationFailureListener
     @Autowired
     private LoginAttemptService loginAttemptService;
 
+    @Override
     public void onApplicationEvent(AuthenticationFailureBadCredentialsEvent e) {
         WebAuthenticationDetails auth = (WebAuthenticationDetails)
                 e.getAuthentication().getDetails();

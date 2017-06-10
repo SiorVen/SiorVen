@@ -11,16 +11,16 @@ public class MachineEditForm {
 
     private int id;
 
+    public MachineEditForm() {
+        //empty constructor
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public MachineEditForm() {
-        //empty constructor
     }
 
     public int getMachineModelId() {

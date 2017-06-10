@@ -30,6 +30,7 @@ public class Product {
     }
 
     public Product() {
+        //empty constructor
     }
 
     public int getId() {

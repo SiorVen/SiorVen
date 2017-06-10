@@ -44,6 +44,7 @@ public class MachineResource {
     }
 
     public MachineResource() {
+        //empty constructor
     }
 
     public int getId() {

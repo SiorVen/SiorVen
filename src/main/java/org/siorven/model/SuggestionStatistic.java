@@ -24,6 +24,7 @@ public class SuggestionStatistic extends Suggestion {
     private boolean isMax;
 
     public SuggestionStatistic() {
+        //empty constructor
     }
 
     public SuggestionStatistic(Timestamp generateDate, Machine machine, Product product, boolean maxMin, double weight) {

@@ -18,13 +18,13 @@ public class SaleService {
     private SaleDao saleDao;
 
     @Autowired
-    private transient MailService mailService;
+    private MailService mailService;
 
     @Autowired
-    private transient MachineResourceService machineResourceService;
+    private MachineResourceService machineResourceService;
 
     @Autowired
-    private transient MachineIngredientService machineIngredientService;
+    private MachineIngredientService machineIngredientService;
 
     /**
      * Creates a sale

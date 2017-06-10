@@ -132,7 +132,8 @@ public class ModelController implements HandlerExceptionResolver {
     private boolean isSuported(String ext) {
         String normalizedExtension = ext.toLowerCase();
         boolean flag = false;
-        if (normalizedExtension.compareTo("xml") == 0) flag = true;
+        if (normalizedExtension.compareTo("xml") == 0)
+            flag = true;
         return flag;
     }
 

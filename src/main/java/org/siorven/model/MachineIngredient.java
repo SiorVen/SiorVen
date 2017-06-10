@@ -35,6 +35,7 @@ public class MachineIngredient {
     }
 
     public MachineIngredient() {
+        //empty constructor
     }
 
     public int getId() {

@@ -25,7 +25,7 @@ public class MachineSlot {
     }
 
     public MachineSlot() {
-
+        //empty constructor
     }
 
     public Machine getMachine() {

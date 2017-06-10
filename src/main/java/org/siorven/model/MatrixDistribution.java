@@ -37,6 +37,7 @@ public class MatrixDistribution extends Distribution {
     }
 
     public MatrixDistribution() {
+        //empty constructor
     }
 
     public int getRows() {
