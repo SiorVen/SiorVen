@@ -128,7 +128,6 @@ public class UserController {
         return "userManager";
     }
 
-
     /**
      * Deletes a newUser
      *
@@ -136,41 +135,29 @@ public class UserController {
      * @param redirectAttributes Redirected attributes to the manager
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
-    @GetMapping("/user/delete/{id}")
+    @PostMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable("id") int id, RedirectAttributes redirectAttributes) throws ServletException {
         User u = getUserOrThrow(id);
-        String msg;
-        msg = handleDeleteUser(u);
-        User user = UserUtils.getCurrentUser();
-
-        if (user.getId() == u.getId()) try {
-            msg = messageSource.getMessage("msg.selfDelete", null, locale());
-            redirectAttributes.addFlashAttribute(MESSAGE, msg);
-            request.logout();
-            return "redirect:/";
-        } catch (ServletException e) {
-            throw e;
-        }
-
-        redirectAttributes.addFlashAttribute(MESSAGE, msg);
-        return REDIRECT_USER_MANAGER;
-    }
-
-    /**
-     * Handles the deletion of a user
-     *
-     * @param u The user to be deleted
-     * @return The message result of the deletion or attempt of deletion of the user
-     */
-    private String handleDeleteUser(User u) {
         String msg;
         try {
             userService.delete(u);
             msg = messageSource.getMessage("msg.userDeleted", new String[]{u.getUsername()}, locale());
+            User user = UserUtils.getCurrentUser();
+            if (user.getId() == u.getId())
+                return handleSelfDeletion(redirectAttributes);
         } catch (DataIntegrityViolationException dive) {
             msg = messageSource.getMessage(dive.getMessage(), null, locale());
         }
-        return msg;
+        redirectAttributes.addFlashAttribute(MESSAGE, msg);
+        return REDIRECT_USER_MANAGER;
+    }
+
+    private String handleSelfDeletion(RedirectAttributes redirectAttributes) throws ServletException {
+        String msg;
+        msg = messageSource.getMessage("msg.selfDelete", null, locale());
+        redirectAttributes.addFlashAttribute(MESSAGE, msg);
+        request.logout();
+        return "redirect:/";
     }
 
     /**

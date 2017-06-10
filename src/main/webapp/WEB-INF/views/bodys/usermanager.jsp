@@ -35,6 +35,8 @@
         .ready(
             function () {
                 var path = $('#path').val();
+                var csfrKey = '<jstl:out value="${_csrf.parameterName}"/>';
+                var csfrToken = '<jstl:out value="${_csrf.token}"/>';
                 $('#usertable')
                     .dataTable(
                         {
@@ -54,9 +56,14 @@
                                 {
                                     "data": "id",
                                     "render": function (data, type, full, meta) {
-                                        return '<div class="btn-group" style="width: "><a class="btn btn-primary" href="' + path + '/user/' + data + '"><i class="fa fa-user"></i></a>' +
+                                        return '<form action="' + path + '/user/delete/' + data + '" method="post">' +
+                                            '<div class="btn-group" style="width: ">' +
+                                            '<a class="btn btn-primary" href="' + path + '/user/' + data + '"><i class="fa fa-user"></i></a>' +
                                             '<a class="btn btn-warning" href="' + path + '/user/edit/' + data + '"><i class="fa fa-pencil-square-o"></i></a>' +
-                                            '<a class="btn btn-danger" href="' + path + '/user/delete/' + data + '"><i class="fa fa-times"></i></a></div>';
+                                            '<input type="hidden" name="' + csfrKey + '" value="' + csfrToken + '"/>' +
+                                            '<button type="submit" class="btn btn-danger" ><i class="fa fa-times"></i></button>' +
+                                            '</div>' +
+                                            '</form>';
                                     }
                                 }, {
                                     "data": "type"

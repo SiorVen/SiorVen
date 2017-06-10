@@ -46,6 +46,8 @@
         .ready(
             function () {
                 var path = $('#path').val();
+                var csfrKey = '<jstl:out value="${_csrf.parameterName}"/>';
+                var csfrToken = '<jstl:out value="${_csrf.token}"/>';
                 $('#usertable')
                     .dataTable(
                         {
@@ -65,7 +67,10 @@
                                 {
                                     "data": "id",
                                     "render": function (data, type, full, meta) {
-                                        return '<div class="btn-group" style="width: "><a class="btn btn-primary" href="' + path + '/product/' + data + '"><i class="fa fa-user"></i></a>' +
+                                        return '<form action="' + path + '/product/' + data + '" method="get">' +
+                                            '<div class="btn-group" style="width: ">' +
+                                            '<input type="hidden" name="' + csfrKey + '" value="' + csfrToken + '"/>' +
+                                            '<button type="submit" class="btn btn-primary" ><i class="fa fa-user"></i></button>' +
                                             '</div>';
                                     }
                                 }, {

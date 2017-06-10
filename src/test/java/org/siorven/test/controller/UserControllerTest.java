@@ -149,7 +149,7 @@ public class UserControllerTest {
     @Test
     public void testDelete() throws Exception {
         mockMvc
-                .perform(get("/user/delete/1"))
+                .perform(post("/user/delete/1"))
                 .andExpect(status().isOk())
                 .andExpect(model().size(0))
                 .andExpect(flash().attributeCount(1))

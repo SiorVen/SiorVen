@@ -1,7 +1,7 @@
 package org.siorven.controller.webint;
 
 import org.siorven.controller.handlers.errors.ResourceNotFoundException;
-import org.siorven.controller.webint.forms.Ingredientform;
+import org.siorven.controller.webint.forms.IngredientForm;
 import org.siorven.model.Ingredient;
 import org.siorven.model.MachineProduct;
 import org.siorven.model.Product;
@@ -89,11 +89,10 @@ public class ProductController {
     public String showProduct(@PathVariable("id") int id, Model model) {
         Product p = getProductOrThrow(id);
         model.addAttribute("product", p);
-        model.addAttribute("ingredientForm", new Ingredientform());
+        model.addAttribute("ingredientForm", new IngredientForm());
         return "viewProduct";
     }
 
-    //TODO: Should be POST or DELETE
 
     /**
      * Deletes the product with the given id id
@@ -102,7 +101,7 @@ public class ProductController {
      * @param redirectAttributes The Redirect Attributes
      * @return The view key for the {@link ViewResolver}
      */
-    @GetMapping("/product/delete/{id}")
+    @PostMapping("/product/delete/{id}")
     public String deleteProduct(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         Product p = getProductOrThrow(id);
         List<MachineProduct> mps = machineProductService.findByProduct(p);
@@ -121,7 +120,7 @@ public class ProductController {
      * @param redirectAttributes The Redirect Attributes
      * @return The view key for the {@link ViewResolver}
      */
-    @GetMapping("/ingredient/delete/{id}")
+    @PostMapping("/ingredient/delete/{id}")
     public String deleteIngredient(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         Ingredient i = getIngredientOrThrow(id);
         int productId = i.getProduct().getId();
@@ -176,12 +175,12 @@ public class ProductController {
      * @return The view key for the {@link ViewResolver}
      */
     @PostMapping("/product/{id}/ingredients/add")
-    public String addIngredient(@PathVariable("id") int id, @ModelAttribute("ingredientForm") @Validated Ingredientform ingredientForm,
-                                RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) {
+    public String addIngredient(@PathVariable("id") int id, @ModelAttribute("ingredientForm") @Validated IngredientForm ingredientForm,
+                                BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
             Product p = getProductOrThrow(id);
             model.addAttribute("product", p);
-            return showProduct(id, model);
+            return "viewProduct";
         }
 
         Product p = getProductOrThrow(id);
@@ -191,7 +190,8 @@ public class ProductController {
         } catch (ResourceNotFoundException rnfe) {
             String msg = messageSource.getMessage("resource.notExist", new String[]{rnfe.getMessage()}, resolver.resolveLocale(request));
             bindingResult.addError(new FieldError("ingredientForm", "name", ingredientForm.getName(), true, null, null, msg));
-            return showProduct(id, model);
+            model.addAttribute("product", p);
+            return "viewProduct";
         }
         Ingredient i = new Ingredient();
         i.setResource(r);

@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="jumbotron">
     <span class="h1">
-        <s:message code="pages.productView"/>: <c:out value="${product.name}"/>
+        <strong><s:message code="pages.productView"/>:</strong> <c:out value="${product.name}"/>
     </span>
 </div>
 <c:if test="${message != null}">
@@ -16,17 +16,16 @@
 <div class="well">
     <input type="hidden" id="path" value="${pageContext.request.contextPath}">
     <form:form action="${pageContext.request.contextPath}/product/${product.id}/ingredients/add"
-               commandName="ingredientForm">
+               modelAttribute="ingredientForm" method="post">
         <div class="control-group col-lg-5">
-            <label for="resource" class="control-label"><s:message code="form.ingredient.resource"/> </label><form:input
-                path="name" name="name"
-                id="resource"
-                cssClass="form-control inline" type="text"/>
+            <label for="resource" class="control-label"><s:message code="form.ingredient.resource"/> </label>
+            <form:input path="name" name="name" id="resource" cssClass="form-control inline" type="text"/>
+            <form:errors path="name" cssClass="text text-danger" />
         </div>
         <div class="control-group col-lg-5">
-            <label for="qty"><s:message code="form.ingredient.qty"/> </label><form:input path="qty" name="qty" id="qty"
-                                                                                         cssClass="form-control inline"
-                                                                                         type="text"/>
+            <label for="qty"><s:message code="form.ingredient.qty"/> </label>
+            <form:input path="qty" name="qty" id="qty" cssClass="form-control inline" type="text" value="1"/>
+            <form:errors path="qty" cssClass="text text-danger" />
         </div>
         <button type="submit" class="btn btn-primary" style="margin: 20px">
             <s:message code="action.addIngredient"/>
@@ -61,6 +60,8 @@
                 <s:message var="noResult" code="resource.noResult"/>
                 var noResult = '<c:out value="${noResult}"/>';
                 var path = $("#path").val();
+                var csfrKey = '<c:out value="${_csrf.parameterName}"/>';
+                var csfrToken = '<c:out value="${_csrf.token}"/>';
                 $("#resource").autocomplete({
                     source: path + "/api/resource/search",
                     noResult: noResult
@@ -84,8 +85,12 @@
                                 {
                                     "data": "id",
                                     "render": function (data, type, full, meta) {
-                                        return '<div class="btn-group" style="width: ">' +
-                                            '<a class="btn btn-danger" href="' + path + '/ingredient/delete/' + data + '"><i class="fa fa-times"></i></a></div>';
+                                        return '<form action="' + path + '/ingredient/delete/' + data + '" method="post">' +
+                                            '<div class="btn-group" >' +
+                                            '<input type="hidden" name="' + csfrKey + '" value="' + csfrToken + '"/>' +
+                                            '<button type="submit" class="btn btn-danger" ><i class="fa fa-times"></i></button>' +
+                                            '</div>' +
+                                            '</form>';
                                     }
                                 }, {
                                     "data": "name"

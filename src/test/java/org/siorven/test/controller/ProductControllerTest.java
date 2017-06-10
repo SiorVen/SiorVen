@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.siorven.contexts.ControllerContext;
 import org.siorven.controller.webint.ProductController;
-import org.siorven.controller.webint.forms.Ingredientform;
+import org.siorven.controller.webint.forms.IngredientForm;
 import org.siorven.dao.IngredientDao;
 import org.siorven.dao.MachineProductDao;
 import org.siorven.dao.ProductDao;
@@ -213,7 +213,7 @@ public class ProductControllerTest {
     @Test
     public void testDelete() throws Exception {
         mockMvc
-                .perform(get("/product/delete/1"))
+                .perform(post("/product/delete/1"))
                 .andExpect(status().isOk())
                 .andExpect(model().size(1))
                 .andExpect(flash().attributeCount(0))
@@ -225,7 +225,7 @@ public class ProductControllerTest {
     @Test
     public void testDeleteIngredient() throws Exception {
         mockMvc
-                .perform(get("/ingredient/delete/1"))
+                .perform(post("/ingredient/delete/1"))
                 .andExpect(status().isOk())
                 .andExpect(model().size(0))
                 .andExpect(flash().attributeCount(1))
@@ -236,7 +236,7 @@ public class ProductControllerTest {
 
     @Test
     public void testRegisterMachine() throws Exception {
-        Ingredientform ingredient = new Ingredientform();
+        IngredientForm ingredient = new IngredientForm();
         ingredient.setName("Test");
         ingredient.setQty(1);
         mockMvc
