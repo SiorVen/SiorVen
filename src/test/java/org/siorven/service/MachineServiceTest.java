@@ -19,14 +19,9 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by Andoni on 08/06/2017.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 public class MachineServiceTest {
-
-    private Machine machine;
 
     @Configuration
     static class UserServiceTestConfiguration {
@@ -51,7 +46,7 @@ public class MachineServiceTest {
 
     @Before
     public void setup() {
-        machine = new Machine();
+        Machine machine = new Machine();
         machine.setId(1);
         machine.setAlias("Machine test");
 

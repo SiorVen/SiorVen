@@ -52,7 +52,7 @@ public class RecommenderMain {
 
 
     @Scheduled(initialDelay = 10000, fixedDelay = DAY_IN_MILIS)
-    public void probe() {
+    public void runSuggestionAppriori() {
         now = new Timestamp(new Date().getTime());
         machineList = machineService.findAll();
         productList = productService.findAll();

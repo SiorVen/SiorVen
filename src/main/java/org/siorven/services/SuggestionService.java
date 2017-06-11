@@ -18,7 +18,7 @@ public class SuggestionService {
     private SuggestionDao suggestionDao;
 
     @Autowired
-    MachineService machineService;
+    private MachineService machineService;
 
     /**
      * Save suggestion
