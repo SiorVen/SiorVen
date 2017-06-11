@@ -18,8 +18,8 @@ import java.util.Map;
 @Service
 public class IAService {
 
-    public static final String TRUE = "t";
-    public static final String FALSE = "f";
+    private static final String TRUE = "t";
+    private static final String FALSE = "f";
 
     @Autowired
     private ProductService productService;
@@ -49,22 +49,22 @@ public class IAService {
      */
     public List<Suggestion> generateMaxMinSuggestions(Machine machine, Map<Integer, Double> machineProductQuantity, Timestamp now) {
         int totalSales = 0;
-        double mediaSales;
+        double meanSales;
         ArrayList<Suggestion> maxMinSuggestions = new ArrayList<>();
         for (Map.Entry<Integer, Double> entry : machineProductQuantity.entrySet()) {
             totalSales += entry.getValue();
         }
         List<MachineProduct> products = machineProductService.findByMachine(machine);
-        mediaSales = totalSales / ((double) products.size());
+        meanSales = totalSales / ((double) products.size());
         for (MachineProduct mp : products) {
 
             if (machineProductQuantity.containsKey(mp.getProduct().getId())) {
                 Double saleQnt = machineProductQuantity.get(mp.getProduct().getId());
-                if (saleQnt.compareTo(mediaSales * conf.getDouble(ConfigParam.SUGG_MAXMIN_RATIOMAX)) > 0) {
+                if (saleQnt.compareTo(meanSales * conf.getDouble(ConfigParam.SUGG_MAXMIN_RATIOMAX)) > 0) {
                     Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(), SuggestionStatistic.MAX, 10);
                     maxMinSuggestions.add(maxMinSug);
                 }
-                if (saleQnt.compareTo(mediaSales * conf.getDouble(ConfigParam.SUGG_MAXMIN_RATIOMIN)) < 0) {
+                if (saleQnt.compareTo(meanSales * conf.getDouble(ConfigParam.SUGG_MAXMIN_RATIOMIN)) < 0) {
                     Suggestion maxMinSug = new SuggestionStatistic(now, machine, mp.getProduct(), SuggestionStatistic.MIN, 5);
                     maxMinSuggestions.add(maxMinSug);
                 }
@@ -102,7 +102,7 @@ public class IAService {
      * @return
      */
     private List<Suggestion> getSuggestionsFromRule(AssociationRule rule) {
-        SuggestionAssociation suggestion = null;
+        SuggestionAssociation suggestion;
         List<Suggestion> suggestions = new ArrayList<>();
         try {
             for (Machine machine : machineList) {

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import weka.associations.Apriori;
 import weka.core.Instances;
 
-import javax.servlet.ServletContext;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -17,14 +16,11 @@ import java.util.Date;
 @Component
 public class AprioriAssociation {
 
-    public static final double APRIORI_MIN_METRIC = 0.5;
-    public static final int APRIORI_NUM_RULES = 8;
+    private static final double APRIORI_MIN_METRIC = 0.5;
+    private static final int APRIORI_NUM_RULES = 8;
 
     @Autowired
     private SuggestionService suggestionService;
-
-    @Autowired
-    private ServletContext servletContext;
 
     @Autowired
     private IAService iaService;

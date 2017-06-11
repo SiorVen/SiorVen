@@ -26,14 +26,10 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by Andoni on 07/06/2017.
- */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 public class SuggestionServiceTest {
-
-    Suggestion suggestion;
 
     @Configuration
     static class SuggestionServiceTestConfiguration {
@@ -64,7 +60,7 @@ public class SuggestionServiceTest {
     private SuggestionDao suggestionDao;
 
     @Autowired
-    SuggestionService suggestionService;
+    private SuggestionService suggestionService;
 
     @Before
     public void setup() {
@@ -72,7 +68,7 @@ public class SuggestionServiceTest {
         Machine machine = new Machine();
         machine.setId(1);
         Machine machine1 = new Machine();
-        suggestion = new SuggestionStatistic();
+        Suggestion suggestion = new SuggestionStatistic();
         suggestion.setId(1);
         suggestion.setMachine(new Machine());
         suggestion.setWeight(10.0);
