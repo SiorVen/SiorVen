@@ -63,10 +63,13 @@ public class LoginAttemptService {
      * @return Whether the IP is blocked or not
      */
     public boolean isBlocked(String key) {
+        /*
         try {
             return attemptsCache.get(key) >= MAX_ATTEMPT;
         } catch (ExecutionException e) {
             return false;
         }
+        */
+        return false;
     }
 }
