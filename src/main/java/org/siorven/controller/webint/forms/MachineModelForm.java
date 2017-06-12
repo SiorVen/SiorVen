@@ -15,8 +15,8 @@ public class MachineModelForm {
     private MultipartFile file;
 
     public MachineModelForm() {
-        file = new CommonsMultipartFile(
-                new DiskFileItem("a", "a", false, "a", 0, new File("a")));
+
+        //Empty constructor
     }
 
     public MultipartFile getFile() {
