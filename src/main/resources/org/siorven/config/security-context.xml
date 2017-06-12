@@ -27,7 +27,8 @@
             "org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"/>
 
     <security:http realm="SiorVen MVC" use-expressions="true">
-
+        <!-- TODO: This has to be removed after testing -->
+        <security:intercept-url pattern="/**" access="permitAll()"/>
         <security:intercept-url pattern="/" access="permitAll()"/>
         <security:intercept-url pattern="/404" access="permitAll()"/>
         <security:intercept-url pattern="/403" access="permitAll()"/>
