@@ -2,6 +2,7 @@ package org.siorven.services;
 
 import org.siorven.dao.DistributionDao;
 import org.siorven.model.Distribution;
+import org.siorven.model.MachineModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +70,9 @@ public class DistributionService {
      */
     public List<Distribution> findAll() {
         return distributionDao.getAllDistributions();
+    }
+
+    public List<Distribution> findByModel(MachineModel model) { return distributionDao.findByModel(model);
     }
 }
 

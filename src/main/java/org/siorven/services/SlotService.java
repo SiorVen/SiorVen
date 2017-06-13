@@ -1,11 +1,13 @@
 package org.siorven.services;
 
+import org.apache.maven.model.Model;
+import org.hibernate.Hibernate;
 import org.siorven.dao.SlotDao;
-import org.siorven.model.MachineSlot;
-import org.siorven.model.Slot;
+import org.siorven.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +27,24 @@ public class SlotService {
      */
     @Autowired
     private MachineSlotService machineslotService;
+
+    /**
+     * Data acces object for the machine table on the database
+     */
+    @Autowired
+    private MachineService machineService;
+
+    /**
+     * Data acces object for the machine table on the database
+     */
+    @Autowired
+    private MachineModelService machineModelService;
+
+    /**
+     * Data acces object for the distribution table on the database
+     */
+    @Autowired
+    private DistributionService distributionService;
 
     /**
      * Saves a slot to the database.
@@ -96,9 +116,18 @@ public class SlotService {
      *
      * @return The list of slots
      */
-    public List findFree() {
-        List<Slot> slots = slotDao.getAllSlots();
-        List<MachineSlot> machineSlots = machineslotService.findAll();
+    public List findFree(int id) {
+        Machine machine = machineService.findById(id);
+
+        MachineModel model = machineModelService.findById(machine.getMachineModel().getId());
+        List<Distribution> distributions = distributionService.findByModel(model);
+        List<Slot> slotsByDistribution = new ArrayList<>();
+        List<Slot> slots = new ArrayList<>();
+        for(int j = 0; j < distributions.size(); j++){
+            slotsByDistribution = distributions.get(j).getSlots();
+            slots.addAll(slotsByDistribution);
+        }
+        List<MachineSlot> machineSlots = machineslotService.findByMachineId(id);
         for (int i = 0; i < slots.size(); i++) {
             for (int j = 0; j < machineSlots.size(); j++) {
                 if (machineSlots.get(j).getSlot().getId() == slots.get(i).getId()) {

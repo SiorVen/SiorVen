@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.siorven.model.Distribution;
+import org.siorven.model.MachineModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,5 +63,11 @@ public class DistributionDaoImpl implements DistributionDao {
     @Override
     public List<Distribution> getAllDistributions() {
         return getSession().createCriteria(Distribution.class).list();
+    }
+
+    @Override
+    public List<Distribution> findByModel(MachineModel model) {
+        Criteria criteria = getSession().createCriteria(Distribution.class).add(Restrictions.eq("machineModel", model));
+        return criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
     }
 }

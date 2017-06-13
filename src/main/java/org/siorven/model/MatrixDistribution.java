@@ -5,6 +5,7 @@ import org.siorven.model.validacion.SpringFormEditGroup;
 import org.siorven.model.validacion.SpringFormGroup;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
@@ -15,7 +16,6 @@ import java.util.Map;
  * Represents a distribution based on a matrix where each cell is a slot
  */
 @Entity
-@Table(name = "Distribution")
 public class MatrixDistribution extends Distribution {
 
     private static final String ROW = "distribution.matrix.row";
@@ -33,7 +33,6 @@ public class MatrixDistribution extends Distribution {
         super(description);
         this.rows = rows;
         this.columns = columns;
-
     }
 
     public MatrixDistribution() {

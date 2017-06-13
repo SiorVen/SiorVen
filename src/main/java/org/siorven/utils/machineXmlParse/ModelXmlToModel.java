@@ -40,6 +40,7 @@ public class ModelXmlToModel {
                     slot.setCapacity(matrix.getCapacity().intValue());
                     matrixDistrubution.getSlots().add(slot);
                 }
+                matrixDistrubution.setMachineModel(model);
                 model.getAviableDistributions().add(matrixDistrubution);
             }
             if (ditrib.getClass() == CompartimentDistributionXml.class) {
@@ -54,6 +55,7 @@ public class ModelXmlToModel {
                     slot.setUnit(ResourceType.unit(ResourceType.valueOf(compartimentXml.getResourceTypes().resourceType.get(0).value())));
                     compartimentDistribution.getSlots().add(slot);
                 }
+                compartimentDistribution.setMachineModel(model);
                 model.getAviableDistributions().add(compartimentDistribution);
             }
         }

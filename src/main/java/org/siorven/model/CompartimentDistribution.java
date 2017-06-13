@@ -6,6 +6,7 @@ import org.siorven.model.validacion.SpringFormEditGroup;
 import org.siorven.model.validacion.SpringFormGroup;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
@@ -16,7 +17,6 @@ import java.util.Map;
  * Represents a distribution based on compartments
  */
 @Entity
-@Table(name = "distribution")
 public class CompartimentDistribution extends Distribution {
 
     public static final String SLOT_NAME = "distribution.compartiment.slotname";

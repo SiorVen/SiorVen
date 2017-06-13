@@ -75,7 +75,7 @@ public class Initializer {
 
             List<Slot> slots = new ArrayList<>();
 
-            for (int i = 1; i <= 5; i++) {
+            for (int i = 1; i <= 4; i++) {
                 slots.add(createSlot("Slot" + i, 1, Unit.U));
             }
 
@@ -162,16 +162,28 @@ public class Initializer {
         Distribution distribution;
         if (type == MATRIX_DISTRIBUTION) {
             distribution = new MatrixDistribution(description, lines, columns);
+            MatrixDistribution matrix = (MatrixDistribution) distribution;
+            for (int i = 0; i < matrix.getColumns() * matrix.getRows(); i++) {
+                Slot slot = new Slot();
+                slot.setUnit(Unit.U);
+                slot.setName((i / matrix.getColumns()) + ":" + (i % matrix.getColumns())); //Format will be "col:row" ("x:y")
+                slot.setCapacity(1);
+                matrix.getSlots().add(slot);
+            }
         } else {
             distribution = new CompartimentDistribution(description, numCompartiments);
+            distribution.setSlots(slots);
         }
-        distribution.setSlots(slots);
         distributionService.save(distribution);
         return distribution;
     }
 
     public MachineModel createMachineModel(String description, String manufacturer, List<Distribution> distributionList) {
+
         MachineModel machineModel = new MachineModel(description, manufacturer, distributionList);
+        for (Distribution d : distributionList) {
+            d.setMachineModel(machineModel);
+        }
         machineModelService.save(machineModel);
         return machineModel;
     }

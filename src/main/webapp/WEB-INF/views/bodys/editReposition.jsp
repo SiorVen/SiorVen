@@ -49,6 +49,13 @@
                                 <sf:errors path="id" cssClass="text-danger"/>
                             </div>
                         </div>
+                        <div class="control-group">
+                            <!-- id -->
+                            <div class="controls">
+                                <sf:input path="machineId" type="hidden" cssClass="form-control" id="reference"/>
+                                <sf:errors path="machineId" cssClass="text-danger"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="control-group" style="margin-top: 20px">
                         <!-- Button -->

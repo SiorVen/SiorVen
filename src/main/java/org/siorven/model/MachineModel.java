@@ -22,8 +22,8 @@ public class MachineModel {
 
     private String manufacturer;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "model_id")
+
+    @OneToMany(mappedBy = "machineModel", cascade = CascadeType.ALL)
     private List<Distribution> aviableDistributions;
 
 

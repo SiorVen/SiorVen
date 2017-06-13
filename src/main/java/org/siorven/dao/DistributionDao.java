@@ -1,6 +1,7 @@
 package org.siorven.dao;
 
 import org.siorven.model.Distribution;
+import org.siorven.model.MachineModel;
 import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;
 
@@ -55,4 +56,6 @@ public interface DistributionDao {
      * @return The list of distributions
      */
     List<Distribution> getAllDistributions();
+
+    List<Distribution> findByModel(MachineModel model);
 }

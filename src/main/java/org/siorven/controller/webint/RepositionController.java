@@ -1,6 +1,7 @@
 package org.siorven.controller.webint;
 
 import org.siorven.controller.webint.forms.MachineResourceForm;
+import org.siorven.model.Machine;
 import org.siorven.model.MachineResource;
 import org.siorven.model.MachineSlot;
 import org.siorven.model.Slot;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -80,10 +82,18 @@ public class RepositionController {
 
         MachineResource resource = machineResourceService.findById(id);
         anadirSlots(model, resource.getMachineSlot().getMachine().getId());
+        anadirSlotAdd(model, resource.getMachineSlot().getMachine().getId());
+        LinkedHashMap<Integer, String> modeHM = ((LinkedHashMap<Integer,String>)model.asMap().get("slots"));
+        LinkedHashMap<Integer, String> currentSlot = new LinkedHashMap<>();
+        currentSlot.put(resource.getMachineSlot().getSlot().getId(), resource.getMachineSlot().getSlot().getName());
+
+        currentSlot.putAll(modeHM);
+        model.addAttribute("slots", currentSlot);
         MachineResourceForm m = new MachineResourceForm();
         m.setProduct(resource.getResource().getName());
         m.setQuantity(resource.getQuantity());
         m.setId(id);
+        m.setMachineId(resource.getMachineSlot().getMachine().getId());
         model.addAttribute("machineResource", m);
         return "repositionEdit";
     }
@@ -96,7 +106,7 @@ public class RepositionController {
      */
     @GetMapping("/reposition/add/{id}")
     public String showRepositionRegisterInterface(@PathVariable("id") int id, Model model) {
-        anadirSlotAdd(model);
+        anadirSlotAdd(model, id);
         MachineResourceForm m = new MachineResourceForm();
         m.setId(id);
         model.addAttribute("machineResourceAdd", m);
@@ -141,11 +151,17 @@ public class RepositionController {
         if (bindingResult.hasErrors()) {
             return REPOSITION_MANAGER;
         }
-        anadirSlots(model, resource.getMachineSlot().getMachine().getId());
+        machineResourceService.delete(resource.getId());
+        machineSlotService.delete(resource.getMachineSlot());
+        MachineSlot ms = new MachineSlot();
+        ms.setSlot(slotService.findById(machineResourceForm.getMachineSlotId()));
+        ms.setMachine(machineService.findById(machineResourceForm.getMachineId()));
+        machineSlotService.save(ms);
         resource.setQuantity(machineResourceForm.getQuantity());
-        resource.setMachineSlot(machineSlotService.findById(machineResourceForm.getMachineSlotId()));
-        machineResourceService.edit(resource);
-        return REDIRECT_REPOSITION_MANAGER + resource.getMachineSlot().getMachine().getId();
+        resource.setMachineSlot(ms);
+        resource.getMachineSlot().setMachine(machineService.findById(machineResourceForm.getMachineId()));
+        machineResourceService.save(resource);
+        return REDIRECT_REPOSITION_MANAGER + machineResourceForm.getMachineId();
     }
 
     /**
@@ -168,8 +184,8 @@ public class RepositionController {
      *
      * @param model The request/response model
      */
-    private void anadirSlotAdd(Model model) {
-        List<Slot> m = slotService.findFree();
+    private void anadirSlotAdd(Model model, int id) {
+        List<Slot> m = slotService.findFree(id);
         LinkedHashMap<Integer, String> roles = new LinkedHashMap<>();
         for (int i = 0; i < m.size(); i++) {
             roles.put(m.get(i).getId(), m.get(i).getName());
