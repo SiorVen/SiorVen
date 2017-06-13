@@ -16,25 +16,19 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.multipart.MultipartException;
-import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.xml.sax.SAXParseException;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Web controller for the new Machine actions on the interface
  */
 @Controller
-public class ModelController implements HandlerExceptionResolver {
+public class ModelController {
 
     private static final String MACHINE_MODEL = "machineModel";
     private static final String MODEL_REGISTER_VIEW = "modelRegister";
@@ -135,16 +129,5 @@ public class ModelController implements HandlerExceptionResolver {
         if (normalizedExtension.compareTo("xml") == 0)
             flag = true;
         return flag;
-    }
-
-    @Override
-    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) {
-        Map<String, Object> model = new HashMap<>();
-        if (exception instanceof MultipartException) {
-            model.put("reason", "MAX FILE SIZE: " + exception.getMessage());
-        } else {
-            model.put("reason", "Unexpected error: " + exception.getMessage());
-        }
-        return new ModelAndView("500", model);
     }
 }
