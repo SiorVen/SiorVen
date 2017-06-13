@@ -32,9 +32,8 @@ import java.util.List;
  */
 @Controller
 public class MachineController {
-    private static final String MACHINE_MODEL = "machineModel";
-    private static final String MODEL_REGISTER_VIEW = "machineMachineRegister";
-    private static final String REDIRECT_MODEL_REGISTER = "redirect:/model/register";
+    private static final String MACHINE = "machineModelRegister";
+    private static final String MACHINE_REGISTER_VIEW = "machineMachineRegister";
     private static final String MACHINE_MANAGER_VIEW = "machineManager";
 
 
@@ -102,23 +101,22 @@ public class MachineController {
     @GetMapping("/machine/register")
     public String showMachineRegisterInterface(Model model) {
         addModels(model);
-        model.addAttribute("machineModelRegister", new MachineEditForm());
-        return MODEL_REGISTER_VIEW;
+        model.addAttribute(MACHINE, new MachineEditForm());
+        return MACHINE_REGISTER_VIEW;
     }
 
     /**
      * POST method of the new machine register action, checks the form data and rejects it with the according error message(s)
      *
-     * @param machineForm   The machine with the data collected from the web form
-     * @param bindingResult The error wrapper of the validation errors
+     * @param machineForm The machine with the data collected from the web form
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/machine/register")
-    public String performMachineRegister(@ModelAttribute(MACHINE_MODEL) @Validated MachineEditForm machineForm, BindingResult bindingResult,
-                                         RedirectAttributes redirectAttributes) throws IOException {
+    public String performMachineRegister(@ModelAttribute(MACHINE) @Validated MachineEditForm machineForm, BindingResult bindingResult, Model model) throws IOException {
 
         if (bindingResult.hasErrors()) {
-            return REDIRECT_MODEL_REGISTER;
+            addModels(model);
+            return MACHINE_REGISTER_VIEW;
         }
         Machine m = new Machine();
         m.setAlias(machineForm.getAlias());

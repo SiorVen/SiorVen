@@ -1,12 +1,16 @@
 package org.siorven.controller.webint.forms;
 
+import javax.validation.constraints.Size;
+
 /**
  * Model for the machine edit form
  */
 public class MachineEditForm {
 
+
     private int machineModelId;
 
+    @Size(max = 250, min = 3)
     private String alias;
 
     private int id;

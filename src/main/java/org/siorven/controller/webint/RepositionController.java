@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -112,8 +111,7 @@ public class RepositionController {
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/reposition/register")
-    public String performMachineRegister(@ModelAttribute("machineResourceAdd") @Validated MachineResourceForm machineResourceForm, BindingResult bindingResult,
-                                         RedirectAttributes redirectAttributes) throws IOException {
+    public String performMachineRegister(@ModelAttribute("machineResourceAdd") @Validated MachineResourceForm machineResourceForm, BindingResult bindingResult) throws IOException {
 
         if (bindingResult.hasErrors()) {
             return REPOSITION_MANAGER;
@@ -135,11 +133,10 @@ public class RepositionController {
      * Edits a reposition
      *
      * @param machineResourceForm reposition to update
-     * @param redirectAttributes  Redirected attributes to the manager
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/reposition/edit")
-    public String editReposition(@ModelAttribute("machineResource") @Validated(SpringFormEditGroup.class) MachineResourceForm machineResourceForm, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) throws ServletException {
+    public String editReposition(@ModelAttribute("machineResource") @Validated MachineResourceForm machineResourceForm, BindingResult bindingResult, Model model) throws ServletException {
         MachineResource resource = machineResourceService.findById(machineResourceForm.getId());
         if (bindingResult.hasErrors()) {
             return REPOSITION_MANAGER;
@@ -155,11 +152,10 @@ public class RepositionController {
      * Fills a reposition
      *
      * @param machineResourceForm reposition to update
-     * @param redirectAttributes  Redirected attributes to the manager
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping(value = "/reposition/fill", params = {"id"})
-    public String fillReposition(@RequestParam("id") Integer id, @ModelAttribute("machineResource") @Validated(SpringFormEditGroup.class) MachineResourceForm machineResourceForm, RedirectAttributes redirectAttributes, BindingResult bindingResult, Model model) throws ServletException {
+    public String fillReposition(@RequestParam("id") Integer id, @ModelAttribute("machineResource") @Validated(SpringFormEditGroup.class) MachineResourceForm machineResourceForm, BindingResult bindingResult) throws ServletException {
 
         MachineResource m = machineResourceService.findById(id);
         m.setQuantity(m.getMachineSlot().getSlot().getCapacity());

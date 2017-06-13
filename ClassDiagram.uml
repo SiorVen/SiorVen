@@ -3,53 +3,209 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="0.0" y="433.0">org.siorven.services.ProductTypeService</node>
-    <node x="3541.222083333333" y="0.0">org.siorven.services.XmlValidationService</node>
-    <node x="3459.222083333333" y="214.0">org.siorven.services.MachineIngredientService</node>
-    <node x="239.0" y="525.0">org.siorven.controller.api.WadlController</node>
-    <node x="2676.159583333333" y="214.0">org.siorven.controller.api.UserRestController</node>
-    <node x="1124.4090625" y="341.0">org.siorven.controller.api.ProductRestController</node>
-    <node x="292.0" y="117.0">org.siorven.controller.webint.RecollectorController</node>
-    <node x="888.3048958333333" y="341.0">org.siorven.controller.webint.ProductController</node>
-    <node x="2184.159583333333" y="214.0">org.siorven.services.MachineResourceService</node>
-    <node x="1458.093020833333" y="341.0">org.siorven.controller.webint.ResourceController</node>
-    <node x="1355.8582291666671" y="117.0">org.siorven.services.SuggestionService</node>
-    <node x="3161.222083333333" y="214.0">org.siorven.config.CustomUserDetailsService</node>
-    <node x="112.8470833333331" y="0.0">org.siorven.services.RecollectorService</node>
-    <node x="2916.159583333333" y="214.0">org.siorven.services.MailService</node>
-    <node x="1622.3582291666671" y="214.0">org.siorven.services.ResourceService</node>
-    <node x="848.608229166667" y="117.0">org.siorven.controller.api.MachineRestController</node>
-    <node x="1590.468020833333" y="0.0">org.siorven.services.MachineService</node>
-    <node x="543.0" y="433.0">org.siorven.services.DistributionService</node>
-    <node x="2470.159583333333" y="214.0">org.siorven.controller.webint.UserController</node>
-    <node x="2997.8166666666666" y="117.0">org.siorven.controller.webint.MachineController</node>
-    <node x="2001.7680208333327" y="341.0">org.siorven.controller.webint.RepositionController</node>
-    <node x="1859.284583333333" y="214.0">org.siorven.services.SlotService</node>
-    <node x="2900.733229166667" y="341.0">org.siorven.services.SaleService</node>
-    <node x="827.0" y="214.0">org.siorven.services.IngredientService</node>
-    <node x="1871.284583333333" y="117.0">org.siorven.services.MachineSlotService</node>
-    <node x="3099.3166666666666" y="0.0">org.siorven.services.MachineModelService</node>
-    <node x="219.29218749999973" y="341.0">org.siorven.controller.webint.SuggestionController</node>
-    <node x="809.0" y="433.0">org.siorven.services.StatementService</node>
-    <node x="2814.8166666666666" y="117.0">org.siorven.services.UserService</node>
-    <node x="505.25" y="341.0">org.siorven.services.IAService</node>
-    <node x="551.0" y="214.0">org.siorven.services.MachineProductService</node>
-    <node x="3508.722083333333" y="117.0">org.siorven.controller.webint.ModelController</node>
-    <node x="1056.0" y="214.0">org.siorven.services.ProductService</node>
-    <node x="0.0" y="117.0">org.siorven.controller.api.RecollectorRestController</node>
-    <node x="0.0" y="525.0">org.siorven.controller.webint.IndexController</node>
-    <node x="1701.093020833333" y="341.0">org.siorven.controller.api.ResourceRestController</node>
-    <node x="1327.3582291666671" y="214.0">org.siorven.controller.api.SuggestionRestController</node>
-    <node x="3250.722083333333" y="117.0">org.siorven.services.LoginAttemptService</node>
-    <node x="273.0" y="433.0">org.siorven.controller.webint.HttpErrorController</node>
-    <node x="282.0421874999997" y="214.0">org.siorven.services.ConfigParamService</node>
+    <node x="-34.0" y="1176.5">org.siorven.services.ProductTypeService</node>
+    <node x="321.0" y="496.5">org.siorven.services.XmlValidationService</node>
+    <node x="742.5" y="416.5">org.siorven.services.MachineIngredientService</node>
+    <node x="810.0" y="616.5">org.siorven.controller.api.UserRestController</node>
+    <node x="1996.5" y="936.5">org.siorven.controller.api.ProductRestController</node>
+    <node x="1104.0" y="1176.5">org.siorven.controller.api.WadlController</node>
+    <node x="2013.5" y="696.5">org.siorven.controller.webint.ProductController</node>
+    <node x="481.0" y="1056.5">org.siorven.controller.webint.RecollectorController</node>
+    <node x="1347.0" y="296.5">org.siorven.services.MachineResourceService</node>
+    <node x="2288.5" y="176.5">org.siorven.controller.webint.ResourceController</node>
+    <node x="211.0" y="816.5">org.siorven.services.SuggestionService</node>
+    <node x="1061.0" y="736.5">org.siorven.config.CustomUserDetailsService</node>
+    <node x="1399.5" y="616.5">org.siorven.services.MailService</node>
+    <node x="212.5" y="1056.5">org.siorven.services.RecollectorService</node>
+    <node x="2020.0" y="176.5">org.siorven.services.ResourceService</node>
+    <node x="474.5" y="-23.5">org.siorven.controller.api.MachineRestController</node>
+    <node x="249.5" y="1176.5">org.siorven.services.DistributionService</node>
+    <node x="503.0" y="816.5">org.siorven.services.MachineService</node>
+    <node x="1107.0" y="496.5">org.siorven.controller.webint.UserController</node>
+    <node x="11.5" y="576.5">org.siorven.controller.webint.MachineController</node>
+    <node x="1362.0" y="176.5">org.siorven.controller.webint.RepositionController</node>
+    <node x="1400.5" y="56.5">org.siorven.services.SlotService</node>
+    <node x="1400.0" y="416.5">org.siorven.services.SaleService</node>
+    <node x="2295.5" y="696.5">org.siorven.services.IngredientService</node>
+    <node x="1087.5" y="56.5">org.siorven.services.MachineSlotService</node>
+    <node x="-2.5" y="376.5">org.siorven.services.MachineModelService</node>
+    <node x="1359.5" y="936.5">org.siorven.controller.webint.SuggestionController</node>
+    <node x="535.5" y="1176.5">org.siorven.services.StatementService</node>
+    <node x="1118.5" y="616.5">org.siorven.services.UserService</node>
+    <node x="1727.5" y="816.5">org.siorven.services.IAService</node>
+    <node x="1672.0" y="696.5">org.siorven.services.MachineProductService</node>
+    <node x="339.0" y="376.5">org.siorven.controller.webint.ModelController</node>
+    <node x="2025.0" y="816.5">org.siorven.services.ProductService</node>
+    <node x="184.0" y="936.5">org.siorven.controller.api.RecollectorRestController</node>
+    <node x="1343.0" y="1176.5">org.siorven.controller.webint.IndexController</node>
+    <node x="1991.5" y="56.5">org.siorven.controller.api.ResourceRestController</node>
+    <node x="182.5" y="696.5">org.siorven.controller.api.SuggestionRestController</node>
+    <node x="761.0" y="736.5">org.siorven.services.LoginAttemptService</node>
+    <node x="1684.5" y="936.5">org.siorven.services.ConfigParamService</node>
+    <node x="807.5" y="1176.5">org.siorven.controller.webint.HttpErrorController</node>
   </nodes>
   <notes />
-  <edges />
-  <settings layout="Hierarchic Group" zoom="0.4775374376039934" x="2093.4999999999995" y="256.9181184668987" />
-  <SelectedNodes>
-    <node>org.siorven.controller.api.WadlController</node>
-  </SelectedNodes>
+  <edges>
+    <edge source="org.siorven.controller.webint.RepositionController" target="org.siorven.services.MachineResourceService">
+      <point x="0.0" y="23.5" />
+      <point x="0.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.services.IAService" target="org.siorven.services.MachineProductService">
+      <point x="0.0" y="-23.5" />
+      <point x="0.0" y="23.5" />
+    </edge>
+    <edge source="org.siorven.services.SuggestionService" target="org.siorven.services.MachineService">
+      <point x="109.0" y="0.0" />
+      <point x="-97.0" y="0.0" />
+    </edge>
+    <edge source="org.siorven.controller.api.ResourceRestController" target="org.siorven.services.ResourceService">
+      <point x="0.0" y="23.5" />
+      <point x="0.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.controller.webint.ProductController" target="org.siorven.services.MachineProductService">
+      <point x="-106.5" y="0.0" />
+      <point x="128.0" y="0.0" />
+    </edge>
+    <edge source="org.siorven.services.SlotService" target="org.siorven.services.MachineSlotService">
+      <point x="-79.5" y="0.0" />
+      <point x="112.5" y="0.0" />
+    </edge>
+    <edge source="org.siorven.controller.webint.RecollectorController" target="org.siorven.services.RecollectorService">
+      <point x="-119.0" y="0.0" />
+      <point x="107.5" y="0.0" />
+    </edge>
+    <edge source="org.siorven.services.MachineResourceService" target="org.siorven.services.MachineService">
+      <point x="-133.0" y="0.0" />
+      <point x="660.0" y="320.0" />
+      <point x="60.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.controller.webint.MachineController" target="org.siorven.services.MachineModelService">
+      <point x="0.0" y="-23.5" />
+      <point x="0.0" y="23.5" />
+    </edge>
+    <edge source="org.siorven.services.SaleService" target="org.siorven.services.MachineIngredientService">
+      <point x="-80.0" y="0.0" />
+      <point x="137.5" y="0.0" />
+    </edge>
+    <edge source="org.siorven.services.SaleService" target="org.siorven.services.MailService">
+      <point x="0.0" y="23.5" />
+      <point x="0.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.controller.webint.RepositionController" target="org.siorven.services.SlotService">
+      <point x="0.0" y="-23.5" />
+      <point x="0.0" y="23.5" />
+    </edge>
+    <edge source="org.siorven.services.IAService" target="org.siorven.services.ProductService">
+      <point x="72.5" y="0.0" />
+      <point x="-95.0" y="0.0" />
+    </edge>
+    <edge source="org.siorven.services.MailService" target="org.siorven.services.UserService">
+      <point x="-80.5" y="0.0" />
+      <point x="81.5" y="0.0" />
+    </edge>
+    <edge source="org.siorven.controller.webint.ModelController" target="org.siorven.services.MachineModelService">
+      <point x="-101.0" y="0.0" />
+      <point x="122.5" y="0.0" />
+    </edge>
+    <edge source="org.siorven.controller.webint.ModelController" target="org.siorven.services.XmlValidationService">
+      <point x="0.0" y="23.5" />
+      <point x="0.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.controller.api.UserRestController" target="org.siorven.services.UserService">
+      <point x="110.0" y="0.0" />
+      <point x="-81.5" y="0.0" />
+    </edge>
+    <edge source="org.siorven.controller.webint.ResourceController" target="org.siorven.services.ResourceService">
+      <point x="-111.5" y="0.0" />
+      <point x="100.0" y="0.0" />
+    </edge>
+    <edge source="org.siorven.controller.webint.RepositionController" target="org.siorven.services.MachineService">
+      <point x="-118.0" y="0.0" />
+      <point x="640.0" y="200.0" />
+      <point x="40.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.controller.webint.RecollectorController" target="org.siorven.services.MachineService">
+      <point x="0.0" y="-23.5" />
+      <point x="0.0" y="23.5" />
+    </edge>
+    <edge source="org.siorven.services.IAService" target="org.siorven.services.ConfigParamService">
+      <point x="0.0" y="23.5" />
+      <point x="0.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.services.MachineSlotService" target="org.siorven.services.MachineService">
+      <point x="-112.5" y="0.0" />
+      <point x="620.0" y="80.0" />
+      <point x="20.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.controller.api.ProductRestController" target="org.siorven.services.ProductService">
+      <point x="0.0" y="-23.5" />
+      <point x="0.0" y="23.5" />
+    </edge>
+    <edge source="org.siorven.controller.webint.ProductController" target="org.siorven.services.ProductService">
+      <point x="0.0" y="23.5" />
+      <point x="0.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.controller.api.RecollectorRestController" target="org.siorven.services.RecollectorService">
+      <point x="0.0" y="23.5" />
+      <point x="0.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.controller.webint.ProductController" target="org.siorven.services.IngredientService">
+      <point x="106.5" y="0.0" />
+      <point x="-104.5" y="0.0" />
+    </edge>
+    <edge source="org.siorven.controller.webint.SuggestionController" target="org.siorven.services.ConfigParamService">
+      <point x="120.5" y="0.0" />
+      <point x="-115.5" y="0.0" />
+    </edge>
+    <edge source="org.siorven.controller.api.MachineRestController" target="org.siorven.services.MachineService">
+      <point x="0.0" y="23.5" />
+      <point x="0.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.controller.webint.ProductController" target="org.siorven.services.ResourceService">
+      <point x="0.0" y="-23.5" />
+      <point x="0.0" y="23.5" />
+    </edge>
+    <edge source="org.siorven.controller.webint.MachineController" target="org.siorven.services.MachineService">
+      <point x="108.5" y="0.0" />
+      <point x="560.0" y="600.0" />
+      <point x="-40.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.controller.webint.RepositionController" target="org.siorven.services.MachineSlotService">
+      <point x="-118.0" y="-13.333333333333343" />
+      <point x="1200.0" y="186.66666666666666" />
+      <point x="0.0" y="23.5" />
+    </edge>
+    <edge source="org.siorven.services.IAService" target="org.siorven.services.MachineService">
+      <point x="-72.5" y="0.0" />
+      <point x="97.0" y="0.0" />
+    </edge>
+    <edge source="org.siorven.controller.webint.RepositionController" target="org.siorven.services.ResourceService">
+      <point x="118.0" y="0.0" />
+      <point x="-100.0" y="0.0" />
+    </edge>
+    <edge source="org.siorven.config.CustomUserDetailsService" target="org.siorven.services.LoginAttemptService">
+      <point x="-139.0" y="0.0" />
+      <point x="119.0" y="0.0" />
+    </edge>
+    <edge source="org.siorven.controller.api.SuggestionRestController" target="org.siorven.services.SuggestionService">
+      <point x="0.0" y="23.5" />
+      <point x="0.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.config.CustomUserDetailsService" target="org.siorven.services.UserService">
+      <point x="0.0" y="-23.5" />
+      <point x="0.0" y="23.5" />
+    </edge>
+    <edge source="org.siorven.controller.webint.UserController" target="org.siorven.services.UserService">
+      <point x="0.0" y="23.5" />
+      <point x="0.0" y="-23.5" />
+    </edge>
+    <edge source="org.siorven.services.SaleService" target="org.siorven.services.MachineResourceService">
+      <point x="0.0" y="-23.5" />
+      <point x="0.0" y="23.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6332807570977917" x="1239.0" y="600.0" />
+  <SelectedNodes />
   <Categories>
     <Category>Inner Classes</Category>
   </Categories>

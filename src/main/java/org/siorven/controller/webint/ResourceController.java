@@ -3,7 +3,6 @@ package org.siorven.controller.webint;
 import org.siorven.exceptions.ResourceAlreadyRegisteredException;
 import org.siorven.model.Resource;
 import org.siorven.model.ResourceType;
-import org.siorven.model.validacion.SpringFormGroup;
 import org.siorven.services.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -84,8 +83,8 @@ public class ResourceController {
      * @return Key for the {@link org.springframework.web.servlet.ViewResolver ViewResolver} bean
      */
     @PostMapping("/resource/register")
-    public String performRegister(@ModelAttribute(RESOURCE) @Validated(SpringFormGroup.class) Resource resource, @ModelAttribute("prodid") int prodid,
-                                  BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+    public String performRegister(@ModelAttribute(RESOURCE) @Validated Resource resource, BindingResult bindingResult, @ModelAttribute("prodid") int prodid,
+                                  Model model, RedirectAttributes redirectAttributes) {
 
         addResourceTypes(model);
         if (bindingResult.hasErrors()) {

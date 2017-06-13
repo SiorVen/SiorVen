@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Model for the new Ingredient form
@@ -16,6 +17,7 @@ public class IngredientForm {
 
     @NotNull(message = "{confAlg.CantBeEmpty}")
     @NotEmpty(message = "{error.ingredient.resourceEmpty}")
+    @Size(max = 250)
     private String name;
 
     public IngredientForm() {

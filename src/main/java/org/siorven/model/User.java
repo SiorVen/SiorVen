@@ -54,11 +54,13 @@ public class User implements UserDetails, CredentialsContainer {
     @Column(unique = true)
     @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{NotEmpty.user.email}")
     @Pattern(regexp = EMAIL_REGEX, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{Pattern.user.email}")
+    @Size(max = 250, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class})
     private String email;
 
     @XmlElement
     @NotEmpty(groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{NotEmpty.user.permission}")
     @Pattern(regexp = PERMISO_REGEX, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class}, message = "{Pattern.user.permission}")
+    @Size(max = 250, groups = {PersistenceGroup.class, SpringFormGroup.class, SpringFormEditGroup.class})
     private String permission;
 
     public User(String username, String password, String email, String permission) {

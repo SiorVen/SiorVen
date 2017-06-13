@@ -1,6 +1,7 @@
 package org.siorven.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 /**
  * Represents a resource
@@ -14,6 +15,7 @@ public class Resource {
     private int id;
 
     @Column(name = "name", unique = true)
+    @Size(max = 250)
     private String name;
 
     @Column(name = "resourceType")

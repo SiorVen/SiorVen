@@ -7,7 +7,7 @@
         <sf:form action="${pageContext.request.contextPath}/resource/register" method="post" commandName="resource">
             <fieldset>
                 <div id="legend">
-                    <legend class=""><s:message code="pages.register"/></legend>
+                    <legend class=""><s:message code="pages.resourceRegister"/></legend>
                 </div>
                 <div class="control-group">
                     <!-- Username -->

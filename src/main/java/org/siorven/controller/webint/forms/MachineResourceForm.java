@@ -1,20 +1,22 @@
 package org.siorven.controller.webint.forms;
 
+import javax.validation.constraints.Size;
+
 /**
  * Model for the machine resource form
  */
 public class MachineResourceForm {
 
-
+    @Size(max = 250)
     private String product;
 
-    private int quantity;
+    private Integer quantity;
 
     private int id;
 
-    private int machineSlotId;
+    private Integer machineSlotId;
 
-    private int machineId;
+    private Integer machineId;
 
     public MachineResourceForm() {
         //empty constructor

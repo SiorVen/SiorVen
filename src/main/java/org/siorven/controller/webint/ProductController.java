@@ -68,13 +68,19 @@ public class ProductController {
      */
     @PostMapping("/product/new")
     public String newProduct(@RequestParam("name") String name, RedirectAttributes redirectAttributes) {
-        Product p = new Product();
-        p.setName(name);
-        p.setRecipe(new ArrayList<>());
-        productService.save(p);
-        String msg = messageSource.getMessage("msg.product.added",
-                new String[]{p.getName()}, resolver.resolveLocale(request));
-        redirectAttributes.addFlashAttribute(MESSAGE, msg);
+        if (name.length() > 250) {
+            String msg = messageSource.getMessage("msg.product.maxLength250",
+                    null , resolver.resolveLocale(request));
+            redirectAttributes.addFlashAttribute(MESSAGE, msg);
+        }else{
+            Product p = new Product();
+            p.setName(name);
+            p.setRecipe(new ArrayList<>());
+            productService.save(p);
+            String msg = messageSource.getMessage("msg.product.added",
+                    new String[]{p.getName()}, resolver.resolveLocale(request));
+            redirectAttributes.addFlashAttribute(MESSAGE, msg);
+        }
         return "redirect:/product/manager";
     }
 
