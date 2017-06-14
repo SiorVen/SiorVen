@@ -73,17 +73,6 @@ public class Initializer {
             productTypes.add(createProductType("PT1"));
             productTypes.add(createProductType("PT2"));
 
-            List<Slot> slots = new ArrayList<>();
-
-            for (int i = 1; i <= 4; i++) {
-                slots.add(createSlot("Slot" + i, 1, Unit.U));
-            }
-
-            distributions.add(createDistribution(MATRIX_DISTRIBUTION, "D1", 3, 3, 0, slots));
-            distributions.add(createDistribution(COMPARTIMENT_DISTRIBUTION, "D2", 0, 0, 4, slots));
-
-            MachineModel machineModel = createMachineModel("M1", "man", distributions);
-
             generateProduct("Choco-Bones Blancos", "Choco-Bones Blancos");
             generateProduct("Manzana", "Manzana");
             generateProduct("Choco-Bones Negros", "Choco-Bones Negros");
@@ -102,6 +91,17 @@ public class Initializer {
             generateProduct("Chocolate", "Chocolate");
             generateProduct("Te verde", "Te verde");
 
+            List<Slot> slots = new ArrayList<>();
+
+            for (int i = 1; i <= productList.size(); i++) {
+                slots.add(createSlot("Slot" + i, 1, Unit.U));
+            }
+
+            distributions.add(createDistribution(MATRIX_DISTRIBUTION, "D1", 3, 3, 0, slots));
+            distributions.add(createDistribution(COMPARTIMENT_DISTRIBUTION, "D2", 0, 0, 4, slots));
+
+            MachineModel machineModel = createMachineModel("M1", "man", distributions);
+
             generateMachine(slots, machineModel, "Machine1");
             generateMachine(slots, machineModel, "Machine2");
 
@@ -112,18 +112,22 @@ public class Initializer {
     }
 
     private void generateMachine(List<Slot> slots, MachineModel machineModel, String machineName) {
+        List<MachineSlot> mSlots = new ArrayList<>();
         Machine machine = new Machine(machineName, machineModel);
         machineService.save(machine);
 
-        MachineSlot machineSlot = new MachineSlot(slots.get(0), machine);
-        machineSlotService.save(machineSlot);
+        for(Slot slot : slots) {
+            MachineSlot machineSlot = new MachineSlot(slot, machine);
+            machineSlotService.save(machineSlot);
+            mSlots.add(machineSlot);
+        }
 
         List<MachineProduct> machineProducts = new ArrayList<>();
         List<MachineResource> machineResourceList = new ArrayList<>();
 
         for (int i = 0; i < productList.size(); i++) {
             List<MachineIngredient> machineRecipe = new ArrayList<>();
-            MachineResource machineResource = createMachineResource(resourceList.get(i), 1, machineSlot);
+            MachineResource machineResource = createMachineResource(resourceList.get(i), 1, mSlots.get(i));
             MachineIngredient machineIngredient = createMachineIngredient(machineResource, 1);
             machineRecipe.add(machineIngredient);
             MachineProduct machineProduct1 = createMachineProduct(productList.get(i), PRICE, machineRecipe, machine);

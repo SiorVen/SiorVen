@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.siorven.model.MachineIngredient;
 import org.siorven.model.MachineProduct;
+import org.siorven.model.MachineResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,5 +74,11 @@ public class MachineIngredientDaoImpl implements MachineIngredientDao {
         c.add(Restrictions.eq("mp.id", machineProduct.getId()));
 
         return c.list();
+    }
+
+    @Override
+    public MachineIngredient findByMachineResource(MachineResource resource) {
+        Criteria crit = getSession().createCriteria(MachineIngredient.class).add(Restrictions.eq("resource", resource));
+        return (MachineIngredient) crit.uniqueResult();
     }
 }

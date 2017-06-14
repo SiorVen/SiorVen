@@ -1,10 +1,7 @@
 package org.siorven.controller.webint;
 
 import org.siorven.controller.webint.forms.MachineResourceForm;
-import org.siorven.model.Machine;
-import org.siorven.model.MachineResource;
-import org.siorven.model.MachineSlot;
-import org.siorven.model.Slot;
+import org.siorven.model.*;
 import org.siorven.model.validacion.SpringFormEditGroup;
 import org.siorven.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +56,12 @@ public class RepositionController {
      */
     @Autowired
     private MachineService machineService;
+
+    /**
+     * Service with the suggestion data access logic
+     */
+    @Autowired
+    private MachineIngredientService machineIngredientService;
 
     /**
      * Displays the suggestion manager
@@ -151,6 +154,8 @@ public class RepositionController {
         if (bindingResult.hasErrors()) {
             return REPOSITION_MANAGER;
         }
+        MachineIngredient mi = machineIngredientService.findByMachineResource(resource);
+        machineIngredientService.delete(mi);
         machineResourceService.delete(resource.getId());
         machineSlotService.delete(resource.getMachineSlot());
         MachineSlot ms = new MachineSlot();
@@ -161,6 +166,8 @@ public class RepositionController {
         resource.setMachineSlot(ms);
         resource.getMachineSlot().setMachine(machineService.findById(machineResourceForm.getMachineId()));
         machineResourceService.save(resource);
+        mi.setResource(resource);
+        machineIngredientService.save(mi);
         return REDIRECT_REPOSITION_MANAGER + machineResourceForm.getMachineId();
     }
 

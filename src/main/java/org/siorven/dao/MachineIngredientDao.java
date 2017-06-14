@@ -2,6 +2,7 @@ package org.siorven.dao;
 
 import org.siorven.model.MachineIngredient;
 import org.siorven.model.MachineProduct;
+import org.siorven.model.MachineResource;
 import org.siorven.model.validacion.PersistenceGroup;
 import org.springframework.validation.annotation.Validated;
 
@@ -58,4 +59,6 @@ public interface MachineIngredientDao {
     List<MachineIngredient> findAll();
 
     List getRecipeFromMachineProduct(MachineProduct machineProduct);
+
+    MachineIngredient findByMachineResource(MachineResource resource);
 }

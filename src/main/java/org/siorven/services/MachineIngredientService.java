@@ -3,6 +3,7 @@ package org.siorven.services;
 import org.siorven.dao.MachineIngredientDao;
 import org.siorven.model.MachineIngredient;
 import org.siorven.model.MachineProduct;
+import org.siorven.model.MachineResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,5 +81,9 @@ public class MachineIngredientService {
      */
     public List<MachineIngredient> getRecipeFromMachineProduct(MachineProduct mp) {
         return machineIngredientDao.getRecipeFromMachineProduct(mp);
+    }
+
+    public MachineIngredient findByMachineResource(MachineResource resource) {
+        return machineIngredientDao.findByMachineResource(resource);
     }
 }
