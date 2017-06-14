@@ -1,7 +1,5 @@
 package org.siorven.services;
 
-import org.apache.maven.model.Model;
-import org.hibernate.Hibernate;
 import org.siorven.dao.SlotDao;
 import org.siorven.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,7 +119,7 @@ public class SlotService {
 
         MachineModel model = machineModelService.findById(machine.getMachineModel().getId());
         List<Distribution> distributions = distributionService.findByModel(model);
-        List<Slot> slotsByDistribution = new ArrayList<>();
+        List<Slot> slotsByDistribution;
         List<Slot> slots = new ArrayList<>();
         for(int j = 0; j < distributions.size(); j++){
             slotsByDistribution = distributions.get(j).getSlots();
