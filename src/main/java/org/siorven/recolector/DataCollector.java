@@ -23,13 +23,13 @@ import java.util.Map;
 public class DataCollector extends _DataCollectorDisp {
 
     @Autowired
-    private SaleService saleService;
+    private transient SaleService saleService;
 
     @Autowired
-    private RecollectorService recollectorService;
+    private transient RecollectorService recollectorService;
 
     @Autowired
-    private MachineProductService machineProductService;
+    private transient MachineProductService machineProductService;
 
     @Override
     public void shutdown(String alias, Current current) {
