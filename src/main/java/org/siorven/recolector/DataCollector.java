@@ -22,19 +22,14 @@ import java.util.Map;
 @Component
 public class DataCollector extends _DataCollectorDisp {
 
-    private transient Map<String, Machine> collectorList = new HashMap<>();
+    @Autowired
+    private SaleService saleService;
 
     @Autowired
-    private transient SaleService saleService;
+    private RecollectorService recollectorService;
 
     @Autowired
-    private transient RecollectorService recollectorService;
-
-    @Autowired
-    private transient MachineProductService machineProductService;
-
-    @Autowired
-    private transient MachineService machineService;
+    private MachineProductService machineProductService;
 
     @Override
     public void shutdown(String alias, Current current) {
@@ -44,7 +39,6 @@ public class DataCollector extends _DataCollectorDisp {
             r.setConnection(false);
             recollectorService.edit(r);
         }
-        collectorList.remove(alias);
     }
 
     @Override
@@ -57,9 +51,6 @@ public class DataCollector extends _DataCollectorDisp {
             r.setConnection(true);
             recollectorService.edit(r);
         }
-        Machine m = machineService.findAll().get(0);
-        collectorList.put(alias, m);
-
     }
 
     @Override
