@@ -17,7 +17,7 @@ Ice.Default.Host=85.84.20.64
 #
 # Warn about connection exceptions.
 #
-Ice.Warn.Connections=1
+Ice.Warn.Connections=0
 
 #
 # Network Tracing
