@@ -102,11 +102,11 @@ public class UserController {
 
         try {
             userService.save(usuario);
-        } catch (UsernameInUseException e) {
+        } catch (EmailInUseException e) {
             String msg = messageSource.getMessage("error.user.emailTaken", null, locale());
             bindingResult.addError(new FieldError(USER, "email", usuario.getEmail(), true, null, null, msg));
             return REGISTER_VIEW;
-        } catch (EmailInUseException e) {
+        } catch (UsernameInUseException e) {
             String msg = messageSource.getMessage("error.user.usernameTaken", null, locale());
             bindingResult.addError(new FieldError(USER, "username", usuario.getUsername(), true, null, null, msg));
             return REGISTER_VIEW;

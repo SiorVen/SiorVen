@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:noNamespaceSchemaLocation="file://machine.xsd">
+       xsi:noNamespaceSchemaLocation="https://champi.sytes.net/SiorVen/res/xsd/machine.xsd">
     <manufacturer>Sony</manufacturer>
     <modelReference>XD</modelReference>
     <products>
